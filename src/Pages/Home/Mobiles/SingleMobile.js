@@ -1,4 +1,4 @@
-import { Box, Button, Rating } from '@mui/material';
+import { Box, Button, Rating, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -10,12 +10,12 @@ const SingleMobile = () => {
 
     const { id } = useParams();
 
-    const [bikes, setBikes] = useState([]);
+    const [phones, setPhones] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:5000/phones/${id}`)
             .then(res => res.json())
-            .then(data => setBikes(data))
+            .then(data => setPhones(data))
     }, [id])
 
 
@@ -40,52 +40,87 @@ const SingleMobile = () => {
             <div style={{ paddingTop: "65px" }} className='bg-light'>
 
             </div>
-            <img style={{ height: "30rem" }} className='w-100 img-fluid' src={bikes?.image} alt="" />
+
             <div className='container py-5'>
                 <div className="row">
-                    <div className="col-md-9">
-                        <h3 style={{ color: "#62599F" }}>{bikes?.name}</h3>
-                        <h5 className="text-decoration-underline" style={{ color: "#005562" }}>{bikes?.keySpecs}</h5>
-                        <Box sx={{
-                            '& > legend': { mt: 2 },
-                        }}>
-                            <Rating name="half-rating-read" precision={0.5} size="small" value={Number(bikes?.rating)} readOnly /><span className="text-secondary">({bikes?.reviews}) bikers review this Bike</span>
-                        </Box>
-                        <div className=" d-flex justify-contenet-between align-items-center">
-                            <h4 className="w-100 py-3">Price: <span className="text-danger fw-bold">{bikes?.price} BDT</span> <span className="fs-6 ">(taxe included)</span></h4>
-                            <h5 className="w-100 text-end">Phone: {bikes?.contact}</h5>
-
+                    <div className='col-md-4'>
+                        <div className='text-center'>
+                            <h3 style={{ color: "#62599F" }}>{phones?.name}</h3>
+                            <img className='w-100 img-fluid' src={phones?.image} alt="" />
                         </div>
-                        <p>{bikes?.description}</p>
                     </div>
+                    <div className="col-md-4">
+                        <ul>
+                            <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.processor}</li>
+                            <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.memory}</li>
+                            <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.display}</li>
+                            <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.battery}</li>
+                        </ul>
+                    </div>
+                    <div className="col-md-4">
+                        <ul>
+                            <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.camera}</li>
+                            <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.selfie}</li>
+                            <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.network}</li>
 
-                    <div className="col-md-3 ">
-                        <div className="add-bikes">
-                            <div className="shadow p-4 bg-custom rounded">
-                                <h3 className="text-custom">BUY this bike</h3>
-                                <div>
-                                    {
-                                        bikes?.name && <form onSubmit={handleSubmit(onSubmit)}>
-                                            <input defaultValue={bikes?.name} readOnly {...register("bike", { required: true })} />
-                                            {errors.resort && <span className="text-warning">This field is required. </span>}
-                                            <input defaultValue={bikes?.price} readOnly {...register("price")} />
-                                            <input defaultValue="Pending..." readOnly hidden {...register("status")} />
-                                            <input defaultValue={user?.displayName} readOnly {...register("name")} />
-                                            <input defaultValue={user?.email} readOnly {...register("email", { required: true })} />
-                                            {errors.email && <span className="text-warning">This field is required.</span>}
-                                            <input placeholder="Present Address"  {...register("address")} />
-                                            <input placeholder="City and Country"  {...register("city")} />
-                                            <input placeholder="Phone number"  {...register("phone", { required: true })} />
-                                            {errors.phone && <span className="text-warning">This field is required.</span>}
-                                            <input defaultValue={new Date()} type="date"  {...register("date", { required: true })} />
-                                            {errors.date && <span className="text-warning">This field is required.</span>}
-                                            <input defaultValue={bikes?.image} hidden readOnly {...register("image", { required: true })} />
-                                            {errors.image && <span className="text-warning">This field is required.</span>}
-                                            {!admin && <Button type="submit" variant="contained">buy</Button>}
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-                                        </form>
-                                    }
-                                </div>
+            <div className="container">
+                <div className='text-center py-3 custom-margin'>
+                    <button className='btn p-4 fs-1 rounded-circle btn-custom'><i className="fas fa-cart-arrow-down"></i></button>
+                </div>
+                <div className="row p-5 custom-border">
+                    <div className='col-md-6'>
+                        <div className='py-1'>
+                            <h4 className='text-center fw-bold'>OVERVIEW</h4>
+                            <hr />
+                            <h5 className="w-100 text-secondary text-center my-2"><i className="fas p-3 text-info rounded-pill custom-border bg-light fa-phone-volume"> {phones?.contact}</i> </h5>
+                            <div className='py-3'>
+                            <h5 className='fs-6'>Brand Name: <span className='fs-5 text-dark fw-bold'> {phones?.name}</span></h5>
+                            <Box sx={{
+                                '& > legend': { mt: 2 },
+                            }}>
+                                <Typography><Rating name="half-rating-read" precision={0.5} size="small" value={Number(phones?.star)} readOnly />( {phones?.rating} user review this ) </Typography>
+
+                            </Box>
+
+                            <h5 className="w-100 py-3"><span className="text-danger fw-bold">{phones?.price} BDT</span> <span className="fs-6 ">(tax included)</span></h5>
+                            
+                            <h5 style={{ textAlign: "justify" }} className='text-secondary' >{phones?.specs}</h5>
+                            </div>
+                            <div className='text-center p-4'>
+                                <small className='text-secondary'>*To order this {phones?.name} mobile on online or buy, please call us or fill up the form</small>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='col-md-6'>
+                        <div className="py-1 rounded">
+                            <div>
+                                {
+                                    phones?.name && <form className='custom-form' onSubmit={handleSubmit(onSubmit)}>
+                                        <input defaultValue={phones?.name} readOnly {...register("bike", { required: true })} />
+                                        {errors.resort && <span className="text-warning">This field is required. </span>}
+                                        <input defaultValue={phones?.price} readOnly {...register("price")} />
+                                        <input defaultValue="Pending..." readOnly hidden {...register("status")} />
+                                        <input defaultValue={user?.displayName} readOnly {...register("name")} />
+                                        <input defaultValue={user?.email} readOnly {...register("email", { required: true })} />
+                                        {errors.email && <span className="text-warning">This field is required.</span>}
+                                        <input placeholder="Present Address"  {...register("address")} />
+                                        <input placeholder="City and Country"  {...register("city")} />
+                                        <input placeholder="Phone number"  {...register("phone", { required: true })} />
+                                        {errors.phone && <span className="text-warning">This field is required.</span>}
+                                        <input defaultValue={new Date()} type="date"  {...register("date", { required: true })} />
+                                        {errors.date && <span className="text-warning">This field is required.</span>}
+                                        <input defaultValue={phones?.image} hidden readOnly {...register("image", { required: true })} />
+                                        {errors.image && <span className="text-warning">This field is required.</span>} <br />
+                                        {!admin && <Button className='w-100 btn-custom' type="submit" variant="contained">ORDER</Button>}
+
+                                    </form>
+                                }
                             </div>
                         </div>
                     </div>

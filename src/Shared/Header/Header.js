@@ -24,11 +24,15 @@ const Header = () => {
                                             <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
                                         </li>
                                         <li className="nav-item">
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/mobiles">SMARTPHONES</NavLink>
+                                        </li>
+                                        <li className="nav-item">
                                             <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT ME</NavLink>
                                         </li>
                                         <li className="nav-item">
                                             <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/about">ABOUT ME</NavLink>
                                         </li>
+
                                         <li className="nav-item">
                                             <p onClick={logOut} className='nav-link active mx-1 text-warning'>LOGOUT</p>
                                         </li>
@@ -37,6 +41,9 @@ const Header = () => {
                                         : <ul className="navbar-nav mx-auto">
                                             <li className="nav-item">
                                                 <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
+                                            </li>
+                                            <li className="nav-item">
+                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/mobiles">SMARTPHONES</NavLink>
                                             </li>
                                             <li className="nav-item">
                                                 <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT ME</NavLink>
