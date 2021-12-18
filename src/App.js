@@ -14,6 +14,14 @@ import ExploreMobiles from "./Pages/Home/Mobiles/ExploreMobiles";
 import PrivateRoute from "./LogIn/PrivateRoute/PrivateRoute";
 import SingleMobile from "./Pages/Home/Mobiles/SingleMobile";
 import AuthProvider from "./Contexts/AuthProvider/AuthProvider";
+import Dashboard from "./Dashboard/Dashboard/Dashboard";
+import AdminRoute from "./Dashboard/Admin/AdminRoute";
+import AddMobile from "./Dashboard/Admin/AddMobile";
+import MakeAdmin from "./Dashboard/Admin/MakeAdmin";
+import ManageProducts from "./Dashboard/Admin/ManageProducts";
+import ManageOrder from "./Dashboard/Admin/ManageOrder";
+import MyOrders from "./Dashboard/User/MyOrders";
+import DashboardHome from "./Dashboard/Dashboard/DashboardHome";
 
 
 function App() {
@@ -32,7 +40,34 @@ function App() {
           <Route path="mobile/:id" element={<PrivateRoute>
             <SingleMobile />
           </PrivateRoute>} />
-
+          <Route path="/dashboard" element={<PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>}>
+              <Route path="/dashboard" element={<AdminRoute>
+                <DashboardHome></DashboardHome>
+              </AdminRoute>}>
+              </Route>
+              <Route path={`/dashboard/manageOrder`} element={<AdminRoute>
+                <ManageOrder></ManageOrder>
+              </AdminRoute>}>
+              </Route>
+              <Route path={`/dashboard/makeAdmin`} element={<AdminRoute>
+                <MakeAdmin></MakeAdmin>
+              </AdminRoute>}>
+              </Route>
+              <Route path={`/dashboard/addMobile`} element={<AdminRoute>
+                <AddMobile></AddMobile>
+              </AdminRoute>}>
+                </Route>
+              <Route path={`/dashboard/manageProducts`} element={<AdminRoute>
+                <ManageProducts></ManageProducts>
+              </AdminRoute>}>
+              </Route>
+              <Route path={`/dashboard/myOrders`} element={<AdminRoute>
+               <MyOrders></MyOrders>
+              </AdminRoute>}>
+              </Route>
+            </Route>
         </Routes>
       </AuthProvider>
     </div>

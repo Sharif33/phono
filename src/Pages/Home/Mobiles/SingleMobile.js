@@ -114,6 +114,7 @@ const SingleMobile = () => {
                                         <input placeholder="Phone number"  {...register("phone", { required: true })} />
                                         {errors.phone && <span className="text-warning">This field is required.</span>}
                                         <input defaultValue={new Date()} type="date"  {...register("date", { required: true })} />
+                                        <input defaultValue={new Date().getTime()} type="time"  {...register("time", { required: true })} />
                                         {errors.date && <span className="text-warning">This field is required.</span>}
                                         <input defaultValue={phones?.image} hidden readOnly {...register("image", { required: true })} />
                                         {errors.image && <span className="text-warning">This field is required.</span>} <br />

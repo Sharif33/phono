@@ -32,6 +32,9 @@ const Header = () => {
                                         <li className="nav-item">
                                             <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/about">ABOUT ME</NavLink>
                                         </li>
+                                        <li className="nav-item">
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/dashboard">DASHBOARD</NavLink>
+                                        </li>
 
                                         <li className="nav-item">
                                             <p onClick={logOut} className='nav-link active mx-1 text-warning'>LOGOUT</p>
