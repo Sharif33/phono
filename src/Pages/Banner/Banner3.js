@@ -11,7 +11,7 @@ const Banner3 = () => {
     const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/phones`)
+        fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
             .then(res => res.json())
             .then(data => setMobiles(data))
     }, [])

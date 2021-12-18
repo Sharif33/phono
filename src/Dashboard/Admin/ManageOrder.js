@@ -9,7 +9,7 @@ const ManageOrder = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders`)
+        fetch(`https://peaceful-shore-84874.herokuapp.com/orders`)
             .then((res) => res.json())
             .then((data) => setOrders(data));
     }, []);
@@ -19,7 +19,7 @@ const ManageOrder = () => {
         const proceed = window.confirm('Are you sure, you want to Update?');
         if (proceed) {
 
-            fetch(`http://localhost:5000/updateStatus/${id}`, {
+            fetch(`https://peaceful-shore-84874.herokuapp.com/updateStatus/${id}`, {
                 method: "PUT",
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify({ status })
@@ -40,7 +40,7 @@ const ManageOrder = () => {
     const handleDeleteOrders = id => {
         const proceed = window.confirm('Are you sure, you want to delete?');
         if (proceed) {
-            const url = `http://localhost:5000/orders/${id}`
+            const url = `https://peaceful-shore-84874.herokuapp.com/orders/${id}`
             fetch(url, {
                 method: 'DELETE',
             })

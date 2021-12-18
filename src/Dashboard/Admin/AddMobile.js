@@ -8,7 +8,7 @@ const AddMobile = () => {
     const onSubmit = data => {
         // console.log(data);
 
-        axios.post(`http://localhost:5000/phones`, data)
+        axios.post(`https://peaceful-shore-84874.herokuapp.com/phones`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('added successfully');

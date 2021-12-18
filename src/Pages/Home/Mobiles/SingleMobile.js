@@ -13,7 +13,7 @@ const SingleMobile = () => {
     const [phones, setPhones] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/phones/${id}`)
+        fetch(`https://peaceful-shore-84874.herokuapp.com/phones/${id}`)
             .then(res => res.json())
             .then(data => setPhones(data))
     }, [id])
@@ -26,7 +26,7 @@ const SingleMobile = () => {
     const onSubmit = data => {
         // console.log(data);
 
-        axios.post(`http://localhost:5000/orders`, data)
+        axios.post(`https://peaceful-shore-84874.herokuapp.com/orders`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Purchase successfully.Please Check My Order');

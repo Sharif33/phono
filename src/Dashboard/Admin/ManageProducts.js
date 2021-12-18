@@ -5,7 +5,7 @@ const ManageProducts = () => {
     const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/phones`)
+        fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
             .then(res => res.json())
             .then(data => setMobiles(data))
     }, [])
@@ -14,7 +14,7 @@ const ManageProducts = () => {
     const handleDeleteProducts = id => {
         const proceed = window.confirm('Are you sure, you want to delete?');
         if (proceed) {
-            const url = `http://localhost:5000/phones/${id}`
+            const url = `https://peaceful-shore-84874.herokuapp.com/phones/${id}`
             fetch(url, {
                 method: 'DELETE',
             })
