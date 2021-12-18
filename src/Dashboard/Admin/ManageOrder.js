@@ -61,22 +61,22 @@ const ManageOrder = () => {
         {
             orders?.map(order => <div key={order._id}>
                 <div className="col">
-                    <div className="card mb-3" style={{ maxWidth: "540px" }}>
+                    <div className="card h-100 mb-3" style={{ maxWidth: "540px" }}>
                         <div className="row g-0">
-                            <div className="col-md-4">
+                            <div className="col-sm-12 col-md-4">
                                 <img src={order.image} className="img-fluid rounded-start" alt="..." />
                             </div>
-                            <div className="col-md-8">
+                            <div className="col-sm-12 col-md-8">
                                 <div className="card-body">
-                                    <small className="card-title text-success">{order?.bike}</small>
-                                    <p className="card-text">Ordered by : <span>{order.name}</span></p>
-                                    <p>Email: {order.email}</p>
-                                    <p>Ordered date: {order.date}</p>
+                                    <small className="card-title text-success">{order?.mobile}</small>
+                                    <p className="card-text">By : <span>{order?.name}</span></p>
+                                    <p>{order.email}</p>
+                                    <p>Date: {order?.date}, {order?.time}</p>
                                     <div>
                                         <input className="w-100 text-center mb-2" onChange={handleStatus} type="text" defaultValue={order?.status} />
                                         <div className="d-flex justify-content-between">
-                                            <button onClick={() => handleDeleteOrders(order._id)} className="btn btn-danger">Delete</button>
-                                            <button onClick={() => handleUpdate(order._id)} className="btn btn-primary">Click to Shipped</button>
+                                            <button onClick={() => handleDeleteOrders(order?._id)} className="btn btn-custom-2">Delete</button>
+                                            <button onClick={() => handleUpdate(order?._id)} className="btn btn-custom">Shipped ?</button>
                                         </div>
                                     </div>
                                 </div>

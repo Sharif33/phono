@@ -102,7 +102,7 @@ const SingleMobile = () => {
                             <div>
                                 {
                                     phones?.name && <form className='custom-form' onSubmit={handleSubmit(onSubmit)}>
-                                        <input defaultValue={phones?.name} readOnly {...register("bike", { required: true })} />
+                                        <input defaultValue={phones?.name} readOnly {...register("mobile", { required: true })} />
                                         {errors.resort && <span className="text-warning">This field is required. </span>}
                                         <input defaultValue={phones?.price} readOnly {...register("price")} />
                                         <input defaultValue="Pending..." readOnly hidden {...register("status")} />

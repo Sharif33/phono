@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../Hooks/useAuth/useAuth';
 
@@ -15,15 +15,14 @@ const MyOrders = () => {
     // console.log(orders);
 
     //Delete Part
-    // const [myOrders, setMyOrders] = useState([]);
-    // const [myorders, setMyOrders]=useState([]);
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/orders`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setMyOrders(data);
-    //         })
-    // }, [email, deleteCount]);
+    const [myOrders, setMyOrders] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/orders`)
+            .then(res => res.json())
+            .then(data => {
+                setMyOrders(data);
+            })
+    }, []);
 
    
     //DELETE AN Products
@@ -65,7 +64,7 @@ const MyOrders = () => {
                                     <h6>Order Date : <span className="text-secondary"> {order?.date}, {order?.time} </span></h6>
                                     <h6>Price: <span className="text-danger">{order?.price} BDT</span> </h6>
                                     <img className="img-fluid" style={{ height: "15rem" }} src={order?.image} alt="" />
-                                    <h6 className="text-center">{order?.bike}</h6>
+                                    <h6 className="text-center">{order?.mobile}</h6>
                                 </div>
                                 <div className="d-flex justify-content-between">
                                     <button className="btn btn-outline-info">{order?.status}</button>

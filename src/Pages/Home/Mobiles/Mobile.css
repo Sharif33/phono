@@ -37,8 +37,20 @@ border: 1px solid #764ABC !important;
 padding: 10px;
 width: 100%;
 }
+.custom-form textarea{
+border-radius: 15px !important;
+margin-bottom: 12px;
+border: 1px solid #764ABC !important;
+padding: 10px;
+width: 100%;
+}
 
 .custom-form input:focus{
+    outline: 1px solid #764ABC !important;
+    box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 12px -5px rgb(156 39 176 / 46%) !important;
+    transition: 0.5s ease;
+}
+.custom-form textarea:focus{
     outline: 1px solid #764ABC !important;
     box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 12px -5px rgb(156 39 176 / 46%) !important;
     transition: 0.5s ease;
@@ -67,4 +79,12 @@ hr{
     border: 1px solid #764ABC !important;
     border-radius: 10px;
     box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 12px -5px rgb(156 39 176 / 46%) !important;
+}
+
+.bg-review{
+    background-image: url(../../../images/review-bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
 }

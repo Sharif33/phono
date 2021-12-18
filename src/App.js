@@ -22,6 +22,7 @@ import ManageProducts from "./Dashboard/Admin/ManageProducts";
 import ManageOrder from "./Dashboard/Admin/ManageOrder";
 import MyOrders from "./Dashboard/User/MyOrders";
 import DashboardHome from "./Dashboard/Dashboard/DashboardHome";
+import Review from "./Dashboard/User/Review";
 
 
 function App() {
@@ -40,12 +41,20 @@ function App() {
           <Route path="mobile/:id" element={<PrivateRoute>
             <SingleMobile />
           </PrivateRoute>} />
-          <Route path="/dashboard" element={<PrivateRoute>
+          <Route path="dashboard" element={<PrivateRoute>
               <Dashboard />
             </PrivateRoute>}>
-              <Route path="/dashboard" element={<AdminRoute>
+            <Route path={`/dashboard/myOrders`} element={<PrivateRoute>
+               <MyOrders></MyOrders>
+              </PrivateRoute>}>
+              </Route>
+            <Route path={`/dashboard/review`} element={<PrivateRoute>
+               <Review></Review>
+              </PrivateRoute>}>
+              </Route>
+              <Route path="dashboard/*" element={<PrivateRoute>
                 <DashboardHome></DashboardHome>
-              </AdminRoute>}>
+              </PrivateRoute>}>
               </Route>
               <Route path={`/dashboard/manageOrder`} element={<AdminRoute>
                 <ManageOrder></ManageOrder>
@@ -61,10 +70,6 @@ function App() {
                 </Route>
               <Route path={`/dashboard/manageProducts`} element={<AdminRoute>
                 <ManageProducts></ManageProducts>
-              </AdminRoute>}>
-              </Route>
-              <Route path={`/dashboard/myOrders`} element={<AdminRoute>
-               <MyOrders></MyOrders>
               </AdminRoute>}>
               </Route>
             </Route>

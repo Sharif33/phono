@@ -2,12 +2,12 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import React, { useEffect, useState } from 'react';
 
 const ManageProducts = () => {
-    const [bikes, setBikes] = useState([]);
+    const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:5000/phones`)
             .then(res => res.json())
-            .then(data => setBikes(data))
+            .then(data => setMobiles(data))
     }, [])
 
     // DELETE products
@@ -23,9 +23,9 @@ const ManageProducts = () => {
                     if (data.deletedCount > 0) {
                         alert('Canceled successfully');
                         // console.log(data);
-                        const remainingProducts = bikes.filter(bike => bike._id !== id);
+                        const remainingProducts = mobiles.filter(mobile => mobile._id !== id);
                         // console.log(remainingOrders);
-                        setBikes(remainingProducts);
+                        setMobiles(remainingProducts);
                     }
                 })
         }
@@ -43,17 +43,17 @@ const ManageProducts = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {bikes.map((bike) => (
+                    {mobiles.map((mobile) => (
                         <TableRow
-                            key={bike._id}
+                            key={mobile._id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                {bike.name}
+                                {mobile.name}
                             </TableCell>
-                            <TableCell align="right">{bike.price}</TableCell>
-                            <TableCell align="right">{bike.id}</TableCell>
-                            <TableCell align="right"><button onClick={() => handleDeleteProducts(bike._id)} className="btn btn-danger">Delete</button></TableCell>
+                            <TableCell align="right">{mobile.price}</TableCell>
+                            <TableCell align="right">{mobile.id}</TableCell>
+                            <TableCell align="right"><button onClick={() => handleDeleteProducts(mobile._id)} className="btn btn-danger">Delete</button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

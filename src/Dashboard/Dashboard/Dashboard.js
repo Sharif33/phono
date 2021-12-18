@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -34,7 +33,7 @@ function Dashboard(props) {
 
     const drawer = (
         <div>
-            <Toolbar />
+            
             {
                 user?.email && <Box sx={{
                     display: 'flex',
@@ -46,32 +45,40 @@ function Dashboard(props) {
                         mb: 1,
                     },
                 }}>
-                    <Box sx={{ display: 'block', textAlign: 'center' }}>
+                    <Box sx={{ display: 'block', textAlign: 'center',marginTop:'15px' }}>
                         <img className="img-fluid px-3 w-50 rounded-circle mx-auto" src={user?.photoURL} alt="" />
                         <h5 className="text-center">{user?.displayName}</h5>
                         <Button sx={{ mb: 1 }} onClick={logOut} variant="outlined" color="error"><Logout fontSize="small" /> Logout</Button>
                     </Box>
                 </Box>
             }
-            <Divider />
+
            {!admin &&  <Box>
-               <List>
-                    <Link to="/dashboard"><Button color="inherit">Dashboard</Button></Link>
-               </List>
                 <List>
-                    <Link to="/dashboard/myOrders"><Button color="inherit">My Order</Button></Link>
+                    <Link to={`/dashboard/myOrders`}><Button color="inherit">My Orders</Button></Link>
+                </List>
+                <List>
+                    <Link to={`/dashboard/review`}><Button color="inherit">Reviews</Button></Link>
                 </List>
                 </Box>}
-           <List> <Link to="/home"><Button color="inherit">Home</Button></Link></List>
-            {admin &&  <Box>
+           
+            {admin &&  <Box sx={{textDecoration:'none'}}>
                 <List>
                <Link to={`/dashboard/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
                </List>
                <List>
                 <Link to={`/dashboard/addMobile`}><Button color="inherit">Add Mobile</Button></Link>
                </List>              
+               <List>
+                <Link to={`/dashboard/manageOrder`}><Button color="inherit">Manage Orders</Button></Link>
+               </List>              
+               <List>
+                <Link to={`/dashboard/manageProducts`}><Button color="inherit">Manage Products</Button></Link>
+               </List>              
             </Box>
             }
+
+<List> <Link to="/home"><Button color="inherit">Home</Button></Link></List>
            
         </div>
     );
@@ -79,7 +86,7 @@ function Dashboard(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', backgroundColor:'#f8fafc' }}>
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -88,7 +95,7 @@ function Dashboard(props) {
                     ml: { sm: `${drawerWidth}px` },
                 }}
             >
-                <Toolbar>
+                <Toolbar  sx={{background:"linear-gradient(45deg, #303f9f,#7b1fa2)"}} >
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
