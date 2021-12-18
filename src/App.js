@@ -23,6 +23,7 @@ import ManageOrder from "./Dashboard/Admin/ManageOrder";
 import MyOrders from "./Dashboard/User/MyOrders";
 import DashboardHome from "./Dashboard/Dashboard/DashboardHome";
 import Review from "./Dashboard/User/Review";
+import Footer from "./Shared/Footer/Footer";
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
               </Route>
             </Route>
         </Routes>
+        <Footer></Footer>
       </AuthProvider>
     </div>
   );
