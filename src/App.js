@@ -7,7 +7,6 @@ import {
 import Home from "./Pages/Home/Home";
 import ContactUs from "./Pages/Home/ContactUs";
 import AboutUs from "./Pages/Home/AboutUs";
-import Header from "./Shared/Header/Header";
 import LogIn from "./LogIn/LogIn/LogIn";
 import Register from "./LogIn/Register/Register";
 import ExploreMobiles from "./Pages/Home/Mobiles/ExploreMobiles";
@@ -23,14 +22,13 @@ import ManageOrder from "./Dashboard/Admin/ManageOrder";
 import MyOrders from "./Dashboard/User/MyOrders";
 import DashboardHome from "./Dashboard/Dashboard/DashboardHome";
 import Review from "./Dashboard/User/Review";
-import Footer from "./Shared/Footer/Footer";
+import Payment from "./Dashboard/User/Payment";
 
 
 function App() {
   return (
     <div>
       <AuthProvider>
-        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="home" element={<Home />} />
@@ -47,6 +45,10 @@ function App() {
             </PrivateRoute>}>
             <Route path={`/dashboard/myOrders`} element={<PrivateRoute>
                <MyOrders></MyOrders>
+              </PrivateRoute>}>
+              </Route>
+            <Route path={`/dashboard/pay/:id`} element={<PrivateRoute>
+               <Payment></Payment>
               </PrivateRoute>}>
               </Route>
             <Route path={`/dashboard/review`} element={<PrivateRoute>
@@ -75,7 +77,6 @@ function App() {
               </Route>
             </Route>
         </Routes>
-        <Footer></Footer>
       </AuthProvider>
     </div>
   );

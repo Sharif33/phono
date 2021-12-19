@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
+import Header from '../../Shared/Header/Header';
+import Footer from '../../Shared/Footer/Footer';
 
 const LogIn = () => {
     const [loginData, setLoginData] = useState({});
@@ -28,7 +30,7 @@ const LogIn = () => {
     }
     return (
         <>
-
+<Header/>
             <Container>
                 <Grid sx={{ my: 4 }} container>
                     <Grid className="p-4 shadow text-center rounded" item xs={12} md={6}>
@@ -68,6 +70,7 @@ const LogIn = () => {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer/>
         </>
     );
 };

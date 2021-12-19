@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth/useAuth';
+import Reviews from '../../Pages/Home/Mobiles/Reviews';
 
 const Review = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -22,9 +23,13 @@ const Review = () => {
     }
     return (
         <div>
+             <div className=''>
+                
+                <Reviews></Reviews>
+           </div>
              <div className="p-4 col-md-6 mx-auto">
                 <div className="shadow p-4 bg-custom rounded">
-                    <h3 className="text-custom">Please Add a Review</h3>
+                    <h3 className="text-custom">Review our shop</h3>
                     <form className='custom-form' onSubmit={handleSubmit(onSubmit)}>
                         <input className=" rounded" readOnly defaultValue={user?.displayName} {...register("name")} />
                         <input className=" rounded" readOnly defaultValue={user?.email} {...register("email")} />
@@ -36,10 +41,7 @@ const Review = () => {
                     </form>
                 </div>
             </div>
-            <div>
-                <h3 className="text-center text-warning py-4">Top Reviews</h3>
-                {/* <Reviews></Reviews> */}
-            </div>
+           
         </div>
     );
 };

@@ -1,0 +1,7 @@
+.bg-about{
+    background-image: url(../../images/review-bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}

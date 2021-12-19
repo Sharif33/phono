@@ -57,6 +57,9 @@ function Dashboard(props) {
                 <List>
                     <Link to={`/dashboard/myOrders`}><Button color="inherit">My Orders</Button></Link>
                 </List>
+                {/* <List>
+                    <Link to={`/dashboard/pay/:id`}><Button color="inherit">Payment</Button></Link>
+                </List> */}
                 <List>
                     <Link to={`/dashboard/review`}><Button color="inherit">Reviews</Button></Link>
                 </List>

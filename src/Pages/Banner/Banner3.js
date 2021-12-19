@@ -1,6 +1,5 @@
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import NewArrival from './NewArrival';
 import SwiperCore, { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
@@ -49,26 +48,6 @@ const Banner3 = () => {
                     </SwiperSlide>);    
                                      })}
   </Swiper>
-            {/* <div style={{ paddingTop: "65px" }} className='bg-light border border-bottom'> </div>
-            <div className='bg-light'>
-                <div className="container">
-                    <div className="text-center pt-2">
-                        <h2 className="fw-bold text-primary p-2">Feature Mobile</h2>
-                    </div>
-                    <div className="">
-                        {mobiles.length == 0 ?
-                            <div className="w-100 text-center">
-                                <CircularProgress />
-                            </div>
-                            :
-                            mobiles.map(mobile => <NewArrival
-                                key={mobile._id}
-                                mobile={mobile}
-                            />)
-                        }
-                    </div>
-                </div>
-            </div> */}
         </>
     );
 };

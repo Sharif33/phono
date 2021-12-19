@@ -1,6 +1,8 @@
 /* eslint-disable eqeqeq */
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import Footer from '../../../Shared/Footer/Footer';
+import Header from '../../../Shared/Header/Header';
 import Mobile from './Mobile';
 
 const ExploreMobiles = () => {
@@ -13,11 +15,13 @@ const ExploreMobiles = () => {
     }, [])
     return (
         <>
+         <Header />
             <div style={{ paddingTop: "65px" }} className='bg-light border border-bottom'> </div>
             <div className='bg-light'>
                 <div className="container">
                     <div className="text-center pt-2">
-                        <h2 className="fw-bold text-primary p-2">Feature Mobile</h2>
+                        <h2 className="fw-bold text-primary p-2">All Collections</h2>
+                        <hr />
                     </div>
                     <div className="row row-cols-1 row-cols-md-2 m-2 g-4">
                         {mobiles.length == 0 ?
@@ -33,6 +37,7 @@ const ExploreMobiles = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };

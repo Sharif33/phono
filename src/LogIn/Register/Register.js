@@ -4,7 +4,7 @@ import { Grid } from '@mui/material';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import Header from '../../Shared/Header/Header';
-
+import Footer from '../../Shared/Footer/Footer';
 
 const Register = () => {
     const [loginData, setLoginData] = useState({});
@@ -90,6 +90,7 @@ const Register = () => {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer/>
         </>
     );
 };

@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth/useAuth';
+import Footer from '../../../Shared/Footer/Footer';
+import Header from '../../../Shared/Header/Header';
+import Banner3 from '../../Banner/Banner3';
 
 const SingleMobile = () => {
     const { user, admin } = useAuth();
@@ -37,6 +40,7 @@ const SingleMobile = () => {
 
     return (
         <div>
+             <Header />
             <div style={{ paddingTop: "65px" }} className='bg-light'>
 
             </div>
@@ -127,6 +131,8 @@ const SingleMobile = () => {
                     </div>
                 </div>
             </div>
+            <Banner3/>
+            <Footer/>
         </div>
     );
 };

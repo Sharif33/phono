@@ -1,47 +1,66 @@
 import React from 'react';
-import about from '../../images/review-bg.jpg';
+import Footer from '../../Shared/Footer/Footer';
+import Header from '../../Shared/Header/Header';
 
 const ContactUs = () => {
     return (
         <div>
-            <img className="img-fluid" src={about} alt="" />
-            <div className="container p-5">
-                <h3>Contact Us</h3>
-                <p>Let's bring joy and delight to the process of mobile buying together.</p>
-                <div className="row g-2">
-                    <div style={{ backgroundColor: "#ECF7F8" }} className="col-md-6  col-sm-12">
-                        <div className="p-3 ">
-                            <h5 className="fw-bold">Customer support: <small className="text-secondary fw-normal"> info123@mobilevalley.com</small></h5>
-                        </div>
+             <Header />
+           <div className='bg-light'>
+            <div  style={{paddingTop:"70px"}} className='bg-about text-light'>
+            <div className='container py-5 text-center'>
+                <h1 className='fw-bold'>CONTACT US</h1>
+                <h5 className='text-secondary'>GET IN TOUCH WITH THE BELOW LOCATION AND CONTACT DETAILS</h5>
+                </div>
+            </div>
+            
+            <div className='container p-3'>
+            <div className='row row-cols-1 row-cols-md-3'>
+                <div className='col'>
+                    <div className='card-hover bg-white p-3 rounded'>
+                        <h4><i className="fas rounded-circle p-3 bg-dark text-light fa-phone-alt"></i></h4>
+                        <h3 className='fw-bold'>PHONE</h3>
+                        <p><span className='fw-bold text-secondary'>Toll-Free:</span>  0000 - 123 - 456789</p>
+                        <p><span className='fw-bold text-secondary'>Fax:</span>  0000 - 123 - 456789</p>
                     </div>
-                    <div style={{ backgroundColor: "#FEF7EF" }} className="col-md-6  col-sm-12">
-                        <div className="p-3 "><h5 className="fw-bold">New mobile Dealer:
-                            <small className="text-secondary fw-normal"> info123@mobilevalley.com</small></h5></div>
+                </div>
+                <div className='col'>
+                    <div className='card-hover bg-white p-3 rounded'>
+                        <h4><i className="fas rounded-circle p-3 bg-dark text-light fa-envelope"></i></h4>
+                        <h3 className='fw-bold'>EMAIL</h3>
+                        <p>mail@example.com</p>
+                        <p>support@example.com</p>
                     </div>
-                    <div style={{ backgroundColor: "#FEF7EF" }} className="col-md-6  col-sm-12">
-                        <div className="p-3 "><h5 className="fw-bold">Enterprise Sales Inquiries:
-                            <small className="text-secondary fw-normal"> esteam@mobilevalley.com</small></h5></div>
-                    </div>
-                    <div style={{ backgroundColor: "#ECF7F8" }} className="col-md-6  col-sm-12">
-                        <div className="p-3 "><h5 className="fw-bold">Adress: <small className="text-secondary fw-normal">mobileValley Trade Limited, Shahid IT Park, Dhaka, Bangladesh</small></h5></div>
+                </div>
+                <div className='col'>
+                    <div className='card-hover bg-white p-3 rounded'>
+                        <h4><i className="fas rounded-circle p-3 bg-dark text-light fa-location-arrow"></i></h4>
+                        <h3 className='fw-bold'>ADDRESS</h3>
+                        <p>No: 58 A, East Madison Street,</p>
+                        <p>Baltimore, MD, USA 4508</p>
                     </div>
                 </div>
             </div>
+            <div className='py-5'>
+                <h4 className='py-2 fw-bold'>CONTACT FORM</h4>
+            <div className="mb-3 d-flex justify-content-between">
+  <input type="text" className="form-control rounded-pill w-50 mx-2" id="exampleFormControlInput1" placeholder="Name"/>
+  <input type="email" className="form-control rounded-pill w-50 mx-2" id="exampleFormControlInput1" placeholder="Email"/>
+  <input type="number" className="form-control rounded-pill w-50 mx-2" id="exampleFormControlInput1" placeholder="Phone"/>
+</div>
+<div className="mb-3">
+  <textarea className="form-control" id="exampleFormControlTextarea1" placeholder='Message' rows="3"></textarea>
+</div>
+<div className='text-center'>
+    <button className='btn btn-dark btn-lg w-25 rounded-pill'>Send</button>
+</div>
 
-            <div className="container p-5">
-                <h3 className="text-center fw-bold p-3">Frequently asked questions & answers</h3>
-                <div className="bg-light p-4 rounded">
-                    <h5>Q: Which is the most affordable mobile?</h5>
-                    <p>A: Most economical mobile available in Bangladesh is TVS XL100 Heavy Duty which is priced at 70,556.</p>
-                    <hr />
-                    <h5>Q: Which are the popular mobiles?</h5>
-                    <p>A: Top mobiles available in Bangladesh are Ducati Hypermotard 950, Kawasaki Z650 RS and Honda Dio.</p>
-                    <hr />
-                    <h5>Q: Are there any upcoming mobiles?</h5>
-                    <p>A: Honda PCX 125 is expected to launch soon in Bangladesh at an expected price of 1,05,000.</p>
-                </div>
             </div>
+            </div>
+        </div> 
+        <Footer/>
         </div>
+        
     );
 };
 

@@ -29,7 +29,8 @@ const Banner1 = () => {
                     </SwiperSlide>
                     <SwiperSlide>
                         <img className='img-fluid' src={b3} alt="" />
-                    </SwiperSlide></Swiper>
+                    </SwiperSlide>
+                    </Swiper>
             </div>
         </div>
     );

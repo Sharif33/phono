@@ -27,17 +27,17 @@ const Header = () => {
                                             <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/mobiles">SHOP</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT ME</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT US</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/about">ABOUT ME</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/about">ABOUT US</NavLink>
                                         </li>
                                         <li className="nav-item">
                                             <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/dashboard">DASHBOARD</NavLink>
                                         </li>
 
                                         <li className="nav-item">
-                                            <p onClick={logOut} className='nav-link active mx-1 text-warning'>LOGOUT</p>
+                                            <p onClick={logOut} className='nav-link active mx-1 text-danger'>LOGOUT</p>
                                         </li>
 
                                     </ul>
@@ -61,7 +61,7 @@ const Header = () => {
                                 }
                                 <div className="text-center">
                                     <img className="img-fluid w-25 rounded-circle px-1" src={user?.photoURL} alt="" />
-                                    <p className="text-light">{user?.displayName}</p>
+                                    <p className="text-info">{user?.displayName}</p>
                                 </div>
                             </div>
                         </div>

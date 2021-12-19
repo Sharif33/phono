@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 
 const MyOrders = () => {
@@ -65,6 +66,9 @@ const MyOrders = () => {
                                     <h6>Price: <span className="text-danger">{order?.price} BDT</span> </h6>
                                     <img className="img-fluid" style={{ height: "15rem" }} src={order?.image} alt="" />
                                     <h6 className="text-center">{order?.mobile}</h6>
+                                    <h6>{order.payment ? 'Paid'
+                                    :
+                                    <Link to={`/dashboard/pay/${order._id}`}><button className='btn btn-warning'>Pay</button></Link>}</h6>
                                 </div>
                                 <div className="d-flex justify-content-between">
                                     <button className="btn btn-outline-info">{order?.status}</button>
