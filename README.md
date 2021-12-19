@@ -1,4 +1,6 @@
-# https://phono-3a490.web.app/
+# phono ## A online mobile selling shop
+
+## https://phono-3a490.web.app/
 
 ### Technology used :
 - React JS, React Router dom, React hook form, Axios, Material UI, Bootsrap5, CSS3, Heroku,Firebase,Node.js,Express.js,MongoDB, strype.
