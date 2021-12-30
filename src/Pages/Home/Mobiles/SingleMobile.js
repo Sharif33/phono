@@ -15,6 +15,9 @@ const SingleMobile = () => {
 
     const [phones, setPhones] = useState([]);
 
+    const date = new Date().toLocaleDateString();
+
+
     useEffect(() => {
         fetch(`https://peaceful-shore-84874.herokuapp.com/phones/${id}`)
             .then(res => res.json())
@@ -117,7 +120,7 @@ const SingleMobile = () => {
                                         <input placeholder="City and Country"  {...register("city")} />
                                         <input placeholder="Phone number"  {...register("phone", { required: true })} />
                                         {errors.phone && <span className="text-warning">This field is required.</span>}
-                                        <input defaultValue={new Date()} type="date"  {...register("date", { required: true })} />
+                                        <input defaultValue={date} type="date"  {...register("date", { required: true })} />
                                         <input defaultValue={new Date().getTime()} type="time"  {...register("time", { required: true })} />
                                         {errors.date && <span className="text-warning">This field is required.</span>}
                                         <input defaultValue={phones?.image} hidden readOnly {...register("image", { required: true })} />

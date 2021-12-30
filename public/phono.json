@@ -2,6 +2,7 @@
     {
         "id": 1001,
         "name": "realme GT Neo 2",
+        "brand":"Realme",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -19,6 +20,7 @@
     {
         "id": 1002,
         "name": "realme GT Neo 2",
+        "brand":"Realme",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -36,6 +38,7 @@
     {
         "id": 1003,
         "name": "realme GT Neo 2",
+        "brand":"Realme",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -53,6 +56,7 @@
     {
         "id": 1004,
         "name": "realme GT Neo 2",
+        "brand":"Oppo",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -70,6 +74,7 @@
     {
         "id": 1005,
         "name": "realme GT Neo 2",
+        "brand":"Oppo",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -87,6 +92,7 @@
     {
         "id": 1006,
         "name": "realme GT Neo 2",
+        "brand":"Huawei",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -104,6 +110,7 @@
     {
         "id": 1007,
         "name": "realme GT Neo 2",
+        "brand":"Samsung",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -121,6 +128,7 @@
     {
         "id": 1008,
         "name": "realme GT Neo 2",
+        "brand":"Xiomi",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -138,6 +146,7 @@
     {
         "id": 1009,
         "name": "realme GT Neo 2",
+        "brand":"Huawei",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -155,6 +164,7 @@
     {
         "id": 1010,
         "name": "realme GT Neo 2",
+        "brand":"Xiomi",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -172,6 +182,7 @@
     {
         "id": 1011,
         "name": "realme GT Neo 2",
+        "brand":"Samsung",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -189,6 +200,7 @@
     {
         "id": 1012,
         "name": "realme GT Neo 2",
+        "brand":"Realme",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -206,6 +218,7 @@
     {
         "id": 1013,
         "name": "realme GT Neo 2",
+        "brand":"Walton",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -223,6 +236,7 @@
     {
         "id": 1014,
         "name": "realme GT Neo 2",
+        "brand":"Walton",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -240,6 +254,7 @@
     {
         "id": 1015,
         "name": "realme GT Neo 2",
+        "brand":"Symphony",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -255,8 +270,9 @@
         "image": "https://i.ibb.co/mHNw97t/x-11t.png"
     },
     {
-        "id": 1015,
+        "id": 1016,
         "name": "realme GT Neo 2",
+        "brand":"Symphony",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,
@@ -272,8 +288,9 @@
         "image": "https://i.ibb.co/3TVh3pN/mi-11x.png"
     },
     {
-        "id": 1015,
+        "id": 1017,
         "name": "realme GT Neo 2",
+        "brand":"Realme",
         "star": 5.0,
         "rating": 9622,
         "price": 39990,

@@ -44,6 +44,13 @@ border: 1px solid #764ABC !important;
 padding: 10px;
 width: 100%;
 }
+.custom-form select{
+border-radius: 15px !important;
+margin-bottom: 12px;
+border: 1px solid #764ABC !important;
+padding: 10px;
+width: 100%;
+}
 
 .custom-form input:focus{
     outline: 1px solid #764ABC !important;
@@ -88,3 +95,11 @@ hr{
     width: 100%;
     height: 100%;
 }
+
+/* .sticky-position{
+    top: 50;
+    bottom:50;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden;
+} */

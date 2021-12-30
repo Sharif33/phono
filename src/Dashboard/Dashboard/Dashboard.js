@@ -18,6 +18,7 @@ import { Button, CircularProgress } from '@mui/material';
 import {Outlet, Link } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import { Logout } from '@mui/icons-material';
+// import DashboardHome from './DashboardHome';
 
 const drawerWidth = 200;
 
@@ -89,6 +90,8 @@ function Dashboard(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
+        <>
+        
         <Box sx={{ display: 'flex', backgroundColor:'#f8fafc' }}>
             <CssBaseline />
             <AppBar
@@ -148,11 +151,16 @@ function Dashboard(props) {
                 component="main"
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
+                
                 <Toolbar />
+                {/* <div>
+                <DashboardHome/>
+            </div> */}
                  <Outlet></Outlet>
             </Box>
            
         </Box>
+        </>
     );
 }
 
