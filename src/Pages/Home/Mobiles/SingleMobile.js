@@ -77,7 +77,7 @@ const SingleMobile = () => {
 
             <div className="container">
                 <div className='text-center py-3 custom-margin'>
-                    <button className='btn p-4 fs-1 rounded-circle btn-custom'><i className="fas fa-cart-arrow-down"></i></button>
+                    <button className='btn p-4 fs-2 text-center rounded-circle btn-custom'><i className="fas fa-cart-arrow-down"></i></button>
                 </div>
                 <div className="row p-5 custom-border">
                     <div className='col-md-6'>
@@ -86,7 +86,8 @@ const SingleMobile = () => {
                             <hr />
                             <h5 className="w-100 text-secondary text-center my-2"><i className="fas p-3 text-info rounded-pill custom-border bg-light fa-phone-volume"> {phones?.contact}</i> </h5>
                             <div className='py-3'>
-                            <h5 className='fs-6'>Brand Name: <span className='fs-5 text-dark fw-bold'> {phones?.name}</span></h5>
+                            <h5 className='fs-6'>Mobile Name: <span className='fs-5 text-dark fw-bold'> {phones?.name}</span></h5>
+                            <h5 className='fs-6'>Brand: <span className='fs-5 text-dark fw-bold'> {phones?.brand}</span></h5>
                             <Box sx={{
                                 '& > legend': { mt: 2 },
                             }}>

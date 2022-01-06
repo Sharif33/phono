@@ -30,7 +30,7 @@ const Mobile = ({ mobile }) => {
                     </div>
                     <div className="px-4 d-flex justify-content-between">
                         <Link to={`/mobile/${_id}`}><button className="btn btn-custom-2">OVERVIEW</button></Link>
-                        <Link to={`/mobile/${_id}`}><button className="btn btn-custom">BUY NOW</button></Link>
+                        <Link to={`/mobile2/${_id}`}><button className="btn btn-custom">BUY NOW</button></Link>
                     </div>
                 </div>
             </div>

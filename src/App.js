@@ -23,6 +23,7 @@ import MyOrders from "./Dashboard/User/MyOrders";
 import DashboardHome from "./Dashboard/Dashboard/DashboardHome";
 import Review from "./Dashboard/User/Review";
 import Payment from "./Dashboard/User/Payment";
+import BuyMobile from "./Pages/Home/Mobiles/BuyMobile";
 
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
           <Route path="mobiles" element={<ExploreMobiles />} />
           <Route path="mobile/:id" element={<PrivateRoute>
             <SingleMobile />
+          </PrivateRoute>} />
+          <Route path="mobile2/:id" element={<PrivateRoute>
+            <BuyMobile/>
           </PrivateRoute>} />
           <Route path="dashboard" element={<PrivateRoute>
               <Dashboard />

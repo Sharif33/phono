@@ -23,8 +23,14 @@ const ExploreMobiles = () => {
             return currentData.brand === mobileBrand;
         });
         setCategories(result);
-        console.log(result)
+        // console.log(result)
     }
+
+const handleSearch = e =>{
+        const searchText = e.target.value;
+        const matchedMobiles = mobiles.filter(mobile=>mobile.name.toLowerCase().includes(searchText.toLowerCase()));
+        setCategories(matchedMobiles);
+}
 
     return (
         <>
@@ -32,22 +38,23 @@ const ExploreMobiles = () => {
             <div style={{ paddingTop: "65px" }} className='bg-light border border-bottom '> </div>
             <div className='bg-light'>
                 <div className="container-fluid">
-                    <div className="text-center pt-2">
-                        <h2 className="fw-bold text-primary p-2">All Collections</h2>
-                        <hr />
+                   
+                    <div className="text-center pt-2"> 
+                        <h2 className="fw-bold text-primary p-2">Collections</h2>
+                        <input placeholder='Enter a mobile name' className='custom-input w-50' type="text" onChange={handleSearch} />
                     </div>
                     <div className="row">
                     <div className='col-sm-12 col-md-2 sticky-position'>
                     <div className='text-center d-block'>
-                        <button className='btn btn-warning w-100 mx-2 mb-2'>Top Brands</button>
-                        <button onClick={() => filterResult('Realme')} className='btn btn-outline-dark mx-2 w-100 mb-2'>Realme</button>
-                        <button onClick={() => filterResult('Huawei')} className='btn btn-outline-dark mx-2 w-100 mb-2'>Huawei</button>
-                        <button onClick={() => filterResult('Samsung')} className='btn btn-outline-dark mx-2 w-100 mb-2'>Samsung</button>
-                        <button onClick={() => filterResult('Xiomi')} className='btn btn-outline-dark mx-2 w-100 mb-2'>Xiomi</button>
-                        <button onClick={() => filterResult('Symphony')} className='btn btn-outline-dark mx-2 w-100 mb-2'>Symphony</button>
-                        <button onClick={() => filterResult('Walton')} className='btn btn-outline-dark mx-2 w-100 mb-2'>Walton</button>
-                        <button onClick={() => filterResult('Oppo')} className='btn btn-outline-dark mx-2 w-100 mb-2'>Oppo</button>
-                        <button onClick={() => setCategories(mobiles)} className='btn btn-outline-dark mx-2 w-100 mb-2'>All</button>
+                        <button className='btn btn-custom fs-3 w-100 mx-2 mb-2'>Top Brands</button>
+                        <button onClick={() => filterResult('Realme')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Realme</button>
+                        <button onClick={() => filterResult('Huawei')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Huawei</button>
+                        <button onClick={() => filterResult('Samsung')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Samsung</button>
+                        <button onClick={() => filterResult('Xiomi')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Xiomi</button>
+                        <button onClick={() => filterResult('Symphony')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Symphony</button>
+                        <button onClick={() => filterResult('Walton')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Walton</button>
+                        <button onClick={() => filterResult('Oppo')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Oppo</button>
+                        <button onClick={() => setCategories(mobiles)} className='btn btn-custom-2 mx-2 w-100 mb-2'>All</button>
 
                     </div>
                 </div>
