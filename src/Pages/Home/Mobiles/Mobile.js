@@ -2,10 +2,14 @@ import { Rating } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BuyMobile from './BuyMobile';
 import "./Mobile.css";
 
 const Mobile = ({ mobile }) => {
     const { _id, name, star, price, specs, image } = mobile;
+    const [openBuyNow, setOpenBuyNow] = React.useState(false);
+    const handleOpen = () => setOpenBuyNow(true);
+    const handleClose = () => setOpenBuyNow(false);
     return (
         <div>
 
@@ -30,10 +34,15 @@ const Mobile = ({ mobile }) => {
                     </div>
                     <div className="px-4 d-flex justify-content-between">
                         <Link to={`/mobile/${_id}`}><button className="btn btn-custom-2">OVERVIEW</button></Link>
-                        <Link to={`/mobile2/${_id}`}><button className="btn btn-custom">BUY NOW</button></Link>
+                        <button onClick={handleOpen} className="btn btn-custom">BUY NOW</button>
                     </div>
                 </div>
             </div>
+            <BuyMobile
+            handleClose={handleClose}
+            mobile={mobile}
+            openBuyNow={openBuyNow}
+            ></BuyMobile>
         </div>
     );
 };

@@ -47,14 +47,14 @@ const handleSearch = e =>{
                     <div className='col-sm-12 col-md-2 sticky-position'>
                     <div className='text-center d-block'>
                         <button className='btn btn-custom fs-3 w-100 mx-2 mb-2'>Top Brands</button>
-                        <button onClick={() => filterResult('Realme')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Realme</button>
-                        <button onClick={() => filterResult('Huawei')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Huawei</button>
-                        <button onClick={() => filterResult('Samsung')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Samsung</button>
-                        <button onClick={() => filterResult('Xiomi')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Xiomi</button>
-                        <button onClick={() => filterResult('Symphony')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Symphony</button>
-                        <button onClick={() => filterResult('Walton')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Walton</button>
-                        <button onClick={() => filterResult('Oppo')} className='btn btn-custom-2 mx-2 w-100 mb-2'>Oppo</button>
-                        <button onClick={() => setCategories(mobiles)} className='btn btn-custom-2 mx-2 w-100 mb-2'>All</button>
+                        <button onClick={() => filterResult('Realme')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Realme</button>
+                        <button onClick={() => filterResult('Huawei')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Huawei</button>
+                        <button onClick={() => filterResult('Samsung')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Samsung</button>
+                        <button onClick={() => filterResult('Xiomi')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Xiomi</button>
+                        <button onClick={() => filterResult('Symphony')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Symphony</button>
+                        <button onClick={() => filterResult('Walton')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Walton</button>
+                        <button onClick={() => filterResult('Oppo')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Oppo</button>
+                        <button onClick={() => setCategories(mobiles)} className='btn btn-custom-3 mx-2 w-100 mb-2'>All</button>
 
                     </div>
                 </div>

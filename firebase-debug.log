@@ -1,0 +1,134 @@
+[debug] [2022-01-06T17:22:07.422Z] ----------------------------------------------------------------------
+[debug] [2022-01-06T17:22:07.424Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\LENOVO\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-01-06T17:22:07.424Z] CLI Version:   9.23.3
+[debug] [2022-01-06T17:22:07.425Z] Platform:      win32
+[debug] [2022-01-06T17:22:07.425Z] Node Version:  v16.13.1
+[debug] [2022-01-06T17:22:07.435Z] Time:          Thu Jan 06 2022 23:22:07 GMT+0600 (Bangladesh Standard Time)
+[debug] [2022-01-06T17:22:07.435Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-01-06T17:22:07.441Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-01-06T17:22:07.521Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-01-06T17:22:07.521Z] > authorizing via signed-in user (sir.sharif05@gmail.com)
+[debug] [2022-01-06T17:22:07.521Z] [iam] checking project phono-3a490 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-01-06T17:22:07.523Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-01-06T17:22:07.523Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-06T17:22:08.061Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Thu, 06 Jan 2022 17:22:07 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-06T17:22:08.070Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/phono-3a490:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-01-06T17:22:08.596Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-01-06T17:22:08.597Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2022-01-06T17:22:10.658Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 06 Jan 2022 17:22:10 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1172","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-06T17:22:10.660Z] > refreshing access token with scopes: []
+[debug] [2022-01-06T17:22:10.660Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-06T17:22:10.862Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Thu, 06 Jan 2022 17:22:10 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-06T17:22:10.916Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/phono-3a490 [none]
+[debug] [2022-01-06T17:22:11.491Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/phono-3a490 200
+[debug] [2022-01-06T17:22:11.491Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/phono-3a490 {"projectId":"phono-3a490","projectNumber":"40810525685","displayName":"phono","name":"projects/phono-3a490","resources":{"hostingSite":"phono-3a490"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'phono-3a490'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-01-06T17:22:11.496Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-01-06T17:22:11.496Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-06T17:22:11.699Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Thu, 06 Jan 2022 17:22:11 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-06T17:22:11.724Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/phono-3a490/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-01-06T17:22:14.822Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 06 Jan 2022 17:22:14 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[phono-3a490]: beginning deploy... 
+[info] i  hosting[phono-3a490]: found 26 files in build 
+[debug] [2022-01-06T17:22:15.243Z] > refreshing access token with scopes: []
+[debug] [2022-01-06T17:22:15.243Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-06T17:22:15.244Z] [hosting] hash cache [YnVpbGQ] stored for 26 files
+[debug] [2022-01-06T17:22:15.245Z] [hosting][hash queue][FINAL] {"max":353,"min":4,"avg":30.076923076923077,"active":0,"complete":26,"success":26,"errored":0,"retried":0,"total":26,"elapsed":361}
+[debug] [2022-01-06T17:22:15.461Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Thu, 06 Jan 2022 17:22:14 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-06T17:22:15.472Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/sites/phono-3a490/versions/28210a4685bb37e4:populateFiles [none]
+[debug] [2022-01-06T17:22:15.473Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/phono-3a490/versions/28210a4685bb37e4:populateFiles {"files":{"/favicon.ico":"eae62e993eb980ec8a25058c39d5a51feab118bd2100c4deebb2a9c158ec11f9","/logo192.png":"3ee59515172ee198f3be375979df15ac5345183e656720a381b8872b2a39dc8b","/logo512.png":"ee7e2f3fdb8209c4b6fd7bef6ba50d1b9dba30a25bb5c3126df057e1cb6f5331","/manifest.json":"aff3449bdc238776f5d6d967f19ec491b36aed5fb7f23ccff6500736fd58494a","/robots.txt":"bfe106a3fb878dc83461c86818bf74fc1bdc7f28538ba613cd3e775516ce8b49","/asset-manifest.json":"d77c40fe6aa9f7d699b6bfb9644cec96e7c7e947a7cdb6d5634413d8a6a9896d","/index.html":"b6efb4cfa393e11361ed59fbd47c66ccdaa7f8e5b4f61407b753a3a79864a214","/static/css/2.ee779822.chunk.css":"ca0e56b925f845cc65b5ee860b083f4a3ca683f3fe9fe0ddba05ac43258a473f","/static/css/main.8929624a.chunk.css":"e04b9ba57f53dbbbf448271410725f512382241e29e4365909cb7d9879ca6f64","/static/css/main.8929624a.chunk.css.map":"a271084358bcfdd4143ca7ce85d00e7243b6dd6d4fad153eca3c295d0508f560","/static/css/2.ee779822.chunk.css.map":"11d36f701c91debe8d9aef45f7a6df62f7ac7bde4b445b4ae48dfcf356345001","/static/js/2.caa031b1.chunk.js.LICENSE.txt":"024506c0266c599c15167733476f42db3436a2420b1b60257e2274e4d9051369","/static/js/3.aa0727a9.chunk.js":"f496d299b801a2dd1f743fbcffdb94aa092d38d6509de3c863f4d31131f78b2b","/static/js/3.aa0727a9.chunk.js.map":"ae5f300de3217ebc5b0e439cc013a3ca3ca95ca4a7e0be17daaefe221b921cf1","/static/js/runtime-main.558a02ee.js":"527397bb96bc8b150208e066c6c4bdd8c47120b4f531a480fceb19c892846c0c","/static/js/runtime-main.558a02ee.js.map":"80af5b07cd7918b16cd0cbcd246c1cc6e62299511706258d3bba13b716b4f0a8","/phono.json":"d5849241f94915f3be477661623b381a0f7e5ea5595e0e27f1d6d4356562f85d","/static/js/main.0afc122a.chunk.js":"22b9057a8f2b0d9a09caf35fa047f68adeeffee41e3a345c53a596ed3e74827f","/static/js/main.0afc122a.chunk.js.map":"f62fa5be29c3cf1c9470eb68e2c9e5255ef4f06f271cd4d489bff4c4bc6bb0f5","/static/media/banner3.9c3a3fc0.jpg":"8a23311f61b6497835c763645add78a6e9e043ace13907e75a6453146722c587","/static/media/banner2.b500b13a.jpg":"9b2b45dc3026e032d405baf922b940e867394e7e586effaeb74551fa38e7e3a2","/static/media/review-bg.2197b0dc.jpg":"fe3ecfdddbe36bb9929acb17d71574b255bae2e5ebf60fbbcc2da83682c64d51","/static/media/banner1.d2e9079e.jpg":"4306716d7bf135ecea4e5acd94c0ccf5a9c6819081a7d7593cd88ea8dc610637","/static/media/about.03c0536f.jpg":"929396291a9c92f97cdb6a6ef8805572640c6100935b5ce7ebc2085d7732a249","/static/js/2.caa031b1.chunk.js":"52ebf53bd6ea6d1075bb45ed3953882e89b2805c35fdd0598970dbe3d4684a82","/static/js/2.caa031b1.chunk.js.map":"a08184b2d0f77389ddc5792cdfe923da28e24a58de9206fe3ddc494a6c76e546"}}
+[debug] [2022-01-06T17:22:17.324Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/sites/phono-3a490/versions/28210a4685bb37e4:populateFiles 200
+[debug] [2022-01-06T17:22:17.324Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/phono-3a490/versions/28210a4685bb37e4:populateFiles {"uploadRequiredHashes":["a08184b2d0f77389ddc5792cdfe923da28e24a58de9206fe3ddc494a6c76e546","d77c40fe6aa9f7d699b6bfb9644cec96e7c7e947a7cdb6d5634413d8a6a9896d","52ebf53bd6ea6d1075bb45ed3953882e89b2805c35fdd0598970dbe3d4684a82","e04b9ba57f53dbbbf448271410725f512382241e29e4365909cb7d9879ca6f64","b6efb4cfa393e11361ed59fbd47c66ccdaa7f8e5b4f61407b753a3a79864a214","22b9057a8f2b0d9a09caf35fa047f68adeeffee41e3a345c53a596ed3e74827f","a271084358bcfdd4143ca7ce85d00e7243b6dd6d4fad153eca3c295d0508f560","f62fa5be29c3cf1c9470eb68e2c9e5255ef4f06f271cd4d489bff4c4bc6bb0f5","d5849241f94915f3be477661623b381a0f7e5ea5595e0e27f1d6d4356562f85d"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files"}
+[debug] [2022-01-06T17:22:17.327Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/a08184b2d0f77389ddc5792cdfe923da28e24a58de9206fe3ddc494a6c76e546 [none]
+[debug] [2022-01-06T17:22:17.327Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/a08184b2d0f77389ddc5792cdfe923da28e24a58de9206fe3ddc494a6c76e546 [stream]
+[debug] [2022-01-06T17:22:17.328Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/d77c40fe6aa9f7d699b6bfb9644cec96e7c7e947a7cdb6d5634413d8a6a9896d [none]
+[debug] [2022-01-06T17:22:17.328Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/d77c40fe6aa9f7d699b6bfb9644cec96e7c7e947a7cdb6d5634413d8a6a9896d [stream]
+[debug] [2022-01-06T17:22:17.329Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/52ebf53bd6ea6d1075bb45ed3953882e89b2805c35fdd0598970dbe3d4684a82 [none]
+[debug] [2022-01-06T17:22:17.329Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/52ebf53bd6ea6d1075bb45ed3953882e89b2805c35fdd0598970dbe3d4684a82 [stream]
+[debug] [2022-01-06T17:22:17.330Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/e04b9ba57f53dbbbf448271410725f512382241e29e4365909cb7d9879ca6f64 [none]
+[debug] [2022-01-06T17:22:17.330Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/e04b9ba57f53dbbbf448271410725f512382241e29e4365909cb7d9879ca6f64 [stream]
+[debug] [2022-01-06T17:22:17.331Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/b6efb4cfa393e11361ed59fbd47c66ccdaa7f8e5b4f61407b753a3a79864a214 [none]
+[debug] [2022-01-06T17:22:17.331Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/b6efb4cfa393e11361ed59fbd47c66ccdaa7f8e5b4f61407b753a3a79864a214 [stream]
+[debug] [2022-01-06T17:22:17.332Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/22b9057a8f2b0d9a09caf35fa047f68adeeffee41e3a345c53a596ed3e74827f [none]
+[debug] [2022-01-06T17:22:17.332Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/22b9057a8f2b0d9a09caf35fa047f68adeeffee41e3a345c53a596ed3e74827f [stream]
+[debug] [2022-01-06T17:22:17.333Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/a271084358bcfdd4143ca7ce85d00e7243b6dd6d4fad153eca3c295d0508f560 [none]
+[debug] [2022-01-06T17:22:17.333Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/a271084358bcfdd4143ca7ce85d00e7243b6dd6d4fad153eca3c295d0508f560 [stream]
+[debug] [2022-01-06T17:22:17.334Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/f62fa5be29c3cf1c9470eb68e2c9e5255ef4f06f271cd4d489bff4c4bc6bb0f5 [none]
+[debug] [2022-01-06T17:22:17.334Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/f62fa5be29c3cf1c9470eb68e2c9e5255ef4f06f271cd4d489bff4c4bc6bb0f5 [stream]
+[debug] [2022-01-06T17:22:17.337Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/d5849241f94915f3be477661623b381a0f7e5ea5595e0e27f1d6d4356562f85d [none]
+[debug] [2022-01-06T17:22:17.337Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/d5849241f94915f3be477661623b381a0f7e5ea5595e0e27f1d6d4356562f85d [stream]
+[debug] [2022-01-06T17:22:17.338Z] [hosting][populate queue][FINAL] {"max":2083,"min":2083,"avg":2083,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":2096}
+[debug] [2022-01-06T17:22:17.339Z] [hosting] uploads queued: 9
+[debug] [2022-01-06T17:22:19.047Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/a271084358bcfdd4143ca7ce85d00e7243b6dd6d4fad153eca3c295d0508f560 200
+[debug] [2022-01-06T17:22:19.047Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/a271084358bcfdd4143ca7ce85d00e7243b6dd6d4fad153eca3c295d0508f560 [stream]
+[debug] [2022-01-06T17:22:19.065Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/d5849241f94915f3be477661623b381a0f7e5ea5595e0e27f1d6d4356562f85d 200
+[debug] [2022-01-06T17:22:19.065Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/d5849241f94915f3be477661623b381a0f7e5ea5595e0e27f1d6d4356562f85d [stream]
+[debug] [2022-01-06T17:22:19.249Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/22b9057a8f2b0d9a09caf35fa047f68adeeffee41e3a345c53a596ed3e74827f 200
+[debug] [2022-01-06T17:22:19.249Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/22b9057a8f2b0d9a09caf35fa047f68adeeffee41e3a345c53a596ed3e74827f [stream]
+[debug] [2022-01-06T17:22:19.627Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/b6efb4cfa393e11361ed59fbd47c66ccdaa7f8e5b4f61407b753a3a79864a214 200
+[debug] [2022-01-06T17:22:19.627Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/b6efb4cfa393e11361ed59fbd47c66ccdaa7f8e5b4f61407b753a3a79864a214 [stream]
+[debug] [2022-01-06T17:22:19.637Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/e04b9ba57f53dbbbf448271410725f512382241e29e4365909cb7d9879ca6f64 200
+[debug] [2022-01-06T17:22:19.639Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/e04b9ba57f53dbbbf448271410725f512382241e29e4365909cb7d9879ca6f64 [stream]
+[debug] [2022-01-06T17:22:20.150Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/f62fa5be29c3cf1c9470eb68e2c9e5255ef4f06f271cd4d489bff4c4bc6bb0f5 200
+[debug] [2022-01-06T17:22:20.151Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/f62fa5be29c3cf1c9470eb68e2c9e5255ef4f06f271cd4d489bff4c4bc6bb0f5 [stream]
+[debug] [2022-01-06T17:22:20.215Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/d77c40fe6aa9f7d699b6bfb9644cec96e7c7e947a7cdb6d5634413d8a6a9896d 200
+[debug] [2022-01-06T17:22:20.215Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/d77c40fe6aa9f7d699b6bfb9644cec96e7c7e947a7cdb6d5634413d8a6a9896d [stream]
+[debug] [2022-01-06T17:22:20.259Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/a08184b2d0f77389ddc5792cdfe923da28e24a58de9206fe3ddc494a6c76e546 200
+[debug] [2022-01-06T17:22:20.260Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/a08184b2d0f77389ddc5792cdfe923da28e24a58de9206fe3ddc494a6c76e546 [stream]
+[debug] [2022-01-06T17:22:21.112Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/52ebf53bd6ea6d1075bb45ed3953882e89b2805c35fdd0598970dbe3d4684a82 200
+[debug] [2022-01-06T17:22:21.112Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/phono-3a490/versions/28210a4685bb37e4/files/52ebf53bd6ea6d1075bb45ed3953882e89b2805c35fdd0598970dbe3d4684a82 [stream]
+[debug] [2022-01-06T17:22:21.113Z] [hosting][upload queue][FINAL] {"max":3787,"min":1722,"avg":2493.3333333333335,"active":0,"complete":9,"success":9,"errored":0,"retried":0,"total":9,"elapsed":3789}
+[info] +  hosting[phono-3a490]: file upload complete 
+[debug] [2022-01-06T17:22:21.120Z] [hosting] deploy completed after 6296ms
+[debug] [2022-01-06T17:22:21.123Z] [
+  {
+    "config": {
+      "public": "build",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "site": "phono-3a490"
+    },
+    "site": "phono-3a490",
+    "version": "sites/phono-3a490/versions/28210a4685bb37e4"
+  }
+]
+[info] i  hosting[phono-3a490]: finalizing version... 
+[debug] [2022-01-06T17:22:21.124Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-01-06T17:22:21.124Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-06T17:22:21.630Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Thu, 06 Jan 2022 17:22:20 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-06T17:22:21.643Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/phono-3a490/versions/28210a4685bb37e4?updateMask=status  
+ {"status":"FINALIZED"}
+[debug] [2022-01-06T17:22:23.836Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 06 Jan 2022 17:22:22 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-06T17:22:23.836Z] [hosting] finalized version for phono-3a490: {"name":"sites/phono-3a490/versions/28210a4685bb37e4","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2022-01-06T17:22:13.908225Z","createUser":{"email":"sir.sharif05@gmail.com"},"finalizeTime":"2022-01-06T17:22:22.898889Z","finalizeUser":{"email":"sir.sharif05@gmail.com"}}
+[info] +  hosting[phono-3a490]: version finalized 
+[info] i  hosting[phono-3a490]: releasing new version... 
+[debug] [2022-01-06T17:22:23.838Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/phono-3a490/releases?version_name=sites/phono-3a490/versions/28210a4685bb37e4  
+ {"message":null}
+[debug] [2022-01-06T17:22:25.745Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 06 Jan 2022 17:22:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-06T17:22:25.746Z] [hosting] release: {"name":"sites/phono-3a490/releases/1641489744568138","version":{"name":"sites/phono-3a490/versions/28210a4685bb37e4","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2022-01-06T17:22:13.908225Z","createUser":{"email":"sir.sharif05@gmail.com"},"finalizeTime":"2022-01-06T17:22:22.898889Z","finalizeUser":{"email":"sir.sharif05@gmail.com"}},"type":"DEPLOY","releaseTime":"2022-01-06T17:22:24.568138089Z","releaseUser":{"email":"sir.sharif05@gmail.com"}}
+[info] +  hosting[phono-3a490]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/phono-3a490/overview
+[info] Hosting URL: https://phono-3a490.web.app
