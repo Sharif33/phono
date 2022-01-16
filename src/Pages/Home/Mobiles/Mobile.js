@@ -14,10 +14,14 @@ const Mobile = ({ mobile }) => {
         <div>
 
             <div className="col rounded text-center">
-                <div className="card card-hover border-0 h-100">
-                    <div className='row p-3 g-0'>
+                <div className="card card-hover shadow h-100">
+                    <div className='row flex-row-reverse px-3 py-2 g-0'>
+                    <div className='col-md-4'>
+                            <img style={{ height: "12rem" }} src={image} className="img-fluid rounded-start" alt="" />
+                            <p>Tk: <span className="text-danger fw-bold">{price}</span></p>
+                        </div>
                         <div className='col-md-8'>
-                            <h5 className="text-dark pt-3">{name}</h5>
+                            <h5 className="text-dark pt-1">{name}</h5>
                             <Box sx={{
                                 '& > legend': { mt: 2 },
                             }}>
@@ -26,16 +30,15 @@ const Mobile = ({ mobile }) => {
                             <div style={{ textAlign: "justify" }} className="p-2">
                                 <p className="text-secondary">{specs}</p>
                             </div>
-                        </div>
-                        <div className='col-md-4'>
-                            <img style={{ height: "12rem" }} src={image} className="img-fluid rounded-start" alt="" />
-                            <p>Tk: <span className="text-danger fw-bold">{price}</span></p>
+                            <div className="d-flex">
+                        <Link to={`/mobile/${_id}`}><i title='Details' className="fas mx-2 text-info fs-4 fa-info-circle"></i></Link>
+                        <i onClick={handleOpen} title='Order Now' className="fas mx-2 fs-4 text-danger fa-cart-plus"></i>
+                        <i onClick={handleOpen} title='Add to Favourite' className="far mx-2 fs-4 text-warning fa-heart"></i>
+                        
+                    </div>
                         </div>
                     </div>
-                    <div className="px-4 d-flex justify-content-between">
-                        <Link to={`/mobile/${_id}`}><button className="btn btn-custom-2">OVERVIEW</button></Link>
-                        <button onClick={handleOpen} className="btn btn-custom">BUY NOW</button>
-                    </div>
+                   
                 </div>
             </div>
             <BuyMobile

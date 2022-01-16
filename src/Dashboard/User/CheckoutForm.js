@@ -121,6 +121,12 @@ const CheckoutForm = ({appointment}) => {
       {processing ? <CircularProgress></CircularProgress> : <button className='btn btn-custom-2' type="submit" disabled={!stripe || success}>Pay {price} tk.</button>}
       </div>
     </form>
+    {
+                error && <p style={{ color: 'red' }}>{error}</p>
+            }
+            {
+                success && <p style={{ color: 'green' }}>{success}</p>
+            }
         </div>
     );
 };

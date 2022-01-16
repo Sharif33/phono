@@ -110,7 +110,9 @@ hr {
 }
 
 .custom-margin {
-  margin-bottom: -70px;
+  margin-bottom: -60px;
+  align-items: center;
+  text-align: center;
 }
 
 .custom-border {
@@ -135,3 +137,7 @@ hr {
     overflow-y:scroll;
     overflow-x:hidden;
 } */
+
+.fas:hover{
+  color: black !important;
+}

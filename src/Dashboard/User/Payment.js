@@ -4,7 +4,7 @@ import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_test_51K8PMbFRrgTUsmgBK0HIVHahI69rtmPuecs2jQzhAziBS6lS0GZaiYikrCf49J72ee2RZG585NUATSMOlVUUV4sx0072UsTUV4');
+const stripePromise = loadStripe(`pk_test_51K8PMbFRrgTUsmgBK0HIVHahI69rtmPuecs2jQzhAziBS6lS0GZaiYikrCf49J72ee2RZG585NUATSMOlVUUV4sx0072UsTUV4`);
 
 const Payment = () => {
     const {id} = useParams();
