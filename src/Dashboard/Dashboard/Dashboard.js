@@ -61,9 +61,9 @@ function Dashboard(props) {
                 {/* <List>
                     <Link to={`/dashboard/pay/:id`}><Button color="inherit">Payment</Button></Link>
                 </List> */}
-                <List>
+                {/* <List>
                     <Link to={`/dashboard/review`}><Button color="inherit">Reviews</Button></Link>
-                </List>
+                </List> */}
                 </Box>}
            
             {admin &&  <Box sx={{textDecoration:'none'}}>

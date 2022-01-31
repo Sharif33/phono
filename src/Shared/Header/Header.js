@@ -1,11 +1,19 @@
 
-import React from 'react';
+import { Avatar } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import "./Header.css";
 
 const Header = () => {
     const { user, logOut } = useAuth();
+  const [orders, setOrders] = useState([]);
+  const email = user?.email;
+  useEffect(() => {
+      fetch(`https://peaceful-shore-84874.herokuapp.com/myOrders/${email}`)
+          .then((res) => res.json())
+          .then((data) => setOrders(data));
+  }, [email]);
 
     return (
         <div>
@@ -19,7 +27,7 @@ const Header = () => {
                             </button>
                             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                                 {
-                                    user?.email ? <ul className="navbar-nav mx-auto">
+                                    user?.email ? <ul className="navbar-nav text-center mx-auto">
                                         <li className="nav-item">
                                             <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
                                         </li>
@@ -33,13 +41,28 @@ const Header = () => {
                                             <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/about">ABOUT US</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/dashboard">DASHBOARD</NavLink>
+                                        <NavLink to={`/dashboard/myOrders`} >
+                                        <i className="fas text-danger fa-cart-arrow-down nav-link active mx-1 position-relative"><span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                                        {orders?.length}
+                                        <span className="visually-hidden">unread messages</span>
+                                        </span></i>
+                                        </NavLink>
+                                        </li>
+                                        <li className="nav-item dropdown mx-2">
+                                        <Avatar id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" alt="" src={user?.photoURL} />
+                                        <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li className=" dropdown-item">
+                                            <NavLink className="text-decoration-none" to="/dashboard">{user?.displayName}</NavLink>
+                                        </li>
+                                        <li className=" dropdown-item">
+                                            <NavLink className="text-decoration-none" to="/dashboard">DASHBOARD </NavLink>
                                         </li>
 
-                                        <li className="nav-item">
-                                            <p onClick={logOut} className='nav-link active mx-1 text-danger'>LOGOUT</p>
+                                        <li className="dropdown-item">
+                                            <button onClick={logOut} className='btn btn-custom-3'>Logout</button>
                                         </li>
-
+                                        </ul>
+                                        </li>
                                     </ul>
                                         : <ul className="navbar-nav mx-auto">
                                             <li className="nav-item">
@@ -59,10 +82,7 @@ const Header = () => {
                                             </li>
                                         </ul>
                                 }
-                                <div className="text-center">
-                                    <img className="img-fluid w-25 rounded-circle px-1" src={user?.photoURL} alt="" />
-                                    <p className="text-info">{user?.displayName}</p>
-                                </div>
+                               
                             </div>
                         </div>
                     </nav>

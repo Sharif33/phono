@@ -30,10 +30,12 @@ const Mobile = ({ mobile }) => {
                             <div style={{ textAlign: "justify" }} className="p-2">
                                 <p className="text-secondary">{specs}</p>
                             </div>
-                            <div className="d-flex">
-                        <Link to={`/mobile/${_id}`}><i title='Details' className="fas mx-2 text-info fs-4 fa-info-circle"></i></Link>
-                        <i onClick={handleOpen} title='Order Now' className="fas mx-2 fs-4 text-danger fa-cart-plus"></i>
-                        <i onClick={handleOpen} title='Add to Favourite' className="far mx-2 fs-4 text-warning fa-heart"></i>
+                            <div className="text-center d-flex justify-content-center alighn-items-center">
+                        <Link to={`/mobile/${_id}`}> <button className='btn btn-outline-info mx-2'> <i title='Details' className="fas fa-info-circle"></i> </button> </Link>
+                        <button onClick={handleOpen} className='btn btn-outline-danger mx-2'> <i title='Order Now' className="fas fa-cart-plus"></i> </button>
+                        
+                        <button onClick={handleOpen} className='btn btn-outline-warning mx-2'> <i title='Add to Favourite' className="far fa-heart"></i> </button>
+                        
                         
                     </div>
                         </div>

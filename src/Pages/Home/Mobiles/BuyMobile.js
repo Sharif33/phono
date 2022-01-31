@@ -5,6 +5,7 @@ import useAuth from '../../../Hooks/useAuth/useAuth';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const style = {
   position: 'absolute',
@@ -33,7 +34,11 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
         axios.post(`https://peaceful-shore-84874.herokuapp.com/orders`, data)
             .then(res => {
                 if (res.data.insertedId) {
-                    alert('Purchase successfully.Please Check My Order');
+                        Swal.fire(
+                            'Thank You!',
+                            'Purchase successfully.Please Check My Order',
+                            'success'
+                          )
                     reset();
                     handleClose();
                 }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const AddMobile = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -11,7 +12,12 @@ const AddMobile = () => {
         axios.post(`https://peaceful-shore-84874.herokuapp.com/phones`, data)
             .then(res => {
                 if (res.data.insertedId) {
-                    alert('added successfully');
+                    
+                    Swal.fire(
+                        'Good job!',
+                        'Added Successfully!',
+                        'success'
+                      )
                     reset();
                 }
             })

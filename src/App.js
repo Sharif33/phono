@@ -59,10 +59,9 @@ function App() {
                <Review></Review>
               </PrivateRoute>}>
               </Route>
-              <Route path="dashboard/*" element={<PrivateRoute>
+               <Route index element={<PrivateRoute>
                 <DashboardHome></DashboardHome>
-              </PrivateRoute>}>
-              </Route>
+              </PrivateRoute>} />
               <Route path={`/dashboard/manageOrder`} element={<AdminRoute>
                 <ManageOrder></ManageOrder>
               </AdminRoute>}>

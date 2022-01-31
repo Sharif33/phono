@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth/useAuth';
 
 const MyOrders = () => {
@@ -28,8 +29,18 @@ const MyOrders = () => {
    
     //DELETE AN Products
     const handleDeleteOrders = id => {
-        const proceed = window.confirm('Are you sure, you want to delete?');
-        if (proceed) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#ec0554',
+            cancelButtonText: 'No, keep me!',
+            confirmButtonText: 'Yes, cancel it!'
+          }).then((result) => {
+            if (result.isConfirmed) 
+         {
             const url = `https://peaceful-shore-84874.herokuapp.com/myOrders/${id}`
             fetch(url, {
                 method: 'DELETE',
@@ -37,7 +48,15 @@ const MyOrders = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        alert('Canceled successfully');
+                        // alert('Canceled successfully');
+                       
+                            
+                              Swal.fire(
+                                'Canceled!',
+                                'Your order has been canceled.',
+                                'success'
+                              )
+                           
                         // console.log(data);
                         const remainingOrders = orders.filter(order => order._id !== id);
                         console.log(remainingOrders);
@@ -45,7 +64,8 @@ const MyOrders = () => {
                         setOrders(remainingOrders);
                     }
                 })
-        }
+            }
+        })
     }
     return (
         <div>

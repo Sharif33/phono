@@ -1,5 +1,6 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const ManageProducts = () => {
     const [mobiles, setMobiles] = useState([]);
@@ -12,8 +13,18 @@ const ManageProducts = () => {
 
     // DELETE products
     const handleDeleteProducts = id => {
-        const proceed = window.confirm('Are you sure, you want to delete?');
-        if (proceed) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#ec0554',
+            cancelButtonText: 'No, keep me!',
+            confirmButtonText: 'Yes, cancel it!'
+          }).then((result) => {
+            if (result.isConfirmed) 
+         {
             const url = `https://peaceful-shore-84874.herokuapp.com/phones/${id}`
             fetch(url, {
                 method: 'DELETE',
@@ -21,7 +32,11 @@ const ManageProducts = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        alert('Canceled successfully');
+                        Swal.fire(
+                            'Deleted!',
+                            'Your product has been deleted.',
+                            'success'
+                          )
                         // console.log(data);
                         const remainingProducts = mobiles.filter(mobile => mobile._id !== id);
                         // console.log(remainingOrders);
@@ -29,6 +44,7 @@ const ManageProducts = () => {
                     }
                 })
         }
+    });
     }
     return (
         <div className="container py-4">
@@ -53,7 +69,7 @@ const ManageProducts = () => {
                             </TableCell>
                             <TableCell align="right">{mobile.price}</TableCell>
                             <TableCell align="right">{mobile.id}</TableCell>
-                            <TableCell align="right"><button onClick={() => handleDeleteProducts(mobile._id)} className="btn btn-danger">Delete</button></TableCell>
+                            <TableCell align="right"><button onClick={() => handleDeleteProducts(mobile._id)} className="btn btn-custom-2"><i className="fas fa-trash"></i></button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

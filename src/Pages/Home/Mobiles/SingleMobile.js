@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Review from '../../../Dashboard/User/Review';
 import useAuth from '../../../Hooks/useAuth/useAuth';
 import Footer from '../../../Shared/Footer/Footer';
 import Header from '../../../Shared/Header/Header';
@@ -35,7 +37,12 @@ const SingleMobile = () => {
         axios.post(`https://peaceful-shore-84874.herokuapp.com/orders`, data)
             .then(res => {
                 if (res.data.insertedId) {
-                    alert('Purchase successfully.Please Check My Order');
+                    // alert('Purchase successfully.Please Check My Order');
+                    Swal.fire(
+                        'Purchase successfully!',
+                        'Please Check My Order on dashboard',
+                        'success'
+                      )
                     reset();
                 }
             })
@@ -50,13 +57,13 @@ const SingleMobile = () => {
 
             <div className='container py-5'>
                 <div className="row">
-                    <div className='col-md-4'>
+                    <div className='col-md-3'>
                         <div className='text-center'>
                             <h3 style={{ color: "#62599F" }}>{phones?.name}</h3>
                             <img className='w-100 img-fluid' src={phones?.image} alt="" />
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                         <ul>
                             <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.processor}</li>
                             <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.memory}</li>
@@ -64,13 +71,16 @@ const SingleMobile = () => {
                             <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.battery}</li>
                         </ul>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                         <ul>
                             <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.camera}</li>
                             <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.selfie}</li>
                             <li className="mb-5 fs-5"><i className="fas fa-chevron-right"> </i> {phones?.network}</li>
 
                         </ul>
+                    </div>
+                    <div className="col-md-3 border-start">
+                    <Review phones={phones} />
                     </div>
                 </div>
             </div>
@@ -135,6 +145,7 @@ const SingleMobile = () => {
                     </div>
                 </div>
             </div>
+            
             <Banner3/>
             <Footer/>
         </div>
