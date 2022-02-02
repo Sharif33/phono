@@ -15,6 +15,7 @@ const ExploreMobiles = () => {
             .then(data => {
                 setMobiles(data);
                 setCategories(data);
+                console.log(data);
             })
     }, []);
 
@@ -34,7 +35,7 @@ const handleSearch = e =>{
 
     return (
         <>
-         <Header />
+         <Header/>
             <div style={{ paddingTop: "65px" }} className='bg-light border border-bottom '> </div>
             <div className='bg-light'>
                 <div className="container-fluid">

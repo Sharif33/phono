@@ -48,16 +48,11 @@ const MyOrders = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        // alert('Canceled successfully');
-                       
-                            
                               Swal.fire(
                                 'Canceled!',
                                 'Your order has been canceled.',
                                 'success'
                               )
-                           
-                        // console.log(data);
                         const remainingOrders = orders.filter(order => order._id !== id);
                         console.log(remainingOrders);
                         // console.log(myOrders);
@@ -74,7 +69,7 @@ const MyOrders = () => {
                 <h5 className="text-warning">{user?.displayName}</h5>
                 <h4>Your order item: <span className="text-danger">{orders.length}</span></h4>
             </div>
-            <div className="row row-cols-1 row-cols-md-4">
+            <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4">
                 {
                     orders?.map(order =>
                         <div key={order._id} className="col">
@@ -86,13 +81,19 @@ const MyOrders = () => {
                                     <h6>Price: <span className="text-danger">{order?.price} BDT</span> </h6>
                                     <img className="img-fluid" style={{ height: "15rem" }} src={order?.image} alt="" />
                                     <h6 className="text-center">{order?.mobile}</h6>
-                                    <h6>{order.payment ? 'Paid'
-                                    :
-                                    <Link to={`/dashboard/pay/${order._id}`}><button className='btn btn-warning'>Pay</button></Link>}</h6>
-                                </div>
-                                <div className="d-flex justify-content-between">
-                                    <button className="btn btn-outline-info">{order?.status}</button>
-                                    <button onClick={() => handleDeleteOrders(order._id)} className="btn btn-danger">Cancel</button>
+                                    </div>
+                                <div className="d-flex justify-content-between text-center">
+                                    <button className="btn btn-custom-3">{order?.status}</button>
+                                    
+                                         <div>{order?.payment ? <h5> <span className='badge text-cenetr rounded-pill bg-success'>Paid</span> </h5> 
+                                        :
+                                        <Link to={`/dashboard/pay/${order._id}`}>
+                                            <div><button className='btn btn-warning'>Pay</button><button onClick={() => handleDeleteOrders(order._id)} className="btn btn-danger">Cancel</button></div>
+                                            </Link>}</div>
+                                    
+                                     
+                                    
+                                    
                                 </div>
                             </div>
                         </div>

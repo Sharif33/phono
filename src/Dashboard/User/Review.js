@@ -25,10 +25,10 @@ const Review = ({ phones }) => {
   const [hover, setHover] = React.useState(-1);
   const { register, handleSubmit, reset } = useForm();
   const { user } = useAuth();
-  console.log(hover);
 
   const onSubmit = (data) => {
     // console.log(data);
+    data.rating=value;
 
     axios
       .post(`https://peaceful-shore-84874.herokuapp.com/reviews`, data)
@@ -83,7 +83,6 @@ const Review = ({ phones }) => {
                 }}
               >
                 <Rating
-                  {...register("rating")}
                   name="hover-feedback"
                   value={value}
                   type="number"
@@ -104,15 +103,6 @@ const Review = ({ phones }) => {
                   </Box>
                 )}
               </Box>
-              {/* <input
-               className=" rounded"
-               type="number"
-               step="0.1"
-               min="1"
-               max="5"
-               {...register("rating")}
-               placeholder="Rating"
-             /> */}
               <input
                 className=" rounded"
                 hidden

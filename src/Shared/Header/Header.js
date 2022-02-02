@@ -15,6 +15,12 @@ const Header = () => {
           .then((data) => setOrders(data));
   }, [email]);
 
+//   const handleSearch = e =>{
+//     const searchText = e.target.value;
+//     const matchedMobiles = mobiles.filter(mobile=>mobile.name.toLowerCase().includes(searchText.toLowerCase()));
+//     setCategories(matchedMobiles);
+// }
+
     return (
         <div>
             <div className="header">
@@ -82,7 +88,10 @@ const Header = () => {
                                             </li>
                                         </ul>
                                 }
-                               
+                                {/* <form class="d-flex">
+        <input onChange={handleSearch} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      </form>
+                                */}
                             </div>
                         </div>
                     </nav>

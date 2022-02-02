@@ -12,7 +12,6 @@ const Mobile = ({ mobile }) => {
     const handleClose = () => setOpenBuyNow(false);
     return (
         <div>
-
             <div className="col rounded text-center">
                 <div className="card card-hover shadow h-100">
                     <div className='row flex-row-reverse px-3 py-2 g-0'>

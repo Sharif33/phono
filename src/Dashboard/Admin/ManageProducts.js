@@ -49,8 +49,8 @@ const ManageProducts = () => {
     return (
         <div className="container py-4">
         <TableContainer component={Paper}>
-            <Table sx={{}} aria-label="Manage Products table">
-                <TableHead>
+            <Table stickyHeader aria-label="sticky table" >
+                <TableHead sx={{bgcolor: 'secondary.main'}}>
                     <TableRow>
                         <TableCell>Name</TableCell>
                         <TableCell align="right">Price</TableCell>
