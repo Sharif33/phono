@@ -1,3 +1,4 @@
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
@@ -91,46 +92,62 @@ const ManageOrder = () => {
     });
     };
     return (
-        <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
-        {
-            orders?.map(order => <div key={order._id}>
-                <div className="col">
-                    <div className="card h-100 mb-3" style={{ maxWidth: "540px" }}>
-                        <div className="row g-0">
-                            <div className="col-sm-12 col-md-4 text-center">
-                                <img src={order.image} className="img-fluid rounded-start" alt="..." />
+        <div className="container py-4">
+        <TableContainer component={Paper}>
+            <Table  stickyHeader aria-label="sticky table" >
+                <TableHead sx={{
+            bgcolor: 'secondary.main',
+            color: 'secondary.contrastText',
+            p: 2,
+          }}>
+                    <TableRow>
+                        <TableCell sx={{ color: 'secondary.main'}}>Image</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}}>Mobile</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">ID</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Name</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Email</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Price</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Payment</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Trns.id</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Status</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Action</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {orders.map((order) => (
+                        <TableRow
+                            key={order._id}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell component="th" scope="row">
+                                <img className='img-fluid' src={order?.image} alt="" />
+                            </TableCell>
+                            <TableCell align="center">{order?.mobile}</TableCell>
+                            <TableCell align="center">{order?._id?.slice(0,10)}</TableCell>
+                            <TableCell align="center">{order?.name}</TableCell>
+                            <TableCell align="center">{order?.email}</TableCell>
+                            <TableCell align="center">{order?.price}&#2547; </TableCell>
+                            <TableCell align="center">
                                 {
-                                        order?.payment ? <p className='btn-custom-3'>Paid</p>  :  <p className='btn-custom-2'>Unpaid</p>
-                                    }
-                            </div>
-                            <div className="col-sm-12 col-md-8">
-                                <div className="card-body">
-                                    <small className="card-title text-success">{order?.mobile}</small>
-                                    <p className="card-text">By : <span>{order?.name}</span></p>
-                                    <p>{order.email}</p>
-                                    <p>Date: {order?.date}, {order?.time}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="d-flex justify-content-between btn-custom-3">
-                            <div className="d-flex">
-                                <select className="p-2 text-center btn-custom-3 border-0" onChange={handleStatus}>
+                                    order?.payment ? <Typography sx={{ color: 'success.main'}}>Paid</Typography> :  <Typography sx={{ color: 'error.main'}}>Unpaid</Typography>
+                                }
+                            </TableCell>
+                            <TableCell sx={{ color: 'primary.main'}} align="center">{order?.payment?.last4}</TableCell>
+                            <TableCell align="center"><div className="d-flex">
+                                <select className="text-center custom-form border-0" onChange={handleStatus}>
                                     <option>{order?.status}</option>
-                                    <option className='text-dark' value="Processing">Processing</option>
-                                    <option className='text-dark' value="Shipped">Shipped</option>
-                                    <option className='text-dark' value="Delivered">Delivered</option>
+                                    <option value="Processing">Processing</option>
+                                    <option value="Shipped">Shipped</option>
+                                    <option value="Delivered">Delivered</option>
                                     </select>
-                                    <button title='Click to update status' onClick={() => handleUpdate(order?._id)} className="btn btn-custom-3"><i className="fas fa-check"></i></button>
-                            </div>
-                                        
-                                <button title='delete item' onClick={() => handleDeleteOrders(order?._id)} className="btn btn-custom-2"><i className="fas fa-trash"></i></button>
-                                            
-                            </div>
-                    </div>
-                </div>
-            </div>
-            )
-        }
+                                <button title='Click to update status' onClick={() => handleUpdate(order?._id)} className="btn btn-custom-3"><i className="fas fa-check"></i></button>
+                            </div></TableCell>
+                            <TableCell align="center"> <button title='delete item' onClick={() => handleDeleteOrders(order?._id)} className="btn btn-custom-2"><i className="fas fa-trash"></i></button></TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
     </div>
     );
 };

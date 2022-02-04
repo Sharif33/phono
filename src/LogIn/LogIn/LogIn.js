@@ -1,10 +1,11 @@
-import { Container, Typography, TextField, Button, CircularProgress, Alert } from '@mui/material';
+import { Container, Typography, TextField, Button, CircularProgress, Alert, Avatar, CssBaseline, Box } from '@mui/material';
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 const LogIn = () => {
     const [loginData, setLoginData] = useState({});
@@ -35,25 +36,34 @@ const LogIn = () => {
 
             </div>
             <Container>
+            <CssBaseline />
                 <Grid sx={{ my: 4 }} container>
-                    <Grid className="p-4 shadow text-center rounded" item xs={12} md={6}>
-                        <Typography sx={{ letterSpacing: 4, fontWeight: 'bold' }} variant="h4" gutterBottom>Please   Login</Typography>
+                    <Grid sx={{alignItems: 'center' }} className="p-4 shadow text-center rounded" item xs={12} md={6}>
+                        {/* <Typography sx={{ letterSpacing: 4, fontWeight: 'bold' }} variant="h4" gutterBottom>Please   Login</Typography> */}
+                            
+            <LockOutlinedIcon sx={{ m: 1, color: 'secondary.main' }}/>
+          
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+      
                         <form onSubmit={handleLoginSubmit}>
                             <TextField
                                 sx={{ width: '75%', m: 1 }}
                                 id="standard-basic"
-                                label="Your Email"
+                                label="Your Email*"
                                 name="email"
                                 onChange={handleOnChange}
-                                variant="standard" />
+                                variant="outlined" />
                             <TextField
                                 sx={{ width: '75%', m: 1 }}
                                 id="standard-basic"
-                                label="Your Password"
+                                label="Your Password*"
                                 type="password"
                                 name="password"
                                 onChange={handleOnChange}
-                                variant="standard" />
+                                variant="outlined"
+                                />
 
                             <Button sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Login</Button>
                             <NavLink
@@ -65,7 +75,6 @@ const LogIn = () => {
                             {user?.email && <Alert severity="success">Login successfully!</Alert>}
                             {authError && <Alert severity="error">{authError}</Alert>}
                         </form>
-                        <hr />
                         <Button onClick={handleGoogleSignIn} variant="contained">Google Sign In</Button>
                     </Grid>
                     <Grid className="p-4 text-center rounded" item xs={12} md={6}>

@@ -60,21 +60,21 @@
 }
 
 .custom-form input {
-  border-radius: 15px !important;
+  border-radius: 3px !important;
   margin-bottom: 12px;
   border: 1px solid #764abc !important;
   padding: 10px;
   width: 100%;
 }
 .custom-form textarea {
-  border-radius: 15px !important;
+  border-radius: 3px !important;
   margin-bottom: 12px;
   border: 1px solid #764abc !important;
   padding: 10px;
   width: 100%;
 }
 .custom-form select {
-  border-radius: 15px !important;
+  border-radius: 3px !important;
   margin-bottom: 12px;
   border: 1px solid #764abc !important;
   padding: 10px;
@@ -102,12 +102,12 @@ ul {
   color: #764abc;
 }
 
-hr {
+/* hr {
   margin: auto;
   width: 20%;
   font-weight: bold;
   color: red;
-}
+} */
 
 .custom-margin {
   margin-bottom: -60px;

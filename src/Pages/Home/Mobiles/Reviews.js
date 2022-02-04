@@ -33,7 +33,7 @@ const Reviews = () => {
                   readOnly
                 />
                 <h6>{review?.mobile}</h6>
-                <p style={{textAlign:"justify"}} className="text-secondary pb-4">{review?.description?.slice(0,100)}</p>
+                <p style={{textAlign:"justify"}} className="text-secondary pb-4">{review?.description?.slice(0,100)}...</p>
               </div>
             </div>
           ))}

@@ -1,0 +1,18 @@
+/* .btn-hover{
+    color: #637381 !important;
+} */
+
+.btn-hover:hover{
+    background-color: rgba(0, 171, 85, 0.08) !important;
+    color: #38D373 !important;
+}
+
+.bg-dash{
+    /* background: white !important; */
+    color: #637381 !important;
+}
+
+.bg-avatar{
+    background-color: #F2F3F5 !important;
+    border-radius: 10px !important;
+}

@@ -1,11 +1,25 @@
 
-import { Avatar } from '@mui/material';
+import { Avatar, Link } from '@mui/material';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import "./Header.css";
 
 const Header = () => {
+
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+          right: -2,
+          top: 5,
+          border: `2px solid ${theme.palette.background.paper}`,
+          padding: '0 4px',
+        },
+      }));
+
     const { user, logOut } = useAuth();
   const [orders, setOrders] = useState([]);
   const email = user?.email;
@@ -35,56 +49,60 @@ const Header = () => {
                                 {
                                     user?.email ? <ul className="navbar-nav text-center mx-auto">
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/mobiles">SHOP</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " to="/mobiles">SHOP</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT US</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT US</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/about">ABOUT US</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " to="/about">ABOUT US</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                        <NavLink to={`/dashboard/myOrders`} >
-                                        <i className="fas text-danger fa-cart-arrow-down nav-link active mx-1 position-relative"><span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                                        {orders?.length}
-                                        <span className="visually-hidden">unread messages</span>
-                                        </span></i>
+                                        <NavLink className='me-1' to={`/dashboard/myOrders`} >
+                                        <IconButton aria-label="cart">
+                                        <StyledBadge badgeContent={orders?.length} color="secondary">
+                                        <ShoppingCartIcon sx={{ color: 'primary.main'}} />
+                                        </StyledBadge>
+                                        </IconButton>
                                         </NavLink>
                                         </li>
                                         <li className="nav-item dropdown mx-2">
                                         <Avatar id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" alt="" src={user?.photoURL} />
-                                        <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <li className=" dropdown-item">
-                                            <NavLink className="text-decoration-none" to="/dashboard">{user?.displayName}</NavLink>
+                                        <ul className="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdownMenuLink">
+                                        <li className=" dropdown-item border-bottom">
+                                            <small className='fw-bold'>{user?.displayName}</small><br />
+                                        <small className="text-center">{user?.email}</small>
                                         </li>
                                         <li className=" dropdown-item">
-                                            <NavLink className="text-decoration-none" to="/dashboard">DASHBOARD </NavLink>
+                                        <small className="text-center">Profile</small>
                                         </li>
-
+                                        <li className=" dropdown-item ">
+                                        <NavLink  className='text-dark' style={{textDecoration:'none',cursor:"pointer",color:"#38D373"}} to="/dashboard"><small>Dashboard</small></NavLink>
+                                        </li>
                                         <li className="dropdown-item">
-                                            <button onClick={logOut} className='btn btn-custom-3'>Logout</button>
+                                        <small style={{cursor:"pointer",color:"#38D373"}} onClick={logOut} >Logout</small>
                                         </li>
                                         </ul>
                                         </li>
                                     </ul>
                                         : <ul className="navbar-nav mx-auto">
                                             <li className="nav-item">
-                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
+                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
                                             </li>
                                             <li className="nav-item">
-                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/mobiles">SHOP</NavLink>
+                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " to="/mobiles">SHOP</NavLink>
                                             </li>
                                             <li className="nav-item">
-                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT US</NavLink>
+                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT US</NavLink>
                                             </li>
                                             <li className="nav-item">
-                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1  " to="/about">ABOUT US</NavLink>
+                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " to="/about">ABOUT US</NavLink>
                                             </li>
                                             <li className="nav-item">
-                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#764ABC' })} className="nav-link active mx-1" to="/login">SIGN IN <span><i className="fas fa-user"></i></span> </NavLink>
+                                                <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1" to="/login"><span> <i className="fas fa-user"> </i> SIGN IN </span> </NavLink>
                                             </li>
                                         </ul>
                                 }
