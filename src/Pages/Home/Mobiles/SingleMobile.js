@@ -17,9 +17,6 @@ const SingleMobile = () => {
 
     const [phones, setPhones] = useState([]);
 
-    const date = new Date().toLocaleDateString();
-
-
     useEffect(() => {
         fetch(`https://peaceful-shore-84874.herokuapp.com/phones/${id}`)
             .then(res => res.json())
@@ -32,7 +29,8 @@ const SingleMobile = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        // console.log(data);
+        data.date=new Date().toDateString();
+        data.time=new Date().toLocaleTimeString();
 
         axios.post(`https://peaceful-shore-84874.herokuapp.com/orders`, data)
             .then(res => {
@@ -131,9 +129,6 @@ const SingleMobile = () => {
                                         <input placeholder="City and Country"  {...register("city")} />
                                         <input placeholder="Phone number"  {...register("phone", { required: true })} />
                                         {errors.phone && <span className="text-warning">This field is required.</span>}
-                                        <input defaultValue={date} type="date"  {...register("date", { required: true })} />
-                                        <input defaultValue={new Date().getTime()} type="time"  {...register("time", { required: true })} />
-                                        {errors.date && <span className="text-warning">This field is required.</span>}
                                         <input defaultValue={phones?.image} hidden readOnly {...register("image", { required: true })} />
                                         {errors.image && <span className="text-warning">This field is required.</span>} <br />
                                         {!admin && <Button className='w-100 btn-custom' type="submit" variant="contained">ORDER</Button>}

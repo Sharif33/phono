@@ -77,7 +77,7 @@ const MyOrders = () => {
                                 <div>
                                     <h6>Email : <span className="text-secondary"> {order?.email} </span></h6>
                                     <h6>Phone : <span className="text-secondary"> {order?.phone} </span></h6>
-                                    <h6>Order Date : <span className="text-secondary"> {order?.date}, {order?.time} </span></h6>
+                                    <h6>Ordered: <span className="text-secondary"> {order?.date}, {order?.time} </span></h6>
                                     <h6>Price: <span className="text-danger">{order?.price} BDT</span> </h6>
                                     <img className="img-fluid" style={{ height: "15rem" }} src={order?.image} alt="" />
                                     <h6 className="text-center">{order?.mobile}</h6>
@@ -85,15 +85,21 @@ const MyOrders = () => {
                                 <div className="d-flex justify-content-between text-center">
                                     <button className="btn btn-custom-3">{order?.status}</button>
                                     
-                                         <div>{order?.payment ? <h5> <span className='badge text-cenetr rounded-pill bg-success'>Paid</span> </h5> 
+                                <div>
+                                    {
+                                        order?.payment ? <h5> <span className='badge text-cenetr rounded-pill bg-success'>Paid</span> </h5> 
                                         :
-                                        <Link to={`/dashboard/pay/${order._id}`}>
-                                            <div><button className='btn btn-warning'>Pay</button><button onClick={() => handleDeleteOrders(order._id)} className="btn btn-danger">Cancel</button></div>
-                                            </Link>}</div>
-                                    
-                                     
-                                    
-                                    
+                                       
+                                            <div> 
+                                            <Link to={`/dashboard/pay/${order._id}`}>
+                                            <button className='btn btn-warning me-1'>Pay</button></Link>
+
+                                            <button onClick={() => handleDeleteOrders(order._id)} className="btn btn-danger">Cancel</button>
+                                            
+                                            </div>
+                                        
+                                    }
+                                </div> 
                                 </div>
                             </div>
                         </div>

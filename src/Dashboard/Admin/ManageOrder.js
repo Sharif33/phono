@@ -92,14 +92,11 @@ const ManageOrder = () => {
     });
     };
     return (
-        <div className="container py-4">
-        <TableContainer component={Paper}>
-            <Table  stickyHeader aria-label="sticky table" >
-                <TableHead sx={{
-            bgcolor: 'secondary.main',
-            color: 'secondary.contrastText',
-            p: 2,
-          }}>
+        <div style={{overflow:'hidden'}} className="container py-4">
+            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <TableContainer sx={{ maxHeight: 600 }}>
+            <Table stickyHeader aria-label="sticky table" >
+                <TableHead >
                     <TableRow>
                         <TableCell sx={{ color: 'secondary.main'}}>Image</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}}>Mobile</TableCell>
@@ -115,12 +112,12 @@ const ManageOrder = () => {
                 </TableHead>
                 <TableBody>
                     {orders.map((order) => (
-                        <TableRow
+                        <TableRow hover
                             key={order._id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                <img className='img-fluid' src={order?.image} alt="" />
+                                <img className='img-fluid h-50' src={order?.image} alt="" />
                             </TableCell>
                             <TableCell align="center">{order?.mobile}</TableCell>
                             <TableCell align="center">{order?._id?.slice(0,10)}</TableCell>
@@ -148,6 +145,7 @@ const ManageOrder = () => {
                 </TableBody>
             </Table>
         </TableContainer>
+        </Paper>
     </div>
     );
 };

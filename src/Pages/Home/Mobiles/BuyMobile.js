@@ -22,13 +22,11 @@ const style = {
 const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
     const { user} = useAuth();
 
-    const date = new Date().toLocaleDateString();
-    const time = new Date().toLocaleTimeString();
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        // console.log(data);
+        data.date=new Date().toDateString();
+        data.time=new Date().toLocaleTimeString();
         
 
         axios.post(`https://peaceful-shore-84874.herokuapp.com/orders`, data)
@@ -75,9 +73,6 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                                                 <input placeholder="City and Country"  {...register("city")} />
                                                 <input placeholder="Phone number"  {...register("phone", { required: true })} />
                                                 {errors.phone && <span className="text-warning">This field is required.</span>}
-                                                <input defaultValue={date} type="date"  {...register("date", { required: true })} />
-                                                <input defaultValue={time} type="time"  {...register("time", { required: true })} />
-                                                {errors.date && <span className="text-warning">This field is required.</span>}
                                                 <input defaultValue={mobile?.image} hidden readOnly {...register("image", { required: true })} />
                                                 {errors.image && <span className="text-warning">This field is required.</span>} <br />
                                                 <Button className='w-100 btn-custom-3' type="submit" variant="contained">ORDER</Button>
