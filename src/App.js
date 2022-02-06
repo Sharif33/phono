@@ -24,6 +24,7 @@ import DashboardHome from "./Dashboard/Dashboard/DashboardHome";
 import Review from "./Dashboard/User/Review";
 import Payment from "./Dashboard/User/Payment";
 import BuyMobile from "./Pages/Home/Mobiles/BuyMobile";
+import EditMobile from "./Dashboard/Admin/EditMobile";
 
 
 function App() {
@@ -72,6 +73,10 @@ function App() {
               </Route>
               <Route path={`/dashboard/addMobile`} element={<AdminRoute>
                 <AddMobile></AddMobile>
+              </AdminRoute>}>
+                </Route>
+              <Route path={`/dashboard/manageProducts/:id`} element={<AdminRoute>
+                <EditMobile></EditMobile>
               </AdminRoute>}>
                 </Route>
               <Route path={`/dashboard/manageProducts`} element={<AdminRoute>

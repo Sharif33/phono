@@ -1,4 +1,4 @@
-import { Avatar, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./Reviews.css";
 import Marquee from "react-fast-marquee";

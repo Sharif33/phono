@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import SwiperCore, { Autoplay, EffectCoverflow, Pagination } from "swiper";

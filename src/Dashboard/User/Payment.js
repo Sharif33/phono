@@ -4,9 +4,10 @@ import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(`pk_test_51K8PMbFRrgTUsmgBK0HIVHahI69rtmPuecs2jQzhAziBS6lS0GZaiYikrCf49J72ee2RZG585NUATSMOlVUUV4sx0072UsTUV4`);
+// const stripePromise = loadStripe(`pk_test_51K8PMbFRrgTUsmgBK0HIVHahI69rtmPuecs2jQzhAziBS6lS0GZaiYikrCf49J72ee2RZG585NUATSMOlVUUV4sx0072UsTUV4`);
 
 const Payment = () => {
+    const [stripePromise, setStripePromise] = useState(() => loadStripe(`pk_test_51K8PMbFRrgTUsmgBK0HIVHahI69rtmPuecs2jQzhAziBS6lS0GZaiYikrCf49J72ee2RZG585NUATSMOlVUUV4sx0072UsTUV4`));
     const {id} = useParams();
     const [appointment, setAppointment] = useState({});
     useEffect(() => {
@@ -16,28 +17,20 @@ const Payment = () => {
     }, [id]);
     return (
         <div>
-            <div className='text-center py-4'>
-            <h3>Dear <span className='text-warning'>{appointment.name}</span> please pay for </h3>
-            </div>
-            <div className='row p-4'>
-                <div className='col-sm-12 col-md-6 border p-4 bg-white'>
-                    <div>
-                        <h5 className='text-secondary'>Item Name: <span className='text-dark'>{appointment.mobile}</span></h5>
-            <h6>Pay: {appointment.price}</h6>
+                <div className='col-sm-12 col-md-8 mx-auto p-4 btn-custom rounded'>
+                    <div className='p-4 text-center'>
+                        <h3><span className='text-warning'>{appointment.name}</span> please pay for </h3>
+                        <h5 className='text-light'>{appointment.mobile}</h5>
+                        <h6>Total Amount : <span className='text-info'>{appointment.price}&#2547;</span> </h6>
                     </div>
-                </div>
-                <div className='col-sm-12 col-md-6'>
                     <div>
-                    {appointment?.price && <Elements stripe={stripePromise}>
-                <CheckoutForm
+                    {appointment?.price && <Elements setStripePromise={setStripePromise} stripe={stripePromise}>
+                    <CheckoutForm
                     appointment={appointment}
-                />
-            </Elements>}
+                    />
+                    </Elements>}
                     </div>
-                </div>
-            </div>
-             
-         
+                </div>  
         </div>
     );
 };

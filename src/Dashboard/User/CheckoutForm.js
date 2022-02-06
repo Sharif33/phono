@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import useAuth from '../../Hooks/useAuth/useAuth';
-import { CircularProgress } from '@mui/material';
+import { Alert, CircularProgress } from '@mui/material';
 
 
 
@@ -118,14 +118,14 @@ const CheckoutForm = ({appointment}) => {
         }}
       />
       <div className='text-center pt-5'>
-      {processing ? <CircularProgress></CircularProgress> : <button className='btn btn-custom-2' type="submit" disabled={!stripe || success}>Pay {price} tk.</button>}
+      {processing ? <CircularProgress></CircularProgress> : <button className='btn btn-custom-2' type="submit" disabled={!stripe || success}>Pay {price}&#2547;</button>}
       </div>
     </form>
-    {
-                error && <p style={{ color: 'red' }}>{error}</p>
+            {
+                error && <Alert severity="error">{error}</Alert>
             }
             {
-                success && <p style={{ color: 'green' }}>{success}</p>
+                success && <Alert severity="success">{success}</Alert>
             }
         </div>
     );

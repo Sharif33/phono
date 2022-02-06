@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import './AddMobile.css';
 
 const AddMobile = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -23,11 +24,11 @@ const AddMobile = () => {
             })
     }
     return (
-        <div className="p-4 col-md-6 mx-auto">
-        <div className="shadow p-4 rounded bg-custom">
+        <div className=" col-md-12 col-lg-9 col-sm-12 mx-auto">
+        <div className="py-3 rounded">
             <h3 className="text-custom">Moblie Added Section</h3>
             <form className='custom-form' onSubmit={handleSubmit(onSubmit)}>
-                <input {...register("name", { required: true, maxLength: 100 })} placeholder="Name" />
+                <input {...register("name", { required: true, maxLength: 100 })} placeholder="Name" />      
                 <select {...register("brand", { required: true })}>
                 <option>Select brand name</option>
                 <option value="Realme">Realme</option>

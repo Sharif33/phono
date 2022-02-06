@@ -19,12 +19,18 @@ const MyOrders = () => {
     //Delete Part
     const [myOrders, setMyOrders] = useState([]);
     useEffect(() => {
+        let isMounted = true;
         fetch(`https://peaceful-shore-84874.herokuapp.com/orders`)
             .then(res => res.json())
             .then(data => {
+                if(isMounted ){
                 setMyOrders(data);
-            })
-    }, []);
+                }
+            });
+            return () => {
+                isMounted = false;
+                };
+    }, [myOrders]);
 
    
     //DELETE AN Products

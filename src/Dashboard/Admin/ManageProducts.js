@@ -1,5 +1,6 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const ManageProducts = () => {
@@ -52,24 +53,26 @@ const ManageProducts = () => {
             <Table stickyHeader aria-label="sticky table" >
                 <TableHead sx={{bgcolor: 'secondary.main'}}>
                     <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell align="right">Price</TableCell>
-                        <TableCell align="right">ID</TableCell>
-                        <TableCell align="right">Action</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}}>Name</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Price</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">ID</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Edit</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Action</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {mobiles.map((mobile) => (
-                        <TableRow
+                        <TableRow hover
                             key={mobile._id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
                                 {mobile.name}
                             </TableCell>
-                            <TableCell align="right">{mobile.price}</TableCell>
-                            <TableCell align="right">{mobile.id}</TableCell>
-                            <TableCell align="right"><button onClick={() => handleDeleteProducts(mobile._id)} className="btn btn-custom-2"><i className="fas fa-trash"></i></button></TableCell>
+                            <TableCell align="center">{mobile.price}</TableCell>
+                            <TableCell align="center">{mobile.id}</TableCell>
+                            <TableCell align="center"><Link to={`${mobile?._id}`}> <button className='btn btn-custom'> <i title='Update' className="fas fa-edit"></i> </button> </Link></TableCell>
+                            <TableCell align="center"><button onClick={() => handleDeleteProducts(mobile?._id)} className="btn btn-custom-2"><i className="fas fa-trash"></i></button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

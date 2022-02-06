@@ -11,9 +11,18 @@ const ManageOrder = () => {
     }
 
     useEffect(() => {
+        let isMounted = true;
         fetch(`https://peaceful-shore-84874.herokuapp.com/orders`)
             .then((res) => res.json())
-            .then((data) => setOrders(data));
+            .then((data) => {
+                if(isMounted ){
+                   setOrders(data);
+                    }
+            }
+            );
+            return () => {
+                isMounted = false;
+                };
     }, []);
 
     // Update Status
@@ -38,6 +47,7 @@ const ManageOrder = () => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    console.log(data);
                     if (data.modifiedCount > 0) {
                         Swal.fire(
                             'Done!',
@@ -46,8 +56,8 @@ const ManageOrder = () => {
                           )
                         // window.location.reload();
                        
-                        setOrders(orders)
-                        setStatus(status)
+                        setOrders(orders);
+                        setStatus(status);
                     }
                 })
         }
@@ -92,7 +102,7 @@ const ManageOrder = () => {
     });
     };
     return (
-        <div style={{overflow:'hidden'}} className="container py-4">
+        <div className="container py-4">
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <TableContainer sx={{ maxHeight: 600 }}>
             <Table stickyHeader aria-label="sticky table" >
