@@ -1,6 +1,10 @@
-# phono ## A online mobile selling shop
+# phono 
+#### A online mobile selling shop
 
 ## https://phono-3a490.web.app/
+
+## Server Side Code
+### https://github.com/Sharif33/phono-server
 
 ### Technology used :
 - React JS, React Router dom, React hook form, Axios, Material UI, Bootsrap5, CSS3, Heroku,Firebase,Node.js,Express.js,MongoDB, strype.
