@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
@@ -16,8 +17,10 @@ const EditMobile = () => {
             .then(data => setPhones(data))
     }, [id])
 
-    const handleUpdate = (phones) => {
-        // console.log(id);
+    const handleUpdate = (data) => {
+        data.date=new Date().toDateString();
+        data.time=new Date().toLocaleTimeString();
+        // console.log(data);
         Swal.fire({
             title: 'Are you sure?',
             text: "You wanted to update this item order status!",
@@ -31,22 +34,16 @@ const EditMobile = () => {
             if (result.isConfirmed) 
          {
 
-            fetch(`https://peaceful-shore-84874.herokuapp.com/phones/${id}`, {
-                method: "PUT",
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(phones)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    if (data) {
+            axios.put(`https://peaceful-shore-84874.herokuapp.com/phones/${id}`,data) 
+            .then(res=>{
+                    if (res.data) {
                         Swal.fire(
                             'Done!',
                             'Updated successfully!',
                             'success'
                           )
                         // window.location.reload();
-                        setPhones(phones);
+                        setPhones(data);
                         reset();
                     }
                 })

@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-
+import HomeIcon from '@mui/icons-material/Home';
 import List from '@mui/material/List';
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -79,6 +79,9 @@ function Dashboard(props) {
            
             {admin &&  <Box  sx={{p:1}}>
                 <h6 className='ps-4 fw-bold'>MANAGEMENT</h6>
+                <List>    
+                <NavLink className='btn btn-hover' style={({isActive})=> ({color: isActive ? '#E94235' : '#ccd6f6', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard`}> <span className='me-2'><HomeIcon /></span>  Overview</NavLink>
+               </List>
                 <List>
                <NavLink className='btn btn-hover' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/manageOrder`}><ShoppingCartCheckoutOutlinedIcon /> Manage Orders</NavLink>
                </List>              

@@ -10,14 +10,27 @@ const ExploreMobiles = () => {
     const [mobiles, setMobiles] = useState([]);
    
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
+         try {
+        async function callApi() {
+            let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/phones`);
+            data = await data.json();
+            setMobiles(data);
+            setCategories(data);
+        }
+        callApi();
+    }
+    catch (error) {
+        console.log ('error',error);
+      }
+       /*  fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
             .then(res => res.json())
             .then(data => {
                 setMobiles(data);
                 setCategories(data);
-                console.log(data);
-            })
+                // console.log(data);
+            }) */
     }, []);
+   
 
     const filterResult = (mobileBrand) => {
         const result = mobiles.filter(currentData => {

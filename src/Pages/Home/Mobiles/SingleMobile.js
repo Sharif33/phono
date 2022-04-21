@@ -18,13 +18,21 @@ const SingleMobile = () => {
     const [phones, setPhones] = useState([]);
 
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/phones/${id}`)
-            .then(res => res.json())
-            .then(data => setPhones(data))
+        try {
+            async function callApi() {
+                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/phones/${id}`);
+                data = await data.json();
+                setPhones(data);
+            }
+            callApi();
+        }
+        catch (error) {
+            console.log ('error',error)
+          }
     }, [id])
 
 
-    // post bike
+    // post order
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 

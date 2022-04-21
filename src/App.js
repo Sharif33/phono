@@ -25,6 +25,9 @@ import Review from "./Dashboard/User/Review";
 import Payment from "./Dashboard/User/Payment";
 import BuyMobile from "./Pages/Home/Mobiles/BuyMobile";
 import EditMobile from "./Dashboard/Admin/EditMobile";
+import Cart from "./Pages/Home/Mobiles/Cart";
+import Favourite from "./Pages/Home/Mobiles/Favourite";
+import PlaceOrder from "./Pages/Home/Mobiles/PlaceOrder";
 
 
 function App() {
@@ -38,6 +41,11 @@ function App() {
           <Route path="about" element={<AboutUs />} />
           <Route path="login" element={<LogIn />} />
           <Route path="register" element={<Register />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="placeOrder" element={<PrivateRoute>
+            <PlaceOrder />
+          </PrivateRoute>} />
+          <Route path="fvrt" element={<Favourite />} />
           <Route path="mobiles" element={<ExploreMobiles />} />
           <Route path="mobile/:id" element={<PrivateRoute>
             <SingleMobile />

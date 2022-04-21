@@ -1,16 +1,11 @@
 import { Rating } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Reviews.css";
 import Marquee from "react-fast-marquee";
+import useReviews from "../../../Hooks/useReviews/useReviews";
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    fetch(`https://peaceful-shore-84874.herokuapp.com/reviews`)
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
+  const [reviews] = useReviews();
 
   return (
     <>

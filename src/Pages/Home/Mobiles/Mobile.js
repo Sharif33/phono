@@ -1,15 +1,23 @@
 import { Rating } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+// import { Favourite } from '../../../Contexts/AuthProvider/FavContext';
+import { addToCart } from '../../../Redux/slices/cartSlice';
+import { addToFvrt } from '../../../Redux/slices/fvrtSlice';
+// import { removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
 import BuyMobile from './BuyMobile';
 import "./Mobile.css";
 
-const Mobile = ({ mobile }) => {
+const Mobile = ({ mobile}) => {
+    // const {cart,setCart} = useContext(Favourite);
     const { _id, name, star, price, specs, image } = mobile;
     const [openBuyNow, setOpenBuyNow] = React.useState(false);
-    const handleOpen = () => setOpenBuyNow(true);
+    // const handleOpen = () => setOpenBuyNow(true);
     const handleClose = () => setOpenBuyNow(false);
+    const dispatch = useDispatch();
+
     return (
         <div>
             <div className="col rounded text-center">
@@ -30,12 +38,33 @@ const Mobile = ({ mobile }) => {
                                 <p className="text-secondary">{specs}</p>
                             </div>
                             <div className="text-center d-flex justify-content-center alighn-items-center">
-                        <Link to={`/mobile/${_id}`}> <button className='btn btn-outline-info mx-2'> <i title='Details' className="fas fa-info-circle"></i> </button> </Link>
-                        <button onClick={handleOpen} className='btn btn-outline-danger mx-2'> <i title='Order Now' className="fas fa-cart-plus"></i> </button>
-                        
-                        <button onClick={handleOpen} className='btn btn-outline-warning mx-2'> <i title='Add to Favourite' className="far fa-heart"></i> </button>
-                        
-                        
+
+                        <Link to={`/mobile/${_id}`}> <button className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Details' className="fas fa-info-circle fs-4 py-1"></i> </button> </Link>
+
+                        {/* <button onClick={handleOpen} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Order Now' className="fas fa-cart-plus fs-4 py-1"></i> </button> */}
+                       
+        
+                  {/*       <div>
+                           {
+                            cart.includes(mobile) ? (
+                              <button onClick={()=>{setCart(cart.filter((c)=>c.id !== mobile?.id))}} className='btn btn-outline-warning mx-2'> <i title='Remove from Favourite' className="fas fa-heart"></i> </button>  
+                            )
+                            :
+                            (
+                            <button onClick={()=>{setCart([...cart,mobile])}} className='btn btn-outline-warning mx-2'> <i title='Add to Favourite' className="far fa-heart"></i> </button>
+                            )
+                        }   
+                        </div> */}
+                        <div>
+                            {/* <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-outline-warning mx-2'> <i title='Add to Favourite' className="far fa-heart"></i> </button> */}
+                           <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Add to Cart' className="fas fa-cart-plus fs-4 py-1"></i> </button>
+
+                            <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Add to Favourite' className="far fa-heart fs-4 py-1"></i> </button>
+                              
+                            
+                            
+                        </div>
+                    
                     </div>
                         </div>
                     </div>

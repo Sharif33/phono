@@ -62,7 +62,8 @@
 .custom-form input {
   border-radius: 3px !important;
   margin-bottom: 12px;
-  border: 1px solid #764abc !important;
+  /* border: 1px solid #764abc !important; */
+  border: 0;
   padding: 10px;
   width: 100%;
 }

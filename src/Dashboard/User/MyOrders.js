@@ -10,9 +10,18 @@ const MyOrders = () => {
     const [orders, setOrders] = useState([]);
     const email = user?.email;
     useEffect(() => {
+        let isMounted = true;
         fetch(`https://peaceful-shore-84874.herokuapp.com/myOrders/${email}`)
             .then((res) => res.json())
-            .then((data) => setOrders(data));
+            .then((data) => {
+            if (isMounted){
+                setOrders(data);
+            }
+            });
+            return () => {
+                isMounted = false;
+                };
+            
     }, [email, deleteCount]);
     // console.log(orders);
 

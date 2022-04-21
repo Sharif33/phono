@@ -82,6 +82,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                                     </div>
                                 </div>
                             </div>
+                            <button onClick={handleClose} className='btn btn-dark'>X</button>
                 </Box>
               </Modal>
               :

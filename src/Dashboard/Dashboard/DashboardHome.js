@@ -1,23 +1,82 @@
 import React from 'react';
-import useAuth from '../../Hooks/useAuth/useAuth';
-import about from "../../images/about.jpg";
+import { AiOutlineFundProjectionScreen,AiOutlineStar,AiFillProject } from "react-icons/ai";
+import Rating from '@mui/material/Rating';
+import useReviews from '../../Hooks/useReviews/useReviews';
+import usePhones from '../../Hooks/usePhones/usePhones';
+// import useAuth from '../../Hooks/useAuth/useAuth';
+// import about from "../../images/about.jpg";
 
 const DashboardHome = () => {
-    const {user}=useAuth();
+    const [time, setTime] = React.useState(new Date());
+
+    React.useEffect(() => {
+        setInterval(() => {
+         setTime(new Date());
+        }, 1000);
+      }, []);
+
+    const date = new Date().toDateString();
+
+// Phone Collection Section
+    const [mobiles] = usePhones();
+
+    const lastUpdate = mobiles.slice(-1).pop();
+
+
+// User review Section
+  const [reviews] = useReviews();
+
+        const total=(reviews.reduce((total,currentItem) =>  total = parseFloat(total + currentItem.rating) , 0 ));
+
+    const avg =(total/(reviews?.length)).toFixed(1);
     return (
         <div>
+            {/* <div>
+                <img className="img-fluid" src={about} alt="" />   
+            </div> */}
+         <div>
+            <div className='text-center'>
+                <h1 style={{fontSize:"10vw"}} className='text-info'>{time.toLocaleTimeString()}</h1>
+                 <h1 className='text-lightest-slate'>{date}</h1>
+            </div>
             
-            <div className="bg-welcome">
-                <div className="text-center p-3">
-                    <img className="img-fluid rounded-circle my-3 shadow" src={user?.photoURL} alt="" />
-                    <h1 className="text-warning fw-bold fs-1">Hello! <span className="text-dark">{user?.displayName}</span> </h1>
-                    <h3><span className="text-dark">Welcome to <span className="text-info fw-bold fs-1">phono</span></span></h3>
+            <div className='row row-cols-1 row-cols-md-3 m-2 g-4'>
+                <div className="col">
+                    <div className="d-md-flex justify-content-between align-items-center bg-skill-back p-2 rounded">
+                        <div className='m-auto'>
+                            <AiOutlineFundProjectionScreen  style={{fontSize:"15vw"}}  className='p-2 text-sky w-100'/>
+                        </div>
+                        <div className='text-center w-100'>
+                              <h5 className='text-light-slate font-custom'>Total Projects: <br /> <span className="fs-1 text-danger"> {mobiles?.length}</span></h5> 
+                              <h5 className='text-light-slate'> <span className="font-custom">Last Update:</span> <br /> <small className='text-warning'>{lastUpdate?.date} , {lastUpdate?.time}</small> </h5>
+                        </div>
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="d-md-flex justify-content-between align-items-center bg-skill-back p-2 rounded">
+                        <div className='m-auto'>
+                            <AiFillProject  style={{fontSize:"15vw"}}  className='p-2 text-sky w-100'/>
+                        </div>
+                        <div className='text-center w-100'>
+                              <h5 className='text-light-slate font-custom'>Last Project: <br /><span className="fs-3 text-danger">{lastUpdate?.name}</span></h5>
+                              <h5 className='text-light-slate'> <span className="font-custom"> Upload:</span> <br /> <small className='text-warning'>{lastUpdate?.date} , {lastUpdate?.time}</small> </h5>
+                        </div>
+                    </div>
+                </div>
+                <div className="col">
+                <div className="d-md-flex justify-content-between align-items-center bg-skill-back p-2 rounded">
+                        <div className='m-auto'>
+                            <AiOutlineStar  style={{fontSize:"15vw"}}  className='p-2 text-sky w-100'/>
+                        </div>
+                        <div className='text-center w-100'>
+                              <h5 className='text-light-slate font-custom'>Total Reviews: <br /><span className="fs-3 text-danger"> {reviews?.length}</span></h5>
+                              <h5 className='text-light-slate font-custom'>Average Ratings: <br /> <Rating name="half-rating-read" value={Number(avg)} precision={0.1} readOnly /> <span className="fs-3 text-danger"> {avg}</span></h5>
+                              
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div>
-                <img className="img-fluid" src={about} alt="" />   
-            </div>
-        
+        </div>
         </div>
     );
 };

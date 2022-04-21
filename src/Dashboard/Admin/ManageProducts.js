@@ -54,6 +54,7 @@ const ManageProducts = () => {
                 <TableHead sx={{bgcolor: 'secondary.main'}}>
                     <TableRow>
                         <TableCell sx={{ color: 'secondary.main'}}>Name</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}}>Added by</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">Price</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">ID</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">Edit</TableCell>
@@ -69,6 +70,7 @@ const ManageProducts = () => {
                             <TableCell component="th" scope="row">
                                 {mobile.name}
                             </TableCell>
+                            <TableCell align="center">{mobile?.adder}</TableCell>
                             <TableCell align="center">{mobile.price}</TableCell>
                             <TableCell align="center">{mobile.id}</TableCell>
                             <TableCell align="center"><Link to={`${mobile?._id}`}> <button className='btn btn-custom'> <i title='Update' className="fas fa-edit"></i> </button> </Link></TableCell>

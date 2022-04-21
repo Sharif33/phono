@@ -1,17 +1,36 @@
 /* eslint-disable eqeqeq */
 import { CircularProgress } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+import useCart from '../../../Hooks/useCart/useCart';
+import usePhones from '../../../Hooks/usePhones/usePhones';
+import { addToDb } from '../../../utilities/fakedb';
 import Mobile from './Mobile';
 
 const Mobiles = () => {
-    const [mobiles, setMobiles] = useState([]);
+    const [mobiles,cart,setCart] = usePhones();
 
-    useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
-            .then(res => res.json())
-            .then(data => setMobiles(data))
-    }, [])
+    const [addCart, setAddCart] = useCart();
+
+
+    
+    const handleAddToCart = (mobile) => {
+        const exists = addCart.find(pd => pd.key === mobile.key);
+        let newCart = [];
+        if (exists) {
+            const rest = addCart.filter(pd => pd.key !== mobile.key);
+            exists.quantity = exists.quantity + 1;
+            newCart = [...rest, mobile];
+        }
+        else {
+            mobile.quantity = 1;
+            newCart = [...addCart, mobile];
+        }
+        setAddCart(newCart);
+        // save to local storage (for now)
+        addToDb(mobile.key);
+
+    }
     return (
         <div className='bg-light'>
             <div className="container">
@@ -28,6 +47,9 @@ const Mobiles = () => {
                         mobiles.slice(0, 6).map(mobile => <Mobile
                             key={mobile._id}
                             mobile={mobile}
+                            cart ={cart}
+                            setCart={setCart}
+                            handleAddToCart={handleAddToCart}
                         />)
                     }
                 </div>
