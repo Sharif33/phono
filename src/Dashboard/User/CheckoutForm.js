@@ -7,7 +7,7 @@ import { Alert, CircularProgress } from '@mui/material';
 
 const CheckoutForm = ({appointment}) => {
 
-    const { price,mobile, _id } = appointment;
+    const { total,email, _id } = appointment;
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
@@ -23,11 +23,11 @@ const CheckoutForm = ({appointment}) => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ price })
+            body: JSON.stringify({ total })
         })
             .then(res => res.json())
             .then(data => setClientSecret(data.clientSecret));
-    }, [price]);
+    }, [total]);
 
 
     const handleSubmit = async (e) => {
@@ -61,7 +61,7 @@ const CheckoutForm = ({appointment}) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: mobile,
+                        name: email,
                         email: user.email
                     },
                 },
@@ -118,7 +118,7 @@ const CheckoutForm = ({appointment}) => {
         }}
       />
       <div className='text-center pt-5'>
-      {processing ? <CircularProgress></CircularProgress> : <button className='btn btn-custom-2' type="submit" disabled={!stripe || success}>Pay {price}&#2547;</button>}
+      {processing ? <CircularProgress></CircularProgress> : <button className='btn btn-custom-2' type="submit" disabled={!stripe || success}>Pay {total}&#2547;</button>}
       </div>
     </form>
             {

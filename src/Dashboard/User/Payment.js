@@ -19,12 +19,12 @@ const Payment = () => {
         <div>
                 <div className='col-sm-12 col-md-8 mx-auto p-4 btn-custom rounded'>
                     <div className='p-4 text-center'>
-                        <h3><span className='text-warning'>{appointment.name}</span> please pay for </h3>
-                        <h5 className='text-light'>{appointment.mobile}</h5>
-                        <h6>Total Amount : <span className='text-info'>{appointment.price}&#2547;</span> </h6>
+                        <h3><span className='text-warning'>{appointment?.orderBy}</span> please pay for </h3>
+                        {/* <h5 className='text-light'>{appointment.mobile}</h5> */}
+                        <h6>Total Amount : <span className='text-info'>{appointment?.total}&#2547;</span> </h6>
                     </div>
                     <div>
-                    {appointment?.price && <Elements setStripePromise={setStripePromise} stripe={stripePromise}>
+                    {appointment?.total && <Elements setStripePromise={setStripePromise} stripe={stripePromise}>
                     <CheckoutForm
                     appointment={appointment}
                     />

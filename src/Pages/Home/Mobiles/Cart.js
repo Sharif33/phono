@@ -122,7 +122,7 @@ const Cart = () => {
                         <br />
                 <div>
                     <Link to={`/placeOrder`}>
-                        <button className='btn btn-lg btn-dark w-100 rounded-pill'>Place Order</button>
+                        <button className='btn btn-lg btn-custom-2 w-100 rounded-0'>Place Order</button>
                     </Link>
                 </div>
             </ul>

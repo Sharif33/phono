@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  decrement,
   getTotal,
-  increment,
-  removeFromCart,
   clearCart,
 } from "../../../Redux/slices/cartSlice";
 import Header from "../../../Shared/Header/Header";
@@ -25,7 +22,7 @@ const PlaceOrder = () => {
   const { addToCart, cartTotal, cartTotalQuantity, shipping, tax } =
     useSelector((state) => state.cart);
   useEffect(() => {
-    if (addToCart.length > 0) {
+    if (addToCart.length >= 0) {
       dispatch(getTotal());
     }
   }, [addToCart, dispatch]);
@@ -92,9 +89,9 @@ const PlaceOrder = () => {
 
                   {user?.email === orders[0]?.email ? (
                     <div>
-                      <input defaultValue={orders[0]?.address} readOnly />
-                      <input defaultValue={orders[0]?.city} readOnly />
-                      <input defaultValue={orders[0]?.phone} readOnly />
+                      <input defaultValue={orders[0]?.address} {...register("address")} readOnly />
+                      <input defaultValue={orders[0]?.city} {...register("city")} readOnly />
+                      <input defaultValue={orders[0]?.phone} {...register("phone")} readOnly />
                     </div>
                   ) : (
                     <div>

@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 import { CircularProgress } from '@mui/material';
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import useCart from '../../../Hooks/useCart/useCart';
 import usePhones from '../../../Hooks/usePhones/usePhones';
