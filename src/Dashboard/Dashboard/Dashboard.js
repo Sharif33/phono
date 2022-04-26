@@ -30,12 +30,13 @@ function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const { user, logOut, admin, isLoading } = useAuth();
-    if (isLoading) { return <CircularProgress /> }
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
-
+    
+    const { user, logOut, admin, isLoading } = useAuth();
+    if (isLoading) { return <CircularProgress /> }
+    
     const drawer = (
         <div>
             
@@ -105,7 +106,7 @@ function Dashboard(props) {
     return (
         <>
         
-        <Box sx={{ display: 'flex', backgroundColor:'#f8fafc' }}>
+        <Box sx={{ display: 'flex', backgroundColor:"#EEF2FF" }}>
             
             <AppBar
                 position="fixed"

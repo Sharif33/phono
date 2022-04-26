@@ -3,10 +3,12 @@ import { AiOutlineFundProjectionScreen,AiOutlineStar,AiFillProject } from "react
 import Rating from '@mui/material/Rating';
 import useReviews from '../../Hooks/useReviews/useReviews';
 import usePhones from '../../Hooks/usePhones/usePhones';
+import useAuth from '../../Hooks/useAuth/useAuth';
 // import useAuth from '../../Hooks/useAuth/useAuth';
 // import about from "../../images/about.jpg";
 
 const DashboardHome = () => {
+    const {user, admin}= useAuth();
     const [time, setTime] = React.useState(new Date());
 
     React.useEffect(() => {
@@ -34,7 +36,8 @@ const DashboardHome = () => {
             {/* <div>
                 <img className="img-fluid" src={about} alt="" />   
             </div> */}
-         <div>
+            {
+                admin && <div>
             <div className='text-center'>
                 <h1 style={{fontSize:"10vw"}} className='text-info'>{time.toLocaleTimeString()}</h1>
                  <h1 className='text-lightest-slate'>{date}</h1>
@@ -77,6 +80,8 @@ const DashboardHome = () => {
                 </div>
             </div>
         </div>
+            }
+         
         </div>
     );
 };

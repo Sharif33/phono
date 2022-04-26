@@ -29,6 +29,13 @@ const Review = ({ phones }) => {
   const onSubmit = (data) => {
     // console.log(data);
     data.rating=value;
+    data.date=new Date().toDateString();
+    data.time=new Date().toLocaleTimeString();
+    data.name=user?.displayName;
+    data.email=user?.email;
+    data.userImg=user?.photoURL;
+    data.mobile=phones?.name;
+    data.image=phones?.image;
 
     axios
       .post(`https://peaceful-shore-84874.herokuapp.com/reviews`, data)
@@ -47,15 +54,15 @@ const Review = ({ phones }) => {
   };
   return (
     <div>
-      <div className="mx-auto text-center">
+      <div className="m-auto">
         <div className=" p-4 rounded">
-          <h5 className="text-custom">
-            Share your experience for{" "}
-            <span className="text-warning">{phones?.name}</span>{" "}
-          </h5>
+          <p className="text-custom">
+            Share your experience for
+            <span className="text-warning fs-5"> {phones?.name}</span>
+          </p>
           {phones?.name && (
             <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
-              <input
+             {/*  <input
                 className=" rounded"
                 readOnly
                 hidden
@@ -73,8 +80,8 @@ const Review = ({ phones }) => {
                 className=" rounded"
                 hidden
                 defaultValue={user?.photoURL}
-                {...register("image")}
-              />
+                {...register("userImg")}
+              /> */}
               <Box
                 sx={{
                   width: 200,
@@ -103,22 +110,21 @@ const Review = ({ phones }) => {
                   </Box>
                 )}
               </Box>
-              <input
+            {/*   <input
                 className=" rounded"
                 hidden
                 defaultValue={phones?.name}
                 {...register("mobile")}
-                placeholder="Mobile name"
               />
               <input
                 defaultValue={phones?.image}
                 hidden
                 readOnly
-                {...register("image", { required: true })}
-              />
+                {...register("image")}
+              /> */}
 
               <textarea maxLength={200}
-                className=" rounded"
+                className="rounded w-100 p-3 border-0"
                 {...register("description")}
                 placeholder="This is my first choice..."
               />

@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import Footer from '../../../Shared/Footer/Footer';
+// import Footer from '../../../Shared/Footer/Footer';
 import Header from '../../../Shared/Header/Header';
 import Mobile from './Mobile';
 
@@ -49,7 +49,7 @@ const handleSearch = e =>{
     return (
         <>
          <Header/>
-            <div style={{ paddingTop: "65px" }} className='bg-light border border-bottom '> </div>
+            <div className='bg-light border border-bottom '> </div>
             <div className='bg-light'>
                 <div className="container-fluid">
                    
@@ -57,8 +57,7 @@ const handleSearch = e =>{
                         <h2 className="fw-bold text-primary p-2">Collections</h2>
                         <input placeholder='Enter a mobile name' className='custom-input w-50' type="text" onChange={handleSearch} />
                     </div>
-                    <div className="row">
-                    <div className='col-sm-12 col-md-2 sticky-position'>
+                    <div className='sticky-position'>
                     <div className='text-center d-block'>
                         <button className='btn btn-custom fs-3 w-100 mx-2 mb-2'>Top Brands</button>
                         <button onClick={() => filterResult('Realme')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Realme</button>
@@ -73,7 +72,7 @@ const handleSearch = e =>{
                     </div>
                 </div>
 
-                       <div className='col-sm-12 col-md-10 '>
+                       <div className='scroll-position'>
                            <div className="row row-cols-1 row-cols-md-2 m-2 g-4">
                             {
                             categories.length == 0 ?
@@ -89,10 +88,10 @@ const handleSearch = e =>{
                            </div>
                        
                        </div>
-                    </div>
+                    
                 </div>
             </div>
-            <Footer/>
+            {/* <Footer/> */}
         </>
     );
 };

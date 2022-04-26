@@ -39,7 +39,7 @@ const Banner2 = () => {
                     <div className='d-flex justify-content-center align-items-center p-3'>
                     <img className='px-3 img-fluid' src={delivery} alt="" />
                         <div>
-                            <h6>FREE SHIPPING</h6>
+                            <h6 className='fw-bold'>FREE SHIPPING</h6>
                             <p>For orders over 50000tk</p>
                         </div>
                     </div>
@@ -49,8 +49,8 @@ const Banner2 = () => {
                         {/* <h1><i className="fas p-4 fa-truck"></i></h1> */}
                         <img className='px-3 img-fluid' src={discount} alt="" />
                         <div>
-                            <h6>FREE SHIPPING</h6>
-                            <p>For orders over 50000tk</p>
+                            <h6 className='fw-bold'>OFFICIAL DISCOUNT</h6>
+                            <p>Save Big on next product</p>
                         </div>
                     </div>
                 </div>
@@ -58,8 +58,8 @@ const Banner2 = () => {
                 <div className='d-flex justify-content-center align-items-center p-3'>
                 <img className='px-3 img-fluid' src={help} alt="" />
                         <div>
-                            <h6>FREE SHIPPING</h6>
-                            <p>For orders over 50000tk</p>
+                            <h6 className='fw-bold'>24/7 HELPLINE</h6>
+                            <p>Care till the end</p>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,8 @@
 import React from 'react';
-import b1 from "../../images/banner1.jpg";
-import b2 from "../../images/banner2.jpg";
-import b3 from "../../images/banner3.jpg";
+import b1 from "../../images/banner4.jpg";
+import b2 from "../../images/banner5.jpg";
+import b3 from "../../images/cashback.jpg";
+import b4 from "../../images/gadget.jpg";
 import SwiperCore, { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
@@ -16,19 +17,30 @@ const Banner1 = () => {
             <div className="main-swiper">
                 <Swiper
                     spaceBetween={30} centeredSlides={true} autoplay={{
-                        "delay": 2500,
+                        "delay": 5000,
                         "disableOnInteraction": false
                     }} pagination={{
                         "clickable": true
                     }} navigation={false} className="mySwiper">
                     <SwiperSlide>
-                        <img className='img-fluid' src={b1} alt="" />
+                        <div className="text-center">
+                            <img className='img-fluid' src={b1} alt="" />
+                        </div>   
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img className='img-fluid' src={b2} alt="" />
+                    <div className="text-center">
+                            <img className='img-fluid' src={b2} alt="" />
+                    </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img className='img-fluid' src={b3} alt="" />
+                    <div className="text-center">
+                            <img className='img-fluid' src={b3} alt="" />
+                    </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                    <div className="text-center">
+                             <img className='img-fluid' src={b4} alt="" />
+                    </div>
                     </SwiperSlide>
                     </Swiper>
             </div>

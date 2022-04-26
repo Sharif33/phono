@@ -28,6 +28,7 @@ import EditMobile from "./Dashboard/Admin/EditMobile";
 import Cart from "./Pages/Home/Mobiles/Cart";
 import Favourite from "./Pages/Home/Mobiles/Favourite";
 import PlaceOrder from "./Pages/Home/Mobiles/PlaceOrder";
+import MyOrderDetails from "./Dashboard/User/MyOrderDetails";
 
 
 function App() {
@@ -53,12 +54,18 @@ function App() {
           <Route path="mobile2/:id" element={<PrivateRoute>
             <BuyMobile/>
           </PrivateRoute>} />
-          <Route path="dashboard" element={<PrivateRoute>
+        <Route path="dashboard" element={<PrivateRoute>
               <Dashboard />
             </PrivateRoute>}>
             <Route path={`/dashboard/myOrders`} element={<PrivateRoute>
                <MyOrders></MyOrders>
               </PrivateRoute>}>
+
+              <Route path={`/dashboard/myOrders/:id`} element={<PrivateRoute>
+               <MyOrderDetails></MyOrderDetails>
+              </PrivateRoute>}>
+              </Route>
+
               </Route>
             <Route path={`/dashboard/pay/:id`} element={<PrivateRoute>
                <Payment></Payment>
@@ -91,7 +98,7 @@ function App() {
                 <ManageProducts></ManageProducts>
               </AdminRoute>}>
               </Route>
-            </Route>
+        </Route>
         </Routes>
       </AuthProvider>
     </div>

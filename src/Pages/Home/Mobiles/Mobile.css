@@ -35,13 +35,24 @@
     box-shadow: 0 2px 2px 0 rgb(0 188 212 / 14%),
       0 3px 1px -2px rgb(0 188 212 / 20%), 0 1px 5px 0 rgb(0 188 212 / 12%);
  }
+
+ .card-btns{
+  display: none;
+  position: absolute;
+  top: 30% !important;
+  right: 13% !important;
+}
 .card-hover {
-  border: 1px solid white !important;
+  /* border: 1px solid white !important; */
 }
 .card-hover:hover {
-  transform: scaleY(1.05);
+  /* transform: scaleY(1.05); */ 
+  background-color: rgba(0, 0, 0, 0.18);
   transition: 0.4s ease;
-  border: 1px solid #764abc !important;
+  /* border: 1px solid #764abc !important; */
+}
+.card-hover:hover .card-btns {
+  display: block;
 }
 
 .custom-input {
@@ -131,10 +142,27 @@ ul {
   height: 100%;
 }
 
-/* .sticky-position{
-    top: 50;
-    bottom:50;
-    position:fixed;
-    overflow-y:scroll;
-    overflow-x:hidden;
-} */
+.sticky-position{
+  width: 13vw;
+  position: fixed;
+  top: 10;
+  left: 0;
+}
+
+.scroll-position{
+  width: calc(100vw - 15vw);
+  left: 13vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+@media only screen and (max-height: 650px) {
+.sticky-position{
+  width: 30vw;
+  z-index: 1;
+}
+.scroll-position{
+  width: calc(100vw - 30vw);
+  
+}
+}

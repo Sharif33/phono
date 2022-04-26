@@ -42,6 +42,7 @@ const PlaceOrder = () => {
     data.date = new Date().toDateString();
     data.time = new Date().toLocaleTimeString();
     data.email = user?.email;
+    data.userImage = user?.photoURL;
     data.orderBy = user?.displayName;
     data.orderItems = addToCart;
     data.items = addToCart?.length;
@@ -144,7 +145,7 @@ const PlaceOrder = () => {
                 {addToCart.map((mobile) => (
                   <li
                     key={mobile?._id}
-                    className="list-group-item d-flex justify-content-between align-items-center fs-5 border-0"
+                    className="list-group-item d-flex justify-content-between align-items-center border-0"
                   >
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
@@ -152,7 +153,7 @@ const PlaceOrder = () => {
                         <Link title="See Details" to={`/mobile/${mobile?._id}`}>
                           {" "}
                           <img
-                            style={{ width: "5vw" }}
+                            style={{ width: "3rem" }}
                             className="img-fluid"
                             src={mobile?.image}
                             alt=""

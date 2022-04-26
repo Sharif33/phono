@@ -35,10 +35,10 @@ const Cart = () => {
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead sx={{bgcolor: 'secondary.main'}}>
                             <TableRow>
-                                <TableCell sx={{ color: 'secondary.main'}}>Image</TableCell>
+                                <TableCell sx={{ color: 'secondary.main'}}>Thumb</TableCell>
                                 <TableCell sx={{ color: 'secondary.main'}}>Name</TableCell>
                                 <TableCell sx={{ color: 'secondary.main'}} align="center">Brand</TableCell>
-                                <TableCell sx={{ color: 'secondary.main'}} align="center">Quant.</TableCell>
+                                <TableCell sx={{ color: 'secondary.main'}} align="center">Qty.</TableCell>
                                 <TableCell sx={{ color: 'secondary.main'}} align="center">Price</TableCell>
                                 <TableCell sx={{ color: 'secondary.main'}} align="center">Total</TableCell>
                             </TableRow>
@@ -51,13 +51,13 @@ const Cart = () => {
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell component="th" scope="row">
-                                    <Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"5vw"}} className='img-fluid' src={mobile?.image} alt="" />
+                                    <Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"3rem"}} className='img-fluid' src={mobile?.image} alt="" />
                                     </Link>
                                     </TableCell>
 
                                     <TableCell align="left">{mobile?.name}
                                     <div>
-                                        <button className='border-0 bg-transparent text-danger' onClick={()=>dispatch((removeFromCart(mobile)))}>(Remove Item)</button>
+                                        <button className='border-0 bg-transparent text-secondary' onClick={()=>dispatch((removeFromCart(mobile)))}>(Remove)</button>
                                     </div>
                                     </TableCell>
 
@@ -87,27 +87,27 @@ const Cart = () => {
             <ul className="list-group">
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Total Items
-                <span className="text-danger fw-bold fs-5">{addToCart?.length}</span>
+                <span className="text-secondary fs-5">{addToCart?.length}</span>
             </li>
 
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Items Quantity
-                <span className="text-danger fw-bold fs-5">{cartTotalQuantity}</span>
+                <span className="text-secondary fs-5">{cartTotalQuantity}</span>
             </li>
 
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Subtotal
-                <span className="text-danger fw-bold fs-5">{cartTotal} &#x9F3;</span>
+                <span className="text-secondary fs-5">{cartTotal} &#x9F3;</span>
             </li>
 
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Shipping
-                <span className="text-danger fw-bold fs-5">{shipping} &#x9F3;</span>
+                <span className="text-secondary fs-5">{shipping} &#x9F3;</span>
             </li>
             
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Tax
-                <span className="text-danger fw-bold fs-5">{tax} &#x9F3;</span>
+                <span className="text-secondary fs-5">{tax} &#x9F3;</span>
             </li>
             
             <li className="list-group-item d-flex justify-content-between align-items-center fs-4">

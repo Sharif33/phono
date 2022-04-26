@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import CompareIcon from '@mui/icons-material/Compare';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
@@ -17,13 +18,14 @@ const Header = () => {
     // const {cart} = useContext(Favourite);
     const {addToFvrt} = useSelector((state) => state.fvrt);
     const {addToCart} = useSelector((state) => state.cart);
+    const {addToCompare} = useSelector((state) => state.compare);
 
     const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
-          right: -2,
-          top: 5,
-          border: `2px solid ${theme.palette.background.paper}`,
-          padding: '0 4px',
+          right: -5,
+          top: 3,
+        //   border: `2px solid ${theme.palette.background.paper}`,
+        //   padding: '0 2px',
         },
       }));
 
@@ -46,25 +48,37 @@ const Header = () => {
         <div style={{marginBottom:"60px"}}>
             <div className="header">
                 <div className="header-inner">
-                    <nav className="navbar bg-dark fixed-top navbar-expand-lg navbar-dark ms-auto">
+                    <nav style={{ backgroundColor: "#303f9f" }} className="navbar fixed-top navbar-expand-lg navbar-dark ms-auto">
                         <div className="container">
                             <NavLink className="navbar-brand fw-bold fs-3 text-warning" to="/home">PH<span className="text-danger">|O|</span>NO</NavLink>
                             
                                         <NavLink className='me-1' to={`/fvrt`} >
                                         <IconButton aria-label="favorite">
-                                        <StyledBadge badgeContent={addToFvrt?.length} color="secondary">
-                                        <FavoriteBorderOutlinedIcon sx={{ color: 'primary.main'}} />
+                                        <StyledBadge badgeContent={addToFvrt?.length} color="error">
+                                        <FavoriteBorderOutlinedIcon sx={{ color: 'white'}} />
                                         </StyledBadge>
                                         </IconButton>
                                         </NavLink>
                                         
                                         <NavLink className='me-1' to={`/cart`} >
                                         <IconButton aria-label="cart">
-                                        <StyledBadge badgeContent={addToCart?.length} color="secondary">
-                                        <ShoppingBagOutlinedIcon sx={{ color: 'primary.main'}} />
+                                        <StyledBadge badgeContent={addToCart?.length} color="error">
+                                        <ShoppingBagOutlinedIcon sx={{ color: 'white'}} />
                                         </StyledBadge>
                                         </IconButton>
                                         </NavLink>
+
+                                        <NavLink className='me-1' to={`/cart`} >
+                                        <IconButton aria-label="compare">
+                                        <StyledBadge badgeContent={addToCompare?.length} color="error">
+                                        <CompareIcon sx={{ color: 'white'}} />
+                                        </StyledBadge>
+                                        </IconButton>
+                                        </NavLink>
+
+                                        {/* <NavLink className='me-1' to={`/mobiles`} >
+                                        <i className="fa-solid mx-3 fs-5 fa-magnifying-glass"></i>
+                                        </NavLink> */}
                                         {/* <NavLink className='me-1' to={`/dashboard/myOrders`} >
                                         <IconButton aria-label="cart">
                                         <StyledBadge badgeContent={orders?.length} color="secondary">
@@ -80,16 +94,16 @@ const Header = () => {
                             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav text-center ms-auto">
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " to="/mobiles">SHOP</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/mobiles">SHOP</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT US</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT US</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " to="/about">ABOUT US</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/about">ABOUT US</NavLink>
                                         </li>
 
                                         <li className="nav-item">
@@ -97,7 +111,7 @@ const Header = () => {
                                                user?.email ? <ul className="text-center">
 
                                                {/*    <li className="nav-item">
-                                                          <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1  " to="/cart"><i className="far fa-heart"></i> {cart.length} </NavLink>
+                                                          <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/cart"><i className="far fa-heart"></i> {cart.length} </NavLink>
                                                       </li> */}
           
                                                   <li className="dropdown mx-2">
@@ -113,18 +127,18 @@ const Header = () => {
                                                   </li>
           
                                                   <li className=" dropdown-item ">
-                                                  <NavLink  className='text-dark' style={{textDecoration:'none',cursor:"pointer",color:"#38D373"}} to="/dashboard"><small>Dashboard</small></NavLink>
+                                                  <NavLink  className='text-dark' style={{textDecoration:'none',cursor:"pointer",color:"white"}} to="/dashboard"><small>Dashboard</small></NavLink>
                                                   </li>
           
                                                   <li className="dropdown-item">
-                                                  <small style={{cursor:"pointer",color:"#38D373"}} onClick={logOut} >Logout</small>
+                                                  <small style={{cursor:"pointer"}} onClick={logOut} >Logout</small>
                                                   </li>
                                                   
                                                   </ul>
                                                   </li>
                                               </ul>
                                               :
-                                              <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : '#38D373' })} className="nav-link active mx-1" to="/login"><span> <i className="fas fa-user"> </i> SIGN IN </span> </NavLink>
+                                              <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1" to="/login"><span> <i className="fas fa-user"> </i> SIGN IN </span> </NavLink>
                                         }
                                     </li>
                                      </ul>

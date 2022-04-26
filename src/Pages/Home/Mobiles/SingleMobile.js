@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 // import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 // import Swal from "sweetalert2";
-// import Review from "../../../Dashboard/User/Review";
+import Review from "../../../Dashboard/User/Review";
 // import useAuth from "../../../Hooks/useAuth/useAuth";
 import Footer from "../../../Shared/Footer/Footer";
 import Header from "../../../Shared/Header/Header";
@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Redux/slices/cartSlice";
 import { addToFvrt } from "../../../Redux/slices/fvrtSlice";
 import usePhones from "../../../Hooks/usePhones/usePhones";
-
+import useReviews from "../../../Hooks/useReviews/useReviews";
 const SingleMobile = () => {
   const dispatch = useDispatch();
 
@@ -38,12 +38,70 @@ const SingleMobile = () => {
     }
   }, [id]);
 
-  //Filter related products
+  /*  Filter related products */
 
   const [mobiles] = usePhones();
 
   const relatedPd = mobiles?.filter((brand) => brand?.brand === phones?.brand);
-//   console.log(relatedPd);
+  //   console.log(relatedPd);
+
+  /* Filter Rating & Reviews */
+
+  const [reviews] = useReviews();
+
+  const filterReview = reviews?.filter(
+    (review) => review?.mobile === phones?.name
+  );
+  //   console.log(filterReview);
+
+  const total = filterReview.reduce(
+    (total, currentItem) => (total = parseFloat(total + currentItem.rating)),
+    0
+  );
+  const avg = (total / filterReview?.length).toFixed(1);
+
+  const starV = filterReview?.filter((star) => star?.rating === 5);
+  const total5star = starV.reduce(
+    (total, currentItem) => (total = parseFloat(total + currentItem.rating)),
+    0
+  );
+  const avg5star = (total5star / starV?.length).toFixed(1);
+
+  const starIV = filterReview?.filter(
+    (star) => star?.rating < 5 && star?.rating >= 4
+  );
+  const total4star = starIV.reduce(
+    (total, currentItem) => (total = parseFloat(total + currentItem.rating)),
+    0
+  );
+  const avg4star = (total4star / starIV?.length).toFixed(1);
+
+  const star3 = filterReview?.filter(
+    (star) => star?.rating < 4 && star?.rating >= 3
+  );
+  const total3star = star3.reduce(
+    (total, currentItem) => (total = parseFloat(total + currentItem.rating)),
+    0
+  );
+  const avg3star = (total3star / star3?.length).toFixed(1);
+
+  const star2 = filterReview?.filter(
+    (star) => star?.rating < 3 && star?.rating >= 2
+  );
+  const total2star = star2.reduce(
+    (total, currentItem) => (total = parseFloat(total + currentItem.rating)),
+    0
+  );
+  const avg2star = (total2star / star2?.length).toFixed(1);
+
+  const starI = filterReview?.filter(
+    (star) => star?.rating < 2 && star?.rating >= 1
+  );
+  const totalIstar = starI.reduce(
+    (total, currentItem) => (total = parseFloat(total + currentItem.rating)),
+    0
+  );
+  const avgIstar = (totalIstar / starI?.length).toFixed(1);
 
   /*     // post order
 
@@ -68,7 +126,7 @@ const SingleMobile = () => {
     } */
 
   return (
-    <div style={{ backgroundColor: "#EEF2FF" }}>
+    <div style={{ backgroundColor: "#EEF2FF", overflowX:"hidden" }}>
       <Header />
       <div className="container py-5">
         <div className="row">
@@ -108,7 +166,6 @@ const SingleMobile = () => {
             </ul>
           </div>
           <div className="col-md-3 border-start d-flex justify-content-center">
-            {/* <Review phones={phones} /> */}
             <div className="py-3">
               <h5 className="fs-6">
                 Brand:{" "}
@@ -154,10 +211,126 @@ const SingleMobile = () => {
               </button>
             </div>
           </div>
-          <div className="py-5">
+          {/* <div className="py-5">
               <h6 style={{textAlign: "justify"}}> <span style={{color:"#eb5525"}} className='fw-bold fs-5'> Disclaimer : </span> The actual color of the physical product may slightly vary due to the deviation of lighting sources, photography or your device display settings. Delivery charges may vary as per the location, Product Size and Weight; we will notify before proceeding the delivery.</h6>
+          </div> */}
+          <div className="py-4">
+            <p>Ratings & Reviews of {phones?.name}</p>
+            <div className="row">
+              <div className="col-md-7 col-sm-12">
+                <div className="d-flex justify-content-evenly">
+                  <div className="py-4 m-auto">
+                    <h1 className="fw-bold">
+                      {avg} <span className="fs-4 text-secondary">/5</span>
+                    </h1>
+                    <Rating
+                      size="large"
+                      name="half-rating-read"
+                      value={Number(avg)}
+                      precision={0.1}
+                      readOnly
+                    />{" "}
+                    <br />
+                    <small>{filterReview?.length} Ratings</small>
+                  </div>
+
+                  <div className="py-4 m-auto">
+                    <h4>
+                      <Rating
+                        size="medium"
+                        name="half-rating-read"
+                        value={Number(avg5star)}
+                        precision={1}
+                        readOnly
+                      />{" "}
+                      <span> ({starV?.length})</span>
+                      <br />
+                      <Rating
+                        size="medium"
+                        name="half-rating-read"
+                        value={Number(avg4star)}
+                        precision={0.1}
+                        readOnly
+                      />{" "}
+                      <span> ({starIV?.length})</span>
+                      <br />
+                      <Rating
+                        size="medium"
+                        name="half-rating-read"
+                        value={Number(avg3star)}
+                        precision={0.1}
+                        readOnly
+                      />{" "}
+                      <span> ({star3?.length})</span>
+                      <br />
+                      <Rating
+                        size="medium"
+                        name="half-rating-read"
+                        value={Number(avg2star)}
+                        precision={0.1}
+                        readOnly
+                      />{" "}
+                      <span> ({star2?.length})</span>
+                      <br />
+                      <Rating
+                        size="medium"
+                        name="half-rating-read"
+                        value={Number(avgIstar)}
+                        precision={0.1}
+                        readOnly
+                      />{" "}
+                      <span> ({starI?.length})</span>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-4 col-sm-12">
+                <Review phones={phones} />
+                </div>
+            </div>
           </div>
-          
+      <div className="py-3">
+        <h4 className="py-3"> {phones?.name} Reviews</h4>
+        <div>
+          {filterReview?.slice(0, 5).map((review) => (
+            <div key={review?._id}>
+              <ul className="list-group">
+                <li className="list-group-item d-md-flex justify-content-between align-items-center">
+                  <Box
+                    sx={{
+                      "& > legend": { mt: 2 },
+                    }}
+                  >
+                    <Rating
+                      name="half-rating-read"
+                      precision={0.5}
+                      size="small"
+                      value={Number(review?.rating)}
+                      readOnly
+                    />
+                    <br />
+                    <small className="text-secondary">by {review?.name} </small>
+                    <br />
+                    <p>{review?.description}</p>
+                    {/*  <img
+                            style={{ width: "5vw" }}
+                            className="img-fluid"
+                            src={review?.image}
+                            alt=""
+                          />  */}
+                  </Box>
+
+                  <span className="text-secondary">
+                    <small> {review?.date}</small>
+                  </span>
+                </li>
+                <br />
+              </ul>
+            </div>
+          ))}
+        </div>
+        
+      </div>
         </div>
       </div>
       {/* <div className="py-1 rounded">
@@ -187,7 +360,9 @@ const SingleMobile = () => {
         <div className="container pb-5">
           <h2 className="text-center fw-bold">
             {" "}
-            <span style={{color:"#eb5525"}} className="border-bottom">Related Mobiles</span>{" "}
+            <span style={{ color: "#eb5525" }} className="border-bottom">
+              Related Mobiles
+            </span>{" "}
           </h2>
           <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
             {relatedPd?.map((related) => (
@@ -274,7 +449,7 @@ const SingleMobile = () => {
       ) : (
         " "
       )}
-
+      
       <div className="bg-light py-3">
         <Banner3 />
       </div>

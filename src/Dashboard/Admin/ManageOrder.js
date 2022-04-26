@@ -29,7 +29,7 @@ const ManageOrder = () => {
     const handleUpdate = (id) => {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You wanted to update this item order status!",
+            text: "Update this item order status?",
             icon: 'info',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -144,8 +144,10 @@ const ManageOrder = () => {
                                 <select className="text-center custom-form border-0" onChange={handleStatus}>
                                     <option>{order?.status}</option>
                                     <option value="Processing">Processing</option>
+                                    <option value="Packed">Packed</option>
                                     <option value="Shipped">Shipped</option>
                                     <option value="Delivered">Delivered</option>
+                                    <option value="Cancel">Cancel</option>
                                     </select>
                                 <button title='Click to update status' onClick={() => handleUpdate(order?._id)} className="btn btn-custom-3"><i className="fas fa-check"></i></button>
                             </div></TableCell>
