@@ -68,7 +68,7 @@ const Header = () => {
                                         </IconButton>
                                         </NavLink>
 
-                                        <NavLink className='me-1' to={`/cart`} >
+                                        <NavLink className='me-1' to={`/compare`} >
                                         <IconButton aria-label="compare">
                                         <StyledBadge badgeContent={addToCompare?.length} color="error">
                                         <CompareIcon sx={{ color: 'white'}} />

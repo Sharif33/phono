@@ -24,22 +24,22 @@ const Banner1 = () => {
                     }} navigation={false} className="mySwiper">
                     <SwiperSlide>
                         <div className="text-center">
-                            <img className='img-fluid' src={b1} alt="" />
+                            <img className='img-fluid w-100' src={b1} alt="" />
                         </div>   
                     </SwiperSlide>
                     <SwiperSlide>
                     <div className="text-center">
-                            <img className='img-fluid' src={b2} alt="" />
+                            <img className='img-fluid w-100' src={b2} alt="" />
                     </div>
                     </SwiperSlide>
                     <SwiperSlide>
                     <div className="text-center">
-                            <img className='img-fluid' src={b3} alt="" />
+                            <img className='img-fluid w-100' src={b3} alt="" />
                     </div>
                     </SwiperSlide>
                     <SwiperSlide>
                     <div className="text-center">
-                             <img className='img-fluid' src={b4} alt="" />
+                             <img className='img-fluid w-100' src={b4} alt="" />
                     </div>
                     </SwiperSlide>
                     </Swiper>

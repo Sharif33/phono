@@ -29,6 +29,7 @@ import Cart from "./Pages/Home/Mobiles/Cart";
 import Favourite from "./Pages/Home/Mobiles/Favourite";
 import PlaceOrder from "./Pages/Home/Mobiles/PlaceOrder";
 import MyOrderDetails from "./Dashboard/User/MyOrderDetails";
+import Compare from "./Pages/Home/Mobiles/Compare";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <Route path="login" element={<LogIn />} />
           <Route path="register" element={<Register />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="compare" element={<Compare />} />
           <Route path="placeOrder" element={<PrivateRoute>
             <PlaceOrder />
           </PrivateRoute>} />

@@ -25,7 +25,7 @@ import { useDispatch } from 'react-redux';
 // };
 
 const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
-   const {image,specs,star,price,name,brand} = mobile;
+   const {image,price,name,brand} = mobile;
    const dispatch = useDispatch();
    
     return (
