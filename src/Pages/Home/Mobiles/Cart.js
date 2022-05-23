@@ -18,7 +18,8 @@ const Cart = () => {
         if (addToCart.length >= 0) {
             dispatch(getTotal());
         }
-    }, [addToCart, dispatch])
+    }, [addToCart, dispatch]);
+
 
     return (
        <div style={{backgroundColor:"#EEF2FF"}}>

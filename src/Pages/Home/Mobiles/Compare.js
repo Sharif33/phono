@@ -12,7 +12,7 @@ const Compare = () => {
             <Header/>
             <div className='container'>
                 <div className="row pt-5">
-                    <div className="col-md-2 g-0">
+                    {/* <div className="col-md-2 g-0">
                         <ul>
                             <li className='border p-3'>Image</li>
                             <li className='border p-3'>Name</li>
@@ -29,15 +29,15 @@ const Compare = () => {
                             <li className='border p-3'>Network</li>
                             <li className='border p-3'>Action</li>
                         </ul>
-                    </div>
-                    <div className="col-md-10 g-0">
+                    </div> */}
+                    <div className="col-md-10 m-auto g-0">
                         <div className="row row-cols-md-2 g-0">
                             {
                                 addToCompare?.map((item)=>(
                                     <div key={item?._id} className="col d-flex">
                                         <ul>
                                             <li className='border p-1'>
-                                            <Link title='See Details' to={`/mobile/${item?._id}`}> <img style={{width:"3rem"}} className='img-fluid' src={item?.image} alt="" />
+                                            <Link title='See Details' to={`/mobile/${item?._id}`}> <img style={{width:"5rem"}} className='img-fluid' src={item?.image} alt="" />
                                             </Link>
                                             </li>
                                             <li className='border p-3'>{item?.name}</li>

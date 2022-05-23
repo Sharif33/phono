@@ -17,6 +17,7 @@ const cartSlice = createSlice({
         addToCart: localStorage.getItem("addedToCart") ? JSON.parse(localStorage.getItem('addedToCart') || '{}') : [],
         cartTotal: 0,
         cartTotalQuantity: 0,
+        cartQuantity:0,
         shipping:0,
         tax:0,
         discover: [],

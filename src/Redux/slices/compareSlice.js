@@ -11,19 +11,20 @@ const compareSlice = createSlice({
     reducers: {
         addToCompare: (state, { payload }) => {
             // state.addToCompare.push(payload)
-
-            const itemIndex = state.addToCompare.findIndex(item => item._id === payload._id)  
             
+            const itemIndex = state.addToCompare.findIndex(item => item._id === payload._id);
+
             if (itemIndex >= 0) {
                 alert("Already in Compared List")
-            //      const newItems = state.addToCompare.filter(item => item._id !== payload._id)
-            // state.addToCompare = newItems
-            // window.confirm("Are you sure to remove fovorite")
-            // localStorage.setItem("addedToCompare", JSON.stringify(state.addToCompare));
-            } else {
+            }  
+            else if (state.addToCompare?.length >= 2){
+                alert("Only two items are comparable")
+             }
+
+            else {
                 
-                const newFvrt = { ...payload }
-                state.addToCompare.push(newFvrt)
+                const newCompare = { ...payload }
+                state.addToCompare.push(newCompare)
         }
         localStorage.setItem("addedToCompare", JSON.stringify(state.addToCompare));
     },
