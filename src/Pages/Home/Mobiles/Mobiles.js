@@ -38,13 +38,13 @@ const Mobiles = () => {
                     <h4 className="fw-bold text-primary p-2">Feature Mobile</h4>
                     <hr />
                 </div>
-                <div className="row row-cols-1 row-cols-md-2 m-2 g-4">
+                <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
                     {mobiles.length == 0 ?
                         <div className="w-100 text-center">
                             <CircularProgress />
                         </div>
                         :
-                        mobiles.slice(0, 6).map(mobile => <Mobile
+                        mobiles.slice(0, 16).map(mobile => <Mobile
                             key={mobile._id}
                             mobile={mobile}
                             cart ={cart}

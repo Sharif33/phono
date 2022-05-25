@@ -6,7 +6,7 @@ const usePhones = () => {
     useEffect(() => {
         try {
             async function callApi() {
-                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/phones`);
+                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles`);
                 data = await data.json();
                 setMobiles(data)
             }

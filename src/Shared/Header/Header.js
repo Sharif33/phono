@@ -3,6 +3,7 @@ import { Avatar } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import CompareIcon from '@mui/icons-material/Compare';
@@ -93,6 +94,9 @@ const Header = () => {
                             </button>
                             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav text-center ms-auto">
+                                        <li className="nav-item">
+                                            <NavLink style={{textDecoration:"none"}} aria-current="page" to="/search"><button style={{width:"20rem"}} className="btn-light btn pe-5 text-secondary text-start"><span><SearchIcon/></span> Search...</button></NavLink>
+                                        </li>
                                         <li className="nav-item">
                                             <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
                                         </li>

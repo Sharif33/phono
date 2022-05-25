@@ -10,10 +10,13 @@ import { addToCompare } from '../../../Redux/slices/compareSlice';
 // import { removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
 import BuyMobile from './BuyMobile';
 import "./Mobile.css";
+import CountdownTimer from '../../Countdown/CountdownTimer';
 
 const Mobile = ({ mobile}) => {
     // const {cart,setCart} = useContext(Favourite);
-    const { _id, name, star, price, specs, image } = mobile;
+    // const offerTill = new Date().toDateString();
+    const { _id, name, star, price, ram, storage, image, offerTill, chipset } = mobile;
+    const { Announced } = mobile?.specifications;
     const [openBuyNow, setOpenBuyNow] = React.useState(false);
     const handleOpen = () => setOpenBuyNow(true);
     const handleClose = () => setOpenBuyNow(false);
@@ -22,37 +25,39 @@ const Mobile = ({ mobile}) => {
     return (
         <div>
             <div className="col rounded text-center">
-                <div className="card shadow h-100">
-                    <div className='row flex-row-reverse px-3 py-2 g-0'>
-                    <div className='col-md-4 card-hover '>
+                <div className="card pb-3 border-0 shadow-sm h-100">
+                   
+                    <div className='card-hover rounded py-3'>
                       
                            <div>  
                             <div className="card-btns">
-                           <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-custom border-0 my-2 rounded-circle'> <i title='Add to Cart' className="fas fa-cart-plus fs-4 py-1"></i> </button> <br />
+                           <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-custom border-0 my-2 rounded'> <i title='Add to Cart' className="fas fa-cart-plus fs-5 py-1"></i> </button> <br />
 
-                            <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-custom-2 border-0 my-2 rounded-circle'> <i title='Add to Favourite' className="far fa-heart fs-4 py-1"></i> </button>
+                            <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-custom-2 border-0 my-2 rounded-circle'> <i title='Add to Favourite' className="far fa-heart fs-5 py-1"></i> </button>
   
                            </div>
-                           <img style={{ height: "12rem" }} src={image} className="img-fluid rounded-start" alt="" />
-                            <p>Tk: <span className="text-danger fw-bold">{price}</span></p>
+                           <img style={{ height: "10rem" }} src={image} className="img-fluid rounded-start" alt="" />
+                            {/* <p>Tk: <span className="text-danger fw-bold">{price}</span></p> */}
                            </div>
                            
                         </div>
-                        <div className='col-md-8'>
+                        <div className=''>
                             <h5 className="text-dark pt-1">{name}</h5>
-                            <Box sx={{
+                            {/* <Box sx={{
                                 '& > legend': { mt: 2 },
                             }}>
                                 <Rating name="half-rating-read" precision={0.5} size="small" value={Number(star)} readOnly />
-                            </Box>
-                            <div style={{ textAlign: "justify" }} className="p-2">
-                                <p className="text-secondary">{specs}</p>
+                            </Box> */}
+                            <div style={{ textAlign: "center" }} className="p-2">
+                                <p className="text-secondary">{ram} {storage} | {chipset}</p>
+                                <p style={{color:"#eb5525",fontWeight:"bolder"}}>{price}&#x9F3;</p>
                             </div>
                             <div className="text-center d-flex justify-content-center alighn-items-center">
 
                         <Link to={`/mobile/${_id}`}> <button className='btn btn-custom-2 rounded-0 border-0'>Details</button> </Link>
                         <button onClick={handleOpen} className='btn btn-custom rounded-0 border-0'>Quick View</button>
                         <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-custom-3 border-0 rounded-0'>Compare</button>
+                       
 
                         {/* <button onClick={handleOpen} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Order Now' className="fas fa-cart-plus fs-4 py-1"></i> </button> */}
                        
@@ -77,8 +82,10 @@ const Mobile = ({ mobile}) => {
                      */}
                     </div>
                         </div>
-                    </div>
-                   
+                    
+                    {/* <div>
+                        <CountdownTimer offerTill={offerTill} />
+                        </div> */}
                 </div>
             </div>
             <BuyMobile

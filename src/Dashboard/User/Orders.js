@@ -20,10 +20,9 @@ const Orders = ({order,statusNumber,handleDeleteOrders}) => {
                           <div>
                             {order?.payment ? (
                           <h5>
-                            {" "}
                             <span className="badge text-cenetr rounded-pill bg-success">
                               Paid
-                            </span>{" "}
+                            </span>
                           </h5>
                         ) : (
                           <div>
@@ -43,7 +42,10 @@ const Orders = ({order,statusNumber,handleDeleteOrders}) => {
                         )}
                           </div>
                           <div>
-                        <Link to={`/dashboard/myOrders/${order._id}`}> <button className='btn btn-outline-info btn-hover btn-sm rounded-0 mx-2'> Order Details</button> </Link>
+                            {
+                              <Link to={`/dashboard/myOrders/${order._id}`}> <button className='btn btn-outline-info btn-hover btn-sm rounded-0 mx-2'>Order Details</button> </Link> 
+                              
+                            }
                         </div>
                         </div>
                         

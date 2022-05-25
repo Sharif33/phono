@@ -14,6 +14,11 @@ import { addToCart } from "../../../Redux/slices/cartSlice";
 import { addToFvrt } from "../../../Redux/slices/fvrtSlice";
 import usePhones from "../../../Hooks/usePhones/usePhones";
 import useReviews from "../../../Hooks/useReviews/useReviews";
+import SwiperCore, {  Navigation, Thumbs  } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
+SwiperCore.use([ Navigation, Thumbs ]);
 const SingleMobile = () => {
   const dispatch = useDispatch();
 
@@ -22,12 +27,13 @@ const SingleMobile = () => {
   const { id } = useParams();
 
   const [phones, setPhones] = useState([]);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   useEffect(() => {
     try {
       async function callApi() {
         let data = await fetch(
-          `https://peaceful-shore-84874.herokuapp.com/phones/${id}`
+          `https://peaceful-shore-84874.herokuapp.com/mobiles/${id}`
         );
         data = await data.json();
         setPhones(data);
@@ -133,35 +139,81 @@ const SingleMobile = () => {
           <div className="col-md-3 col-sm-12">
             <div className="text-center">
               <h3 style={{ color: "#62599F" }}>{phones?.name}</h3>
-              <img className="w-100 img-fluid" src={phones?.image} alt="" />
+              <Swiper
+        style={{
+          "--swiper-navigation-color": "#fff",
+          "--swiper-pagination-color": "#fff",
+        }}
+        spaceBetween={10}
+        navigation={true}
+        thumbs={{ swiper: thumbsSwiper }}
+        modules={[Navigation, Thumbs]}
+        className="pb-3"
+      >
+        <SwiperSlide>
+          <img className="w-100 img-fluid" src={phones?.image} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img className="w-100 img-fluid" src={phones?.image} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img className="w-100 img-fluid" src={phones?.image} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img className="w-100 img-fluid" src={phones?.image} alt="" />
+        </SwiperSlide>
+      </Swiper>
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        spaceBetween={10}
+        slidesPerView={4}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[Navigation, Thumbs]}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <img style={{height:"4rem"}} src={phones?.image} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img style={{height:"4rem"}} src={phones?.image} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img style={{height:"4rem"}} src={phones?.image} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img style={{height:"4rem"}} src={phones?.image} alt="" />
+        </SwiperSlide>
+      </Swiper>
+             
             </div>
           </div>
           <div className="col-md-3">
             <ul>
               <li className="mb-5 fs-5">
-                <i className="fas fa-chevron-right"> </i> {phones?.processor}
+                <i className="fas fa-chevron-right"> </i> {phones?.os}
               </li>
               <li className="mb-5 fs-5">
-                <i className="fas fa-chevron-right"> </i> {phones?.memory}
+                <i className="fas fa-chevron-right"> </i>{phones?.ram} {phones?.storage}
               </li>
               <li className="mb-5 fs-5">
-                <i className="fas fa-chevron-right"> </i> {phones?.display}
+                <i className="fas fa-chevron-right"> </i> {phones?.display_size}" {phones?.display_resolution}
               </li>
             </ul>
           </div>
           <div className="col-md-3">
             <ul>
               <li className="mb-5 fs-5">
-                <i className="fas fa-chevron-right"> </i> {phones?.battery}
+                <i className="fas fa-chevron-right"> </i> {phones?.battery_type} {phones?.battery_size}
               </li>
               <li className="mb-5 fs-5">
-                <i className="fas fa-chevron-right"> </i> {phones?.camera}
+                <i className="fas fa-chevron-right"> </i> {phones?.camera_pixels}
               </li>
               <li className="mb-5 fs-5">
-                <i className="fas fa-chevron-right"> </i> {phones?.selfie}
+                <i className="fas fa-chevron-right"> </i> {phones?.video_pixels}
               </li>
               <li className="mb-5 fs-5">
-                <i className="fas fa-chevron-right"> </i> {phones?.network}
+                <i className="fas fa-chevron-right"> </i> {phones?.body} {phones?.chipset}
               </li>
             </ul>
           </div>

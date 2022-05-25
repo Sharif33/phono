@@ -23,13 +23,15 @@ import MyOrders from "./Dashboard/User/MyOrders";
 import DashboardHome from "./Dashboard/Dashboard/DashboardHome";
 import Review from "./Dashboard/User/Review";
 import Payment from "./Dashboard/User/Payment";
-import BuyMobile from "./Pages/Home/Mobiles/BuyMobile";
+// import BuyMobile from "./Pages/Home/Mobiles/BuyMobile";
 import EditMobile from "./Dashboard/Admin/EditMobile";
 import Cart from "./Pages/Home/Mobiles/Cart";
 import Favourite from "./Pages/Home/Mobiles/Favourite";
 import PlaceOrder from "./Pages/Home/Mobiles/PlaceOrder";
 import MyOrderDetails from "./Dashboard/User/MyOrderDetails";
 import Compare from "./Pages/Home/Mobiles/Compare";
+import SpecialDetails from "./Pages/Home/Mobiles/SpecialDetails";
+import SearchField from "./Pages/Home/Search/SearchField";
 
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
           <Route path="home" element={<Home />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="about" element={<AboutUs />} />
+          <Route path="search" element={<SearchField/>} />
           <Route path="login" element={<LogIn />} />
           <Route path="register" element={<Register />} />
           <Route path="cart" element={<Cart />} />
@@ -54,7 +57,7 @@ function App() {
             <SingleMobile />
           </PrivateRoute>} />
           <Route path="mobile2/:id" element={<PrivateRoute>
-            <BuyMobile/>
+            <SpecialDetails/>
           </PrivateRoute>} />
         <Route path="dashboard" element={<PrivateRoute>
               <Dashboard />

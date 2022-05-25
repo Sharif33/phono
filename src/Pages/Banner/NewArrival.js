@@ -17,7 +17,7 @@ const NewArrival = ({mobile}) => {
             <SwiperSlide>
              <div className="rounded text-center">
                         <div className='card-hover border-0 h-100'>
-                        <Link to={`/mobile/${_id}`}><img style={{ height: "12rem" }} src={image} className="img-fluid" alt="" /></Link> 
+                        <Link to={`/mobile2/${_id}`}><img style={{ height: "12rem" }} src={image} className="img-fluid" alt="" /></Link> 
                             <p className="text-danger">{name}</p>
                             <p>Tk: <span className="text-danger fw-bold">{price}</span></p>
                         </div>

@@ -56,9 +56,16 @@ const MyOrderDetails = () => {
                   >
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
-                        {" "}
-                        <Link title="See Details" to={`/mobile/${item?._id}`}>
-                          {" "}
+                        {
+                          item.os ? <Link title="See Details" to={`/mobile/${item?._id}`}>
+                          <img
+                            style={{ width: "3rem" }}
+                            className="img-fluid"
+                            src={item?.image}
+                            alt=""
+                          />
+                        </Link> :
+                        <Link title="See Details" to={`/mobile2/${item._id}`}>
                           <img
                             style={{ width: "3rem" }}
                             className="img-fluid"
@@ -66,6 +73,8 @@ const MyOrderDetails = () => {
                             alt=""
                           />
                         </Link>
+                        }
+                        
                       </div>
                       <div className="px-3 text-center">
                         <p>
