@@ -4,6 +4,7 @@ import Rating from '@mui/material/Rating';
 import useReviews from '../../Hooks/useReviews/useReviews';
 import usePhones from '../../Hooks/usePhones/usePhones';
 import useAuth from '../../Hooks/useAuth/useAuth';
+import UserDashboard from './UserDashboard';
 // import useAuth from '../../Hooks/useAuth/useAuth';
 // import about from "../../images/about.jpg";
 
@@ -80,6 +81,10 @@ const DashboardHome = () => {
                 </div>
             </div>
         </div>
+            }
+
+            {
+                user && <UserDashboard/>
             }
          
         </div>

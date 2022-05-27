@@ -32,6 +32,7 @@ import MyOrderDetails from "./Dashboard/User/MyOrderDetails";
 import Compare from "./Pages/Home/Mobiles/Compare";
 import SpecialDetails from "./Pages/Home/Mobiles/SpecialDetails";
 import SearchField from "./Pages/Home/Search/SearchField";
+import UserDetails from "./Dashboard/User/UserDetails";
 
 
 function App() {
@@ -66,14 +67,18 @@ function App() {
                <MyOrders></MyOrders>
               </PrivateRoute>}>
 
-              <Route path={`/dashboard/myOrders/:id`} element={<PrivateRoute>
-               <MyOrderDetails></MyOrderDetails>
-              </PrivateRoute>}>
+                <Route path={`/dashboard/myOrders/:id`} element={<PrivateRoute>
+                <MyOrderDetails></MyOrderDetails>
+                </PrivateRoute>}>
+                </Route>
               </Route>
 
-              </Route>
             <Route path={`/dashboard/pay/:id`} element={<PrivateRoute>
                <Payment></Payment>
+              </PrivateRoute>}>
+              </Route>
+            <Route path={`/dashboard/user`} element={<PrivateRoute>
+               <UserDetails/>
               </PrivateRoute>}>
               </Route>
             <Route path={`/dashboard/review`} element={<PrivateRoute>
