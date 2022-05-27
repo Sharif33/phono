@@ -5,25 +5,25 @@ const Clock = ({ timerDays, timerHours, timerMinutes, timerSeconds, offerTill })
         <Fragment>
             <div>
                 <div>
-                    <div className="d-flex justify-content-center align-items-center gap-3 bg-secondary text-info">
+                    <div style={{backgroundColor:"#E7EBF0"}} className="d-flex justify-content-center align-items-center gap-2 rounded pt-2 pb-0 text-center">
                         <div>
-                            <p>{timerDays}</p>
-                            <small>Days</small>
+                            <p>{timerDays}d :</p>
+                            {/* <small>Days</small> */}
                         </div>
-                        <span>:</span>
+                        {/* <span>:</span> */}
                         <div>
-                            <p>{timerHours}</p>
-                            <small>Hours</small>
+                            <p>{timerHours}h :</p>
+                            {/* <small>Hours</small> */}
                         </div>
-                        <span>:</span>
+                        {/* <span>:</span> */}
                         <div>
-                            <p>{timerMinutes}</p>
-                            <small>Minutes</small>
+                            <p>{timerMinutes}m :</p>
+                            {/* <small>Minutes</small> */}
                         </div>
-                        <span>:</span>
+                        {/* <span>:</span> */}
                         <div>
-                            <p>{timerSeconds}</p>
-                            <small>Seconds</small>
+                            <p>{timerSeconds}s</p>
+                            {/* <small>Seconds</small> */}
                         </div>
                     </div>
                 </div>

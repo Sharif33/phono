@@ -28,7 +28,7 @@
         } */
 
         .nav-item .nav-link:hover{
-            font-weight: bold;
+            color: orange !important;
             /* transform: scale(1.05); */
             /* transition: .3s ease; */
         }

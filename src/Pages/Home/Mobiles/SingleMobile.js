@@ -240,7 +240,7 @@ const SingleMobile = () => {
               </Box>
 
               <h5 className="w-100 py-3">
-                <span className="text-danger fw-bold"> &#x9F3; </span>{" "}
+                <span className="text-danger fw-bold"> Tk </span>{" "}
                 <span className="fs-1 fw-bold ">{phones?.price}</span> .00
               </h5>
 

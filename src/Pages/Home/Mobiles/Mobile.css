@@ -1,3 +1,15 @@
+.btn-cart{
+  background-color: #dedede6a;
+  color: #183153;
+  border: 0 !important;
+}
+
+.btn-cart:hover{
+  background-color:#303f9f;
+  color: #ffffff;
+}
+
+
 .btn-custom {
   background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
   color: white;
@@ -40,16 +52,26 @@
   display: none;
   position: absolute;
   top: 10% !important;
-  right: 10% !important;
+  right: 7% !important;
 }
 
 .card-hover:hover {
   /* transform: scaleY(1.05); */ 
-  background-color: rgba(0, 0, 0, 0.18);
+  background-color: #E7EBF0;
   transition: 0.4s ease;
   /* border: 1px solid #764abc !important; */
 }
 .card-hover:hover .card-btns {
+  display: block;
+}
+
+.offer-badge{
+  display: none;
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+}
+.card-hover .offer-badge{
   display: block;
 }
 

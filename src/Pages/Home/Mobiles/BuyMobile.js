@@ -46,7 +46,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                         <h6>Brand : {brand}</h6>
                         <h4>Avaibility : In Stock</h4>
                         <h5 className="w-100 py-3">
-                <span className="text-danger fw-bold"> &#x9F3; </span>{" "}
+                <span className="text-danger fw-bold"> Tk </span>{" "}
                 <span className="fs-1 fw-bold ">{price}</span> .00
               </h5>
 

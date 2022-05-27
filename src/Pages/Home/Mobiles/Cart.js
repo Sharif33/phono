@@ -9,6 +9,7 @@ import Header from '../../../Shared/Header/Header';
 import { Link } from 'react-router-dom';
 import Footer from '../../../Shared/Footer/Footer';
 import emptyBag from '../../../images/emptyShoppingBag.webp';
+import { numberFormat } from '../../../Shared/numberFormat';
 
 const Cart = () => {
     // const {cart} = useContext(Favourite);
@@ -28,7 +29,7 @@ const Cart = () => {
                addToCart?.length ? <div className="container py-4">
                    <div className='text-center my-4'>
                        <h1><i style={{color:"#183153"}} className="fa-brands fa-shopify"></i> <span className='text-secondary fw-bold'> {addToCart?.length}</span> items</h1>
-                       <h1> <span style={{color:"#183153"}} className="fw-bold"> &#x9F3; </span> <span className='text-secondary'> {cartTotal+shipping+tax}</span></h1>
+                       <h1> <span style={{color:"#183153"}} className="fw-bold">Tk</span> <span className='text-secondary'> {numberFormat(cartTotal+shipping+tax).slice(3)}</span></h1>
                    </div>
                     <div className='row mx-auto'>
                         <div className='col-md-8 col-sm-12 my-3'>
@@ -104,22 +105,22 @@ const Cart = () => {
 
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Subtotal
-                <span className="text-secondary fs-5">{cartTotal} &#x9F3;</span>
+                <span className="text-secondary fs-5">{cartTotal} Tk</span>
             </li>
 
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Shipping
-                <span className="text-secondary fs-5">{shipping} &#x9F3;</span>
+                <span className="text-secondary fs-5">{shipping} Tk</span>
             </li>
             
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Tax
-                <span className="text-secondary fs-5">{tax} &#x9F3;</span>
+                <span className="text-secondary fs-5">{tax} Tk</span>
             </li>
             
             <li className="list-group-item d-flex justify-content-between align-items-center fs-4">
                 Total
-                <span className="text-danger fw-bold fs-5">{cartTotal + shipping + tax} &#x9F3;</span>
+                <span className="text-danger fw-bold fs-5">{cartTotal + shipping + tax} Tk</span>
             </li>
             <br />
                         <div className="input-group input-group-lg">

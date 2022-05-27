@@ -92,7 +92,7 @@ const MyOrderDetails = () => {
                       </small>
                     </div>
                     <span className="text-primary fw-bold fs-6">
-                      {item?.price * item?.cartQuantity} &#x9F3;
+                      {item?.price * item?.cartQuantity} Tk
                     </span>
                   </li>
                 ))}
@@ -113,7 +113,7 @@ const MyOrderDetails = () => {
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-4 fw-bold">
                   Total
                   <span className="text-danger fw-bold fs-5">
-                    {order?.total} &#x9F3;
+                    {order?.total} Tk
                   </span>
                 </li>
               </ul>

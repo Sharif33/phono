@@ -7,6 +7,7 @@ import Banner3 from "../Banner/Banner3";
 import Sponsors from "../Banner/Sponsors";
 import Contact from "./Contact";
 import Mobiles from "./Mobiles/Mobiles";
+import Offers from "./Offers/Offers";
 // import Reviews from "./Mobiles/Reviews";
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
       <Header />
       <Banner1 />
       <Banner2 />
+      <Offers/>
       <Mobiles />
       <Banner3 />
       {/* <Reviews /> */}

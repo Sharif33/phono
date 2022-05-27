@@ -6,14 +6,14 @@ import camera from "../../images/dualcamera.png";
 import processor from "../../images/processor.png";
 import ram from "../../images/ram.png";
 import SwiperCore, { Autoplay, EffectCoverflow, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 SwiperCore.use([EffectCoverflow, Autoplay, Pagination]);
 const Banner2 = () => {
-    const slide_img=[
+    /* const slide_img=[
 "https://i.ibb.co/RYHwmwd/poco-m3.png",
 "https://i.ibb.co/hBm3xGQ/neo2.png",
 "https://i.ibb.co/3TVh3pN/mi-11x.png",
@@ -31,7 +31,7 @@ const Banner2 = () => {
 "https://i.ibb.co/C6z0nBP/r-25.png",
 "https://i.ibb.co/2cbCrsN/r-8.png",
 "https://i.ibb.co/K0WLpzt/poco-x3-pro.png"
-    ]
+    ] */
     return (
         <div>
             <div className='row row-cols-1 row-cols-md-3 gx-2 p-3 bg-light'>
@@ -99,7 +99,7 @@ const Banner2 = () => {
                 </div>
                 </div>
             </div>
-            <div>
+            {/* <div>
                 <div className='text-center pb-4'>
                     <h2>FIND YOUR PERFECT MATCH</h2>
                     <h5>EXPLORE AND FIND RIGHT ONE</h5>
@@ -122,7 +122,7 @@ const Banner2 = () => {
           );
         })}
   </Swiper>
-            </div>
+            </div> */}
         </div>
     );
 };

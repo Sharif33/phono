@@ -4,9 +4,7 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import CompareIcon from '@mui/icons-material/Compare';
+import {MdShoppingCart, MdFavorite, MdCompareArrows } from "react-icons/md";
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
@@ -53,28 +51,34 @@ const Header = () => {
                         <div className="container">
                             <NavLink className="navbar-brand fw-bold fs-3 text-warning" to="/home">PH<span className="text-danger">|O|</span>NO</NavLink>
                             
-                                        <NavLink className='me-1' to={`/fvrt`} >
+                                        <NavLink className='me-2' to={`/fvrt`} >
+                                        <button className='btn btn-cart border-0 p-0'>
                                         <IconButton aria-label="favorite">
                                         <StyledBadge badgeContent={addToFvrt?.length} color="error">
-                                        <FavoriteBorderOutlinedIcon sx={{ color: 'white'}} />
+                                        <MdFavorite className='text-light' />
                                         </StyledBadge>
                                         </IconButton>
+                                            </button>
                                         </NavLink>
                                         
-                                        <NavLink className='me-1' to={`/cart`} >
+                                        <NavLink className='mx-1' to={`/cart`} >
+                                        <button className='btn btn-cart border-0 p-0'>
                                         <IconButton aria-label="cart">
                                         <StyledBadge badgeContent={addToCart?.length} color="error">
-                                        <ShoppingBagOutlinedIcon sx={{ color: 'white'}} />
+                                        <MdShoppingCart className='text-light' />
                                         </StyledBadge>
-                                        </IconButton>
+                                        </IconButton>   
+                                        </button>
                                         </NavLink>
 
-                                        <NavLink className='me-1' to={`/compare`} >
-                                        <IconButton aria-label="compare">
-                                        <StyledBadge badgeContent={addToCompare?.length} color="error">
-                                        <CompareIcon sx={{ color: 'white'}} />
-                                        </StyledBadge>
-                                        </IconButton>
+                                        <NavLink className='ms-2' to={`/compare`} >
+                                        <button className="btn btn-cart border-0 p-0">
+                                            <IconButton aria-label="compare">
+                                            <StyledBadge badgeContent={addToCompare?.length} color="error">
+                                            <MdCompareArrows className='text-light' />
+                                            </StyledBadge>
+                                            </IconButton>
+                                        </button>
                                         </NavLink>
 
                                         {/* <NavLink className='me-1' to={`/mobiles`} >
@@ -95,19 +99,19 @@ const Header = () => {
                             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul className="navbar-nav text-center ms-auto">
                                         <li className="nav-item">
-                                            <NavLink style={{textDecoration:"none"}} aria-current="page" to="/search"><button style={{width:"20rem"}} className="btn-light btn pe-5 text-secondary text-start"><span><SearchIcon/></span> Search...</button></NavLink>
+                                            <NavLink style={{textDecoration:"none"}} aria-current="page" to="/search"><button style={{width:"20rem"}} className="btn-light btn pe-5 text-secondary text-start mx-1"><span><SearchIcon/></span> Search...</button></NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " aria-current="page" to="/home">HOME</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " aria-current="page" to="/home">Home</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/mobiles">SHOP</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/mobiles">Shop</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " href="#contact" to="/contact">CONTACT US</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " href="#contact" to="/contact">Contact</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/about">ABOUT US</NavLink>
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/about">About</NavLink>
                                         </li>
 
                                         <li className="nav-item">

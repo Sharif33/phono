@@ -53,8 +53,8 @@ const Mobiles = () => {
                         />)
                     }
                 </div>
-                <div className="text-center pt-4">
-                    <Link to="/mobiles"><button className="btn btn-outline-primary p-3 rounded-pill mb-5">View More</button></Link>
+                <div className="text-end pt-4">
+                    <Link to="/mobiles"><button className="btn btn-cart rounded-pill mb-5">View All</button></Link>
                 </div>
             </div>
         </div>

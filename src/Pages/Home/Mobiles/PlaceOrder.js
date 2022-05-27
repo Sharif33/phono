@@ -176,7 +176,7 @@ const PlaceOrder = () => {
                       </small>
                     </div>
                     <span className="text-primary fw-bold fs-6">
-                      {mobile?.price * mobile?.cartQuantity} &#x9F3;
+                      {mobile?.price * mobile?.cartQuantity} Tk
                     </span>
                   </li>
                 ))}
@@ -197,28 +197,28 @@ const PlaceOrder = () => {
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                   Subtotal
                   <span className="text-primary fw-bold fs-5">
-                    {cartTotal} &#x9F3;
+                    {cartTotal} Tk
                   </span>
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                   Shipping
                   <span className="text-primary fw-bold fs-5">
-                    {shipping} &#x9F3;
+                    {shipping} Tk
                   </span>
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                   Tax
                   <span className="text-primary fw-bold fs-5">
-                    {tax} &#x9F3;
+                    {tax} Tk
                   </span>
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-4 fw-bold">
                   Total
                   <span className="text-danger fw-bold fs-5">
-                    {cartTotal + shipping + tax} &#x9F3;
+                    {cartTotal + shipping + tax} Tk
                   </span>
                 </li>
               </ul>

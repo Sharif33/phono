@@ -60,7 +60,7 @@ const Orders = ({order,statusNumber,handleDeleteOrders}) => {
                         </h6>
                         <h6>
                           {" "}
-                          &#x9F3;{" "}
+                          Tk{" "}
                           <span className="text-muted"> {order?.total} </span>
                         </h6>
                         <h6>
