@@ -10,13 +10,14 @@ import { Link } from 'react-router-dom';
 import Footer from '../../../Shared/Footer/Footer';
 import emptyBag from '../../../images/emptyShoppingBag.webp';
 import { numberFormat } from '../../../Shared/numberFormat';
+import {Helmet} from "react-helmet";
 
 const Cart = () => {
     // const {cart} = useContext(Favourite);
     const dispatch = useDispatch();
     const {addToCart, cartTotal, cartTotalQuantity, shipping, tax} = useSelector((state) => state.cart);
     useEffect(() => {
-        if (addToCart.length >= 0) {
+        if (addToCart.length >= 0 || addToCart.length == 0) {
             dispatch(getTotal());
         }
     }, [addToCart, dispatch]);
@@ -24,6 +25,11 @@ const Cart = () => {
 
     return (
        <div style={{backgroundColor:"#EEF2FF"}}>
+           <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | Cart</title>
+                <link rel="canonical" href="/cart" />
+            </Helmet>
            <Header/>
            {
                addToCart?.length ? <div className="container py-4">
@@ -75,14 +81,14 @@ const Cart = () => {
                                     <div className="mx-auto">
                                                         <div style={{width:"10vw"}} className="d-flex justify-content-center border mx-auto">
                                                             <button className='btn w-100 btn-light shadow' onClick={() => dispatch(decrement(mobile))}> - </button>
-                                                            <input style={{width:"5vw"}} type="text" readOnly value={(Number(mobile?.cartQuantity) || 1)}
+                                                            <input style={{width:"5vw"}} type="text" readOnly value={(Number(mobile.cartQuantity))}
                                                                 className="fw-bolder border-0 text-center text-secondary" />
                                                             <button className='btn w-100 btn-light shadow' onClick={() => dispatch(increment(mobile))}> + </button>
                                                         </div>
                                                     </div>
                                     </TableCell>
-                                    <TableCell align="center">{mobile?.price}</TableCell>
-                                    <TableCell align="center">{(Number(mobile?.price)) * (Number(mobile?.cartQuantity))}</TableCell>
+                                    <TableCell align="center">{Number(mobile.price)}</TableCell>
+                                    <TableCell align="center">{(mobile.price) * Number(mobile.cartQuantity)}</TableCell>
                                     
                                 </TableRow>
                             ))}
@@ -115,12 +121,12 @@ const Cart = () => {
             
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Tax
-                <span className="text-secondary fs-5">{tax} Tk</span>
+                <span className="text-secondary fs-5">{tax.toFixed(2)} Tk</span>
             </li>
             
             <li className="list-group-item d-flex justify-content-between align-items-center fs-4">
                 Total
-                <span className="text-danger fw-bold fs-5">{cartTotal + shipping + tax} Tk</span>
+                <span className="text-danger fw-bold fs-5">{Number(cartTotal + shipping + tax)} Tk</span>
             </li>
             <br />
                         <div className="input-group input-group-lg">

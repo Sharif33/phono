@@ -33,9 +33,12 @@ import Compare from "./Pages/Home/Mobiles/Compare";
 import SpecialDetails from "./Pages/Home/Mobiles/SpecialDetails";
 import SearchField from "./Pages/Home/Search/SearchField";
 import UserDetails from "./Dashboard/User/UserDetails";
+import EditUser from "./Dashboard/User/EditUser";
+import { handelRightClick } from "./Shared/RightClick";
 
 
 function App() {
+  document.addEventListener('contextmenu', handelRightClick);
   return (
     <div>
       <AuthProvider>
@@ -79,6 +82,10 @@ function App() {
               </Route>
             <Route path={`/dashboard/user`} element={<PrivateRoute>
                <UserDetails/>
+              </PrivateRoute>}>
+              </Route>
+            <Route path={`/dashboard/user/:id`} element={<PrivateRoute>
+               <EditUser/>
               </PrivateRoute>}>
               </Route>
             <Route path={`/dashboard/review`} element={<PrivateRoute>

@@ -32,7 +32,7 @@ const Mobiles = () => {
 
     }
     return (
-        <div className='bg-light'>
+        <div className=''>
             <div className="container">
                 <div className="text-center pt-2">
                     <h4 className="fw-bold text-primary p-2">Feature Mobile</h4>

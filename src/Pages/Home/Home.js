@@ -8,11 +8,17 @@ import Sponsors from "../Banner/Sponsors";
 import Contact from "./Contact";
 import Mobiles from "./Mobiles/Mobiles";
 import Offers from "./Offers/Offers";
+import {Helmet} from "react-helmet";
 // import Reviews from "./Mobiles/Reviews";
 
 const Home = () => {
   return (
     <div style={{ overflowX: "hidden" }}>
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | A online mobile shop</title>
+                <link rel="canonical" href="/home" />
+            </Helmet>
       <Header />
       <Banner1 />
       <Banner2 />

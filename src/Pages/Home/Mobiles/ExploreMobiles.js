@@ -7,6 +7,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Mobile from './Mobile';
+import {Helmet} from "react-helmet";
 
 const ExploreMobiles = () => {
     const [categories, setCategories] = useState([]);
@@ -57,6 +58,11 @@ const ExploreMobiles = () => {
 
     return (
         <>
+          <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | Shop : All collections</title>
+                <link rel="canonical" href="/mobiles" />
+            </Helmet>
          <Header/>
             <div>
                 <div className="container">

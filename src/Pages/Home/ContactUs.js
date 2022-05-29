@@ -1,10 +1,16 @@
 import React from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
+import {Helmet} from "react-helmet";
 
 const ContactUs = () => {
     return (
         <div>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | Contact us : support</title>
+                <link rel="canonical" href="/mobiles" />
+            </Helmet>
              <Header />
            <div className='bg-light'>
             <div  style={{paddingTop:"70px"}} className='bg-about text-light'>

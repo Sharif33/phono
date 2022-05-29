@@ -57,8 +57,8 @@ const Review = ({ phones }) => {
       <div className="m-auto">
         <div className=" p-4 rounded">
           <p className="text-custom">
-            Share your experience for
-            <span className="text-warning fs-5"> {phones?.name}</span>
+            Shared experience for
+            <span className="text-warning"> {phones?.name}</span>
           </p>
           {phones?.name && (
             <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>

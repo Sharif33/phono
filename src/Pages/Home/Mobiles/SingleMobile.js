@@ -1,6 +1,7 @@
 import { Box, Rating, Typography } from "@mui/material";
 // import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { MdInfo, MdVisibility, MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder } from "react-icons/md";
 // import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 // import Swal from "sweetalert2";
@@ -12,14 +13,60 @@ import Banner3 from "../../Banner/Banner3";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Redux/slices/cartSlice";
 import { addToFvrt } from "../../../Redux/slices/fvrtSlice";
+import { addToCompare } from '../../../Redux/slices/compareSlice';
 import usePhones from "../../../Hooks/usePhones/usePhones";
 import useReviews from "../../../Hooks/useReviews/useReviews";
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import SwiperCore, {  Navigation, Thumbs  } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
+import { numberFormat } from "../../../Shared/numberFormat";
 SwiperCore.use([ Navigation, Thumbs ]);
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+
 const SingleMobile = () => {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const dispatch = useDispatch();
 
   //   const { user, admin } = useAuth();
@@ -43,6 +90,10 @@ const SingleMobile = () => {
       console.log("error", error);
     }
   }, [id]);
+
+  const{name,price,ram,storage,brand,image,body,released_at,camera_pixels}=phones;
+  // display_size,display_resolution,video_pixels,chipset,battery_size,battery_type
+  // const {Technology,Speed,Announced, Status, Dimensions,Weight,SIM,Type,Size,Resolution,Protection,CPU,Card_slot, Internal, Dual,Features,Video,Single,Loudspeakers,WLAN, Bluetooth,GPS,USB,NFC,Sensors,Colors,Models } = specifications;
 
   /*  Filter related products */
 
@@ -136,9 +187,8 @@ const SingleMobile = () => {
       <Header />
       <div className="container py-5">
         <div className="row">
-          <div className="col-md-3 col-sm-12">
+          <div className="col-md-3 m-auto col-sm-12 mb-5">
             <div className="text-center">
-              <h3 style={{ color: "#62599F" }}>{phones?.name}</h3>
               <Swiper
         style={{
           "--swiper-navigation-color": "#fff",
@@ -151,16 +201,16 @@ const SingleMobile = () => {
         className="pb-3"
       >
         <SwiperSlide>
-          <img className="w-100 img-fluid" src={phones?.image} alt="" />
+          <img className="w-100 img-fluid" src={image} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="w-100 img-fluid" src={phones?.image} alt="" />
+          <img className="w-100 img-fluid" src={image} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="w-100 img-fluid" src={phones?.image} alt="" />
+          <img className="w-100 img-fluid" src={image} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className="w-100 img-fluid" src={phones?.image} alt="" />
+          <img className="w-100 img-fluid" src={image} alt="" />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -173,22 +223,22 @@ const SingleMobile = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img style={{height:"4rem"}} src={phones?.image} alt="" />
+          <img style={{height:"4rem"}} src={image} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img style={{height:"4rem"}} src={phones?.image} alt="" />
+          <img style={{height:"4rem"}} src={image} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img style={{height:"4rem"}} src={phones?.image} alt="" />
+          <img style={{height:"4rem"}} src={image} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img style={{height:"4rem"}} src={phones?.image} alt="" />
+          <img style={{height:"4rem"}} src={image} alt="" />
         </SwiperSlide>
       </Swiper>
              
             </div>
           </div>
-          <div className="col-md-3">
+         {/*  <div className="col-md-3">
             <ul>
               <li className="mb-5 fs-5">
                 <i className="fas fa-chevron-right"> </i> {phones?.os}
@@ -200,8 +250,8 @@ const SingleMobile = () => {
                 <i className="fas fa-chevron-right"> </i> {phones?.display_size}" {phones?.display_resolution}
               </li>
             </ul>
-          </div>
-          <div className="col-md-3">
+          </div> */}
+          {/* <div className="col-md-3">
             <ul>
               <li className="mb-5 fs-5">
                 <i className="fas fa-chevron-right"> </i> {phones?.battery_type} {phones?.battery_size}
@@ -216,13 +266,14 @@ const SingleMobile = () => {
                 <i className="fas fa-chevron-right"> </i> {phones?.body} {phones?.chipset}
               </li>
             </ul>
-          </div>
-          <div className="col-md-3 border-start d-flex justify-content-center">
+          </div> */}
+          <div className="col-md-6 border-start d-flex justify-content-center">
             <div className="py-3">
+            <h3 style={{ color: "#62599F" }}>{name}-{ram}-{storage}-{camera_pixels} Camera</h3>
               <h5 className="fs-6">
-                Brand:{" "}
-                <span className="fs-5 text-dark fw-bold"> {phones?.brand}</span>
-              </h5>
+                Brand:
+                <span className="fs-5 text-dark fw-bold"> {brand}</span>
+              </h5> <br />
               <Box
                 sx={{
                   "& > legend": { mt: 2 },
@@ -234,40 +285,151 @@ const SingleMobile = () => {
                     precision={0.5}
                     value={Number(phones?.star)}
                     readOnly
-                  />{" "}
-                  {phones?.rating} reviews{" "}
+                  />
+                  {phones?.rating} reviews
                 </Typography>
               </Box>
 
               <h5 className="w-100 py-3">
-                <span className="text-danger fw-bold"> Tk </span>{" "}
-                <span className="fs-1 fw-bold ">{phones?.price}</span> .00
+                <span className="text-danger fw-bold"> Tk </span>
+                <span className="fs-1 fw-bold ">{numberFormat (price).slice(3,-3)}</span> .00
               </h5>
 
-              <button
-                onClick={() => dispatch(addToCart(phones))}
-                className="btn btn-custom rounded-0 w-100 mx-2"
-              >
-                Add to cart
-              </button>
+              <button onClick={() => dispatch(addToCart(phones))} className="btn btn-custom rounded w-100 mx-2"> Add to cart </button>
               <br />
               <br />
 
               <button
                 onClick={() => dispatch(addToFvrt(phones))}
-                className="btn btn-custom-2 rounded-0 w-100 mx-2"
+                className="btn btn-custom-2 rounded w-100 mx-2"
               >
-                {" "}
+                
                 <i title="Add to Favourite" className="far fa-heart"></i> Add to
-                wishlist{" "}
+                wishlist
               </button>
             </div>
           </div>
           {/* <div className="py-5">
               <h6 style={{textAlign: "justify"}}> <span style={{color:"#eb5525"}} className='fw-bold fs-5'> Disclaimer : </span> The actual color of the physical product may slightly vary due to the deviation of lighting sources, photography or your device display settings. Delivery charges may vary as per the location, Product Size and Weight; we will notify before proceeding the delivery.</h6>
           </div> */}
-          <div className="py-4">
-            <p>Ratings & Reviews of {phones?.name}</p>
+
+
+
+<Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label="Description" {...a11yProps(0)} />
+          <Tab label="Reviews" {...a11yProps(1)} />
+          <Tab label="FAQ" {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+      <TabPanel value={value} index={0}>
+        <div>
+          <small>Specification of <span className="text-primary fs-5">{name}</span></small> <br /> <br />
+          <div>
+          <h6>Network :</h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Technology : {phones?.specifications?.Technology}</li>
+            <li>2G : {phones?.specifications?.TwoG}</li>
+            <li>3G : {phones?.specifications?.ThreeG}</li>
+            <li>4G : {phones?.specifications?.FourG}</li>
+            <li>5G : {phones?.specifications?.FiveG}</li>
+            <li>Speed : {phones?.specifications?.Speed}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Launch :</h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Announced : {phones?.specifications?.Announced}</li>
+            <li>Launch : {released_at}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Body :</h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Dimensions : {phones?.specifications?.Dimensions}</li>
+            <li>Body : {body}</li>
+            <li>Body Weight : {phones?.specifications?.Weight}</li>
+            <li>SIM : {phones?.specifications?.SIM}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Display : </h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Size : {phones?.specifications?.Size}</li>
+            <li>Resolution : {phones?.specifications?.Resolution}</li>
+            <li>Protection : {phones?.specifications?.Protection}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Platform : </h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>OS : {phones?.specifications?.OS}</li>
+            <li>OS Version: {phones?.specifications?.Chipset}</li>
+            <li>CPU : {phones?.specifications?.CPU}</li>
+            <li>GPU : {phones?.specifications?.GPU}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Mrmory : </h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Ram : {ram}</li>
+            <li>Memory : {storage}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Camera : </h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Primary : {phones?.specifications?.Dual}</li>
+            <li>Secondary : {phones?.specifications?.Single}</li>
+            <li>Video : {phones?.specifications?.Video}</li>
+            <li>Flash : {phones?.specifications?.Features}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Connectivity : </h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Wi-Fi : {phones?.specifications?.WLAN}</li>
+            <li>Bluetooth : {phones?.specifications?.Bluetooth}</li>
+            <li>GPS : {phones?.specifications?.GPS}</li>
+            <li>USB : {phones?.specifications?.USB}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Features : </h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Sensors : {phones?.specifications?.Sensors}</li>
+            <li>Radio : {phones?.specifications?.Radio}</li>
+            <li>NFC : {phones?.specifications?.NFC}</li>
+            <li>Loudspeaker : {phones?.specifications?.Loudspeaker}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Battery : </h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Battery : {phones?.specifications?.Type}</li>
+            <li>Charging : {phones?.specifications?.Charging}</li>
+            <li>Lasting : {phones?.specifications?.BatteryLife}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Colors : </h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Colors : {phones?.specifications?.Colors}</li>
+          </ul>
+        </div>
+        <div>
+          <h6>Models : </h6>
+          <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
+            <li>Models : {phones?.specifications?.Models}</li>
+          </ul>
+        </div>
+        </div>
+       
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+         <div className="py-4">
+            <p>Ratings & Reviews of {name}</p>
             <div className="row">
               <div className="col-md-7 col-sm-12">
                 <div className="d-flex justify-content-evenly">
@@ -281,7 +443,7 @@ const SingleMobile = () => {
                       value={Number(avg)}
                       precision={0.1}
                       readOnly
-                    />{" "}
+                    />
                     <br />
                     <small>{filterReview?.length} Ratings</small>
                   </div>
@@ -294,7 +456,7 @@ const SingleMobile = () => {
                         value={Number(avg5star)}
                         precision={1}
                         readOnly
-                      />{" "}
+                      />
                       <span> ({starV?.length})</span>
                       <br />
                       <Rating
@@ -303,7 +465,7 @@ const SingleMobile = () => {
                         value={Number(avg4star)}
                         precision={0.1}
                         readOnly
-                      />{" "}
+                      />
                       <span> ({starIV?.length})</span>
                       <br />
                       <Rating
@@ -312,7 +474,7 @@ const SingleMobile = () => {
                         value={Number(avg3star)}
                         precision={0.1}
                         readOnly
-                      />{" "}
+                      />
                       <span> ({star3?.length})</span>
                       <br />
                       <Rating
@@ -321,7 +483,7 @@ const SingleMobile = () => {
                         value={Number(avg2star)}
                         precision={0.1}
                         readOnly
-                      />{" "}
+                      />
                       <span> ({star2?.length})</span>
                       <br />
                       <Rating
@@ -330,7 +492,7 @@ const SingleMobile = () => {
                         value={Number(avgIstar)}
                         precision={0.1}
                         readOnly
-                      />{" "}
+                      />
                       <span> ({starI?.length})</span>
                     </h4>
                   </div>
@@ -341,10 +503,10 @@ const SingleMobile = () => {
                 </div>
             </div>
           </div>
-      <div className="py-3">
-        <h4 className="py-3"> {phones?.name} Reviews</h4>
+          <div className="py-3">
+        <h4 className="py-3"> {name} Reviews</h4>
         <div>
-          {filterReview?.slice(0, 5).map((review) => (
+          {filterReview?.map((review) => (
             <div key={review?._id}>
               <ul className="list-group">
                 <li className="list-group-item d-md-flex justify-content-between align-items-center">
@@ -383,6 +545,15 @@ const SingleMobile = () => {
         </div>
         
       </div>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <h5>Coming Soon...</h5>
+      </TabPanel>
+    </Box>
+
+
+         
+      
         </div>
       </div>
       {/* <div className="py-1 rounded">
@@ -411,88 +582,39 @@ const SingleMobile = () => {
       {relatedPd?.length ? (
         <div className="container pb-5">
           <h2 className="text-center fw-bold">
-            {" "}
+            
             <span style={{ color: "#eb5525" }} className="border-bottom">
               Related Mobiles
-            </span>{" "}
+            </span>
           </h2>
-          <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
+          <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
             {relatedPd?.map((related) => (
               <div key={related?._id}>
                 <div className="col rounded text-center">
-                  <div className="card card-hover shadow h-100">
-                    <div className="row flex-row-reverse px-3 py-2 g-0">
-                      <div className="col-md-4">
-                        <img
-                          style={{ height: "12rem" }}
-                          src={related?.image}
-                          className="img-fluid rounded-start"
-                          alt=""
-                        />
-                        <p>
-                          Tk:{" "}
-                          <span className="text-danger fw-bold">
-                            {related?.price}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="col-md-8">
-                        <h5 className="text-dark pt-1">{related?.name}</h5>
-                        <Box
-                          sx={{
-                            "& > legend": { mt: 2 },
-                          }}
-                        >
-                          <Rating
-                            name="half-rating-read"
-                            precision={0.5}
-                            size="small"
-                            value={Number(related?.star)}
-                            readOnly
-                          />
-                        </Box>
-                        <div style={{ textAlign: "justify" }} className="p-2">
-                          <p className="text-secondary">{related?.specs}</p>
-                        </div>
-                        <div className="text-center d-flex justify-content-center alighn-items-center">
-                          <Link to={`/mobile/${related?._id}`}>
-                            {" "}
-                            <button className="btn btn-outline-dark border-0 mx-2 rounded-circle">
-                              {" "}
-                              <i
-                                title="Details"
-                                className="fas fa-info-circle fs-4 py-1"
-                              ></i>{" "}
-                            </button>{" "}
-                          </Link>
+                <div className="card border-0 shadow-sm h-100">
+                   
+                   <div className='card-hover rounded py-3'>
+                          <div>  
+                           <Link style={{textDecoration:"none"}} to={`/mobile/${related?._id}`}>
+                             <img style={{ height: "10rem" }} src={related?.image} className="img-fluid rounded-start" alt="" />
+                           <h6 className="text-dark pt-1">{related?.name}</h6>
+                           <div style={{ textAlign: "center" }} className="px-2">
+                               <p className="text-secondary">{related?.ram} {related?.storage} | {related?.chipset}</p>
+                               <p style={{color:"#eb5525",fontWeight:"bolder"}}>{numberFormat(price).slice(3,-3) }Tk</p>
+                           </div> 
+                           </Link>
+                          </div>  
+                       </div>
+                       <div>
+                           <div className="d-flex justify-content-evenly">
+                           <button onClick={() => dispatch(addToCart(related))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button>
 
-                          <button
-                            onClick={() => dispatch(addToCart(related))}
-                            className="btn btn-outline-dark border-0 mx-2 rounded-circle"
-                          >
-                            {" "}
-                            <i
-                              title="Add to Cart"
-                              className="fas fa-cart-plus fs-4 py-1"
-                            ></i>{" "}
-                          </button>
+                          <button onClick={() => dispatch(addToFvrt(related))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/> </button>
 
-                          <div>
-                            <button
-                              onClick={() => dispatch(addToFvrt(related))}
-                              className="btn btn-outline-dark border-0 mx-2 rounded-circle"
-                            >
-                              {" "}
-                              <i
-                                title="Add To Favourite"
-                                className="far fa-heart fs-4 py-1"
-                              ></i>{" "}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                          <button onClick={() => dispatch(addToCompare(related))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows title="Add to Compare" className='fs-3 p-1'/></button>
+                           </div>
+                       </div>
+               </div>
                 </div>
               </div>
             ))}

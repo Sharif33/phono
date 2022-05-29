@@ -131,7 +131,7 @@ const Header = () => {
                                                   </li>
           
                                                   <li className=" dropdown-item">
-                                                  <small className="text-center">Profile</small>
+                                                  <NavLink  className='text-dark' style={{textDecoration:'none',cursor:"pointer",color:"white"}} to="/dashboard/user"><small>Profile</small></NavLink>
                                                   </li>
           
                                                   <li className=" dropdown-item ">

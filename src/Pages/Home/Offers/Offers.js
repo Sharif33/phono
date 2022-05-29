@@ -45,7 +45,27 @@ const Offers = () => {
 
     return (
         <div className="container-fluid">
-            <div className="row">
+            <div className="row pt-4 flex-sm-row-reverse m-auto"> 
+            <h1 className='fw-bold text-center py-3'>Limited Time <span className='text-primary'>Offer</span></h1>
+                  {/* offer */}
+                <div className="col-md-9 col-sm-12">
+                   
+            <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
+                    {
+                        seeMore?.map(offer => <Offer
+                            key={offer._id}
+                            offer={offer}
+                        />)
+                    }
+                </div>
+                <div className="text-center">
+                    {
+                        seeMore?.length < next ? "No more offer" : <button className='btn border-0 text-danger bg-transparent' onClick={handleShowMorePosts}>See more</button>
+                    }
+                     
+                </div>
+                  
+                </div>
                 {/*  */}
                 <div className="col-md-3 mx-auto">
                    
@@ -71,25 +91,7 @@ const Offers = () => {
                 </div>
                 </div>
 
-                {/* offer */}
-                <div className="col-md-9">
-                    <h1 className='fw-bold text-center'>Limited Time <span className='text-primary'>Offer</span></h1>
-            <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
-                    {
-                        seeMore?.map(offer => <Offer
-                            key={offer._id}
-                            offer={offer}
-                        />)
-                    }
-                </div>
-                <div className="text-center">
-                    {
-                        seeMore?.length < next ? "No more offer" : <button className='btn border-0 text-danger bg-transparent' onClick={handleShowMorePosts}>See more</button>
-                    }
-                     
-                </div>
-                  
-                </div>
+              
             </div>
             
         </div> 

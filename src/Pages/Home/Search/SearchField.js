@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Header from '../../../Shared/Header/Header';
 import Mobile from '../Mobiles/Mobile';
+import {Helmet} from "react-helmet";
 
 const SearchField = () => {
     const [categories, setCategories] = useState([]);
@@ -32,6 +33,11 @@ const SearchField = () => {
 }
     return (
         <div>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | Search</title>
+                <link rel="canonical" href="/search" />
+            </Helmet>
             <Header/>
              <div className="container">
                    

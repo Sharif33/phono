@@ -5,6 +5,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
+import {Helmet} from "react-helmet";
 
 const Register = () => {
     const [loginData, setLoginData] = useState({});
@@ -33,6 +34,11 @@ const Register = () => {
     }
     return (
         <>
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | Register</title>
+                <link rel="canonical" href="/register" />
+            </Helmet>
             <Header></Header>
             <Container>
                 <Grid container sx={{ my: 4 }}>

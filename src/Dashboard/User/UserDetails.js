@@ -1,11 +1,15 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import useOrders from '../../Hooks/useOrders/useOrders';
+import EditUser from '../User/EditUser'
 
 const UserDetails = () => {
     const{user} = useAuth();
     const [orders] = useOrders();
-    console.log(user);
+    // console.log(user);
+    const [openUserNow, setOpenUserNow] = React.useState(false);
+    const handleOpen = () => setOpenUserNow(true);
+    const handleClose = () => setOpenUserNow(false);
     return (
         <div>
             <div className='row m-md-2 g-4'>
@@ -38,7 +42,7 @@ const UserDetails = () => {
             </li>
 
             </ul> <br />
-                        <button className="btn btn-custom">Update Profile</button>
+                        <button onClick={handleOpen} className="btn btn-custom">Update Profile</button>
                     </div>
                 </div>
             </div>
@@ -53,13 +57,17 @@ const UserDetails = () => {
                         </div>
                     </div>
                     <div className="col-md-6 rounded p-2">
-                        <div className="w-100 bg-cart text-center p-2">
-                            <h1>+</h1>
+                        <div onClick={handleOpen} className="w-100 bg-cart text-center p-2">
+                            <h1> + </h1>
                             <p>Add New Address</p>
                         </div>
                     </div>
                     
                 </div>
+               <EditUser
+               openUserNow={openUserNow}
+               handleClose={handleClose}
+               ></EditUser>
     </div>
     );
 };

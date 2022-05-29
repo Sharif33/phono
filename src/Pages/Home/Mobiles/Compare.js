@@ -3,12 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Header from '../../../Shared/Header/Header';
 import { removeFromCompare } from '../../../Redux/slices/compareSlice';
+import {Helmet} from "react-helmet";
 
 const Compare = () => {
     const dispatch = useDispatch();
     const {addToCompare} = useSelector((state) => state.compare);
     return (
         <div>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | Compare</title>
+                <link rel="canonical" href="/compare" />
+            </Helmet>
             <Header/>
             <div className='container'>
                 <div className="row pt-5">

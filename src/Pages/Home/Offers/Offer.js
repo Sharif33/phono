@@ -15,7 +15,7 @@ const Offer = ({offer}) => {
     return (
         <div>
         <div className="col rounded text-center">
-            <div className="card pb-3 border-0 shadow-sm h-100">
+            <div className="card pb-3 border-0 h-100">
                
                 <div className='card-hover rounded py-3'>
                   

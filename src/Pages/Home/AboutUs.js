@@ -3,10 +3,17 @@ import "./AboutUs.css";
 import about from "../../images/about.jpg";
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
+import {Helmet} from "react-helmet";
+
 
 const AboutUs = () => {
     return (
         <div>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | About us</title>
+                <link rel="canonical" href="/about" />
+            </Helmet>
              <Header />
            <div style={{paddingTop:"70px"}} className='bg-about text-light'>
                 <div className='container py-5'>

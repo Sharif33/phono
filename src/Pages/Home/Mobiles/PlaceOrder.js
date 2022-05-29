@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import useOrders from "../../../Hooks/useOrders/useOrders";
+import {Helmet} from "react-helmet";
 
 const PlaceOrder = () => {
   const { user } = useAuth();
@@ -70,8 +71,14 @@ const PlaceOrder = () => {
   };
 
   return (
+    <>
+    <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | Cart : Place Order</title>
+                <link rel="canonical" href="/placeOrder" />
+            </Helmet>
+    <Header />
     <div style={{ backgroundColor: "#EEF2FF" }}>
-      <Header />
       <div className="container">
         <div className="row">
           <div className="col-md-6 col-sm-12">
@@ -228,6 +235,8 @@ const PlaceOrder = () => {
       </div>
       <Footer />
     </div>
+    </>
+    
   );
 };
 

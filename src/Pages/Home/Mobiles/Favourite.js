@@ -10,6 +10,7 @@ import { addToCart } from '../../../Redux/slices/cartSlice';
 // import { addToFvrt } from '../../../Redux/slices/fvrtSlice';
 import { removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
 import Footer from '../../../Shared/Footer/Footer';
+import {Helmet} from "react-helmet";
 // import BuyMobile from './BuyMobile';
 
 const Favourite = () => {
@@ -17,6 +18,11 @@ const Favourite = () => {
     const dispatch = useDispatch();
     return (
        <div style={{paddingTop:"70px"}}>
+           <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | Wishlist</title>
+                <link rel="canonical" href="/fvrt" />
+            </Helmet>
           
            <Header/>
            

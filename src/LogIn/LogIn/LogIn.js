@@ -5,7 +5,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';import {Helmet} from "react-helmet";
 
 const LogIn = () => {
     const [loginData, setLoginData] = useState({});
@@ -31,6 +31,11 @@ const LogIn = () => {
     }
     return (
         <>
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>Phono | Log in</title>
+                <link rel="canonical" href="/login" />
+            </Helmet>
 <Header/>
             <div style={{paddingTop:"65px"}}>
 

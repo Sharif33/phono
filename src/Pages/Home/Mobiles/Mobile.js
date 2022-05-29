@@ -1,5 +1,5 @@
-import { Rating } from '@mui/material';
-import { Box } from '@mui/system';
+// import { Rating } from '@mui/material';
+// import { Box } from '@mui/system';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -26,7 +26,7 @@ const Mobile = ({ mobile}) => {
     return (
         <div>
             <div className="col rounded text-center">
-                <div className="card pb-3 border-0 shadow-sm h-100">
+                <div className="card pb-3 border-0 custom-shadow h-100">
                    
                     <div className='card-hover rounded py-3'>
                       
