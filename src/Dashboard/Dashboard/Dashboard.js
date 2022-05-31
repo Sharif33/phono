@@ -81,7 +81,7 @@ function Dashboard(props) {
                 <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/myOrders`}> <span className='me-2'><FeedIcon /></span> Orders History</NavLink>
             </List>
             <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/user`}> <span className='me-2'><PersonIcon /></span> Manage Profile</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`user`}> <span className='me-2'><PersonIcon /></span> Manage Profile</NavLink>
             </List>
                 </Box>
             }

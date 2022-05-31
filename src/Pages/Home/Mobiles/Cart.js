@@ -8,7 +8,6 @@ import Header from '../../../Shared/Header/Header';
 // import Mobile from './Mobile';
 import { Link } from 'react-router-dom';
 import Footer from '../../../Shared/Footer/Footer';
-import emptyBag from '../../../images/emptyShoppingBag.webp';
 import { numberFormat } from '../../../Shared/numberFormat';
 import {Helmet} from "react-helmet";
 
@@ -17,7 +16,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const {addToCart, cartTotal, cartTotalQuantity, shipping, tax} = useSelector((state) => state.cart);
     useEffect(() => {
-        if (addToCart.length >= 0 || addToCart.length == 0) {
+        if (addToCart.length >= 0 || addToCart.length === 0) {
             dispatch(getTotal());
         }
     }, [addToCart, dispatch]);
@@ -146,9 +145,13 @@ const Cart = () => {
         </div>
         : 
         <div className='text-center my-5 pt-5'>
-            <img src={emptyBag} alt="" className="img-fluid p-3" /> <br /> <br />
-            <h3>Your shopping cart is empty, Please add some products before you checkout.</h3> 
-            <Link to={`/`}><button className="btn btn-lg btn-custom">Start shopping now</button></Link>
+            {/* <img src={emptyBag} alt="" className="img-fluid p-3" /> <br /> <br /> */}
+            <div className="d-flex justify-content-center p-3">
+             <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_3VDN1k.json"  background="transparent"  speed="4"  style={{width:"20rem"}}  loop  autoplay></lottie-player>   
+            </div>
+            
+            <h4>Your shopping bag is empty, Please add some products before you checkout.</h4> <br />
+            <Link to={`/mobiles`}><button className="btn btn-lg btn-custom-2">Start shopping now</button></Link>
             
         </div>
            }

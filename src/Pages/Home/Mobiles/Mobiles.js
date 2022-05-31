@@ -2,19 +2,19 @@
 import { CircularProgress } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useCart from '../../../Hooks/useCart/useCart';
+// import useCart from '../../../Hooks/useCart/useCart';
 import usePhones from '../../../Hooks/usePhones/usePhones';
-import { addToDb } from '../../../utilities/fakedb';
+// import { addToDb } from '../../../utilities/fakedb';
 import Mobile from './Mobile';
 
 const Mobiles = () => {
-    const [mobiles,cart,setCart] = usePhones();
+    const [mobiles] = usePhones();
 
-    const [addCart, setAddCart] = useCart();
+    // const [addCart, setAddCart] = useCart();
 
 
     
-    const handleAddToCart = (mobile) => {
+   /*  const handleAddToCart = (mobile) => {
         const exists = addCart.find(pd => pd.key === mobile.key);
         let newCart = [];
         if (exists) {
@@ -30,7 +30,7 @@ const Mobiles = () => {
         // save to local storage (for now)
         addToDb(mobile.key);
 
-    }
+    } */
     return (
         <div className=''>
             <div className="container">
@@ -47,9 +47,9 @@ const Mobiles = () => {
                         mobiles.slice(0, 16).map(mobile => <Mobile
                             key={mobile._id}
                             mobile={mobile}
-                            cart ={cart}
+                            /* cart ={cart}
                             setCart={setCart}
-                            handleAddToCart={handleAddToCart}
+                            handleAddToCart={handleAddToCart} */
                         />)
                     }
                 </div>

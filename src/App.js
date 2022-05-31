@@ -39,60 +39,70 @@ import { handelRightClick } from "./Shared/RightClick";
 
 function App() {
   document.addEventListener('contextmenu', handelRightClick);
+  const [spinner, setSpinner] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => setSpinner(false), 1500)
+  }, []);
   return (
     <div>
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="contact" element={<ContactUs />} />
-          <Route path="about" element={<AboutUs />} />
-          <Route path="search" element={<SearchField/>} />
-          <Route path="login" element={<LogIn />} />
-          <Route path="register" element={<Register />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="compare" element={<Compare />} />
-          <Route path="placeOrder" element={<PrivateRoute>
-            <PlaceOrder />
-          </PrivateRoute>} />
-          <Route path="fvrt" element={<Favourite />} />
-          <Route path="mobiles" element={<ExploreMobiles />} />
-          <Route path="mobile/:id" element={<PrivateRoute>
-            <SingleMobile />
-          </PrivateRoute>} />
-          <Route path="mobile2/:id" element={<PrivateRoute>
-            <SpecialDetails/>
-          </PrivateRoute>} />
-        <Route path="dashboard" element={<PrivateRoute>
+      {
+        spinner ? <div className="loader">
+          <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_cyrvih26.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
+          <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_8sjqrjby.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
+        </div> : 
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="home" element={<Home />} />
+            <Route path="contact" element={<ContactUs />} />
+            <Route path="about" element={<AboutUs />} />
+            <Route path="search" element={<SearchField />} />
+            <Route path="login" element={<LogIn />} />
+            <Route path="register" element={<Register />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="compare" element={<Compare />} />
+            <Route path="placeOrder" element={<PrivateRoute>
+              <PlaceOrder />
+            </PrivateRoute>} />
+            <Route path="fvrt" element={<Favourite />} />
+            <Route path="mobiles" element={<ExploreMobiles />} />
+            <Route path="mobile/:id" element={<PrivateRoute>
+              <SingleMobile />
+            </PrivateRoute>} />
+            <Route path="mobile2/:id" element={<PrivateRoute>
+              <SpecialDetails />
+            </PrivateRoute>} />
+            <Route path="dashboard" element={<PrivateRoute>
               <Dashboard />
             </PrivateRoute>}>
-            <Route path={`/dashboard/myOrders`} element={<PrivateRoute>
-               <MyOrders></MyOrders>
+              <Route path={`/dashboard/myOrders`} element={<PrivateRoute>
+                <MyOrders></MyOrders>
               </PrivateRoute>}>
 
                 <Route path={`/dashboard/myOrders/:id`} element={<PrivateRoute>
-                <MyOrderDetails></MyOrderDetails>
+                  <MyOrderDetails></MyOrderDetails>
                 </PrivateRoute>}>
                 </Route>
               </Route>
 
-            <Route path={`/dashboard/pay/:id`} element={<PrivateRoute>
-               <Payment></Payment>
+              <Route path={`/dashboard/pay/:id`} element={<PrivateRoute>
+                <Payment></Payment>
               </PrivateRoute>}>
               </Route>
-            <Route path={`/dashboard/user`} element={<PrivateRoute>
-               <UserDetails/>
+              <Route path={`user`} element={<PrivateRoute>
+                <UserDetails />
               </PrivateRoute>}>
               </Route>
-            <Route path={`/dashboard/user/:id`} element={<PrivateRoute>
-               <EditUser/>
+              <Route path={`/dashboard/user/:id`} element={<PrivateRoute>
+                <EditUser />
               </PrivateRoute>}>
               </Route>
-            <Route path={`/dashboard/review`} element={<PrivateRoute>
-               <Review></Review>
+              <Route path={`/dashboard/review`} element={<PrivateRoute>
+                <Review></Review>
               </PrivateRoute>}>
               </Route>
-               <Route index element={<PrivateRoute>
+              <Route index element={<PrivateRoute>
                 <DashboardHome></DashboardHome>
               </PrivateRoute>} />
               <Route path={`/dashboard/manageOrder`} element={<AdminRoute>
@@ -106,18 +116,21 @@ function App() {
               <Route path={`/dashboard/addMobile`} element={<AdminRoute>
                 <AddMobile></AddMobile>
               </AdminRoute>}>
-                </Route>
+              </Route>
               <Route path={`/dashboard/manageProducts/:id`} element={<AdminRoute>
                 <EditMobile></EditMobile>
               </AdminRoute>}>
-                </Route>
+              </Route>
               <Route path={`/dashboard/manageProducts`} element={<AdminRoute>
                 <ManageProducts></ManageProducts>
               </AdminRoute>}>
               </Route>
-        </Route>
-        </Routes>
-      </AuthProvider>
+            </Route>
+          </Routes>
+        </AuthProvider>
+
+      }
+
     </div>
   );
 }

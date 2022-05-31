@@ -17,7 +17,7 @@ const Favourite = () => {
     const {addToFvrt} = useSelector((state) => state.fvrt);
     const dispatch = useDispatch();
     return (
-       <div style={{paddingTop:"70px"}}>
+       <div>
            <Helmet>
                 <meta charSet="utf-8" />
                 <title>Phono | Wishlist</title>
@@ -25,8 +25,8 @@ const Favourite = () => {
             </Helmet>
           
            <Header/>
-           
-           <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
+        {
+            addToFvrt?.length ?<div className="row row-cols-1 row-cols-md-3 m-2 g-4">
            {
                addToFvrt?.map((mobile)=>(
                   <div key={mobile?.id}>
@@ -82,7 +82,15 @@ const Favourite = () => {
                   </div> 
                ))
            }
+           </div> : <div className='text-center my-5'>
+            <div className='d-flex justify-content-center'>
+           <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_gctc76jz.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
            </div>
+           <h4>Your wishlist is empty, Please add some products.</h4> <br />
+            <Link to={`/mobiles`}><button className="btn btn-lg btn-custom-2">Start shopping now</button></Link>
+           </div> 
+        }
+           
            
            {/* <div style={{paddingTop:"70px"}}>
                <h1>{cart.length}</h1>
