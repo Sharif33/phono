@@ -1,7 +1,7 @@
 import { Box, Rating, Typography } from "@mui/material";
 // import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { MdInfo, MdVisibility, MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder } from "react-icons/md";
+import { MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder } from "react-icons/md";
 // import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 // import Swal from "sweetalert2";

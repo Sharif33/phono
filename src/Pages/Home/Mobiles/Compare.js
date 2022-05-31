@@ -16,48 +16,33 @@ const Compare = () => {
                 <link rel="canonical" href="/compare" />
             </Helmet>
             <Header/>
-            <div className='container'>
-                <div className="row pt-5">
-                    {/* <div className="col-md-2 g-0">
-                        <ul>
-                            <li className='border p-3'>Image</li>
-                            <li className='border p-3'>Name</li>
-                            <li className='border p-3'>Brand</li>
-                            <li className='border p-3'>Price</li>
-                            <li className='border p-3'>Rating</li>
-                            <li className='border p-3'>Reviews</li>
-                            <li className='border p-3'>Processor</li>
-                            <li className='border p-3'>Memory</li>
-                            <li className='border p-4'>Display</li>
-                            <li className='border p-4'>Battery</li>
-                            <li className='border p-3'>Camera</li>
-                            <li className='border p-3'>Front Camera</li>
-                            <li className='border p-3'>Network</li>
-                            <li className='border p-3'>Action</li>
-                        </ul>
-                    </div> */}
-                    <div className="col-md-10 m-auto g-0">
-                        <div className="row row-cols-md-2 g-0">
+            <div className='container py-5'>
+                        <div className="row row-cols-md-2 row-cols-2">
                             {
                                 addToCompare?.map((item)=>(
-                                    <div key={item?._id} className="col d-flex">
+                                    <div key={item?._id} className="col">
                                         <ul>
+                                            
                                             <li className='border p-1'>
-                                            <Link title='See Details' to={`/mobile/${item?._id}`}> <img style={{width:"5rem"}} className='img-fluid' src={item?.image} alt="" />
+                                            {
+                                            item?.os ? <Link title='See Details' to={`/mobile/${item?._id}`}> <img style={{width:"5rem"}} className='img-fluid' src={item?.image} alt="" />
+                                            </Link> :
+                                            <Link title='See Details' to={`/mobile2/${item?._id}`}> <img style={{width:"5rem"}} className='img-fluid' src={item?.image} alt="" />
                                             </Link>
+                                            }
                                             </li>
                                             <li className='border p-3'>{item?.name}</li>
                                             <li className='border p-3'>{item?.brand}</li>
                                             <li className='border p-3'>{item?.price}</li>
                                             <li className='border p-3'>{item?.star}</li>
                                             <li className='border p-3'>{item?.rating}</li>
-                                            <li className='border p-3'>{item?.processor}</li>
-                                            <li className='border p-3'>{item?.memory}</li>
-                                            <li className='border p-3'>{item?.display}</li>
-                                            <li className='border p-3'>{item?.battery}</li>
-                                            <li className='border p-3'>{item?.camera}</li>
-                                            <li className='border p-3'>{item?.selfie}</li>
-                                            <li className='border p-3'>{item?.network}</li>
+                                            <li className='border p-3'>{item?.processor ? item.processor : item?.os}</li>
+                                            <li className='border p-3'>{item?.memory ? item.memory : item?.storage} , {!item?.memory && item?.ram  }</li>
+                                            <li className='border p-3'> {!item?.display && item?.display_size} | {item?.display ? item.display : item?.display_resolution}</li>
+                                            <li className='border p-3'>{item?.battery ? item.battery : item?.battery_size} {!item?.battery && item?.battery_type}</li>
+                                            <li className='border p-3'>{item?.camera ? item.camera : item?.camera_pixels}</li>
+                                            <li className='border p-3'>{item?.selfie ? item.selfie : item?.specifications?.single}</li>
+                                            <li className='border p-3'>{item?.network ? item.network : item?.specifications?.speed}</li>
                                             <li className='border p-3'>
                                                 <button onClick={()=>dispatch((removeFromCompare(item)))} className="btn btn-danger border-0 rounded-0">Remove</button>
                                             </li>
@@ -65,10 +50,7 @@ const Compare = () => {
                                     </div>
                                 ))
                             }
-                        </div>
-                    </div>
-                </div>
-                
+                        </div>        
             </div>
         </div>
     );

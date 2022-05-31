@@ -53,11 +53,13 @@ const Mobile = ({ mobile}) => {
                                 <p className="text-secondary">{ram} {storage} | {chipset}</p>
                                 <p style={{color:"#eb5525",fontWeight:"bolder"}}>{numberFormat(price).slice(3,-3) }Tk</p>
                             </div>
-                            <div className="text-center d-flex justify-content-center alighn-items-center">
+                            <div className="d-flex justify-content-evenly">
 
-                        <Link to={`/mobile/${_id}`}> <button className='btn btn-cart rounded mx-1'><MdInfo className='fs-5'/></button> </Link>
-                        <button onClick={handleOpen} className='btn btn-cart rounded mx-1'><MdVisibility className='fs-5'/></button>
-                        <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart rounded mx-1'><MdOutlineCompareArrows className='fs-5'/></button>
+                        <Link to={`/mobile/${_id}`}> <button className='btn btn-cart border-0 my-2 rounded'><MdInfo className='fs-3 p-1'/></button> </Link>
+
+                        <button onClick={handleOpen} className='btn btn-cart border-0 my-2 rounded'><MdVisibility className='fs-3 p-1'/></button>
+
+                        <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows className='fs-3 p-1'/></button>
                        
 
                         {/* <button onClick={handleOpen} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Order Now' className="fas fa-cart-plus fs-4 py-1"></i> </button> */}

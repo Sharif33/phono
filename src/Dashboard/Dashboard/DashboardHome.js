@@ -9,7 +9,7 @@ import UserDashboard from './UserDashboard';
 // import about from "../../images/about.jpg";
 
 const DashboardHome = () => {
-    const {user, admin}= useAuth();
+    const {admin}= useAuth();
     const [time, setTime] = React.useState(new Date());
 
     React.useEffect(() => {
@@ -84,7 +84,7 @@ const DashboardHome = () => {
             }
 
             {
-                user && <UserDashboard/>
+            !admin && <UserDashboard/>
             }
          
         </div>

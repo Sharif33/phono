@@ -1,11 +1,8 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import Swal from 'sweetalert2';
+import React, { useState } from 'react';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import useAuth from '../../Hooks/useAuth/useAuth';
-import { Alert, Button, TextField } from '@mui/material';
+import { Alert, TextField } from '@mui/material';
 
 const EditUser = ({openUserNow,handleClose}) => {
     const {user} = useAuth();
@@ -65,40 +62,69 @@ const EditUser = ({openUserNow,handleClose}) => {
               >
                   <div className="">
             <div className="rounded">
-                <form  className='pt-5' onSubmit={handleAdminSubmit}>
-                    <TextField style={{width:"100%"}}
-                        sx={{ mb: 2 }}
-                       name="address"
+                <form  className='pt-4' onSubmit={handleAdminSubmit}>
+                <ul className="list-group">
+            <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+                <TextField
+                        sx={{ width:"100%" }}
+                       name="name"
+                       required
                         onBlur={handleGetFieldValues}
-                         label="Your Address" variant="outlined" /> <br />
-                    <TextField
-                        sx={{ mb: 2 }}
-                       name="city"
-                        onBlur={handleGetFieldValues}
-                         label="City" variant="outlined" /> <br />
-                    <TextField
-                        sx={{ mb: 2 }}
-                       name="country"
-                        onBlur={handleGetFieldValues}
-                         label="Country" variant="outlined" /> <br />
-                    <TextField
-                        sx={{ mb: 2 }}
-                       name="zip"
-                        onBlur={handleGetFieldValues}
-                         label="Postal code" variant="outlined" /> <br />
-                    <TextField
-                        sx={{ mb: 2 }}
+                         label="Your Name" variant="outlined" />
+                         <span >
+                         <select className='p-3 ms-2 rounded' onBlur={handleGetFieldValues} name="gender">
+                        <option>Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                        </select>
+                        {/* <TextField 
+                        sx={{ ml: 1 }}
                        name="gender"
                         onBlur={handleGetFieldValues}
-                         label="Gender" variant="outlined" /> <br />
-                    <TextField
-                        sx={{ mb: 2 }}
-                       name="phone"
+                         label="Gender" variant="outlined" />  */}
+                         </span>
+                
+            </li>
+            <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+            <TextField 
+                       sx={{ width:"100%" }}
+                       name="address"
                         onBlur={handleGetFieldValues}
-                         label="Phone Number" variant="outlined" /> <br />
-                    <Button sx={{ m: 'auto' }} type="submit" variant="contained">Save</Button>
+                         label="Your Address" variant="outlined" />
+            </li>
+            <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+            <TextField
+                       sx={{ width:"100%" }}
+                       name="city"
+                        onBlur={handleGetFieldValues}
+                         label="City" variant="outlined" /> 
+            <span> <TextField
+                        sx={{ ml:1 }}
+                       name="zip"
+                        onBlur={handleGetFieldValues}
+                         label="Postal code" variant="outlined" /></span>
+            </li>
+            <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+            <TextField
+                        sx={{ width:"100%" }}
+                       name="country"
+                        onBlur={handleGetFieldValues}
+                         label="Country" variant="outlined" /> 
+            </li>
+            <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+            <TextField
+                        sx={{mb:2, width:"100%" }}
+                       name="phone"
+                       required
+                        onBlur={handleGetFieldValues}
+                         label="Phone Number" variant="outlined" />
+            </li>
+            
+            </ul>  
+                 <button className='ms-3 btn btn-cart' type="submit">Save</button>
                 </form>
-                {success && <Alert severity="success">Update successfully!</Alert>}
+                {success && <Alert severity="success">Added successfully!</Alert>}
             </div>
         </div>
 

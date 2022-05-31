@@ -5,9 +5,10 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../../Redux/slices/cartSlice';
 import { addToFvrt } from '../../../Redux/slices/fvrtSlice';
-import { MdAddShoppingCart, MdOutlineFavoriteBorder } from "react-icons/md";
+import { MdAddShoppingCart, MdOutlineFavoriteBorder,MdOutlineCompareArrows } from "react-icons/md";
 import CountdownTimer from '../../Countdown/CountdownTimer';
 import { numberFormat } from '../../../Shared/numberFormat';
+import { addToCompare } from '../../../Redux/slices/compareSlice';
 
 const Offer = ({offer}) => {
     const { _id, star, name,price, image, offerTill } = offer;
@@ -24,9 +25,11 @@ const Offer = ({offer}) => {
                             <p className='bg-primary p-1 text-light badge'>10% OFF</p>
                         </div> 
                         <div className="card-btns">
-                       <button onClick={() => dispatch(addToCart(offer))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> <br />
+                       <button onClick={() => dispatch(addToCart(offer))} className='btn btn-cart border-0 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> <br />
 
-                        <button onClick={() => dispatch(addToFvrt(offer))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/> </button>
+                        <button onClick={() => dispatch(addToFvrt(offer))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/> </button> <br />
+
+                        <button onClick={() => dispatch(addToCompare(offer))} className='btn btn-cart border-0 rounded'><MdOutlineCompareArrows className='fs-3 p-1'/></button>
 
                        </div>
                        <img style={{ height: "10rem" }} src={image} className="img-fluid rounded-start" alt="" />

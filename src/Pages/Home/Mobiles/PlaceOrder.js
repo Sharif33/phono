@@ -108,7 +108,7 @@ const PlaceOrder = () => {
                         {...register("address", { required: true })}
                       />
                       <input
-                        placeholder="Area"
+                        placeholder="City"
                         {...register("city", { required: true })}
                       />
                       <input
@@ -156,16 +156,23 @@ const PlaceOrder = () => {
                   >
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
-                        {" "}
-                        <Link title="See Details" to={`/mobile/${mobile?._id}`}>
-                          {" "}
-                          <img
+                        {
+                          mobile?.os ? <Link title="See Details" to={`/mobile/${mobile?._id}`}> <img
+                            style={{ width: "3rem" }}
+                            className="img-fluid"
+                            src={mobile?.image}
+                            alt=""
+                          />
+                        </Link>:
+                            <Link title="See Details" to={`/mobile2/${mobile?._id}`}><img
                             style={{ width: "3rem" }}
                             className="img-fluid"
                             src={mobile?.image}
                             alt=""
                           />
                         </Link>
+                        }
+    
                       </div>
                       <div className="px-3 text-center">
                         <p>

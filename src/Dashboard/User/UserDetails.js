@@ -13,15 +13,15 @@ const UserDetails = () => {
     const handleClose = () => setOpenUserNow(false);
     return (
         <div>
-              {
-                users?.map(usrD=>(
-                    <div key={usrD._id}>
-                    <div className='row m-md-2 g-4'>
+        {
+        users?.map(usrD=>(
+            <div key={usrD._id}>
+            <div className='row m-md-2 g-4'>
             <div className="col-sm-12 col-md-12">                     
             <div className="rounded p-2">
-                        <div className='p-2'>
-                            <h5> Basic Info</h5>
-                        </div>
+            <div className='p-2'>
+                <h5> Basic Info</h5>
+            </div>
             <div className='text-start w-100'>
             <ul className="list-group">
             <li className="list-group-item d-flex justify-content-between align-items-center pe-0 py-0 bg-transparent border-0">
@@ -65,7 +65,7 @@ const UserDetails = () => {
                     <div className="col-md-6 rounded p-2">
                         <div onClick={handleOpen} className="w-100 bg-cart text-center p-2">
                             <h1> + </h1>
-                            <p>Add New Address</p>
+                            <p>Add/Edit Address</p>
                         </div>
                     </div>
                     
