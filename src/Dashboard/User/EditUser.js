@@ -3,11 +3,13 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import { Alert, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const EditUser = ({openUserNow,handleClose}) => {
     const {user} = useAuth();
     // const [vendors, setVendors] = useState([]);
     // console.log(vendors);
+    const navigate = useNavigate();
     const [fieldsValue, setFieldsValue] = useState({});
   
     // GET ALL THE VALUES FROM 
@@ -36,11 +38,13 @@ const EditUser = ({openUserNow,handleClose}) => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount) {
-                    // console.log(data);
+                if (data.modifiedCount>0) {
+                    console.log(data);
                     // setVendors(data)
+                    navigate(`/dashboard`);
                     setSuccess(true);
                     handleClose();
+                    
                 }
             })
 
@@ -49,10 +53,14 @@ const EditUser = ({openUserNow,handleClose}) => {
 
     setTimeout(() => {
         setSuccess(false)
-    }, 1000);
+    }, 15000);
    
     return (
         <div>
+            {
+            success && <Alert severity="success">Updated successfully!</Alert>
+           
+            } 
                 <Modal
                 open={openUserNow}
                 onClose={handleClose}
@@ -124,13 +132,14 @@ const EditUser = ({openUserNow,handleClose}) => {
             </ul>  
                  <button className='ms-3 btn btn-cart' type="submit">Save</button>
                 </form>
-                {success && <Alert severity="success">Added successfully!</Alert>}
+                
             </div>
         </div>
 
                 
            
               </Modal>
+             
         </div>
     );
 };

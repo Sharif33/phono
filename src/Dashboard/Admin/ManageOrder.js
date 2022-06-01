@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 
 const ManageOrder = () => {
     const [orders, setOrders] = useState([]);
+    console.log(orders);
     const [status, setStatus] = useState("");
 
     const handleStatus = (e) => {
@@ -127,11 +128,11 @@ const ManageOrder = () => {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                <img className='img-fluid h-50' src={order?.image} alt="" />
+                            <img style={{width:"5rem"}} className='img-fluid' src={order?.image ? order.image : order?.orderItems[0]?.image} alt="" />
                             </TableCell>
-                            <TableCell align="center">{order?.mobile}</TableCell>
+                            <TableCell align="center">{order?.mobile ? order.mobile : order?.orderItems[0]?.name}</TableCell>
                             <TableCell align="center">{order?._id?.slice(0,10)}</TableCell>
-                            <TableCell align="center">{order?.name}</TableCell>
+                            <TableCell align="center">{order?.name  ? order.name : order?.orderBy}</TableCell>
                             <TableCell align="center">{order?.email}</TableCell>
                             <TableCell align="center">{order?.price}&#2547; </TableCell>
                             <TableCell align="center">

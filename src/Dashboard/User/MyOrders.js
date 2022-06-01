@@ -69,7 +69,7 @@ const MyOrders = () => {
               const remainingOrders = orders.filter(
                 (order) => order._id !== id
               );
-              console.log(remainingOrders);
+              // console.log(remainingOrders);
               // console.log(myOrders);
               setOrders(remainingOrders);
             }

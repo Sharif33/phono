@@ -13,12 +13,14 @@ import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import useOrders from "../../../Hooks/useOrders/useOrders";
 import {Helmet} from "react-helmet";
+import useUser from "../../../Hooks/useUser/useUser";
 
 const PlaceOrder = () => {
   const { user } = useAuth();
   const [orders] = useOrders();
+  const [users]= useUser();
   // const userOrder = orders.find(order => order.email === user?.email);
-  console.log(orders[0]?.email);
+  // console.log(orders[0]?.email);
   const dispatch = useDispatch();
   const { addToCart, cartTotal, cartTotalQuantity, shipping, tax } =
     useSelector((state) => state.cart);
@@ -80,7 +82,9 @@ const PlaceOrder = () => {
     <Header />
     <div style={{ backgroundColor: "#EEF2FF" }}>
       <div className="container">
-        <div className="row">
+        {
+          users?.map(usrD=>(
+           <div key={usrD?._id} className="row">
           <div className="col-md-6 col-sm-12">
             <div className="my-5 p-2 bg-light rounded">
               <h4 className="fw-bold">SHIPPING & BILLING INFORMATION</h4>
@@ -93,13 +97,13 @@ const PlaceOrder = () => {
                     {...register("status")}
                   />
                   <input defaultValue={user?.email} readOnly />
-                  <input defaultValue={user?.displayName} readOnly />
+                  <input defaultValue={usrD?.name ? usrD.name : user?.displayName} readOnly />
 
-                  {user?.email === orders[0]?.email ? (
+                  {usrD?.email ? (
                     <div>
-                      <input defaultValue={orders[0]?.address} {...register("address")} readOnly />
-                      <input defaultValue={orders[0]?.city} {...register("city")} readOnly />
-                      <input defaultValue={orders[0]?.phone} {...register("phone")} readOnly />
+                      <input defaultValue={usrD?.address ? usrD.address : orders[0]?.address} {...register("address")} readOnly />
+                      <input defaultValue={usrD?.city ? usrD.city : orders[0]?.city} {...register("city")} readOnly />
+                      <input defaultValue={usrD?.phone ? usrD.phone : orders[0]?.phone} {...register("phone")} readOnly />
                     </div>
                   ) : (
                     <div>
@@ -238,7 +242,10 @@ const PlaceOrder = () => {
               </ul>
             </div>
           </div>
-        </div>
+        </div> 
+          ))
+        }
+        
       </div>
       <Footer />
     </div>

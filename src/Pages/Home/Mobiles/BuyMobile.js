@@ -38,16 +38,16 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                 aria-describedby="my-modal-description"
               >
                 <div className="row">
-                    <div className="col-md-6">
-                    <img  src={image} className="img-fluid w-100 rounded-start" alt="" />  
+                    <div className="col-md-6 col-sm-12 m-auto">
+                    <img  src={image} className="img-fluid rounded-start" alt="" />  
                     </div>
-                    <div className="col-md-6">
-                        <h2>{name}</h2>
+                    <div className="col-md-6 col-sm-12 m-auto pt-md-3">
+                        <h4>{name}</h4>
                         <h6>Brand : {brand}</h6>
-                        <h4>Avaibility : In Stock</h4>
+                        <h6>Avaibility : <small>In Stock</small> </h6>
                         <h5 className="w-100 py-3">
                 <span className="text-danger fw-bold"> Tk </span>{" "}
-                <span className="fs-1 fw-bold ">{price}</span> .00
+                <span className="fs-3 fw-bold ">{price}</span> .00
               </h5>
 
               <button
