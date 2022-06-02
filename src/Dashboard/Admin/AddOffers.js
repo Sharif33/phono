@@ -3,10 +3,8 @@ import React  from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth/useAuth';
-import './AddMobile.css';
 
-const AddMobile = () => {
-
+const AddOffers = () => {
     const {user} = useAuth();
     // const [image,setImage]= useState("");
     // const [url,setUrl] = useState("");
@@ -35,7 +33,7 @@ const AddMobile = () => {
             console.log(err)
         })
  */
-        axios.post(`https://peaceful-shore-84874.herokuapp.com/mobiles`, data)
+        axios.post(`https://peaceful-shore-84874.herokuapp.com/phones`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     
@@ -51,7 +49,7 @@ const AddMobile = () => {
     return (
         <div className=" col-md-12 col-lg-9 col-sm-12 mx-auto">
         <div className="py-3 rounded">
-            <h3 className="text-custom">Moblie Added Section</h3>
+            <h3 className="text-custom">Offer Added Section</h3>
             <form className='custom-form' onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("name", { required: true, maxLength: 100 })} placeholder="Name" />      
                 <select {...register("brand", { required: true })}>
@@ -80,9 +78,6 @@ const AddMobile = () => {
                 <input type="number" {...register("price")} placeholder="Price" />
                 <input type="number" step="0.1" min='1' max='5' {...register("star")} placeholder="Rating (out of 5)" />
                 <input type="number" {...register("rating")} placeholder="Reviews" />
-                <input {...register("specifications.Technology")} placeholder="Technology" />
-                <input {...register("specifications.ram")} placeholder="ram" />
-<input {...register("specifications.CPU")} placeholder="CPU" />
                 <input {...register("image")} placeholder="image url" />
                 {/* <input type="file" onChange={(e)=>setImage(e.target.files[0])} {...register("image")} placeholder="image url" /> */}
                 <input className="btn btn-primary" type="submit" />
@@ -92,4 +87,4 @@ const AddMobile = () => {
     );
 };
 
-export default AddMobile;
+export default AddOffers;

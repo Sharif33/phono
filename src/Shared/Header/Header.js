@@ -146,7 +146,7 @@ const Header = () => {
                                                   </li>
                                               </ul>
                                               :
-                                              <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1" to="/login"><span> <i className="fas fa-user"> </i> SIGN IN </span> </NavLink>
+                                              <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1" to="/login"><span> <i className="fas fa-user"> </i> Login </span> </NavLink>
                                         }
                                     </li>
                                      </ul>

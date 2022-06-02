@@ -35,8 +35,8 @@ const Mobiles = () => {
         <div className=''>
             <div className="container">
                 <div className="text-center pt-2">
-                    <h4 className="fw-bold text-primary p-2">Feature Mobile</h4>
-                    <hr />
+                    <h4 className=" fw-bold text-primary p-2">Feature Mobile</h4>
+                    
                 </div>
                 <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
                     {mobiles.length == 0 ?

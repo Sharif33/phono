@@ -7,7 +7,7 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
 import List from '@mui/material/List';
-
+import { AiFillFileAdd } from "react-icons/ai";
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -92,16 +92,26 @@ function Dashboard(props) {
                 <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#E94235' : '#ccd6f6', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard`}> <span className='me-2'><HomeIcon /></span>  Overview</NavLink>
                </List>
                 <List>
-               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/manageOrder`}><ShoppingCartCheckoutOutlinedIcon /> Manage Orders</NavLink>
+               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/manageOrder`}><span className='me-2'><ShoppingCartCheckoutOutlinedIcon /></span>  Manage Orders</NavLink>
                </List>              
                <List>    
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard/manageProducts`}><AddTaskOutlinedIcon /> Manage Products</NavLink>
-               </List> 
-                <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/makeAdmin`}><AdminPanelSettingsIcon /> Make Admin</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard/manageProducts`}><span className='me-2'><AddTaskOutlinedIcon /></span> Manage Products</NavLink>
+               </List>
+               <List>    
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard/manageOffers`}><span className='me-2'><AddTaskOutlinedIcon /></span> Manage Offers</NavLink>
                </List>
                <List>
-               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/addMobile`}><AddCircleOutlineOutlinedIcon />Add Mobile</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`manageUsers`}> <span className='me-2'><PersonIcon /></span> Manage User</NavLink>
+            </List>
+               <h6 className='py-2 ps-4 fw-bold'>DEVELOPMENT</h6> 
+                <List>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/makeAdmin`}><span className='me-2'><AdminPanelSettingsIcon /></span> Make Admin</NavLink>
+               </List>
+               <List>
+               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/addMobile`}><span className='me-2'><AddCircleOutlineOutlinedIcon /></span> Add Mobile</NavLink>
+               </List>                           
+               <List>
+               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/addOffer`}><span className='me-2 fs-5'><AiFillFileAdd /></span> Add Offer</NavLink>
                </List>                           
             </Box>
             }

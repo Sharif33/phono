@@ -35,6 +35,10 @@ import SearchField from "./Pages/Home/Search/SearchField";
 import UserDetails from "./Dashboard/User/UserDetails";
 import EditUser from "./Dashboard/User/EditUser";
 import { handelRightClick } from "./Shared/RightClick";
+import ManageUsers from "./Dashboard/Admin/ManageUsers";
+import AddOffers from "./Dashboard/Admin/AddOffers";
+import ManageOffers from "./Dashboard/Admin/ManageOffers";
+import EditOffer from "./Dashboard/Admin/EditOffer";
 
 
 function App() {
@@ -113,8 +117,12 @@ function App() {
                 <MakeAdmin></MakeAdmin>
               </AdminRoute>}>
               </Route>
-              <Route path={`/dashboard/addMobile`} element={<AdminRoute>
+              <Route path={`addMobile`} element={<AdminRoute>
                 <AddMobile></AddMobile>
+              </AdminRoute>}>
+              </Route>
+              <Route path={`/dashboard/addOffer`} element={<AdminRoute>
+                <AddOffers/>
               </AdminRoute>}>
               </Route>
               <Route path={`/dashboard/manageProducts/:id`} element={<AdminRoute>
@@ -123,6 +131,18 @@ function App() {
               </Route>
               <Route path={`/dashboard/manageProducts`} element={<AdminRoute>
                 <ManageProducts></ManageProducts>
+              </AdminRoute>}>
+              </Route>
+              <Route path={`manageOffers`} element={<AdminRoute>
+                <ManageOffers/>
+              </AdminRoute>}>
+              </Route>
+              <Route path={`manageOffers/:id`} element={<AdminRoute>
+                <EditOffer/>
+              </AdminRoute>}>
+              </Route>
+              <Route path={`/dashboard/manageUsers`} element={<AdminRoute>
+                <ManageUsers/>
               </AdminRoute>}>
               </Route>
             </Route>

@@ -19,9 +19,10 @@ const Banner1 = () => {
                     spaceBetween={30} centeredSlides={true} autoplay={{
                         "delay": 5000,
                         "disableOnInteraction": false
-                    }} pagination={{
+                    }}  className="mySwiper">
+                        {/* pagination={{
                         "clickable": true
-                    }} navigation={false} className="mySwiper">
+                    }} */}
                     <SwiperSlide>
                         <div className="text-center">
                             <img className='img-fluid w-100' src={b1} alt="" />

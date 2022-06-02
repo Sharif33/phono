@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const EditMobile = () => {
+const EditOffer = () => {
     const { id } = useParams();
 
     const [phones, setPhones] = useState({});
@@ -12,7 +12,7 @@ const EditMobile = () => {
     const { register, handleSubmit, reset } = useForm();
 
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles/${id}`)
+        fetch(`https://peaceful-shore-84874.herokuapp.com/phones/${id}`)
             .then(res => res.json())
             .then(data => setPhones(data))
     }, [id])
@@ -34,7 +34,7 @@ const EditMobile = () => {
             if (result.isConfirmed) 
          {
 
-            axios.put(`https://peaceful-shore-84874.herokuapp.com/mobiles/${id}`,data) 
+            axios.put(`https://peaceful-shore-84874.herokuapp.com/phones/${id}`,data) 
             .then(res=>{
                     if (res.data) {
                         Swal.fire(
@@ -78,51 +78,43 @@ const EditMobile = () => {
                 <p className='btn-custom'>Brand</p>
                 </div>
                 <div className="d-flex">
-                    <input {...register("released_at", { maxLength: 300 })} defaultValue={phones?.released_at} />
-                    <p className='btn-custom'>Released date</p>
+                    <input {...register("specs", { maxLength: 300 })} defaultValue={phones?.specs} />
+                    <p className='btn-custom'>Key Specs.</p>
                 </div>
                 <div className="d-flex">
-                <input {...register("body")} defaultValue={phones?.body} />
-                <p className='btn-custom'>Body</p>
+                <input {...register("processor")} defaultValue={phones?.processor} />
+                <p className='btn-custom'>Processor</p>
                 </div>
                 <div className="d-flex">
-                <input {...register("os")} defaultValue={phones?.os} />
-                <p className='btn-custom'>OS</p>
+                <input {...register("memory")} defaultValue={phones?.memory} />
+                <p className='btn-custom'>Memory</p>
                 </div>
                 <div className="d-flex">
-                <input {...register("display")} defaultValue={phones?.storage} />
-                <p className='btn-custom'>Storage</p>
+                <input {...register("display")} defaultValue={phones?.display} />
+                <p className='btn-custom'>Display</p>
                 </div>
                 <div className="d-flex">
-                <input {...register("display_size")} defaultValue={phones?.display_size} />
-                <p className='btn-custom'>Display Size</p>
+                <input {...register("battery")} defaultValue={phones?.battery} />
+                <p className='btn-custom'>Battery</p>
                 </div>
                 <div className="d-flex">
-                <input {...register("display_resolution")} defaultValue={phones?.display_resolution} />
-                <p className='btn-custom'>Display Resolution</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("camera_pixels")} defaultValue={phones?.camera_pixels} />
+                <input {...register("camera")} defaultValue={phones?.camera} />
                 <p className='btn-custom'>Camera</p>
                 </div>
                 <div className="d-flex">
-                <input {...register("ram")} defaultValue={phones?.ram} />
-                <p className='btn-custom'>Ram</p>
+                <input {...register("selfie")} defaultValue={phones?.selfie} />
+                <p className='btn-custom'>Selfie Camera</p>
                 </div>
                 <div className="d-flex">
-                <input {...register("chipset")} defaultValue={phones?.network} />
-                <p className='btn-custom'>Chipset</p>
+                <input {...register("network")} defaultValue={phones?.network} />
+                <p className='btn-custom'>Network</p>
                 </div>
                 <div className="d-flex">
-                <input {...register("specifications.Technology")} defaultValue={phones?.specifications?.Technology} />
-                <p className='btn-custom'>Technology</p>
+                <input {...register("offerTill")} defaultValue={phones?.offerTill} />
+                <p className='btn-custom'>OfferDate</p>
                 </div>
                 <div className="d-flex">
-                <input {...register("specifications.CPU")} defaultValue={phones?.specifications?.CPU} />
-                <p className='btn-custom'>CPU</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("id")} defaultValue={phones?.id} />
+                <input type="number" {...register("id")} defaultValue={phones?.id} />
                 <p className='btn-custom'>ID</p>
                 </div>
                 <div className="d-flex">
@@ -155,4 +147,4 @@ const EditMobile = () => {
     );
 };
 
-export default EditMobile;
+export default EditOffer;

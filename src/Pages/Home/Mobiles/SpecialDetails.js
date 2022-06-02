@@ -14,6 +14,7 @@ import { addToCart } from "../../../Redux/slices/cartSlice";
 import { addToFvrt } from "../../../Redux/slices/fvrtSlice";
 import usePhones from "../../../Hooks/usePhones/usePhones";
 import useReviews from "../../../Hooks/useReviews/useReviews";
+import { numberFormat } from "../../../Shared/numberFormat";
 
   
 
@@ -169,7 +170,7 @@ const SpecialDetails = () => {
 
             <h5 className="w-100 py-3">
               <span className="text-danger fw-bold"> Tk </span>{" "}
-              <span className="fs-1 fw-bold ">{phones?.price}</span> .00
+              <span className="fs-1 fw-bold ">{numberFormat (phones?.price).slice(3,-3)}</span> .00
             </h5>
 
             <button

@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const ManageProducts = () => {
+const ManageOffers = () => {
     const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles`)
+        fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
             .then(res => res.json())
             .then(data => setMobiles(data))
     }, [])
@@ -26,7 +26,7 @@ const ManageProducts = () => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `https://peaceful-shore-84874.herokuapp.com/mobiles/${id}`
+            const url = `https://peaceful-shore-84874.herokuapp.com/phones/${id}`
             fetch(url, {
                 method: 'DELETE',
             })
@@ -53,7 +53,7 @@ const ManageProducts = () => {
             <Table stickyHeader aria-label="sticky table" >
                 <TableHead sx={{bgcolor: 'secondary.main'}}>
                     <TableRow>
-                        <TableCell sx={{ color: 'secondary.main'}}>Name ({mobiles?.length} mobile)</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}}>Name</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}}>Added by</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">Price</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">ID</TableCell>
@@ -84,4 +84,4 @@ const ManageProducts = () => {
     );
 };
 
-export default ManageProducts;
+export default ManageOffers;
