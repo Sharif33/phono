@@ -1,7 +1,7 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, {createContext, useState, useEffect} from 'react';
-import { useForm } from 'react-hook-form';
-import useAuth from '../../Hooks/useAuth/useAuth';
+// import { useForm } from 'react-hook-form';
+// import useAuth from '../../Hooks/useAuth/useAuth';
 
 export const Favourite = createContext();
 
@@ -26,11 +26,17 @@ const FavContext = ({children}) => {
     // }
    
     useEffect(() => {
+        let isMounted = true;
         const cartItemsData = JSON.parse(localStorage.getItem('cartItems'))
         
         if (cartItemsData) {
-            setCart(cartItemsData);
+            if(isMounted ){
+                setCart(cartItemsData);
+            }
         }
+        return () => {
+            isMounted = false;
+            };
     }, [])
     
     useEffect(() => {

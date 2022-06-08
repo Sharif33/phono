@@ -4,17 +4,26 @@ const usePhones = () => {
     const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
-        try {
+        let isMounted = true;
+       
+          try {
             async function callApi() {
                 let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles`);
                 data = await data.json();
-                setMobiles(data)
+                if(isMounted ){ 
+                setMobiles(data);
+                 }
             }
-            callApi();
+            callApi(); 
+            return () => {
+            isMounted = false;
+            };
         }
         catch (error) {
             console.log ('error',error)
-          }
+          }  
+       
+        
     }, []);
     return [mobiles, setMobiles];
 };

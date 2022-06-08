@@ -1,5 +1,7 @@
-/* .header{position: relative;
+/* .header{
+    position: relative !important;
     width: 100%;
+    z-index: 1;
     } */
     
    /*  .header-inner{
@@ -32,3 +34,100 @@
             /* transform: scale(1.05); */
             /* transition: .3s ease; */
         }
+
+       /*  .searchInputs {
+            display: flex;
+          } */
+          
+         /*  .search input {
+              z-index: 1;
+            background-color: white;
+            border: 0;
+            border-radius: 2px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            font-size: 18px;
+            padding: 15px;
+            height: 30px;
+            width: 300px;
+          } */
+          
+          /* .searchIcon {
+            height: 60px;
+            width: 50px;
+            background-color: white;
+            display: grid;
+            place-items: center;
+          } */
+          
+          .btn-nav{
+            background-color: #6974be28;
+            border-radius: 50%;
+          }
+          .btn-nav:hover{
+            background-color: #a7accf53;
+          }
+
+          input:focus {
+            outline: none;
+          }
+        /*   .searchIcon svg {
+            font-size: 25px;
+          } */
+          
+          .dataResult {
+          /*     position: relative !important;
+              z-index: 1 !important;
+            
+            width: 300px; */
+            position: absolute;
+            z-index: 1;
+            width: 33vw;
+            margin-top: 5px;
+            height: 200px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            overflow: hidden;
+            overflow-y: auto;
+          }
+          
+          .dataResult::-webkit-scrollbar {
+            display: none;
+          }
+          
+          .dataResult .dataItem {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            color: black;
+          }
+          
+        /*   .dataItem p {
+            margin-left: 10px;
+          } */
+          a {
+            text-decoration: none;
+          }
+          
+          .searchResult:hover {
+            background-color: #EEF2FF !important;
+          }
+          
+          #clearBtn {
+            cursor: pointer;
+            color: red;
+          }
+
+          .small-search{
+            display: none;
+          }
+
+          @media  only screen and (max-width:576px) {
+            .nav-hidder{
+              display: none;
+            }
+             .small-search{
+            display: block;
+          }
+          }

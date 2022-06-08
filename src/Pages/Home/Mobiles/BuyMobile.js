@@ -1,11 +1,11 @@
-import { Button } from '@mui/material';
+/* import { Button } from '@mui/material';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import useAuth from '../../../Hooks/useAuth/useAuth';
+import useAuth from '../../../Hooks/useAuth/useAuth'; */
 // import Box from '@mui/material/Box';
 // import Modal from '@mui/material/Modal';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+/* import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'; */
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { addToCart } from "../../../Redux/slices/cartSlice";
@@ -29,7 +29,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
    const dispatch = useDispatch();
    
     return (
-        <div>
+        <div style={{position:"absolute"}}>
          <Modal
                 open={openBuyNow}
                 onClose={handleClose}
@@ -62,9 +62,8 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                 onClick={() => dispatch(addToFvrt(mobile))}
                 className="btn btn-custom-2 rounded-0 w-100 mx-2"
               >
-                {" "}
                 <i title="Add to Favourite" className="far fa-heart"></i> Add to
-                wishlist{" "}
+                wishlist
               </button>
                     </div>
                 </div>

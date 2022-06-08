@@ -13,9 +13,16 @@ const DashboardHome = () => {
     const [time, setTime] = React.useState(new Date());
 
     React.useEffect(() => {
+        let isMounted = true;
         setInterval(() => {
-         setTime(new Date());
+            if(isMounted ){
+              setTime(new Date());  
+            }
+         
         }, 1000);
+        return () => {
+            isMounted = false;
+            };
       }, []);
 
     const date = new Date().toDateString();
@@ -23,7 +30,31 @@ const DashboardHome = () => {
 // Phone Collection Section
     const [mobiles] = usePhones();
 
+    // ✅ Get Max date
+/* const maxDate = new Date(
+    Math.max(
+      mobiles.map(element => {
+        //   console.log(element);
+        return new Date(element?.updated_date);
+      }),
+    ),
+  );
+  
+  console.log(maxDate); */
+  
+  // ✅ Get Min date
+ /*  const minDate = new Date(
+    Math.min(
+      ...mobiles.map(element => {
+        return new Date(element?.updated_date);
+      }),
+    ),
+  );
+  
+  console.log(minDate); */
+
     const lastUpdate = mobiles.slice(-1).pop();
+    // const firstUpload = mobiles.slice(1);
 
 
 // User review Section
@@ -53,6 +84,12 @@ const DashboardHome = () => {
                         <div className='text-center w-100'>
                               <h5 className='text-light-slate font-custom'>Total Projects: <br /> <span className="fs-1 text-danger"> {mobiles?.length}</span></h5> 
                               <h5 className='text-light-slate'> <span className="font-custom">Last Update:</span> <br /> <small className='text-warning'>{lastUpdate?.date} , {lastUpdate?.time}</small> </h5>
+                            {/*   {
+                                  mobiles?.map(mob=>
+                                    <div key={mob._id}>
+                                        <h5>{mob?.updated_date}</h5>
+                                    </div>)
+                              } */}
                         </div>
                     </div>
                 </div>

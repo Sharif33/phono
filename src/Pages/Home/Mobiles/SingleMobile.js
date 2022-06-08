@@ -600,7 +600,7 @@ const SingleMobile = () => {
                            <h6 className="text-dark pt-1">{related?.name}</h6>
                            <div style={{ textAlign: "center" }} className="px-2">
                                <p className="text-secondary">{related?.ram} {related?.storage} | {related?.chipset}</p>
-                               <p style={{color:"#eb5525",fontWeight:"bolder"}}>{numberFormat(price).slice(3,-3) }Tk</p>
+                               <p style={{color:"#eb5525",fontWeight:"bolder"}}>{numberFormat(related?.price).slice(3,-3) }Tk</p>
                            </div> 
                            </Link>
                           </div>  

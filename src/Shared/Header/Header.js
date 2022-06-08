@@ -4,15 +4,22 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
 import {MdShoppingCart, MdFavorite, MdCompareArrows } from "react-icons/md";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import "./Header.css";
 // import { Favourite } from '../../Contexts/AuthProvider/FavContext';
 import { useSelector } from 'react-redux';
+import SearchNav from './SearchNav';
+import { Drawer, Box } from '@mui/material'
+import { useState } from 'react'
+import MenuIcon from '@mui/icons-material/Menu'
 
 const Header = () => {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     // const {cart} = useContext(Favourite);
     const {addToFvrt} = useSelector((state) => state.fvrt);
@@ -44,25 +51,89 @@ const Header = () => {
 // }
 
     return (
-        <div style={{marginBottom:"60px"}}>
-            <div className="header">
+        <div>
+            <div style={{marginBottom:"60px"}} className="header">
                 <div className="header-inner">
-                    <nav style={{ backgroundColor: "#303f9f" }} className="navbar fixed-top navbar-expand-lg navbar-dark ms-auto">
+                    <nav style={{ backgroundColor: "#303f9f" }} className=" py-2 fixed-top ms-auto">
                         <div className="container">
-                            <NavLink className="navbar-brand fw-bold fs-3 text-warning" to="/home">PH<span className="text-danger">|O|</span>NO</NavLink>
                             
-                                        <NavLink className='me-2' to={`/fvrt`} >
-                                        <button className='btn btn-cart border-0 p-0'>
+                            <div className="d-flex justify-content-evenly">
+                                <div className='d-flex  justify-content-evenly'>
+                                    <div className='m-auto'>
+                                        <IconButton
+                                    onClick={() => setIsDrawerOpen(true)}
+                                    // sx={{ mr: 2, display: { sm: 'none' } }}
+                                    size='large'
+                                    edge='start'
+                                    color='inherit'
+                                    aria-label='logo'>
+                                    <MenuIcon />
+                                </IconButton>
+                                <Drawer
+                                    anchor='left'
+                                    open={isDrawerOpen}
+                                    onClose={() => setIsDrawerOpen(false)}>
+                                    <Box  width='250px' role='presentation' textAlign='center'>
+                                        <div className="p-2 text-end">
+                                            <button className='btn btn-cart' onClick={() => setIsDrawerOpen(false)}><CloseIcon/></button>
+                                        </div>
+                                    <ul className="navbar-nav text-center me-auto">
+                                        <li className="nav-item small-search">
+                                            <NavLink className='mx-2' to={`/compare`} >
+                                            <button className="btn btn-cart border-0 p-0">
+                                            <IconButton aria-label="compare">
+                                            <StyledBadge badgeContent={addToCompare?.length} color="error">
+                                            <MdCompareArrows className='text-dark' />
+                                            </StyledBadge>
+                                            </IconButton>
+                                            </button>
+                                            </NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'black' })} className="nav-link active mx-1  " aria-current="page" to="/home">Home</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'black' })} className="nav-link active mx-1  " to="/mobiles">Shop</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'black' })} className="nav-link active mx-1  " href="#contact" to="/contact">Contact</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'black' })} className="nav-link active mx-1  " to="/about">About</NavLink>
+                                        </li>
+                                     </ul>
+                                    </Box>
+                                </Drawer>
+                                    </div>
+                                <div className='m-auto'>
+                                    <NavLink className="navbar-brand fw-bold fs-3 text-warning" to="/home">PH<span className="text-danger">|O|</span>NO</NavLink>
+                                </div>   
+                                </div>
+
+                                <div className='my-auto'>
+                                   <div className='d-flex  justify-content-between'>
+                                    <div className='nav-hidder'>
+                                          <SearchNav/>      
+                                    </div>
+                                    <div className='small-search m-auto'>
+                                         <NavLink className='mx-1 btn' style={{textDecoration:"none"}} to="/search"><span><SearchIcon className='text-light'/></span></NavLink>
+                                    </div>
+                                      
+                                        <div className='d-flex  justify-content-center  align-items-center my-auto'>
+                                            <div>
+                                               <NavLink className='mx-2' to={`/fvrt`} >
+                                        <button className='btn btn-nav border-0 p-0'>
                                         <IconButton aria-label="favorite">
                                         <StyledBadge badgeContent={addToFvrt?.length} color="error">
                                         <MdFavorite className='text-light' />
                                         </StyledBadge>
                                         </IconButton>
                                             </button>
-                                        </NavLink>
-                                        
+                                        </NavLink> 
+                                            </div>
+                                            <div>
                                         <NavLink className='mx-1' to={`/cart`} >
-                                        <button className='btn btn-cart border-0 p-0'>
+                                        <button className='btn btn-nav border-0 p-0'>
                                         <IconButton aria-label="cart">
                                         <StyledBadge badgeContent={addToCart?.length} color="error">
                                         <MdShoppingCart className='text-light' />
@@ -70,9 +141,10 @@ const Header = () => {
                                         </IconButton>   
                                         </button>
                                         </NavLink>
-
-                                        <NavLink className='ms-2' to={`/compare`} >
-                                        <button className="btn btn-cart border-0 p-0">
+                                            </div>
+                                            <div className='nav-hidder'>
+                                        <NavLink className='mx-2' to={`/compare`} >
+                                        <button className="btn btn-nav border-0 p-0">
                                             <IconButton aria-label="compare">
                                             <StyledBadge badgeContent={addToCompare?.length} color="error">
                                             <MdCompareArrows className='text-light' />
@@ -80,50 +152,21 @@ const Header = () => {
                                             </IconButton>
                                         </button>
                                         </NavLink>
-
-                                        {/* <NavLink className='me-1' to={`/mobiles`} >
-                                        <i className="fa-solid mx-3 fs-5 fa-magnifying-glass"></i>
-                                        </NavLink> */}
-                                        {/* <NavLink className='me-1' to={`/dashboard/myOrders`} >
-                                        <IconButton aria-label="cart">
-                                        <StyledBadge badgeContent={orders?.length} color="secondary">
-                                        <ShoppingBagOutlinedIcon sx={{ color: 'primary.main'}} />
-                                        </StyledBadge>
-                                        </IconButton>
-                                        </NavLink> */}
-                                        
-                            <button className="navbar-toggler" type="button" 
-                            data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="navbar-toggler-icon"></span>
-                            </button>
-                            <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                            <ul className="navbar-nav text-center ms-auto">
-                                        <li className="nav-item">
-                                            <NavLink style={{textDecoration:"none"}} aria-current="page" to="/search"><button style={{width:"20rem"}} className="btn-light btn pe-5 text-secondary text-start mx-1"><span><SearchIcon/></span> Search...</button></NavLink>
-                                        </li>
-                                        <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " aria-current="page" to="/home">Home</NavLink>
-                                        </li>
-                                        <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/mobiles">Shop</NavLink>
-                                        </li>
-                                        <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " href="#contact" to="/contact">Contact</NavLink>
-                                        </li>
-                                        <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/about">About</NavLink>
-                                        </li>
-
-                                        <li className="nav-item">
-                                        {
-                                               user?.email ? <ul className="text-center">
-
-                                               {/*    <li className="nav-item">
-                                                          <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1  " to="/cart"><i className="far fa-heart"></i> {cart.length} </NavLink>
-                                                      </li> */}
-          
-                                                  <li className="dropdown mx-2">
-                                                  <Avatar id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" alt="" src={user?.photoURL} />
+                                            </div>
+                                            <div className=''>
+                                {
+                                               user?.email ? 
+                                           
+                                                   <div className="dropdown">
+                                            <div style={{cursor:"pointer"}} id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" className='d-flex justify-content-evenly align-items-center rounded ms-2 btn-cart border'>
+                                                <div>
+                                                    <Avatar alt="" src={user?.photoURL} />
+                                                </div>
+                                                <div className='nav-hidder'>
+                                                      <small className='px-2 text-light my-auto'>{user?.name ? user.name : user?.displayName}</small>
+                                                  </div>
+                                                 </div>
+                                                  
                                                   <ul className="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdownMenuLink">
                                                   <li className=" dropdown-item border-bottom">
                                                       <small className='fw-bold'>{user?.displayName}</small><br />
@@ -143,23 +186,60 @@ const Header = () => {
                                                   </li>
                                                   
                                                   </ul>
-                                                  </li>
-                                              </ul>
+                                                  
+                                                  </div> 
+                                              
                                               :
-                                              <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'white' })} className="nav-link active mx-1" to="/login"><span> <i className="fas fa-user"> </i> Login </span> </NavLink>
+                                              <NavLink className='' to={`/login`} >
+                                              <div className='d-flex justify-content-evenly align-items-center rounded ms-2 btn-cart'>
+                                                  <div>
+                                                    
+                                                    <button className='btn'>
+                                                    <AccountCircleIcon className='text-light'/>
+                                                    </button>
+                                                   
+                                                  </div>
+                                                  <div className='nav-hidder'>
+                                                       <small className='my-auto text-light pe-3'>Account</small>
+                                                  </div>
+                                              </div> 
+                                              </NavLink>
+                                             
+                                              
                                         }
-                                    </li>
-                                     </ul>
-                               
-                                {/* <form class="d-flex">
-        <input onChange={handleSearch} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-      </form>
-                                */}
                             </div>
+                                        </div>
+                                        
+                                        
+                                        
+
+                                        
+                                        
+
+                                        {/* <NavLink className='me-1' to={`/mobiles`} >
+                                        <i className="fa-solid mx-3 fs-5 fa-magnifying-glass"></i>
+                                        </NavLink> */}
+                                        {/* <NavLink className='me-1' to={`/dashboard/myOrders`} >
+                                        <IconButton aria-label="cart">
+                                        <StyledBadge badgeContent={orders?.length} color="secondary">
+                                        <ShoppingBagOutlinedIcon sx={{ color: 'primary.main'}} />
+                                        </StyledBadge>
+                                        </IconButton>
+                                        </NavLink> */}
+                                </div> 
+                                </div>
+                                
+                            </div>
+                            
+                                        
+                                
                         </div>
                     </nav>
+                   
                 </div>
+                
             </div>
+             {/* <BottomHeader/> */}
         </div>
     );
 };

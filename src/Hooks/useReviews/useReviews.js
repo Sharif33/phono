@@ -4,7 +4,9 @@ const useReviews = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        try {
+        let isMounted = true;
+        if(isMounted ){
+         try {
             async function callApi() {
                 let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/reviews`);
                 data = await data.json();
@@ -14,7 +16,12 @@ const useReviews = () => {
         }
         catch (error) {
             console.log ('error',error)
-          }
+          }   
+        }
+        return () => {
+            isMounted = false;
+            };
+        
     }, []);
     return [reviews, setReviews];
 };

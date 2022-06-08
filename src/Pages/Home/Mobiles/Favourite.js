@@ -1,8 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../../../Shared/Header/Header';
-import { Rating } from '@mui/material';
-import { Box } from '@mui/system';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { Favourite } from '../../../Contexts/AuthProvider/FavContext';
@@ -11,7 +9,9 @@ import { addToCart } from '../../../Redux/slices/cartSlice';
 import { removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
 import Footer from '../../../Shared/Footer/Footer';
 import {Helmet} from "react-helmet";
-// import BuyMobile from './BuyMobile';
+import { MdAddShoppingCart,MdOutlineFavorite,MdOutlineCompareArrows } from "react-icons/md";
+import { numberFormat } from '../../../Shared/numberFormat';
+import { addToCompare } from '../../../Redux/slices/compareSlice';
 
 const Favourite = () => {
     const {addToFvrt} = useSelector((state) => state.fvrt);
@@ -26,33 +26,38 @@ const Favourite = () => {
           
            <Header/>
         {
-            addToFvrt?.length ?<div className="row row-cols-1 row-cols-md-3 m-2 g-4">
+            addToFvrt?.length ? <div className="container">
+                <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
            {
                addToFvrt?.map((mobile)=>(
                   <div key={mobile?.id}>
                  <div className="col rounded text-center">
-                <div className="card card-hover shadow h-100">
-                    <div className='row flex-row-reverse px-3 py-2 g-0'>
-                    <div className='col-md-4'>
+                <div className="card pb-3 border-0 h-100">
+                    <div className='card-hover rounded py-3'>
+                        <div>
+                            {
+                                mobile?.os ? <Link style={{textDecoration:"none"}} to={`/mobile/${mobile._id}`}>
                             <img style={{ height: "12rem" }} src={mobile?.image} className="img-fluid rounded-start" alt="" />
-                            <p>Tk: <span className="text-danger fw-bold">{mobile?.price}</span></p>
-                        </div>
-                        <div className='col-md-8'>
                             <h5 className="text-dark pt-1">{mobile?.name}</h5>
-                            <Box sx={{
-                                '& > legend': { mt: 2 },
-                            }}>
-                                <Rating name="half-rating-read" precision={0.5} size="small" value={Number(mobile?.star)} readOnly />
-                            </Box>
-                            <div style={{ textAlign: "justify" }} className="p-2">
-                                <p className="text-secondary">{mobile?.specs}</p>
-                            </div>
-                            <div className="text-center d-flex justify-content-center alighn-items-center">
-                        <Link to={`/mobile/${mobile?._id}`}> <button className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Details' className="fas fa-info-circle fs-4 py-1"></i> </button> </Link>
-
-                        <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Add to Cart' className="fas fa-cart-plus fs-4 py-1"></i> </button>
+                            <p className="text-danger fw-bold">{numberFormat(mobile?.price).slice(3,-3)}Tk</p>
+                        </Link> : 
+                        <Link style={{textDecoration:"none"}} to={`/mobile2/${mobile?._id}`}>
+                            <img style={{ height: "12rem" }} src={mobile?.image} className="img-fluid rounded-start" alt="" />
+                            <h5 className="text-dark pt-1">{mobile?.name}</h5>
+                            <p className="text-danger fw-bold">{numberFormat(mobile?.price).slice(3,-3)}Tk</p>
+                        </Link>
+                            }
                        
-        
+                        
+                        </div>
+                    <div className='d-flex justify-content-evenly'>
+                    <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> <br />
+
+                    <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/> </button> <br />
+
+                    <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows className='fs-3 p-1'/></button>
+                        </div>
+                            
                   {/*       <div>
                            {
                             cart.includes(mobile) ? (
@@ -64,17 +69,12 @@ const Favourite = () => {
                             )
                         }   
                         </div> */}
-                        <div>
-                            {/* <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-outline-warning mx-2'> <i title='Add to Favourite' className="far fa-heart"></i> </button> */}
+                        {/* <div>
+                            <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-outline-warning mx-2'> <i title='Add to Favourite' className="far fa-heart"></i> </button>
                           
                                 <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Remove From Favourite' className="fas fa-heart fs-4 py-1"></i> </button>
-                              
                             
-                            
-                        </div>
-                    
-                    </div>
-                        </div>
+                        </div> */}
                     </div>
                    
                 </div>
@@ -82,6 +82,7 @@ const Favourite = () => {
                   </div> 
                ))
            }
+           </div>
            </div> : <div className='text-center my-5'>
             <div className='d-flex justify-content-center'>
            <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_gctc76jz.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>

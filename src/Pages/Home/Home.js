@@ -9,7 +9,7 @@ import Contact from "./Contact";
 import Mobiles from "./Mobiles/Mobiles";
 import Offers from "./Offers/Offers";
 import {Helmet} from "react-helmet";
-// import Reviews from "./Mobiles/Reviews";
+// import BottomHeader from "../../Shared/Header/BottomHeader";
 
 const Home = () => {
   return (
@@ -19,7 +19,8 @@ const Home = () => {
                 <title>Phono | A online mobile shop</title>
                 <link rel="canonical" href="/home" />
             </Helmet>
-      <Header />
+     <Header />
+     {/* <BottomHeader/> */}
       <Banner1 />
       <Banner2 />
       <Offers/>

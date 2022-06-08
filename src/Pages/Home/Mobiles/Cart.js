@@ -16,9 +16,19 @@ const Cart = () => {
     const dispatch = useDispatch();
     const {addToCart, cartTotal, cartTotalQuantity, shipping, tax} = useSelector((state) => state.cart);
     useEffect(() => {
-        if (addToCart.length >= 0 || addToCart.length === 0) {
-            dispatch(getTotal());
-        }
+
+        try {
+            async function callTotal() {
+             if (addToCart.length >= 0 || addToCart.length === 0) {
+                   
+                        dispatch(getTotal());       
+            }    
+            }
+            callTotal();
+            
+        } catch (error) {
+            
+        }   
     }, [addToCart, dispatch]);
 
 
@@ -80,14 +90,14 @@ const Cart = () => {
                                     <div className="mx-auto">
                                                         <div style={{width:"10vw"}} className="d-flex justify-content-center border mx-auto">
                                                             <button className='btn w-100 btn-light shadow' onClick={() => dispatch(decrement(mobile))}> - </button>
-                                                            <input style={{width:"5vw"}} type="text" readOnly value={(Number(mobile.cartQuantity))}
+                                                            <input style={{width:"5vw"}} type="text" readOnly value={(parseFloat(mobile.cartQuantity))}
                                                                 className="fw-bolder border-0 text-center text-secondary" />
                                                             <button className='btn w-100 btn-light shadow' onClick={() => dispatch(increment(mobile))}> + </button>
                                                         </div>
                                                     </div>
                                     </TableCell>
-                                    <TableCell align="center">{Number(mobile.price)}</TableCell>
-                                    <TableCell align="center">{(mobile.price) * Number(mobile.cartQuantity)}</TableCell>
+                                    <TableCell align="center">{parseFloat(mobile.price)}</TableCell>
+                                    <TableCell align="center">{parseFloat(mobile.price) * parseFloat(mobile.cartQuantity)}</TableCell>
                                     
                                 </TableRow>
                             ))}

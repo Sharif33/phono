@@ -1,23 +1,99 @@
-import axios from 'axios';
+import { TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAuth from '../../Hooks/useAuth/useAuth';
 
 const EditMobile = () => {
     const { id } = useParams();
 
-    const [phones, setPhones] = useState({});
+    const {user} = useAuth();
 
-    const { register, handleSubmit, reset } = useForm();
+    const [phones, setPhones] = useState({});
+    // console.log(phones);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles/${id}`)
-            .then(res => res.json())
-            .then(data => setPhones(data))
-    }, [id])
+        let isMounted = true;
+       
+        try {
+          async function callApi() {
+              let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles/${id}`)
+              data = await data.json();
+              if(isMounted ){ 
+                  setPhones(data);
+              }
+            }
+            callApi(); 
+            return () => {
+            isMounted = false;
+            };
+        }
+        catch (error) {
+            console.log ('error',error)
+          }  
+    }, [id]);
 
-    const handleUpdate = (data) => {
+    const [fieldsValue, setFieldsValue] = useState({});
+  
+    // GET ALL THE VALUES FROM 
+    const handleGetFieldValues = (e) => {
+
+        const field = e.target.name
+        const value = e.target.value
+        const newFieldData = {
+            ...fieldsValue
+        }
+        newFieldData[field] = value
+        setFieldsValue(newFieldData)
+
+    }
+    
+    // const [success, setSuccess] = useState(false);
+    const handleUpdate = e => {
+        const bodyInfo={...fieldsValue, updated_date:new Date().toDateString(),
+            updated_time:new Date().toLocaleTimeString(), updater_name:user?.name ? user.name : user.displayName, updater_email:user.email}
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You wanted to update this!",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#ec0554', 
+                confirmButtonText: 'Yes, update it!',
+                cancelButtonText: 'No, keep me!'
+              }).then((result) => {
+                if (result.isConfirmed) 
+             {
+        fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bodyInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    Swal.fire(
+                        'Done!',
+                        'Updated successfully!',
+                        'success'
+                      )
+                    setPhones(phones);
+                    navigate(`/dashboard/manageProducts`);
+                }
+            })
+
+       
+        }
+        });
+         e.preventDefault()
+    }
+
+
+   /*  const handleUpdate = (data) => {
         data.date=new Date().toDateString();
         data.time=new Date().toLocaleTimeString();
         // console.log(data);
@@ -50,21 +126,59 @@ const EditMobile = () => {
         }
     });
 
-    };
+    }; */
 
     return (
-        <div className="col-md-11 col-lg-9 col-sm-12 mx-auto">
-        <div className="py-4 rounded">
-            <h3 className="text-custom">Update <span className='text-danger'> {phones?.name}</span></h3>
-            {
-                phones?.name && <form className='custom-form-add' onSubmit={handleSubmit(handleUpdate)}>
-                    <div className="d-flex">
-                        <input {...register("name", { maxLength: 100 })} defaultValue={phones?.name} />
-                        <p className='btn-custom'>Name</p>
-                    </div>
-                <div className="d-flex">
-                    <select {...register("brand")}>
-                <option >{phones?.brand}</option>
+        <>
+        <div className='container'>
+        <h3 className="text-center">Edit <span className='text-danger'> {phones?.name}</span></h3>
+         {
+            phones?.name && <form  className='pt-4' onSubmit={handleUpdate}>
+        <ul className="list-group">
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="name"
+               defaultValue={phones.name}
+                onBlur={handleGetFieldValues}
+                 label="Mobile Name" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="released_at"
+               defaultValue={phones?.released_at}
+                onBlur={handleGetFieldValues}
+                 label="Released" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.Colors"
+               defaultValue={phones?.specifications?.Colors}
+                onBlur={handleGetFieldValues}
+                 label="Colors" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.Models"
+               defaultValue={phones?.specifications?.Models}
+                onBlur={handleGetFieldValues}
+                 label="Models" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+    <TextField 
+               sx={{ width:"100%" }}
+               name="price"
+              type="number"
+                onBlur={handleGetFieldValues} 
+                 label="Price"
+                 defaultValue={phones?.price}
+                  variant="outlined" />
+                  <span >
+                 <select className='p-3 ms-2 rounded w-100' onBlur={handleGetFieldValues} name="brand" defaultValue={phones?.brand}>
+                 <option >{phones?.brand}</option>
                 <option value="Realme">Realme</option>
                 <option value="Huawei">Huawei</option>
                 <option value="Samsung">Samsung</option>
@@ -75,83 +189,161 @@ const EditMobile = () => {
                 <option value="1Plus">1Plus</option>
                 <option value="Symphony">Symphony</option>
                 </select>
-                <p className='btn-custom'>Brand</p>
-                </div>
-                <div className="d-flex">
-                    <input {...register("released_at", { maxLength: 300 })} defaultValue={phones?.released_at} />
-                    <p className='btn-custom'>Released date</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("body")} defaultValue={phones?.body} />
-                <p className='btn-custom'>Body</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("os")} defaultValue={phones?.os} />
-                <p className='btn-custom'>OS</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("display")} defaultValue={phones?.storage} />
-                <p className='btn-custom'>Storage</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("display_size")} defaultValue={phones?.display_size} />
-                <p className='btn-custom'>Display Size</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("display_resolution")} defaultValue={phones?.display_resolution} />
-                <p className='btn-custom'>Display Resolution</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("camera_pixels")} defaultValue={phones?.camera_pixels} />
-                <p className='btn-custom'>Camera</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("ram")} defaultValue={phones?.ram} />
-                <p className='btn-custom'>Ram</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("chipset")} defaultValue={phones?.network} />
-                <p className='btn-custom'>Chipset</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("specifications.Technology")} defaultValue={phones?.specifications?.Technology} />
-                <p className='btn-custom'>Technology</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("specifications.CPU")} defaultValue={phones?.specifications?.CPU} />
-                <p className='btn-custom'>CPU</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("id")} defaultValue={phones?.id} />
-                <p className='btn-custom'>ID</p>
-                </div>
-                <div className="d-flex">
-                <input type="text" {...register("contact")} defaultValue={phones?.contact} />
-                <p className='btn-custom'>Contact</p>
-                </div>
-                <div className="d-flex">
-                <input type="number" {...register("price")} defaultValue={phones?.price} />
-                <p className='btn-custom'>Price</p>
-                </div>
-                <div className="d-flex">
-                <input type="number" step="0.1" min='1' max='5' {...register("star")} defaultValue={phones?.star} />
-                <p className='btn-custom'>Rating</p>
-                </div>
-                <div className="d-flex">
-                <input type="number" {...register("rating")} defaultValue={phones?.rating} />
-                <p className='btn-custom'>Reviews</p>
-                </div>
-                <div className="d-flex">
-                <input {...register("image")} defaultValue={phones?.image} />
-                <p className='btn-custom'>img URL</p>
-                </div>
-                <div className="text-end">
-                    <button className="btn btn-dark w-100" type="submit">Update</button>
-                </div>  
-            </form>
-            }
+                 </span>
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+    <TextField
+               sx={{ width:"100%" }}
+               name="ram"
+               defaultValue={phones?.ram}
+                onBlur={handleGetFieldValues}
+                 label="Ram" variant="outlined" /> 
+    <span> <TextField
+                sx={{ ml:1,width:"100%" }}
+               name="chipset"
+               defaultValue={phones?.chipset}
+                onBlur={handleGetFieldValues}
+                 label="Chipset" variant="outlined" /></span>
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="storage"
+               defaultValue={phones?.storage}
+                onBlur={handleGetFieldValues}
+                 label="Storage" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="body"
+               defaultValue={phones?.body}
+                onBlur={handleGetFieldValues}
+                 label="Body" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.Protection"
+               defaultValue={phones?.specifications?.Protection}
+                onBlur={handleGetFieldValues}
+                 label="Protection" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.Resolution"
+               defaultValue={phones?.specifications?.Resolution}
+                onBlur={handleGetFieldValues}
+                 label="Resolution" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.Sensors"
+               defaultValue={phones?.specifications?.Sensors}
+                onBlur={handleGetFieldValues}
+                 label="Sensors" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.Build"
+               defaultValue={phones?.specifications?.Build}
+                onBlur={handleGetFieldValues}
+                 label="Build" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.CPU"
+               defaultValue={phones?.specifications?.CPU}
+                onBlur={handleGetFieldValues}
+                 label="CPU" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.Dimensions"
+               defaultValue={phones?.specifications?.Dimensions}
+                onBlur={handleGetFieldValues}
+                 label="Dimensions" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.Display"
+               defaultValue={phones?.specifications?.Display}
+                onBlur={handleGetFieldValues}
+                 label="Display" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+    <TextField
+               sx={{ width:"100%" }}
+               name="camera_pixels"
+               defaultValue={phones?.camera_pixels}
+                onBlur={handleGetFieldValues}
+                 label="Camera" variant="outlined" /> 
+    <span> <TextField
+                sx={{ ml:1,width:"100%" }}
+               name="video_pixels"
+               defaultValue={phones?.video_pixels}
+                onBlur={handleGetFieldValues}
+                 label="Video" variant="outlined" /></span>
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+    <TextField
+               sx={{ width:"100%" }}
+               name="battery_size"
+               defaultValue={phones?.battery_size}
+                onBlur={handleGetFieldValues}
+                 label="Battery Size" variant="outlined" /> 
+    <span> <TextField
+                sx={{ ml:1,width:"100%" }}
+               name="battery_type"
+               defaultValue={phones?.battery_type}
+                onBlur={handleGetFieldValues}
+                 label="Battery Type" variant="outlined" /></span>
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.BatteryLife"
+               defaultValue={phones?.specifications?.BatteryLife}
+                onBlur={handleGetFieldValues}
+                 label="Battery Life" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+        <TextField
+                sx={{ width:"100%" }}
+               name="specifications.Charging"
+               defaultValue={phones?.specifications?.Charging}
+                onBlur={handleGetFieldValues}
+                 label="Charging" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+    <TextField
+                sx={{ width:"100%" }}
+               name="os"
+               defaultValue={phones?.os}
+                onBlur={handleGetFieldValues}
+                 label="Operating System" variant="outlined" /> 
+    </li>
+    <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
+    <TextField
+                sx={{mb:2, width:"100%" }}
+               name="image"
+               defaultValue={phones?.image}
+                onBlur={handleGetFieldValues}
+                 label="Image URL" variant="outlined" />
+    </li>
+    
+    </ul>  
+         <button className='ms-3 btn btn-cart' type="submit">Save</button>
+        </form>
+        }
         </div>
-    </div>
+        </>
     );
 };
 

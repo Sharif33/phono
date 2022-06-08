@@ -42,7 +42,13 @@ const CountdownTimer = ({ offerTill }) => {
     };
 
     useEffect(() => {
-        startTimer();
+        let isMounted = true;
+        if(isMounted ){
+         startTimer();   
+        }
+        return () => {
+            isMounted = false;
+            };
     }, [startTimer]);
 
     return (
