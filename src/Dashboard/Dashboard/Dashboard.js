@@ -143,7 +143,7 @@ function Dashboard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    <Typography noWrap component="div">
                         Dashboard       
                     </Typography>
                 <Box sx={{ ml: "auto", display: 'flex' }}>

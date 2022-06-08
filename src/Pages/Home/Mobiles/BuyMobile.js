@@ -29,7 +29,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
    const dispatch = useDispatch();
    
     return (
-        <div style={{position:"absolute"}}>
+        <div>
          <Modal
                 open={openBuyNow}
                 onClose={handleClose}

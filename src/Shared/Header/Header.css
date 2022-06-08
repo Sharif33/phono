@@ -59,7 +59,12 @@
             display: grid;
             place-items: center;
           } */
-          
+          .bg-nav-btn{
+            background-color: #6974be28;
+          }
+          .bg-nav-btn:hover{
+                background-color: #16161853;
+          }
           .btn-nav{
             background-color: #6974be28;
             border-radius: 50%;

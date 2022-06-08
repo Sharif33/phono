@@ -158,7 +158,7 @@ const Header = () => {
                                                user?.email ? 
                                            
                                                    <div className="dropdown">
-                                            <div style={{cursor:"pointer"}} id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" className='d-flex justify-content-evenly align-items-center rounded ms-2 btn-cart border'>
+                                            <div style={{cursor:"pointer"}} id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" className='d-flex justify-content-evenly align-items-center rounded ms-2 bg-nav-btn'>
                                                 <div>
                                                     <Avatar alt="" src={user?.photoURL} />
                                                 </div>
@@ -173,17 +173,15 @@ const Header = () => {
                                                   <small className="text-center">{user?.email}</small>
                                                   </li>
           
-                                                  <li className=" dropdown-item">
-                                                  <NavLink  className='text-dark' style={{textDecoration:'none',cursor:"pointer",color:"white"}} to="/dashboard/user"><small>Profile</small></NavLink>
-                                                  </li>
-          
-                                                  <li className=" dropdown-item ">
-                                                  <NavLink  className='text-dark' style={{textDecoration:'none',cursor:"pointer",color:"white"}} to="/dashboard"><small>Dashboard</small></NavLink>
-                                                  </li>
-          
-                                                  <li className="dropdown-item">
+                                                  
+                                                  <NavLink className='text-dark dropdown-item' style={{textDecoration:'none',cursor:"pointer",color:"white"}} to="/dashboard/user"><small>Profile</small></NavLink>
+
+                                                  <NavLink  className='text-dark dropdown-item' style={{textDecoration:'none',cursor:"pointer",color:"white"}} to="/dashboard"><small>Dashboard</small></NavLink>
+                                                  
+                                                    <button className="btn bg-cart dropdown-item">  
                                                   <small style={{cursor:"pointer"}} onClick={logOut} >Logout</small>
-                                                  </li>
+                                                    </button>
+                                                 
                                                   
                                                   </ul>
                                                   
@@ -191,7 +189,7 @@ const Header = () => {
                                               
                                               :
                                               <NavLink className='' to={`/login`} >
-                                              <div className='d-flex justify-content-evenly align-items-center rounded ms-2 btn-cart'>
+                                              <div className='d-flex justify-content-evenly align-items-center rounded ms-2 bg-nav-btn'>
                                                   <div>
                                                     
                                                     <button className='btn'>

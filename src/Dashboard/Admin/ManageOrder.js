@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 const ManageOrder = () => {
     const [orders, setOrders] = useState([]);
-    console.log(orders);
+    // console.log(orders);
     const [status, setStatus] = useState("");
 
     const handleStatus = (e) => {
@@ -48,7 +48,7 @@ const ManageOrder = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.modifiedCount > 0) {
                         Swal.fire(
                             'Done!',

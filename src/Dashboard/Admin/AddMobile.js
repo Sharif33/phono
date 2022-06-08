@@ -82,7 +82,7 @@ const AddMobile = () => {
                 <input type="number" {...register("rating")} placeholder="Reviews" />
                 <input {...register("specifications.Technology")} placeholder="Technology" />
                 <input {...register("specifications.ram")} placeholder="ram" />
-<input {...register("specifications.CPU")} placeholder="CPU" />
+                <input {...register("specifications.CPU")} placeholder="CPU" />
                 <input {...register("image")} placeholder="image url" />
                 {/* <input type="file" onChange={(e)=>setImage(e.target.files[0])} {...register("image")} placeholder="image url" /> */}
                 <input className="btn btn-primary" type="submit" />

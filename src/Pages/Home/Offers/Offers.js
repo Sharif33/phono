@@ -52,7 +52,7 @@ const Offers = () => {
                    
             <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
                     {
-                        seeMore?.map(offer => <Offer
+                        seeMore?.sort((a,b)=>a.price>b.price ? 1 : -1).map(offer => <Offer
                             key={offer._id}
                             offer={offer}
                         />)
