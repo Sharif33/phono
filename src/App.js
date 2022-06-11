@@ -52,8 +52,12 @@ function App() {
     <div>
       {
         spinner ? <div className="loader">
-          <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_cyrvih26.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
-          <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_8sjqrjby.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
+          <div>
+            <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_cyrvih26.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
+          </div>
+          <div>
+            <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_8sjqrjby.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
+          </div>
         </div> : 
         <AuthProvider>
           <Routes>

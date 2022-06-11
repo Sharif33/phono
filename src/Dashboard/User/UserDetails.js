@@ -67,17 +67,17 @@ const UserDetails = () => {
                             <h1> + </h1>
                             <p>Add/Edit Address</p>
                         </div>
-                    </div>
-                    
+                    </div> 
                 </div>   
                     </div>
                 ))
             }
-            
+            <div>
                <EditUser
                openUserNow={openUserNow}
                handleClose={handleClose}
-               ></EditUser>
+               ></EditUser> 
+            </div>    
     </div>
     );
 };

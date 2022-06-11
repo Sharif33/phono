@@ -9,7 +9,7 @@ const Contact = () => {
             <div className='p-5 container'>
             <div className='text-center'>
                 <h3>WELCOME TO PHONO SUPPORT. WE'RE HERE TO HELP.</h3>
-                <h5 className='text-secondary'>ALWAYS ON YOUR SIDE WHEN YOU NEED HELP</h5>
+                <h6 className='text-secondary'>ALWAYS ON YOUR SIDE WHEN YOU NEED HELP</h6>
             </div>
             <div className='row my-5'>
                 <div className='col-sm-12 col-md-6 text-center'>
@@ -17,9 +17,9 @@ const Contact = () => {
                 <img className='px-3 img-fluid' src={call} alt="" />
                         <div>
                             <h6>HAVE ANY DOUBTS?</h6>
-                            <h4>CALL US NOW</h4>
+                            <h4 className='text-primary'>CALL US NOW</h4>
                             <small>This Number is Toll Free</small> <br />
-                            <small>0000 - 123 - 456789</small>
+                            <small className='text-primary'>0000 - 123 - 456789</small>
                         </div>
                     </div>
                     <div style={{marginTop:"-20px"}}>
@@ -32,9 +32,9 @@ const Contact = () => {
                 <img className='px-3 img-fluid' src={chat} alt="" />
                         <div>
                             <h6>WANNA TALK TO US?</h6>
-                            <h4>LIVE CHAT NOW</h4>
+                            <h4 className='text-primary'>LIVE CHAT NOW</h4>
                             <small>If you have any question?</small> <br />
-                            <small>Just saying us</small>
+                            <small className='text-primary'>Just saying us</small>
                         </div>
                     </div>
                     <div style={{marginTop:"-20px"}}>

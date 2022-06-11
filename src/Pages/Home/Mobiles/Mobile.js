@@ -1,20 +1,29 @@
 // import { Rating } from '@mui/material';
 // import { Box } from '@mui/system';
-import React from 'react';
+import React,{useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { Favourite } from '../../../Contexts/AuthProvider/FavContext';
 import { addToCart } from '../../../Redux/slices/cartSlice';
 import { addToFvrt } from '../../../Redux/slices/fvrtSlice';
 import { addToCompare } from '../../../Redux/slices/compareSlice';
+import { removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
 // import { removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
 import BuyMobile from './BuyMobile';
 import "./Mobile.css";
 // import CountdownTimer from '../../Countdown/CountdownTimer';
 import { numberFormat } from '../../../Shared/numberFormat';
-import { MdInfo, MdVisibility, MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder } from "react-icons/md";
+import { MdInfo, MdVisibility, MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 
 const Mobile = ({ mobile}) => {
+    const [toggleBtn, setToggleBtn] = useState(false);
+
+    const showToggle = () => {
+        setToggleBtn(true);
+    }
+    const hideToggle = () => {
+        setToggleBtn(false);
+    }
     // const {cart,setCart} = useContext(Favourite);
     // const offerTill = new Date().toDateString();
     const { _id, name, price, ram, storage, image, chipset } = mobile;
@@ -33,8 +42,11 @@ const Mobile = ({ mobile}) => {
                            <div>  
                             <div className="card-btns">
                            <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> <br />
+                            {
+                                toggleBtn ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={hideToggle}><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span>  </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={showToggle}><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
 
-                            <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/> </button>
+                            }
+                           
   
                            </div>
                            <img style={{ height: "10rem" }} src={image} className="img-fluid rounded-start" alt="" />

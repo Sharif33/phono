@@ -39,7 +39,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component="span">{children}</Typography>
         </Box>
       )}
     </div>
@@ -183,8 +183,9 @@ const SingleMobile = () => {
     } */
 
   return (
-    <div style={{ backgroundColor: "#EEF2FF", overflowX:"hidden" }}>
+    <>
       <Header />
+      <div style={{ backgroundColor: "#EEF2FF", overflowX:"hidden" }}>
       <div className="container py-5">
         <div className="row">
           <div className="col-md-3 m-auto col-sm-12 mb-5">
@@ -269,28 +270,29 @@ const SingleMobile = () => {
           </div> */}
           <div className="col-md-6 border-start d-flex justify-content-center">
             <div className="py-3">
-            <h3 style={{ color: "#62599F" }}>{name}-{ram}-{storage}-{camera_pixels} Camera</h3>
+              <div>
+              <h3 style={{ color: "#62599F" }}>{name}-{ram}-{storage}-{camera_pixels} Camera</h3>
               <h5 className="fs-6">
                 Brand:
                 <span className="fs-5 text-dark fw-bold"> {brand}</span>
-              </h5> <br />
+              </h5>
+              </div>
+             <br />
               <Box
                 sx={{
                   "& > legend": { mt: 2 },
                 }}
               >
-                <Typography>
                   <Rating
                     name="half-rating-read"
                     precision={0.5}
                     value={Number(phones?.star)}
                     readOnly
                   />
-                  {phones?.rating} reviews
-                </Typography>
+                  <span> {phones?.rating} reviews</span>
               </Box>
-
-              <h5 className="w-100 py-3">
+              <div>
+                <h5 className="w-100 py-3">
                 <span className="text-danger fw-bold"> Tk </span>
                 <span className="fs-1 fw-bold ">{numberFormat (price).slice(3,-3)}</span> .00
               </h5>
@@ -307,10 +309,11 @@ const SingleMobile = () => {
                 <i title="Add to Favourite" className="far fa-heart"></i> Add to
                 wishlist
               </button>
+              </div>
             </div>
           </div>
           {/* <div className="py-5">
-              <h6 style={{textAlign: "justify"}}> <span style={{color:"#eb5525"}} className='fw-bold fs-5'> Disclaimer : </span> The actual color of the physical product may slightly vary due to the deviation of lighting sources, photography or your device display settings. Delivery charges may vary as per the location, Product Size and Weight; we will notify before proceeding the delivery.</h6>
+              <span style={{textAlign: "justify"}}> <span style={{color:"#eb5525"}} className='fw-bold fs-5'> Disclaimer : </span> The actual color of the physical product may slightly vary due to the deviation of lighting sources, photography or your device display settings. Delivery charges may vary as per the location, Product Size and Weight; we will notify before proceeding the delivery.</span>
           </div> */}
 
 
@@ -325,9 +328,12 @@ const SingleMobile = () => {
       </Box>
       <TabPanel value={value} index={0}>
         <div>
-          <small>Specification of <span className="text-primary fs-5">{name}</span></small> <br /> <br />
           <div>
-          <h6>Network :</h6>
+            <small>Specification of <span className="text-primary fs-5">{name}</span></small> <br />
+          </div>
+           <br />
+          <div>
+          <span>Network :</span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Technology : {phones?.specifications?.Technology}</li>
             <li>2G : {phones?.specifications?.TwoG}</li>
@@ -338,14 +344,14 @@ const SingleMobile = () => {
           </ul>
         </div>
         <div>
-          <h6>Launch :</h6>
+          <span>Launch :</span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Announced : {phones?.specifications?.Announced}</li>
             <li>Launch : {released_at}</li>
           </ul>
         </div>
         <div>
-          <h6>Body :</h6>
+          <span>Body :</span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Dimensions : {phones?.specifications?.Dimensions}</li>
             <li>Body : {body}</li>
@@ -354,7 +360,7 @@ const SingleMobile = () => {
           </ul>
         </div>
         <div>
-          <h6>Display : </h6>
+          <span>Display : </span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Size : {phones?.specifications?.Size}</li>
             <li>Resolution : {phones?.specifications?.Resolution}</li>
@@ -362,7 +368,7 @@ const SingleMobile = () => {
           </ul>
         </div>
         <div>
-          <h6>Platform : </h6>
+          <span>Platform : </span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>OS : {phones?.specifications?.OS}</li>
             <li>OS Version: {phones?.specifications?.Chipset}</li>
@@ -371,14 +377,14 @@ const SingleMobile = () => {
           </ul>
         </div>
         <div>
-          <h6>Mrmory : </h6>
+          <span>Mrmory : </span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Ram : {ram}</li>
             <li>Memory : {storage}</li>
           </ul>
         </div>
         <div>
-          <h6>Camera : </h6>
+          <span>Camera : </span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Primary : {phones?.specifications?.Dual}</li>
             <li>Secondary : {phones?.specifications?.Single}</li>
@@ -387,7 +393,7 @@ const SingleMobile = () => {
           </ul>
         </div>
         <div>
-          <h6>Connectivity : </h6>
+          <span>Connectivity : </span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Wi-Fi : {phones?.specifications?.WLAN}</li>
             <li>Bluetooth : {phones?.specifications?.Bluetooth}</li>
@@ -396,7 +402,7 @@ const SingleMobile = () => {
           </ul>
         </div>
         <div>
-          <h6>Features : </h6>
+          <span>Features : </span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Sensors : {phones?.specifications?.Sensors}</li>
             <li>Radio : {phones?.specifications?.Radio}</li>
@@ -405,7 +411,7 @@ const SingleMobile = () => {
           </ul>
         </div>
         <div>
-          <h6>Battery : </h6>
+          <span>Battery : </span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Battery : {phones?.specifications?.Type}</li>
             <li>Charging : {phones?.specifications?.Charging}</li>
@@ -413,13 +419,13 @@ const SingleMobile = () => {
           </ul>
         </div>
         <div>
-          <h6>Colors : </h6>
+          <span>Colors : </span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Colors : {phones?.specifications?.Colors}</li>
           </ul>
         </div>
         <div>
-          <h6>Models : </h6>
+          <span>Models : </span>
           <ul style={{ listStyleType: 'disc', fontSize:"13px" }}>
             <li>Models : {phones?.specifications?.Models}</li>
           </ul>
@@ -429,7 +435,9 @@ const SingleMobile = () => {
       </TabPanel>
       <TabPanel value={value} index={1}>
          <div className="py-4">
-            <p>Ratings & Reviews of {name}</p>
+           <div>
+              <p>Ratings & Reviews of {name}</p>
+           </div>
             <div className="row">
               <div className="col-md-7 col-sm-12">
                 <div className="d-flex justify-content-evenly">
@@ -449,7 +457,7 @@ const SingleMobile = () => {
                   </div>
 
                   <div className="py-4 m-auto">
-                    <h4>
+                    <div>
                       <Rating
                         size="medium"
                         name="half-rating-read"
@@ -494,7 +502,7 @@ const SingleMobile = () => {
                         readOnly
                       />
                       <span> ({starI?.length})</span>
-                    </h4>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -579,7 +587,8 @@ const SingleMobile = () => {
                                 }
                             </div>
                         </div> */}
-      {relatedPd?.length ? (
+                        <div>  
+                        {relatedPd?.length ? (
         <div className="container pb-5">
           <h2 className="text-center fw-bold">
             
@@ -623,13 +632,17 @@ const SingleMobile = () => {
       ) : (
         " "
       )}
-      
+      </div>
+
       <div className="bg-light py-3">
         <Banner3 />
       </div>
-
-      <Footer />
+        <div>
+           <Footer />
+        </div>
+     
     </div>
+    </>
   );
 };
 

@@ -17,7 +17,7 @@ const cartSlice = createSlice({
         addToCart: localStorage.getItem("addedToCart") ? JSON.parse(localStorage.getItem('addedToCart') || '{}') : [],
         cartTotal: 0,
         cartTotalQuantity: 0,
-        cartQuantity:0,
+        cartQuantity:1,
         shipping:0,
         tax:0,
         discover: [],
@@ -47,7 +47,10 @@ const cartSlice = createSlice({
         },
         increment: (state, { payload }) => {
             const itemIndex = state.addToCart.findIndex(item => item._id === payload._id);
-            state.addToCart[itemIndex].cartQuantity += 1;
+            if(state.addToCart[itemIndex].cartQuantity >=0){
+                state.addToCart[itemIndex].cartQuantity += 1;
+            }
+            
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
 
         },
@@ -64,7 +67,7 @@ const cartSlice = createSlice({
             let { total, quantity, shipping } = state.addToCart.reduce((cartTotal, addToCart) => {
 
                 const { price, cartQuantity } = addToCart;
-                const itemTotal = parseFloat(price * cartQuantity);
+                const itemTotal = Number(price * cartQuantity);
                 console.log(itemTotal, 'redux itemTotal total');
                
                 cartTotal.total += itemTotal;
@@ -73,12 +76,12 @@ const cartSlice = createSlice({
             },
                 {
                     total: 0,
-                    quantity: 0,
+                    quantity: 1,
                     shipping:0,
                     tax:0
                 }
             );
-            total = parseFloat(total.toFixed(2));
+            total = Number(total.toFixed(2));
             state.shipping= 50;
             state.tax= (total + shipping) * 0.05;
             state.cartTotal = total;

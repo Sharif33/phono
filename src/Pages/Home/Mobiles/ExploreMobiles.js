@@ -8,7 +8,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Mobile from './Mobile';
 import {Helmet} from "react-helmet";
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import Footer from '../../../Shared/Footer/Footer';
 
 const ExploreMobiles = () => {
@@ -135,9 +135,9 @@ const handleBrandSort = ()=>{
             </Helmet>
          <Header/>
             <div>
-                <div className="container">
-                    <div style={{position:"fixed", top: 50 ,right:5, zIndex:1, overflowX:"hidden"}} className="d-flex justify-content-evenly align-items-center mx-auto">
-                        <Box centered sx={{ maxWidth: { xs: 320, sm: 500, md: 800,lg: 1100, xl: 1400 }, bgcolor: 'background.paper', px: {xs:0, sm:0 ,md: 15},pt: 3}}>
+                 <div style={{position:"fixed", top: 50 ,right:0, zIndex:1, overflowX:"hidden"}}>
+                    <div className="d-flex justify-content-center align-items-center mx-auto px-3 bg-light">
+                    <Box centered sx={{ maxWidth: { xs: 270, sm: 500, md: 800,lg: 1100, xl: 1400 },bgcolor: 'background.paper',  px: {xs:0, sm:0 ,md: 15},pt: 3}}>
                     <Tabs
                         value={value}
                         onChange={handleChange}
@@ -167,57 +167,39 @@ const handleBrandSort = ()=>{
                         <Tab onClick={() => setCategories(mobiles)} label="All" />
                     </Tabs>
                     </Box>
-                    <Box sx={{ minWidth: 120,bgcolor: 'background.paper',pt:3, overflow:"hidden" }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={sorting}
-          label="Sort By"
-          onChange={handleSorting}
-        >
-          <MenuItem  onClick={handleHighPrice} value={0}>High to low Price</MenuItem>
-          <MenuItem  onClick={handleLowPrice} value={1}><span className="text-danger">Low to high Price</span></MenuItem>
-          <MenuItem onClick={handleBrandSort} value={2}>Sorted brand name</MenuItem>
-          <MenuItem onClick={handleNameSort} value={3}>Sorted name ({priceH?.length})</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
-                    </div>
-                    
-                    
-                    
-                   {/*  <div className='sticky-position'>
-                    <div className='text-center d-block'>
-                        <button className='btn btn-custom fs-3 w-100 mx-2 mb-2'>Top Brands</button>
-                        <button onClick={() => filterResult('Realme')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Realme</button>
-                        <button onClick={() => filterResult('Vivo')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Vivo</button>
-                        <button onClick={() => filterResult('Huawei')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Huawei</button>
-                        <button onClick={() => filterResult('Samsung')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Samsung</button>
-                        <button onClick={() => filterResult('Xiomi')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Xiomi</button>
-                        <button onClick={() => filterResult('Infinix')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Infinix</button>
-                        <button onClick={() => filterResult('Motorola')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Motorola</button>
-                        <button onClick={() => filterResult('Oppo')} className='btn btn-custom-3 mx-2 w-100 mb-2'>Oppo</button>
-                        <button onClick={() => setCategories(mobiles)} className='btn btn-custom-3 mx-2 w-100 mb-2'>All</button>
+                <Box sx={{ minWidth: 120,pt:3,bgcolor: 'background.paper', overflow:"hidden" }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
+                            <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={sorting}
+                            label="Sort By"
+                            onChange={handleSorting}
+                            >
+                            <MenuItem onClick={handleHighPrice} value={0}>High to low Price</MenuItem>
+                            <MenuItem onClick={handleLowPrice} value={1}>Low to high Price</MenuItem>
+                            <MenuItem onClick={handleBrandSort} value={2}>Sorted brand name</MenuItem>
+                            <MenuItem onClick={handleNameSort} value={3}>Sorted name ({priceH?.length})</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>  
+                    </div>   
+                </div>
 
-                    </div>
-                </div> */}
-                    <div style={{marginTop:"9rem"}} className="row row-cols-1 row-cols-md-4 g-4">
-                                                
+                <div className="container">
+                <div style={{marginTop:"9rem"}} className="row row-cols-1 row-cols-md-4 g-4">                                 
                                                
                                                 {
-                                                    categories.length !== 0 &&  categories?.map(mobile => <Mobile
+                                                    categories.length !== 0 ? categories?.map(mobile => <Mobile
                                                     key={mobile._id}
                                                     mobile={mobile}
-                                                />)
+                                                />) : <div className='text-center'><CircularProgress/> <span>Please wait...</span></div>
                                                 }
-                                               {
-                                                   categories.length === 0 && <h5>Not Available.</h5>
-                                               }
                                             
-                                            </div>
+                    </div>
                 </div>
+                    
             </div>
             <Footer/>
         </>

@@ -1,6 +1,5 @@
 import { Rating } from "@mui/material";
 import React from "react";
-import "./Reviews.css";
 import Marquee from "react-fast-marquee";
 import useReviews from "../../../Hooks/useReviews/useReviews";
 

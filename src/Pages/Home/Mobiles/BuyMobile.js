@@ -29,7 +29,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
    const dispatch = useDispatch();
    
     return (
-        <div>
+        <>
          <Modal
                 open={openBuyNow}
                 onClose={handleClose}
@@ -68,7 +68,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                     </div>
                 </div>
             </Modal>
-        </div>
+        </>
     );
 };
 

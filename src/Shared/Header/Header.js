@@ -51,24 +51,27 @@ const Header = () => {
 // }
 
     return (
-        <div>
-            <div style={{marginBottom:"60px"}} className="header">
-                <div className="header-inner">
-                    <nav style={{ backgroundColor: "#303f9f" }} className=" py-2 fixed-top ms-auto">
-                        <div className="container">
+    <div>
+        <div style={{marginBottom:"60px"}} className="header">
+            <div className="header-inner">
+                <nav style={{ backgroundColor: "#303f9f" }} className=" py-2 fixed-top ms-auto">
+                 <div className="container-fluid">
                             
-                            <div className="d-flex justify-content-evenly">
-                                <div className='d-flex  justify-content-evenly'>
-                                    <div className='m-auto'>
-                                        <IconButton
-                                    onClick={() => setIsDrawerOpen(true)}
+                    <div className="d-flex justify-content-evenly">
+                        <div>
+                            <div className='d-flex  justify-content-evenly'>
+                            <div className='m-auto'>
+                                <div>
+                                    <IconButton onClick={() => setIsDrawerOpen(true)}
                                     // sx={{ mr: 2, display: { sm: 'none' } }}
                                     size='large'
                                     edge='start'
                                     color='inherit'
                                     aria-label='logo'>
                                     <MenuIcon />
-                                </IconButton>
+                                    </IconButton>  
+                                </div>
+                                <div>
                                 <Drawer
                                     anchor='left'
                                     open={isDrawerOpen}
@@ -80,13 +83,11 @@ const Header = () => {
                                     <ul className="navbar-nav text-center me-auto">
                                         <li className="nav-item small-search">
                                             <NavLink className='mx-2' to={`/compare`} >
-                                            <button className="btn btn-cart border-0 p-0">
                                             <IconButton aria-label="compare">
                                             <StyledBadge badgeContent={addToCompare?.length} color="error">
                                             <MdCompareArrows className='text-dark' />
                                             </StyledBadge>
                                             </IconButton>
-                                            </button>
                                             </NavLink>
                                         </li>
                                         <li className="nav-item">
@@ -103,61 +104,63 @@ const Header = () => {
                                         </li>
                                      </ul>
                                     </Box>
-                                </Drawer>
-                                    </div>
+                                </Drawer>  
+                               </div>
+                            </div>
+
                                 <div className='m-auto'>
                                     <NavLink className="navbar-brand fw-bold fs-3 text-warning" to="/home">PH<span className="text-danger">|O|</span>NO</NavLink>
                                 </div>   
-                                </div>
+                         </div>
+                        </div>
+                        
 
                                 <div className='my-auto'>
                                    <div className='d-flex  justify-content-between'>
-                                    <div className='nav-hidder'>
+                                    <div className='nav-hidder my-auto'>
                                           <SearchNav/>      
                                     </div>
                                     <div className='small-search m-auto'>
                                          <NavLink className='mx-1 btn' style={{textDecoration:"none"}} to="/search"><span><SearchIcon className='text-light'/></span></NavLink>
                                     </div>
                                       
-                                        <div className='d-flex  justify-content-center  align-items-center my-auto'>
-                                            <div>
-                                               <NavLink className='mx-2' to={`/fvrt`} >
-                                        <button className='btn btn-nav border-0 p-0'>
+                                        <div className='d-flex justify-content-center  align-items-center my-auto'>
+
+                                        <div>
+                                        <NavLink className='mx-2' to={`/fvrt`} >
                                         <IconButton aria-label="favorite">
                                         <StyledBadge badgeContent={addToFvrt?.length} color="error">
                                         <MdFavorite className='text-light' />
                                         </StyledBadge>
                                         </IconButton>
-                                            </button>
                                         </NavLink> 
-                                            </div>
-                                            <div>
+                                        </div>
+
+                                        <div>
                                         <NavLink className='mx-1' to={`/cart`} >
-                                        <button className='btn btn-nav border-0 p-0'>
+                                        
                                         <IconButton aria-label="cart">
                                         <StyledBadge badgeContent={addToCart?.length} color="error">
                                         <MdShoppingCart className='text-light' />
                                         </StyledBadge>
                                         </IconButton>   
-                                        </button>
                                         </NavLink>
-                                            </div>
-                                            <div className='nav-hidder'>
+                                        </div>
+
+                                        <div className='nav-hidder'>
                                         <NavLink className='mx-2' to={`/compare`} >
-                                        <button className="btn btn-nav border-0 p-0">
                                             <IconButton aria-label="compare">
                                             <StyledBadge badgeContent={addToCompare?.length} color="error">
                                             <MdCompareArrows className='text-light' />
                                             </StyledBadge>
                                             </IconButton>
-                                        </button>
                                         </NavLink>
-                                            </div>
-                                            <div className=''>
+                                        </div>
+                                 <div className=''>
                                 {
-                                               user?.email ? 
+                                     user?.email ? 
                                            
-                                                   <div className="dropdown">
+                                        <div className="dropdown">
                                             <div style={{cursor:"pointer"}} id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" className='d-flex justify-content-evenly align-items-center rounded ms-2 bg-nav-btn'>
                                                 <div>
                                                     <Avatar alt="" src={user?.photoURL} />

@@ -51,9 +51,9 @@ const Favourite = () => {
                         
                         </div>
                     <div className='d-flex justify-content-evenly'>
-                    <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> <br />
+                    <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> 
 
-                    <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/> </button> <br />
+                    <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/> </button>
 
                     <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows className='fs-3 p-1'/></button>
                         </div>

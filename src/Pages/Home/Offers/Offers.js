@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import useOffer from '../../../Hooks/SpecialOffer/useOffer';
 import usePhones from '../../../Hooks/usePhones/usePhones';
 import { numberFormat } from '../../../Shared/numberFormat';
+import { AiOutlineDown } from "react-icons/ai";
 import Offer from './Offer';
 
 const Offers = () => {
@@ -52,7 +53,7 @@ const Offers = () => {
                    
             <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
                     {
-                        seeMore?.sort((a,b)=>a.price>b.price ? 1 : -1).map(offer => <Offer
+                        seeMore?.map(offer => <Offer
                             key={offer._id}
                             offer={offer}
                         />)
@@ -60,13 +61,10 @@ const Offers = () => {
                 </div>
                 <div className="text-center">
                     {
-                        seeMore?.length < next ? "No more offer" : <button className='btn border-0 text-danger bg-transparent' onClick={handleShowMorePosts}>See more</button>
+                        seeMore?.length < next ? "No more offer" : <button className='btn  text-danger btn-hover' onClick={handleShowMorePosts}>See more <AiOutlineDown/> </button>
                     }
-                     
                 </div>
-                  
                 </div>
-                {/*  */}
                 <div className="col-md-3 mx-auto">
                    
                     <div style={{backgroundColor:"#EEF2FF"}} className=' text-center mx-3 mt-3 py-3 rounded-top'>
@@ -79,21 +77,23 @@ const Offers = () => {
                 <div style={{backgroundColor:"#EEF2FF"}}className=' mx-3 pt-3 rounded-bottom'> 
                     {/* <h3 className='fw-bold text-center'>Latest <span className='text-primary'>Mobiles</span></h3> */}
                     {
-                        mobiles?.slice(-5,-1).reverse().map(mobile=> <ul className="list-group"
+                        mobiles?.slice(-5,-1).reverse().sort((a,b)=>a.price<b.price ? 1 : -1).map(mobile=> <ul className="list-group"
                         key={mobile?._id}
                         >
-                        <li className="list-group-item d-flex justify-content-between align-items-center rounded-0"> <span><Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"2.5rem"}} className='img-fluid' src={mobile?.image} alt="" /> </Link></span>{mobile?.name}
-                        <span className="text-secondary">{numberFormat(mobile?.price).slice(3,-3)}Tk</span>
+                        <li className="list-group-item d-flex justify-content-between align-items-center rounded-0"> <span><Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"2.5rem"}} className='img-fluid' src={mobile?.image} alt="" /> </Link></span>
+                        <small>{mobile?.name}</small>
+                        <span className="text-success">{numberFormat(mobile?.price).slice(3,-3)}Tk</span>
                         </li>
                             
                         </ul>)
                     }
-                </div>
-                </div>
-
-              
-            </div>
-            
+                   
+                </div> 
+                    <div className='text-center py-2'>
+                        <Link to={`/mobiles`}>New Arrival</Link>
+                    </div>
+                </div> 
+            </div>  
         </div> 
     );
 };

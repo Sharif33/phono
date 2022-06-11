@@ -1,16 +1,25 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Rating } from '@mui/material';
 import { Box } from '@mui/system';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../../Redux/slices/cartSlice';
 import { addToFvrt } from '../../../Redux/slices/fvrtSlice';
-import { MdAddShoppingCart, MdOutlineFavoriteBorder,MdOutlineCompareArrows } from "react-icons/md";
+import { removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
+import { MdAddShoppingCart, MdOutlineFavoriteBorder,MdOutlineCompareArrows,MdOutlineFavorite } from "react-icons/md";
 import CountdownTimer from '../../Countdown/CountdownTimer';
 import { numberFormat } from '../../../Shared/numberFormat';
 import { addToCompare } from '../../../Redux/slices/compareSlice';
 
 const Offer = ({offer}) => {
+    const [toggleBtn, setToggleBtn] = useState(false);
+
+    const showToggle = () => {
+        setToggleBtn(true);
+    }
+    const hideToggle = () => {
+        setToggleBtn(false);
+    }
     const { _id, star, name,price, image, offerTill } = offer;
     const dispatch = useDispatch();
     return (
@@ -27,7 +36,10 @@ const Offer = ({offer}) => {
                         <div className="card-btns">
                        <button onClick={() => dispatch(addToCart(offer))} className='btn btn-cart border-0 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> <br />
 
-                        <button onClick={() => dispatch(addToFvrt(offer))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/> </button> <br />
+                       {
+                                toggleBtn ? <button onClick={() => dispatch(removeFromFvrt(offer))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={hideToggle}><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span>  </button> :  <button onClick={() => dispatch(addToFvrt(offer))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={showToggle}><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
+
+                        } <br />
 
                         <button onClick={() => dispatch(addToCompare(offer))} className='btn btn-cart border-0 rounded'><MdOutlineCompareArrows className='fs-3 p-1'/></button>
 

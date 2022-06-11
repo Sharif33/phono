@@ -1,0 +1,32 @@
+.quto{
+    color:  #0938431c !important;
+    font-size: 10rem;
+    position: absolute;
+    top: 25% !important;
+    left: 0% ;
+    /* z-index: -1; */
+    /* display: none; */
+}
+
+.r-desc .quto{
+    display: block;
+}
+
+.r-desc{
+    text-align: justify;
+    color:  #093843;
+}
+
+.rvw-margin{
+    border-bottom: 2px solid #093843;
+    min-height: 33vh;
+}
+
+@media only screen and (max-width:576px){
+    .quto{
+        top: 20%;
+    }
+    .rvw-margin{
+        min-height: 25vh;
+    }
+}

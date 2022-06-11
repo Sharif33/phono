@@ -47,20 +47,21 @@ const Review = ({ phones }) => {
             'success'
           )
           reset();
-          console.log(res.data);
+          // console.log(res.data);
           // window.location.reload();
         }
       });
   };
   return (
-    <div>
+    <>
       <div className="m-auto">
         <div className=" p-4 rounded">
-          <p className="text-custom">
+          <span className="text-custom">
             Shared experience for
             <span className="text-warning"> {phones?.name}</span>
-          </p>
-          {phones?.name && (
+          </span>
+          <div>
+            {phones?.name && (
             <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
              {/*  <input
                 className=" rounded"
@@ -137,9 +138,10 @@ const Review = ({ phones }) => {
               </Button>
             </form>
           )}
+          </div> 
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

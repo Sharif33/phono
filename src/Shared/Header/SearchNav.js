@@ -53,7 +53,9 @@ const SearchNav = () => {
                                             )}
                                             </span>
                                         </div>
-                                        {filteredData.length !== 0 && (
+                                        <div>
+                                        {
+                                         filteredData.length !== 0 && (
                                             <div className="dataResult rounded">
                                             {filteredData.slice(0, 15).map((value) => <div key={value?._id}>
                                             <ul className="list-group ">  
@@ -65,8 +67,10 @@ const SearchNav = () => {
                                                     </Link>
                                                 </ul>
                                             </div>)}
-                                            </div>
-                                        )}
+                                            </div>)
+                                        }
+                                        </div>
+                                       
                                                 </li>
             </nav>
         </div>
