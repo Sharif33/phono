@@ -11,6 +11,7 @@ import 'react-responsive-modal/styles.css';
 import { addToCart } from "../../../Redux/slices/cartSlice";
 import { addToFvrt } from "../../../Redux/slices/fvrtSlice";
 import { useDispatch } from 'react-redux';
+import { numberFormat } from '../../../Shared/numberFormat';
 
 // const style = {
 //   position: 'absolute',
@@ -37,17 +38,20 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                 aria-labelledby="my-modal-title"
                 aria-describedby="my-modal-description"
               >
-                <div className="row">
-                    <div className="col-md-6 col-sm-12 m-auto">
-                    <img  src={image} className="img-fluid rounded-start" alt="" />  
+                <div>
+                  <div className="row w-100">
+                    <div className="col-md-4 col-sm-12 m-auto">
+                      <div>
+                        <img  src={image} className="img-fluid rounded-start" alt="" />  
+                      </div> 
                     </div>
-                    <div className="col-md-6 col-sm-12 m-auto pt-md-3">
+                    <div className="col-md-8 col-sm-12 m-auto pt-md-3">
                         <h4>{name}</h4>
                         <h6>Brand : {brand}</h6>
                         <h6>Avaibility : <small>In Stock</small> </h6>
                         <h5 className="w-100 py-3">
                 <span className="text-danger fw-bold"> Tk </span>{" "}
-                <span className="fs-3 fw-bold ">{price}</span> .00
+                <span className="fs-3 fw-bold ">{numberFormat(price).slice(3,-3)}</span> .00
               </h5>
 
               <button
@@ -65,8 +69,10 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                 <i title="Add to Favourite" className="far fa-heart"></i> Add to
                 wishlist
               </button>
-                    </div>
                 </div>
+                </div>
+                </div>
+                
             </Modal>
         </>
     );

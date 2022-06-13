@@ -32,11 +32,10 @@ const Mobiles = () => {
 
     } */
     return (
-        <div className=''>
-            <div className="container">
+        <>
+            <div className="container mt-5">
                 <div className="text-center pt-2">
-                    <h4 className=" fw-bold text-primary p-2">Feature Mobile</h4>
-                    
+                    <h1 className=" fw-bold text-primary p-2">Feature Mobile</h1>
                 </div>
                 <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
                     {mobiles.length == 0 ?
@@ -53,11 +52,11 @@ const Mobiles = () => {
                         />)
                     }
                 </div>
-                <div className="text-end pt-4">
+                <div className="text-center pt-4">
                     <Link to="/mobiles"><button className="btn btn-cart rounded-pill mb-5">View All</button></Link>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

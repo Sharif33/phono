@@ -9,7 +9,8 @@ import s6 from '../../images/iphone.png'
 import s7 from '../../images/lenevo.png'
 const Sponsors = () => {
   return (
-    <div>
+    <>
+    <div className="pb-5">
       <Marquee gradient={false} speed={60}>
           <img className="img-fluid p-3 mx-2" src={s1} alt="" />
           <img className="img-fluid p-3 mx-2" src={s2} alt="" />
@@ -20,6 +21,8 @@ const Sponsors = () => {
           <img className="img-fluid p-3 mx-2" src={s7} alt="" />
       </Marquee>
     </div>
+      
+    </>
   );
 };
 

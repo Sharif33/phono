@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 const Contact = () => {
     return (
-        <div>
-            <div className='p-5 container'>
+        <>
+            <div className='p-5 my-5 container'>
             <div className='text-center'>
-                <h3>WELCOME TO PHONO SUPPORT. WE'RE HERE TO HELP.</h3>
+                <h3 style={{color:"#093843"}}>WELCOME TO PHONO SUPPORT. WE'RE HERE TO HELP.</h3>
                 <h6 className='text-secondary'>ALWAYS ON YOUR SIDE WHEN YOU NEED HELP</h6>
             </div>
             <div className='row my-5'>
@@ -23,7 +23,7 @@ const Contact = () => {
                         </div>
                     </div>
                     <div style={{marginTop:"-20px"}}>
-                    <Link to="/contact"><button className='btn btn-dark rounded-pill'>View More</button></Link>
+                    <Link to="/contact"><button className='btn btn-custom rounded-pill'>View More</button></Link>
                     </div>
                
                 </div>
@@ -38,15 +38,13 @@ const Contact = () => {
                         </div>
                     </div>
                     <div style={{marginTop:"-20px"}}>
-                    <Link to="/contact"><button className='btn btn-dark rounded-pill'>View More</button></Link>
+                    <Link to="/contact"><button className='btn btn-custom rounded-pill'>View More</button></Link>
                     </div>
-               
-                </div>
-                
 
+                </div>
             </div>
         </div>
-        </div>
+        </>
     );
 };
 

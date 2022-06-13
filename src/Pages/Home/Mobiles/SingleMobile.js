@@ -24,6 +24,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { numberFormat } from "../../../Shared/numberFormat";
+import moment from "moment";
 SwiperCore.use([ Navigation, Thumbs ]);
 
 function TabPanel(props) {
@@ -543,7 +544,7 @@ const SingleMobile = () => {
                   </Box>
 
                   <span className="text-secondary">
-                    <small> {review?.date}</small>
+                    <small> { moment(new Date(review?.date)).fromNow() }</small>
                   </span>
                 </li>
                 <br />

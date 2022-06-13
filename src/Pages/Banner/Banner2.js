@@ -56,16 +56,16 @@ const Banner2 = () => {
                     </div>
                 </div>
             </div>
-            <div className='container text-center my-5'>
+            <div className='container text-center my-5 pt-5'>
                 <div>
-                    <h4>WHAT MAKES THE ESSENTIAL DIFFERENT?</h4>
-                    <h6>EXPERIENCE HIGH PERFORMANCE AND SECURE</h6>
+                    <h4 style={{color:"#093843"}}>WHAT MAKES THE ESSENTIAL DIFFERENT?</h4>
+                    <h6 className='text-secondary' >EXPERIENCE HIGH PERFORMANCE AND SECURE</h6>
                 </div>
                 <div className='row row-cols-1 row-cols-md-3 m-2 g-4 text-start'>
                 <div className='col'>
                     <div className='d-flex justify-content-evenly align-items-center bg-light card-hover rounded p-2'>
                         <div className='p-2 w-100'>
-                            <h6>PERFECT CUT</h6>
+                            <h6 className='text-primary'>PERFECT CUT</h6>
                             <h5>DUAL CAMERA</h5>
                         </div>
                         <lottie-player className="img-fluid w-100" src="https://assets8.lottiefiles.com/private_files/lf30_izjlsxva.json"  background="transparent"  speed=".5"   style={{ height: "10rem"}}  loop  autoplay></lottie-player> 
@@ -74,7 +74,7 @@ const Banner2 = () => {
                 <div className='col'>
                     <div className='d-flex justify-content-evenly align-items-center bg-light card-hover rounded p-2'>
                         <div className='p-2 w-100'>
-                            <h6>PRETTY</h6>
+                            <h6 className='text-primary'>PRETTY</h6>
                             <h5>INTELLIGENT PROCESSING</h5>
                         </div>
                         <lottie-player className="img-fluid w-100" src="https://assets2.lottiefiles.com/packages/lf20_rloy7en0.json"  background="transparent"  speed=".5"   style={{ height: "10rem"}}  loop autoplay></lottie-player>
@@ -83,7 +83,7 @@ const Banner2 = () => {
                 <div className='col'>
                     <div className='d-flex justify-content-evenly align-items-center bg-light card-hover rounded p-2'>
                         <div className='p-2 w-100'>
-                            <h6>MOST POPULAR</h6>
+                            <h6 className='text-primary'>MOST POPULAR</h6>
                             <h5>8GB DDR5 RAM</h5>
                         </div>
                         <lottie-player className="img-fluid w-100" src="https://assets10.lottiefiles.com/private_files/lf30_qimecffl.json"  background="transparent"  speed=".3"   style={{ height: "10rem"}}  loop  autoplay></lottie-player>

@@ -1,42 +1,54 @@
 import React from 'react';
+import { SiWhatsapp,SiDiscord,SiTwitter,SiFacebook,SiYoutube } from "react-icons/si";
+import { Link } from 'react-router-dom';
+import logo from '../../images/favicon.png';
+import strip from '../../images/strip.png';
+import './Footer.css';
 
 const Footer = () => {
+    const date = new Date().getFullYear();
     return (
-        <div>
+        <>
             <footer style={{ backgroundColor: "#183153" }}>
-                <div className="row row-cols-1 row-cols-md-3 mx-2 mt-2 g-4 px-4 text-white border-bottom border-secondary">
-                    <div className="p-4">
-                        <h4 className="border-bottom border-warning text-warning pb-2">Our Services</h4>
-                        <ul>
-                            <li>Our Team</li>
-                            <li>Contact Us</li>
-                            <li>About</li>
-                            <li>Mobiles</li>
-                            <li>Blog</li>
-                            <li>Terms and Services</li>
-                        </ul>
-                    </div>
-                    <div className="p-4">
-                        <h4 className="border-bottom text-info border-info pb-2">Contact US</h4>
-                        <p><i className="fas fa-map-marker-alt"></i> Eastern Housing, Dhaka, Bangladesh</p>
-                        <p><i className="fas fa-envelope"></i> info123@phono.com</p>
-                        <p><i className="fas fa-phone-alt"></i> +880 123-456-789</p>
-                        <p><i className="fas fa-phone-alt"></i> +880 456-123-987</p>
-                    </div>
-                    <div className="p-4">
-                        <h4 className="border-bottom pb-2">Subscribe</h4>
-                        <div className="input-group input-group-lg">
-                            <input type="text" placeholder="Enter Email" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" />
-                            <span className="input-group-text btn-danger btn" id="inputGroup-sizing-lg">Subscribe</span>
-                            <p>Get the latest news and updates right at your inbox.</p>
+                <div className="container">
+                    <div className="row row-cols-2 row-cols-md-3 m-auto text-light">
+                <div className="p-4 m-auto">
+                        {/* <h3 className="pb-2 text-warning fw-bold">PH<span className="text-danger">|O|</span>NO</h3> */}
+                        <div>
+                             <img className='img-fluid footer-img' src={logo} alt="" />
+                        </div>
+                       
+                        <div className="d-flex justify-contet-evenly align-items-center py-3">
+                            <a className='mx-2' href="/"><SiYoutube style={{color:"#D7E1F7"}} className='footer-icon'/></a>
+                            <a className='mx-2' href="/"><SiFacebook style={{color:"#D7E1F7"}} className='footer-icon'/></a>
+                            <a className='mx-2' href="/"><SiDiscord style={{color:"#D7E1F7"}} className='footer-icon'/></a>
+                            <a className='mx-2' href="/"><SiTwitter style={{color:"#D7E1F7"}} className='footer-icon'/></a>
+                            <a className='mx-2' href="/"><SiWhatsapp style={{color:"#D7E1F7"}} className='footer-icon'/></a>
                         </div>
                     </div>
+                    <div className="p-4 m-auto">
+                        <h4 style={{color:"#D7E1F7"}} className="pb-2"> <span className="border-bottom border-info">Services</span></h4>
+                        <ul style={{ listStyleType: 'disc'}}>
+                            <li><Link className='text-light footer-srvc' to={`/contact`}> Contact Us</Link></li>
+                            <li><Link className='text-light footer-srvc' to={`/about`}>About</Link></li>
+                            <li><Link className='text-light footer-srvc' to={`/mobiles`}>Mobiles</Link></li>
+                            <li><Link className='text-light footer-srvc' to={`/blog`}>Blog</Link></li>
+                            <li><Link className='text-light footer-srvc' to={`/terms`}>Terms and Services</Link></li>
+                            <li><a target="_blank" rel="noreferrer" className="text-light footer-srvc"href="https://sharif-rashed.netlify.app/"> Developer</a></li>
+                        </ul>
+                    </div>
+                    <div className="p-4 m-auto text-center">
+                        <img src={strip} alt="" className="img-fluid rounded" />
+                    </div>
+                    
                 </div>
-                <div className="text-light text-center p-4">
-                    <p>Copyright <span>&copy;</span>2021 <span className="text-warning">phono</span> All rights reserved.</p>
+                </div>
+                
+                <div className=" border-top border-secondary text-light text-center p-4">
+                    <small>Copyright <span>&copy;</span>{date} <span> <a target="_blank" rel="noreferrer" className="text-warning"href="https://sharif-rashed.netlify.app/"> Sharif Mohammad Rashed</a></span> All rights reserved.</small>
                 </div>
             </footer>
-        </div>
+        </>
     );
 };
 

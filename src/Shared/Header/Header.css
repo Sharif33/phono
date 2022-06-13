@@ -59,6 +59,24 @@
             display: grid;
             place-items: center;
           } */
+
+
+            /* ScrollTop style */
+            .back-to-top {
+              position: fixed;
+              bottom: 20px;
+              right: 20px;
+              font-size: 20px;
+              background: #D7E1F7;
+              color: #093843;
+              cursor: pointer;
+              border-radius: 50%;
+              border: none;
+              /* box-shadow: 0 5px 10px #ccc; */
+              z-index: 1;
+            }
+
+
           .bg-nav-btn{
             background-color: #6974be28;
           }
