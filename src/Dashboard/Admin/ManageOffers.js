@@ -22,7 +22,7 @@ const ManageOffers = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#ec0554',
             cancelButtonText: 'No, keep me!',
-            confirmButtonText: 'Yes, cancel it!'
+            confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) 
          {

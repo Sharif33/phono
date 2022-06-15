@@ -1,56 +1,66 @@
 import axios from 'axios';
-import React  from 'react';
+import React,{useState}  from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth/useAuth';
 
 const AddOffers = () => {
     const {user} = useAuth();
-    // const [image,setImage]= useState("");
-    // const [url,setUrl] = useState("");
+    const navigate = useNavigate();
+
+    /* Image Added section */
+    const [imageSrc, setImageSrc] = useState();
+    
+    const handleProductImageUpload = (e) => {
+      const file = e.target.files[0];
+  
+      TransformFileData(file);
+    };
+  
+    const TransformFileData = (file) => {
+      const reader = new FileReader();
+  
+      if (file) {
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          setImageSrc(reader.result);
+        };
+      } else {
+        setImageSrc("");
+      }
+    };
+
+    /* Post API section */
+
     const { register, handleSubmit, reset } = useForm();
 
-    const onSubmit = data => {
-        // console.log(data);
+     const onSubmit = (data) => {
+        data.image=imageSrc;
         data.date=new Date().toDateString();
         data.time=new Date().toLocaleTimeString();
         data.adder=user?.displayName;
-        // console.log(data.adder);
         data.adderEmail=user?.email;
-        /* const img = new FormData()
-        img.append("file",image)
-        img.append("upload_preset","phono-sj0vxcq0")
-        img.append("cloud_name","dulelqrvl")
-        fetch("https://api.cloudinary.com/v1_1/dulelqrvl/image/upload",{
-            method:"post",
-            body:img
-        })
-        .then(res=>res.json())
-        .then(img=>{
-           setUrl(img.url)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
- */
+        
         axios.post(`https://peaceful-shore-84874.herokuapp.com/phones`, data)
             .then(res => {
                 if (res.data.insertedId) {
-                    
                     Swal.fire(
                         'Good job!',
                         'Added Successfully!',
                         'success'
                       )
                     reset();
+                    navigate(`/dashboard/manageOffers`);
                 }
+                
             })
     }
     return (
         <div className=" col-md-12 col-lg-9 col-sm-12 mx-auto">
         <div className="py-3 rounded">
             <h3 className="text-custom">Offer Added Section</h3>
-            <form className='custom-form' onSubmit={handleSubmit(onSubmit)}>
+            <form encType='multipart/form-data' className='custom-form' onSubmit={handleSubmit(onSubmit)}>
                 <input {...register("name", { required: true, maxLength: 100 })} placeholder="Name" />      
                 <select {...register("brand", { required: true })}>
                 <option>Select brand name</option>
@@ -78,8 +88,16 @@ const AddOffers = () => {
                 <input type="number" {...register("price")} placeholder="Price" />
                 <input type="number" step="0.1" min='1' max='5' {...register("star")} placeholder="Rating (out of 5)" />
                 <input type="number" {...register("rating")} placeholder="Reviews" />
-                <input {...register("image")} placeholder="image url" />
-                {/* <input type="file" onChange={(e)=>setImage(e.target.files[0])} {...register("image")} placeholder="image url" /> */}
+                <input  id="imgUpload" accept="image/*" type="file"
+                onChange={handleProductImageUpload} />
+
+                {
+                imageSrc && (
+                    <>
+                      <img style={{width:"7rem"}} className='img-fluid' src={imageSrc} alt="error!" />
+                    </>) 
+                }
+
                 <input className="btn btn-primary" type="submit" />
             </form>
         </div>

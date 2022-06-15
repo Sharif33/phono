@@ -45,7 +45,7 @@ const EditOffer = () => {
                             'success'
                           )
                         // window.location.reload();
-                        console.log(data);
+                        // console.log(data);
                         setPhones(data);
                         reset();
                         navigate(`/dashboard/manageOffers`);
