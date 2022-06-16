@@ -35,7 +35,7 @@ const Banner1 = () => {
                     </SwiperSlide>
                     <SwiperSlide>
                     <div className="text-center">
-                            <img className='img-fluid w-100' src={b3} alt="" />
+                            <img style={{height:"40%"}} className='img-fluid w-100' src={b3} alt="" />
                     </div>
                     </SwiperSlide>
                     <SwiperSlide>

@@ -154,3 +154,15 @@
             display: block;
           }
           }
+
+
+          /* Not Found */
+
+          .not-found{
+           position: relative;
+          }
+          .not-found .not-found-home{
+           position: absolute;
+            top: 70% !important;
+            left: 30% !important;
+          }

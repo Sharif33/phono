@@ -18,7 +18,7 @@ const Banner2 = () => {
 
     return (
         <div>
-            <div className='row row-cols-2 row-cols-md-4 my-2 g-2 bg-cart'>
+            <div className='row row-cols-2 row-cols-md-4 g-2 bg-cart'>
                 <div className='col m-auto'>
                     <div className='d-flex justify-content-evenly align-items-center p-3'>
                     <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_gesnvxtv.json"  background="transparent"  speed="1"  style={{width:"6rem"}}  loop  autoplay></lottie-player>

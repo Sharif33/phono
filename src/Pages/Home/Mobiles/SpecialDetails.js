@@ -15,6 +15,8 @@ import { addToFvrt } from "../../../Redux/slices/fvrtSlice";
 import usePhones from "../../../Hooks/usePhones/usePhones";
 import useReviews from "../../../Hooks/useReviews/useReviews";
 import { numberFormat } from "../../../Shared/numberFormat";
+import { addToCompare } from '../../../Redux/slices/compareSlice';
+import { MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder } from "react-icons/md";
 
   
 
@@ -345,85 +347,36 @@ const SpecialDetails = () => {
             Related Mobiles
           </span>{" "}
         </h2>
-        <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
+        <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
           {relatedPd?.map((related) => (
-            <div key={related?._id}>
-              <div className="col rounded text-center">
-                <div className="card card-hover shadow h-100">
-                  <div className="row flex-row-reverse px-3 py-2 g-0">
-                    <div className="col-md-4">
-                      <img
-                        style={{ height: "12rem" }}
-                        src={related?.image}
-                        className="img-fluid rounded-start"
-                        alt=""
-                      />
-                      <p>
-                        Tk:{" "}
-                        <span className="text-danger fw-bold">
-                          {related?.price}
-                        </span>
-                      </p>
-                    </div>
-                    <div className="col-md-8">
-                      <h5 className="text-dark pt-1">{related?.name}</h5>
-                      <Box
-                        sx={{
-                          "& > legend": { mt: 2 },
-                        }}
-                      >
-                        <Rating
-                          name="half-rating-read"
-                          precision={0.5}
-                          size="small"
-                          value={Number(related?.star)}
-                          readOnly
-                        />
-                      </Box>
-                      <div style={{ textAlign: "justify" }} className="p-2">
-                        <p className="text-secondary">{related?.specs}</p>
-                      </div>
-                      <div className="text-center d-flex justify-content-center alighn-items-center">
-                        <Link to={`/mobile/${related?._id}`}>
-                          {" "}
-                          <button className="btn btn-outline-dark border-0 mx-2 rounded-circle">
-                            {" "}
-                            <i
-                              title="Details"
-                              className="fas fa-info-circle fs-4 py-1"
-                            ></i>{" "}
-                          </button>{" "}
+             <div key={related?._id}>
+             <div className="col rounded text-center">
+             <div className="card border-0 shadow-sm h-100">
+                
+                <div className='card-hover rounded py-3'>
+                       <div>  
+                        <Link style={{textDecoration:"none"}} to={`/mobile/${related?._id}`}>
+                          <img style={{ height: "10rem" }} src={related?.image} className="img-fluid rounded-start" alt="" />
+                        <h6 className="text-dark pt-1">{related?.name}</h6>
+                        <div style={{ textAlign: "center" }} className="px-2">
+                            <p className="text-secondary">{related?.ram} {related?.storage} | {related?.chipset}</p>
+                            <p style={{color:"#eb5525",fontWeight:"bolder"}}>{numberFormat(related?.price).slice(3,-3) }Tk</p>
+                        </div> 
                         </Link>
-
-                        <button
-                          onClick={() => dispatch(addToCart(related))}
-                          className="btn btn-outline-dark border-0 mx-2 rounded-circle"
-                        >
-                          {" "}
-                          <i
-                            title="Add to Cart"
-                            className="fas fa-cart-plus fs-4 py-1"
-                          ></i>{" "}
-                        </button>
-
-                        <div>
-                          <button
-                            onClick={() => dispatch(addToFvrt(related))}
-                            className="btn btn-outline-dark border-0 mx-2 rounded-circle"
-                          >
-                            {" "}
-                            <i
-                              title="Add To Favourite"
-                              className="far fa-heart fs-4 py-1"
-                            ></i>{" "}
-                          </button>
-                        </div>
-                      </div>
+                       </div>  
                     </div>
-                  </div>
-                </div>
-              </div>
+                    <div>
+                        <div className="d-flex justify-content-evenly">
+                        <button onClick={() => dispatch(addToCart(related))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button>
+
+                       <button onClick={() => dispatch(addToFvrt(related))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/> </button>
+
+                       <button onClick={() => dispatch(addToCompare(related))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows title="Add to Compare" className='fs-3 p-1'/></button>
+                        </div>
+                    </div>
             </div>
+             </div>
+           </div>
           ))}
         </div>
       </div>

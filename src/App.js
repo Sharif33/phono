@@ -39,6 +39,7 @@ import ManageUsers from "./Dashboard/Admin/ManageUsers";
 import AddOffers from "./Dashboard/Admin/AddOffers";
 import ManageOffers from "./Dashboard/Admin/ManageOffers";
 import EditOffer from "./Dashboard/Admin/EditOffer";
+import NotFound from "./Shared/NotFound";
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="home" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
             <Route path="contact" element={<ContactUs />} />
             <Route path="about" element={<AboutUs />} />
             <Route path="search" element={<SearchField />} />
