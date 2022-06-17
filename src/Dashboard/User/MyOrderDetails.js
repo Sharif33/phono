@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-// import { Modal } from 'react-responsive-modal';
 import { Link, useParams } from 'react-router-dom';
-import 'react-responsive-modal/styles.css';
+import { numberFormat } from '../../Shared/numberFormat';
 
 const MyOrderDetails = () => {
   const {id} = useParams();
@@ -88,11 +87,11 @@ const MyOrderDetails = () => {
                     <div>
                       <small className="text-secondary">
                         <span>{item?.cartQuantity}</span> x{" "}
-                        <span>{item?.price}</span>
+                        <span>{numberFormat(item?.price).slice(3,-3)}	&#x9F3;</span>
                       </small>
                     </div>
                     <span className="text-primary fw-bold fs-6">
-                      {item?.price * item?.cartQuantity} Tk
+                      {numberFormat(item?.price * item?.cartQuantity).slice(3,-3)} Tk
                     </span>
                   </li>
                 ))}
@@ -113,7 +112,7 @@ const MyOrderDetails = () => {
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-4 fw-bold">
                   Total
                   <span className="text-danger fw-bold fs-5">
-                    {order?.total} Tk
+                    {numberFormat(order?.total).slice(3)} Tk
                   </span>
                 </li>
               </ul>

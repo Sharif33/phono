@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
-import { Modal } from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
+// import { Modal } from 'react-responsive-modal';
+// import 'react-responsive-modal/styles.css';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import { Alert, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import CloseIcon from '@mui/icons-material/Close';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: {xs:"90vw", sm: "90vw", md:"40vw"},
+  bgcolor: 'background.paper',
+ borderRadius:'7px',
+  boxShadow: 24,
+  p: 4,
+//   overflowY:"scroll"
+};
 
 const EditUser = ({openUserNow,handleClose}) => {
     const {user} = useAuth();
@@ -64,11 +80,13 @@ const EditUser = ({openUserNow,handleClose}) => {
                 <Modal
                 open={openUserNow}
                 onClose={handleClose}
-                center
-                aria-labelledby="my-modal-title"
-                aria-describedby="my-modal-description"
+                aria-labelledby="my-modal-title2"
+                aria-describedby="my-modal-description2"
               >
-                  <div className="">
+                  <Box sx={style}>
+                  <div style={{marginTop:"-1.8rem",marginRight:"-1.8rem"}} className="text-end">
+                    <button onClick={handleClose} className='btn text-danger'><CloseIcon/></button>
+                  </div>
             <div className="rounded">
                 <form  className='pt-4' onSubmit={handleAdminSubmit}>
                 <ul className="list-group">
@@ -130,11 +148,11 @@ const EditUser = ({openUserNow,handleClose}) => {
             </li>
             
             </ul>  
-                 <button className='ms-3 btn btn-cart' type="submit">Save</button>
+                 <button className='ms-3 btn btn-custom' type="submit">Save</button>
                 </form>
                 
             </div>
-        </div>
+        </Box>
 
                 
            

@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { toast } from "react-toastify";
+import { createSlice } from '@reduxjs/toolkit';
 
 // First, create the thunk
 /* export const fetchBooks = createAsyncThunk(
@@ -37,15 +36,12 @@ const cartSlice = createSlice({
                     ...state.addToCart[itemIndex],
                    cartQuantity: state.addToCart[itemIndex].cartQuantity += 1
                 };
-                toast.info("Increased product quantity", {
-                    position: "bottom-left",
-                  });
+            
+
             } else {        
                 const newCart = { ...payload, cartQuantity: 1};
                 state.addToCart.push(newCart);
-                toast.success("Product added to cart", {
-                    position: "bottom-left",
-                  });
+ 
         }
         localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
     },
@@ -59,10 +55,7 @@ const cartSlice = createSlice({
             const itemIndex = state.addToCart.findIndex(item => item._id === payload._id);
             if(state.addToCart[itemIndex].cartQuantity >=0){
                 state.addToCart[itemIndex].cartQuantity += 1;
-
-                toast.info("Increased product quantity", {
-                    position: "bottom-left"
-                  });
+               
             }
             
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
@@ -74,9 +67,7 @@ const cartSlice = createSlice({
             if (state.addToCart[itemIndex].cartQuantity > 1){
                state.addToCart[itemIndex].cartQuantity -= 1;
 
-               toast.info("Decreased product quantity", {
-                position: "bottom-left",
-              });
+              
             }
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
            

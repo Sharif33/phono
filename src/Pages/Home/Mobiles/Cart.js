@@ -85,8 +85,8 @@ const Cart = () => {
                                                 </div>
                                         </div>
                                     </TableCell>
-                                    <TableCell align="center">{numberFormat(mobile.price).slice(3,-3)}</TableCell>
-                                    <TableCell align="center">{numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}</TableCell>
+                                    <TableCell align="center">{numberFormat(mobile.price).slice(3,-3)}	&#x9F3;</TableCell>
+                                    <TableCell align="center">{numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}	&#x9F3;</TableCell>
                                     
                                 </TableRow>
                             ))}

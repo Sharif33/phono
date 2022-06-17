@@ -82,10 +82,8 @@ const MyOrders = () => {
       <div className="container">
         
  <div className="col-md-6 mx-auto text-center pb-3">
-        <img className="img-fluid rounded-circle" src={user?.photoURL} alt="" />
-        <h5 className="text-warning">{user?.displayName}</h5>
         <h4>
-          Your order item: <span className="text-danger">{orders.length}</span>
+          Total Order: <span className="text-danger">{orders.length}</span>
         </h4>
       </div>
       <div className="row">

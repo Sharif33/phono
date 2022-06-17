@@ -2,28 +2,30 @@
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth/useAuth'; */
-// import Box from '@mui/material/Box';
-// import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 /* import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'; */
-import { Modal } from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
+// import { Modal } from 'react-responsive-modal';
+// import 'react-responsive-modal/styles.css';
 import { addToCart } from "../../../Redux/slices/cartSlice";
 import { addToFvrt } from "../../../Redux/slices/fvrtSlice";
 import { useDispatch } from 'react-redux';
 import { numberFormat } from '../../../Shared/numberFormat';
+import { Fade } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
-// const style = {
-//   position: 'absolute',
-//   top: '50%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: 400,
-//   bgcolor: 'background.paper',
-//  borderRadius:'10px',
-//   boxShadow: 24,
-//   p: 4,
-// };
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: {xs:"90vw", sm: "90vw", md:"60vw"},
+  bgcolor: 'background.paper',
+ borderRadius:'7px',
+  boxShadow: 24,
+  p: 4,
+};
 
 const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
    const {image,price,name,brand} = mobile;
@@ -34,18 +36,21 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
          <Modal
                 open={openBuyNow}
                 onClose={handleClose}
-                center
                 aria-labelledby="my-modal-title"
                 aria-describedby="my-modal-description"
               >
-                <div>
-                  <div className="row w-100">
-                    <div className="col-md-4 col-sm-12 m-auto">
-                      <div>
-                        <img  src={image} className="img-fluid rounded-start" alt="" />  
+                <Fade in={openBuyNow}>
+                <Box sx={style}>
+                  <div style={{marginTop:"-1.8rem",marginRight:"-1.8rem"}} className="text-end">
+                    <button onClick={handleClose} className='btn text-danger'><CloseIcon/></button>
+                  </div>
+                  <div className="row m-auto">
+                    <div className="col-md-5 col-sm-12 m-auto">
+                      <div className='text-center'>
+                        <img  src={image} className="img-fluid" alt="" />  
                       </div> 
                     </div>
-                    <div className="col-md-8 col-sm-12 m-auto pt-md-3">
+                    <div className="col-md-6 col-sm-12 m-auto">
                         <h4>{name}</h4>
                         <h6>Brand : {brand}</h6>
                         <h6>Avaibility : <small>In Stock</small> </h6>
@@ -71,8 +76,8 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
               </button>
                 </div>
                 </div>
-                </div>
-                
+                </Box>
+                </Fade>
             </Modal>
         </>
     );

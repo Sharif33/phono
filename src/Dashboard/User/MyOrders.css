@@ -35,7 +35,8 @@
 
 .order .progressbar-track .progressbar li.green {
     border: 2px solid #007965;
-    background-color: #d5e6e2
+    background-color: #d5e6e2;
+    color: #007965 !important;
 }
 
 .order .progressbar-track .progressbar li::after {
@@ -82,9 +83,9 @@
     background-color: #f0ecec !important
 } */
 
-.green {
-    color: #007965 !important
-}
+/* .green {
+    color: #007965 !important;
+} */
 
 @media(max-width: 1199.5px) {
     /* nav ul li {

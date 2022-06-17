@@ -15,6 +15,11 @@ const ExploreMobiles = () => {
     const [categories, setCategories] = useState([]);
     const [mobiles, setMobiles] = useState([]);
     const [priceH, setPriceH]=useState([]);
+    const [spinner, setSpinner] = React.useState(true);
+
+    React.useEffect(() => {
+      setTimeout(() => setSpinner(false), 1500)
+    }, []);
     
     const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
@@ -134,8 +139,11 @@ const handleBrandSort = ()=>{
                 <link rel="canonical" href="/mobiles" />
             </Helmet>
          <Header/>
+         {
+            spinner ? <div className='text-center pt-5 my-5'><CircularProgress/></div> 
+            :
             <div>
-                 <div style={{position:"fixed", top: 50 ,right:0, zIndex:1, overflowX:"hidden"}}>
+                <div style={{position:"fixed", top: 50 ,right:0, zIndex:1, overflowX:"hidden"}}>
                     <div className="d-flex justify-content-center align-items-center mx-auto px-3 bg-light">
                     <Box centered sx={{ maxWidth: { xs: 270, sm: 500, md: 800,lg: 1100, xl: 1400 },bgcolor: 'background.paper',  px: {xs:0, sm:0 ,md: 15},pt: 3}}>
                     <Tabs
@@ -191,16 +199,21 @@ const handleBrandSort = ()=>{
                 <div style={{marginTop:"9rem"}} className="row row-cols-1 row-cols-md-4 g-4">                                 
                                                
                                                 {
-                                                    categories.length !== 0 ? categories?.map(mobile => <Mobile
+                                                    categories?.map(mobile => <Mobile
                                                     key={mobile._id}
                                                     mobile={mobile}
-                                                />) : <div className='text-center'><CircularProgress/> <span>Please wait...</span></div>
+                                                />) 
                                                 }
-                                            
+                                                {
+                                                 categories?.length ===0 && <p>Nothing found. Will be added soon.</p>  
+                                                }
+                                             
                     </div>
                 </div>
                     
             </div>
+         }
+           
             <Footer/>
         </>
     );

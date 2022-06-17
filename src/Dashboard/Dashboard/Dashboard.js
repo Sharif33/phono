@@ -126,14 +126,9 @@ function Dashboard(props) {
         
         <Box sx={{ display: 'flex', backgroundColor:"#EEF2FF" }}>
             
-            <AppBar
-                position="fixed"
-                sx={{
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
-                }}
-            >
-                <Toolbar className='bg-dash bg-light'>
+        <AppBar position="fixed" 
+        sx={{ width: { sm: `calc(100% - ${drawerWidth}px)` }, ml: { sm: `${drawerWidth}px` },}}>
+            <Toolbar className='bg-dash bg-light'>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -147,27 +142,30 @@ function Dashboard(props) {
                         Dashboard       
                     </Typography>
                 <Box sx={{ ml: "auto", display: 'flex' }}>
-                    <div className="dropdown mx-2">
-                                        <Avatar id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" alt="" src={user?.photoURL} />
-                            <ul className="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdownMenuLink">
-                                        <li className=" dropdown-item border-bottom">
-                                        <small className='fw-bold'>{user?.displayName}</small><br />
-                                        <small className="text-center">{user?.email}</small>
-                                        </li>
-                                        <li className=" dropdown-item">
-                                        <small className="text-center">Profile</small>
-                                        </li>
-                                        <li className=" dropdown-item ">
-                                        <Link className='text-dark' style={{textDecoration:'none'}} to="/home"><small>Home</small></Link>
-                                        </li>
-                                        <li className="dropdown-item">
-                                        <small style={{cursor:"pointer",color:"#38D373"}} onClick={logOut} >Logout</small>
-                                        </li>
-                            </ul>
-                    </div>                    
+                <div className="dropdown">
+                        <div style={{cursor:"pointer"}} id="navbarDropdownMenuLink2" data-bs-toggle="dropdown" aria-expanded="false" className='rounded bg-nav-btn'>
+                            <Avatar alt="" src={user?.photoURL} />             
+                        </div>
+                                                  
+                    <ul className="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdownMenuLink2">
+
+                        <li className=" dropdown-item border-bottom">
+                            <small className='fw-bold'>{user?.name ? user.name : user?.displayName}</small><br />
+                            <small className="text-center">{user?.email}</small>
+                        </li>
+
+                        <Link className='text-dark dropdown-item' style={{textDecoration:'none',color:"white"}} to="/dashboard/user"><small>Profile</small></Link>
+
+                        <Link  className='text-dark dropdown-item' style={{textDecoration:'none',color:"white"}} to="/"><small>Home</small></Link>
+                                                  
+                        <button onClick={logOut} className="btn text-danger fw-bold dropdown-item">
+                        Logout </button>          
+                    </ul>
+                                                  
+                </div>                    
                 </Box>
 
-                </Toolbar>
+            </Toolbar>
             </AppBar>
             <Box
                 component="nav"

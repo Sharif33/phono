@@ -2,12 +2,12 @@
 import { Avatar, CircularProgress, Rating } from '@mui/material';
 import { RiDoubleQuotesL } from "react-icons/ri";
 import React, { useEffect, useState } from 'react';
+import CustomerReview from './CustomerReview';
 import "./Reviews.css";
 import SwiperCore, { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
-import CustomerReview from './CustomerReview';
 
 SwiperCore.use([EffectCoverflow, Autoplay, Pagination, Navigation]);
 const CustomerReviewShow = () => {

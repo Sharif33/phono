@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import { numberFormat } from '../../Shared/numberFormat';
 // import MyOrderDetails from './MyOrderDetails';
 
 const Orders = ({order,statusNumber,handleDeleteOrders}) => {
@@ -35,19 +36,19 @@ const Orders = ({order,statusNumber,handleDeleteOrders}) => {
                             </Link>
                             <button onClick={() => handleDeleteOrders(order._id)} className="btn btn-custom-2 btn-sm">Cancel order</button>
                           </div>)
-                        }
+                            }
                           </div>
-                          <div>
+                        <div>
                             
                             {
                                descriptionCollapse? 
-                               <span onClick={showLess}><Link to={`/dashboard/myOrders`}> <button className='btn btn-cart mx-2'>Order Details <span className="text-success"><AiOutlineUp/></span> </button> </Link></span> :  <span onClick={showMore}><Link to={`/dashboard/myOrders/${order._id}`}> <button className='btn btn-cart mx-2'>Order Details <span className="text-danger"><AiOutlineDown/></span> </button> </Link></span>
+                               <span onClick={showLess}><Link to={`/dashboard/myOrders`}> <button className='btn btn-cart mx-2'>Hide Details <span className="text-danger"><AiOutlineUp/></span> </button> </Link></span> :  <span onClick={showMore}><Link to={`/dashboard/myOrders/${order._id}`}> <button className='btn btn-cart mx-2'>View Details <span className="text-success"><AiOutlineDown/></span> </button> </Link></span>
                             }
                         </div>
                         </div>
                         <br />
                       <h6>Order #<span className="text-muted">{order?._id?.slice(-8)}</span></h6>
-                      <h6>Tk<span className="text-muted"> {order?.total} </span></h6>
+                      <h6>Tk<span className="text-muted"> {numberFormat(order?.total).slice(3)} </span></h6>
                       <h6> Ordered: <span className="text-muted">{order?.date}, {order?.time}</span></h6>
                       </div>
 
@@ -55,65 +56,33 @@ const Orders = ({order,statusNumber,handleDeleteOrders}) => {
                     <div>
                       <div className="progressbar-track">
                         <ul className="progressbar gap-3 text-center">
-                          <li id="step-1" className={`${statusNumber >= 1 && statusNumber <= 5
-                                ? "text-muted green mr-3" : statusNumber === 6 ? "text-danger"
-                                : "gray mr-5"}`} >
+
+                          <li id="step-1" className={`${statusNumber >= 1 && statusNumber <= 5 ? "green mr-3" : statusNumber === 6 ? "text-danger" : "text-secondary mr-5"}`} >
                             <button className="fas fa-gift border-0 bg-transparent"></button>
                           </li>
-                          <li
-                            id="step-2"
-                            className={`${
-                              statusNumber >= 2 && statusNumber <= 5
-                                ? "text-muted green mr-3"
-                                : statusNumber === 6
-                                ? "text-danger"
-                                : "gray mr-3"
-                            }`}
-                          >
-                            
+
+                          <li id="step-2" className={`${statusNumber >= 2 && statusNumber <= 5 ? "green mr-3" : statusNumber === 6 ? "text-danger" : "text-secondary mr-3" }`} >
                             <button className="fas fa-check border-0 bg-transparent"></button>
                           </li>
+
                           <li
-                            id="step-3"
-                            className={`${
-                              statusNumber >= 3 && statusNumber <= 5
-                                ? "text-muted green mr-3"
-                                : statusNumber === 6
-                                ? "text-danger"
-                                : "gray mr-3"
-                            }`}
-                          >
-                            
-                            <button className="fas fa-box border-0 bg-transparent"></button>
+                            id="step-3" className={`${ statusNumber >= 3 && statusNumber <= 5 ? "green mr-3" : statusNumber === 6 ? "text-danger" : "text-secondary mr-3" }`}>
+                            <button className="fas green fa-box border-0 bg-transparent"></button>
                           </li>
-                          <li
-                            id="step-4"
-                            className={`${
-                              statusNumber >= 4 && statusNumber <= 5
-                                ? "text-muted green mr-3"
-                                : statusNumber === 6
-                                ? "text-danger"
-                                : "gray mr-3"
-                            }`}
-                          >
+
+                          <li id="step-4" className={`${ statusNumber >= 4 && statusNumber <= 5 ? "green mr-3" : statusNumber === 6 ? "text-danger" : "text-secondary mr-3" }`}>
                             <button className="fas fa-truck border-0 bg-transparent"></button>
                           </li>
-                          <li
-                            id="step-5"
-                            className={`${
-                              statusNumber >= 5 && statusNumber <= 5
-                                ? "text-muted green "
-                                : statusNumber === 6
-                                ? "text-danger"
-                                : "gray"
-                            }`}
-                          >  
+
+                          <li id="step-5" className={`${ statusNumber >= 5 && statusNumber <= 5 ? "green " : statusNumber === 6 ? "text-danger" : "text-secondary" }`}>  
                             <button className="fas fa-box-open border-0 bg-transparent"></button>
                           </li>
+
                         </ul>
+
                         <div id="tracker"></div>
+                     </div>
                     </div>
-                          </div>
                   </div>
                 </div>
         </div>

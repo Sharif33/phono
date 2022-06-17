@@ -33,7 +33,7 @@ const Compare = () => {
                                             </li>
                                             <li className='border p-3'>{item?.name}</li>
                                             <li className='border p-3'>{item?.brand}</li>
-                                            <li className='border p-3'>{item?.price}</li>
+                                            <li className='border p-3'>{item?.price}&#x9F3;</li>
                                             <li className='border p-3'>{item?.star}</li>
                                             <li className='border p-3'>{item?.rating}</li>
                                             <li className='border p-3'>{item?.processor ? item.processor : item?.os}</li>

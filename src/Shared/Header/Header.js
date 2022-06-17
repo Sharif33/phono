@@ -64,9 +64,9 @@ const Header = () => {
                                 <div>
                                     <IconButton onClick={() => setIsDrawerOpen(true)}
                                     // sx={{ mr: 2, display: { sm: 'none' } }}
+                                    sx={{color:"#D7E1F7"}}
                                     size='large'
                                     edge='start'
-                                    color='inherit'
                                     aria-label='logo'>
                                     <MenuIcon />
                                     </IconButton>  
@@ -78,11 +78,11 @@ const Header = () => {
                                     onClose={() => setIsDrawerOpen(false)}>
                                     <Box  width='250px' role='presentation' textAlign='center'>
                                         <div className="p-2 text-end">
-                                            <button className='btn btn-cart' onClick={() => setIsDrawerOpen(false)}><CloseIcon/></button>
+                                            <button className='btn text-danger' onClick={() => setIsDrawerOpen(false)}><CloseIcon/></button>
                                         </div>
-                                    <ul className="navbar-nav text-center me-auto">
+                                    <ul className="navbar-nav">
                                         <li className="nav-item small-search">
-                                            <NavLink className='mx-2' to={`/compare`} >
+                                            <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/compare`} >
                                             <IconButton aria-label="compare">
                                             <StyledBadge badgeContent={addToCompare?.length} color="error">
                                             <MdCompareArrows className='text-dark' />
@@ -91,16 +91,16 @@ const Header = () => {
                                             </NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'black' })} className="nav-link active mx-1  " aria-current="page" to="/home">Home</NavLink>
+                                            <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/">Home</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'black' })} className="nav-link active mx-1  " to="/mobiles">Shop</NavLink>
+                                            <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/mobiles">Shop</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'black' })} className="nav-link active mx-1  " href="#contact" to="/contact">Contact</NavLink>
+                                            <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} href="#contact" to="/contact">Contact</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink style={({ isActive }) => ({ color: isActive ? 'orange' : 'black' })} className="nav-link active mx-1  " to="/about">About</NavLink>
+                                            <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/about">About</NavLink>
                                         </li>
                                      </ul>
                                     </Box>
@@ -177,36 +177,27 @@ const Header = () => {
                                                   </li>
           
                                                   
-                                                  <NavLink className='text-dark dropdown-item' style={{textDecoration:'none',cursor:"pointer",color:"white"}} to="/dashboard/user"><small>Profile</small></NavLink>
+                                                  <NavLink className='text-dark dropdown-item' style={{textDecoration:'none',color:"white"}} to="/dashboard/user"><small>Profile</small></NavLink>
 
-                                                  <NavLink  className='text-dark dropdown-item' style={{textDecoration:'none',cursor:"pointer",color:"white"}} to="/dashboard"><small>Dashboard</small></NavLink>
+                                                  <NavLink  className='text-dark dropdown-item' style={{textDecoration:'none',color:"white"}} to="/dashboard"><small>Dashboard</small></NavLink>
                                                   
-                                                    <button className="btn bg-cart dropdown-item">  
-                                                  <small style={{cursor:"pointer"}} onClick={logOut} >Logout</small>
-                                                    </button>
-                                                 
-                                                  
-                                                  </ul>
-                                                  
-                                                  </div> 
-                                              
-                                              :
-                                              <NavLink className='' to={`/login`} >
-                                              <div className='d-flex justify-content-evenly align-items-center rounded ms-2 bg-nav-btn'>
-                                                  <div>
+                                                <button onClick={logOut} className="btn fw-bold dropdown-item text-danger"> Logout </button>
+                                                </ul>
+                                                </div>
+                                                    :
+                                                <NavLink className='' to={`/login`} >
+                                                <div className='d-flex justify-content-evenly align-items-center rounded ms-2 bg-nav-btn'>
+                                                <div>
                                                     
-                                                    <button className='btn'>
-                                                    <AccountCircleIcon className='text-light'/>
-                                                    </button>
-                                                   
-                                                  </div>
-                                                  <div className='nav-hidder'>
-                                                       <small className='my-auto text-light pe-3'>Account</small>
-                                                  </div>
+                                                <button className='btn'>
+                                                <AccountCircleIcon className='text-light'/>
+                                                </button>
+                                                </div>
+                                                <div className='nav-hidder'>
+                                                    <small className='my-auto text-light pe-3'>Account</small>
+                                                </div>
                                               </div> 
-                                              </NavLink>
-                                             
-                                              
+                                              </NavLink> 
                                         }
                             </div>
                                         </div>

@@ -7,8 +7,21 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth/useAuth";
-import { Modal } from 'react-responsive-modal';
-import 'react-responsive-modal/styles.css';
+import Modal from '@mui/material/Modal';
+import CloseIcon from '@mui/icons-material/Close';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: {xs:"90vw", sm: "90vw", md:"40vw"},
+  bgcolor: 'background.paper',
+ borderRadius:'7px',
+  boxShadow: 24,
+  p: 4,
+//   overflowY:"scroll"
+};
 
 const CustomerReview = ({openReviewNow, handleClose}) => {
     const labels = {
@@ -58,13 +71,15 @@ const CustomerReview = ({openReviewNow, handleClose}) => {
         <Modal
                 open={openReviewNow}
                 onClose={handleClose}
-                center
-                aria-labelledby="my-modal-title"
-                aria-describedby="my-modal-description"
+                aria-labelledby="my-modal-title3"
+                aria-describedby="my-modal-description3"
               >
-        <div className="m-auto">
-          <div className=" p-4 rounded">
+          <Box sx={style}>
+                  <div style={{marginTop:"-1.8rem",marginRight:"-1.8rem"}} className="text-end">
+                    <button onClick={handleClose} className='btn text-danger'><CloseIcon/></button>
+                  </div>
             <div>
+              <h4 className="text-center">Welcome <span className="text-primary fw-bold">{user?.name ? user.name : user?.displayName}</span> </h4>
               {
               user?.email && (
               <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
@@ -114,8 +129,8 @@ const CustomerReview = ({openReviewNow, handleClose}) => {
               </form>
             )}
             </div> 
-          </div>
-        </div>
+          
+        </Box>
         </Modal>
       </>
     );

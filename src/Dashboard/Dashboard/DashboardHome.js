@@ -69,7 +69,7 @@ const DashboardHome = () => {
                 <img className="img-fluid" src={about} alt="" />   
             </div> */}
             {
-                admin && <div>
+                admin ? <div>
             <div className='text-center'>
                 <h1 style={{fontSize:"10vw"}} className='text-info'>{time.toLocaleTimeString()}</h1>
                  <h1 className='text-lightest-slate'>{date}</h1>
@@ -117,11 +117,7 @@ const DashboardHome = () => {
                     </div>
                 </div>
             </div>
-        </div>
-            }
-
-            {
-            !admin && <UserDashboard/>
+        </div> : <UserDashboard/>
             }
          
         </div>

@@ -7,7 +7,7 @@ import SwiperCore, { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
-// import "./Banner1.css";
+import "./Banner1.css";
 SwiperCore.use([EffectCoverflow, Autoplay, Pagination]);
 
 const Banner1 = () => {

@@ -40,6 +40,7 @@ import AddOffers from "./Dashboard/Admin/AddOffers";
 import ManageOffers from "./Dashboard/Admin/ManageOffers";
 import EditOffer from "./Dashboard/Admin/EditOffer";
 import NotFound from "./Shared/NotFound";
+import { CircularProgress } from "@material-ui/core";
 
 
 function App() {
@@ -52,12 +53,10 @@ function App() {
   return (
     <div>
       {
-        spinner ? <div className="loader">
+        spinner ? <div className="loader m-auto">
           <div>
-            <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_cyrvih26.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
-          </div>
-          <div>
-            <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_8sjqrjby.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
+            <CircularProgress/>
+            {/* <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_8sjqrjby.json" background="transparent" speed="1" style={{ width: "10vw" }} loop autoplay></lottie-player> */}
           </div>
         </div> : 
         <AuthProvider>
