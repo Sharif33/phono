@@ -109,7 +109,7 @@ const ExploreMobiles = () => {
         } ))
     }
 
- // sorting by Name
+ // sorting by Brand
  const sortBrand =()=>{
     const brandSort = categories?.sort((a,b)=>a.brand > b.brand ? 1 : -1);
     return brandSort;

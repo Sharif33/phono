@@ -15,22 +15,10 @@ const Cart = () => {
     // const {cart} = useContext(Favourite);
     const dispatch = useDispatch();
     const {addToCart, cartTotal, cartTotalQuantity, shipping, tax} = useSelector((state) => state.cart);
+    
     useEffect(() => {
-        let isMounted = true;
-        try {
-            async function callTotal() {
-             if (addToCart.length > 0 && isMounted) {
-                dispatch(getTotal());       
-            }    
-            }
-            callTotal();
-            return () => {
-                isMounted = false;
-                }; 
-        } catch (error) {
-            
-        }   
-    }, [addToCart, dispatch]);
+        dispatch(getTotal());
+      }, [addToCart, dispatch]);
 
 
     return (
@@ -89,16 +77,16 @@ const Cart = () => {
 
                                     <TableCell align="center">
                                     <div className="mx-auto">
-                                                        <div style={{width:"10vw"}} className="d-flex justify-content-center border mx-auto">
-                                                            <button className='btn w-100 btn-light shadow' onClick={() => dispatch(decrement(mobile))}> - </button>
-                                                            <input style={{width:"5vw"}} type="text" readOnly value={(Number(mobile.cartQuantity))}
-                                                                className="fw-bolder border-0 text-center text-secondary" />
-                                                            <button className='btn w-100 btn-light shadow' onClick={() => dispatch(increment(mobile))}> + </button>
-                                                        </div>
-                                                    </div>
+                                                <div style={{width:"10vw"}} className="d-flex justify-content-center border mx-auto">
+                                                        <button className='btn w-100 btn-cart' onClick={() => dispatch(decrement(mobile))}> - </button>
+                                                        <input style={{width:"4vw"}} type="text" readOnly value={mobile.cartQuantity}
+                                                        className="fw-bolder border-0 text-center text-secondary" />
+                                                        <button className='btn w-100 btn-cart' onClick={() => dispatch(increment(mobile))}> + </button>
+                                                </div>
+                                        </div>
                                     </TableCell>
-                                    <TableCell align="center">{Number(mobile.price)}</TableCell>
-                                    <TableCell align="center">{Number(mobile.price) * Number(mobile.cartQuantity)}</TableCell>
+                                    <TableCell align="center">{numberFormat(mobile.price).slice(3,-3)}</TableCell>
+                                    <TableCell align="center">{numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}</TableCell>
                                     
                                 </TableRow>
                             ))}
@@ -121,7 +109,12 @@ const Cart = () => {
 
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                 Subtotal
-                <span className="text-secondary fs-5">{cartTotal} Tk</span>
+                <span className="text-secondary fs-5">{numberFormat(cartTotal).slice(3,-3)} Tk</span>
+            </li>
+
+            <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
+                Tax
+                <span className="text-secondary fs-5">{numberFormat(tax).slice(3)} Tk</span>
             </li>
 
             <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
@@ -129,14 +122,9 @@ const Cart = () => {
                 <span className="text-secondary fs-5">{shipping} Tk</span>
             </li>
             
-            <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
-                Tax
-                <span className="text-secondary fs-5">{tax.toFixed(2)} Tk</span>
-            </li>
-            
             <li className="list-group-item d-flex justify-content-between align-items-center fs-4">
                 Total
-                <span className="text-danger fw-bold fs-5">{Number(cartTotal + shipping + tax)} Tk</span>
+                <span className="text-danger fw-bold fs-5">{numberFormat(cartTotal + shipping + tax).slice(3)} Tk</span>
             </li>
             <br />
                         <div className="input-group input-group-lg">

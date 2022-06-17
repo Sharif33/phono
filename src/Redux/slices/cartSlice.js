@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from "react-toastify";
 
 // First, create the thunk
 /* export const fetchBooks = createAsyncThunk(
@@ -9,11 +10,7 @@ import { createSlice } from '@reduxjs/toolkit'
     }
 ) */
 
-
-
-const cartSlice = createSlice({
-    name: 'cart',
-    initialState: {
+const initialState = {
         addToCart: localStorage.getItem("addedToCart") ? JSON.parse(localStorage.getItem('addedToCart') || '{}') : [],
         cartTotal: 0,
         cartTotalQuantity: 0,
@@ -23,7 +20,12 @@ const cartSlice = createSlice({
         discover: [],
         removeFromCart: [],
         status: 'idle'
-    },
+    }
+
+
+const cartSlice = createSlice({
+    name: 'cart',
+    initialState ,
     reducers: {
         addToCart: (state, { payload }) => {
             // state.addToCart.push(payload)
@@ -31,11 +33,19 @@ const cartSlice = createSlice({
             const itemIndex = state.addToCart.findIndex(item => item._id === payload._id)  
             
             if (itemIndex >= 0) {
-                state.addToCart[itemIndex].cartQuantity += 1;
-            } else {
-                
-                const newCart = { ...payload };
+                state.addToCart[itemIndex] = {
+                    ...state.addToCart[itemIndex],
+                   cartQuantity: state.addToCart[itemIndex].cartQuantity += 1
+                };
+                toast.info("Increased product quantity", {
+                    position: "bottom-left",
+                  });
+            } else {        
+                const newCart = { ...payload, cartQuantity: 1};
                 state.addToCart.push(newCart);
+                toast.success("Product added to cart", {
+                    position: "bottom-left",
+                  });
         }
         localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
     },
@@ -49,6 +59,10 @@ const cartSlice = createSlice({
             const itemIndex = state.addToCart.findIndex(item => item._id === payload._id);
             if(state.addToCart[itemIndex].cartQuantity >=0){
                 state.addToCart[itemIndex].cartQuantity += 1;
+
+                toast.info("Increased product quantity", {
+                    position: "bottom-left"
+                  });
             }
             
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
@@ -58,17 +72,21 @@ const cartSlice = createSlice({
             const itemIndex = state.addToCart.findIndex(item => item._id === payload._id)
             
             if (state.addToCart[itemIndex].cartQuantity > 1){
-               state.addToCart[itemIndex].cartQuantity -= 1; 
+               state.addToCart[itemIndex].cartQuantity -= 1;
+
+               toast.info("Decreased product quantity", {
+                position: "bottom-left",
+              });
             }
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
            
         },
         getTotal: (state) => {
-            let { total, quantity, shipping } = state.addToCart.reduce((cartTotal, addToCart) => {
+            let { total, quantity } = state.addToCart.reduce((cartTotal, addToCart) => {
 
                 const { price, cartQuantity } = addToCart;
                 const itemTotal = Number(price * cartQuantity);
-                console.log(itemTotal, 'redux itemTotal total');
+                // console.log(itemTotal, 'redux itemTotal total');
                
                 cartTotal.total += itemTotal;
                 cartTotal.quantity += cartQuantity;
@@ -82,8 +100,9 @@ const cartSlice = createSlice({
                 }
             );
             total = Number(total.toFixed(2));
-            state.shipping= 50;
-            state.tax= (total + shipping) * 0.05;
+            
+            state.tax= (total * 0.05);
+            total >= 50000 ? state.shipping = 0 : state.shipping = 50;
             state.cartTotal = total;
             state.cartTotalQuantity = quantity;
         },
