@@ -19,13 +19,20 @@ import useReviews from "../../../Hooks/useReviews/useReviews";
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import SwiperCore, {  Navigation, Thumbs  } from "swiper";
+// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+// import required modules
+import { FreeMode, Navigation, Thumbs } from "swiper";
 import { numberFormat } from "../../../Shared/numberFormat";
 import moment from "moment";
-SwiperCore.use([ Navigation, Thumbs ]);
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -197,10 +204,10 @@ const SingleMobile = () => {
           "--swiper-pagination-color": "#fff",
         }}
         spaceBetween={10}
-        navigation={true}
+        navigation={false}
         thumbs={{ swiper: thumbsSwiper }}
-        modules={[Navigation, Thumbs]}
-        className="pb-3"
+        modules={[FreeMode, Navigation, Thumbs]}
+        className="mySwiper2 pb-2"
       >
         <SwiperSlide>
           <img className="w-100 img-fluid" src={image} alt="" />
@@ -221,7 +228,7 @@ const SingleMobile = () => {
         slidesPerView={4}
         freeMode={true}
         watchSlidesProgress={true}
-        modules={[Navigation, Thumbs]}
+        modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
         <SwiperSlide>

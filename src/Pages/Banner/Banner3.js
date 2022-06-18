@@ -1,12 +1,18 @@
 /* eslint-disable eqeqeq */
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import SwiperCore, { Autoplay, EffectCoverflow, Pagination, Navigation } from "swiper";
+
+// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+// import required modules
+import { Autoplay, Navigation } from "swiper";
+
 import { Link } from 'react-router-dom';
-SwiperCore.use([EffectCoverflow, Autoplay, Pagination, Navigation]);
+
+
 const Banner3 = () => {
     const [phones, setPhones] = useState([]);
 
@@ -24,12 +30,14 @@ const Banner3 = () => {
             <p>FIND THE PERFECT PHONE FOR YOU</p>
         </div>
         <Swiper 
-        modules={[Pagination, Navigation]}
-    slidesPerGroup={1} loop={true} autoplay={{
-        "delay": 2000,
-        "disableOnInteraction": false
-    }} navigation={true}
-breakpoints={{
+        modules={[Navigation, Autoplay]}
+        loop={true} 
+        autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }} 
+      navigation={true}
+    breakpoints={{
     640: {
       slidesPerView: 1,
       spaceBetween: 20,

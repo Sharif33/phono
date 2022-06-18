@@ -2,7 +2,7 @@
     color:  #0938431c !important;
     font-size: 10rem;
     position: absolute;
-    top: 25% !important;
+    top: 15% !important;
     left: 0% ;
     /* z-index: -1; */
     /* display: none; */
@@ -23,9 +23,7 @@
 }
 
 @media only screen and (max-width:576px){
-    .quto{
-        top: 20%;
-    }
+   
     .rvw-margin{
         min-height: 25vh;
     }

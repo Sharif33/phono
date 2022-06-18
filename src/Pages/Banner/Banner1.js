@@ -3,45 +3,52 @@ import b1 from "../../images/banner4.jpg";
 import b2 from "../../images/banner5.jpg";
 import b3 from "../../images/cashback.jpg";
 import b4 from "../../images/gadget.jpg";
-import SwiperCore, { Autoplay, EffectCoverflow, Pagination } from "swiper";
+
+// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import required modules
+import { Autoplay } from "swiper";
+
 import "./Banner1.css";
-SwiperCore.use([EffectCoverflow, Autoplay, Pagination]);
+
 
 const Banner1 = () => {
 
     return (
         <div>
-            <div className="main-swiper">
+            <div className="swiper">
                 <Swiper
-                    spaceBetween={30} centeredSlides={true} autoplay={{
-                        "delay": 5000,
-                        "disableOnInteraction": false
-                    }}  className="mySwiper">
+                    spaceBetween={30} 
+                    centeredSlides={true}  
+                    autoplay={{
+                        delay: 2500,
+                        disableOnInteraction: false,
+                      }}  
+                      modules={[Autoplay]}
+                      className="mySwiper">
                         {/* pagination={{
                         "clickable": true
                     }} */}
                     <SwiperSlide>
-                        <div className="text-center">
+
                             <img className='img-fluid w-100' src={b1} alt="" />
-                        </div>   
+                          
                     </SwiperSlide>
                     <SwiperSlide>
-                    <div className="text-center">
                             <img className='img-fluid w-100' src={b2} alt="" />
-                    </div>
+                
                     </SwiperSlide>
                     <SwiperSlide>
-                    <div className="text-center">
-                            <img style={{height:"40%"}} className='img-fluid w-100' src={b3} alt="" />
-                    </div>
+                            <img className='img-fluid w-100' src={b3} alt="" />
+                
                     </SwiperSlide>
                     <SwiperSlide>
-                    <div className="text-center">
                              <img className='img-fluid w-100' src={b4} alt="" />
-                    </div>
+                
                     </SwiperSlide>
                     </Swiper>
             </div>
