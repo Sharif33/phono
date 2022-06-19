@@ -119,7 +119,7 @@ const MyOrders = () => {
           })}
       </div> 
                 </div>
-                <div className="col-md-6 col-sm-12 p-3">
+                <div id="order" className="col-md-6 col-sm-12 p-3">
         <Outlet></Outlet>
                 </div>
       </div>

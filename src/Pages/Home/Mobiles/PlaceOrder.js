@@ -38,15 +38,14 @@ const PlaceOrder = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
     data.date = new Date().toDateString();
     data.time = new Date().toLocaleTimeString();
-    data.email = user?.email;
-    data.userImage = user?.photoURL;
-    data.orderBy = user?.displayName;
+    data.email = user.email;
+    data.userImage = user.photoURL;
+    data.orderBy = users?.name ? users.name : user.displayName;
     data.orderItems = addToCart;
     data.items = addToCart?.length;
     data.quantity = cartTotalQuantity;
@@ -54,6 +53,7 @@ const PlaceOrder = () => {
     data.shipping = shipping;
     data.tax = tax;
     data.total = cartTotal + shipping + tax;
+    data.status = "Pending...";
 
     axios
       .post(`https://peaceful-shore-84874.herokuapp.com/orders`, data)
@@ -86,49 +86,18 @@ const PlaceOrder = () => {
           users?.map(usrD=>(
            <div key={usrD?._id} className="row">
           <div className="col-md-6 col-sm-12">
-            <div className="my-5 p-2 bg-light rounded">
+            <div className="my-5 p-2 rounded">
               <h4 className="fw-bold">SHIPPING & BILLING INFORMATION</h4>
-              {user?.email && (
+              {user.email && (
                 <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
-                  <input
-                    defaultValue="Pending..."
-                    readOnly
-                    hidden
-                    {...register("status")}
-                  />
                   <input defaultValue={user?.email} readOnly />
-                  <input defaultValue={usrD?.name ? usrD.name : user?.displayName} readOnly />
-
-                  {usrD?.email ? (
-                    <div>
-                      <input defaultValue={usrD?.address ? usrD.address : orders[0]?.address} {...register("address")} readOnly />
-                      <input defaultValue={usrD?.city ? usrD.city : orders[0]?.city} {...register("city")} readOnly />
-                      <input defaultValue={usrD?.phone ? usrD.phone : orders[0]?.phone} {...register("phone")} readOnly />
-                    </div>
-                  ) : (
-                    <div>
-                      <input
-                        placeholder="Present Address"
-                        {...register("address", { required: true })}
-                      />
-                      <input
-                        placeholder="City"
-                        {...register("city", { required: true })}
-                      />
-                      <input
-                        placeholder="Phone number"
-                        {...register("phone", { required: true })}
-                      />
-                      {errors.phone && (
-                        <span className="text-warning">
-                          This field is required.
-                        </span>
-                      )}
-                    </div>
-                  )}
+                  <input defaultValue={usrD.name ? usrD.name : user?.displayName} readOnly />
+                  <input defaultValue={usrD.address ? usrD.address : orders[0]?.address ? orders[0].address : ""} {...register("address", { required: true })}  placeholder="Present Address" />
+                  <input defaultValue={usrD.city ? usrD.city : orders[0]?.city ? orders[0].city : ""} {...register("city", {required:true})} placeholder="City" />
+                  <input defaultValue={usrD.phone ? usrD.phone : orders[0]?.phone ? orders[0].phone : ""} {...register("phone", {required:true})} placeholder="Phone number"/>
 
                   <br />
-                  {addToCart?.length ? (
+                  {addToCart.length ? (
                     <button
                       className="w-100 btn btn-custom btn-lg"
                       type="submit"

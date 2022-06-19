@@ -5,9 +5,9 @@ import { Alert, CircularProgress } from '@mui/material';
 
 
 
-const CheckoutForm = ({appointment}) => {
+const CheckoutForm = ({itemOrder}) => {
 
-    const { total,email, _id } = appointment;
+    const { total,email, _id } = itemOrder;
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth();
@@ -82,7 +82,7 @@ const CheckoutForm = ({appointment}) => {
                 amount: paymentIntent.amount,
                 created: paymentIntent.created,
                 last4: paymentMethod.card.last4,
-                transaction: paymentIntent.client_secret.slice('_secret')[0]
+                transaction: paymentIntent.client_secret
             }
             const url = `https://peaceful-shore-84874.herokuapp.com/orders/${_id}`;
             fetch(url, {
@@ -118,7 +118,7 @@ const CheckoutForm = ({appointment}) => {
         }}
       />
       <div className='text-center pt-5'>
-      {processing ? <CircularProgress></CircularProgress> : <button className='btn btn-custom-2' type="submit" disabled={!stripe || success}>Pay {total}&#2547;</button>}
+      {processing ? <CircularProgress/> : <button className='btn btn-custom-2' type="submit" disabled={!stripe || success}>Pay {total}&#2547;</button>}
       </div>
     </form>
             {

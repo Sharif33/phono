@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { numberFormat } from '../../Shared/numberFormat';
+import { NavHashLink } from 'react-router-hash-link';
 // import MyOrderDetails from './MyOrderDetails';
 
 const Orders = ({order,statusNumber,handleDeleteOrders}) => {
@@ -42,7 +43,7 @@ const Orders = ({order,statusNumber,handleDeleteOrders}) => {
                             
                             {
                                descriptionCollapse? 
-                               <span onClick={showLess}><Link to={`/dashboard/myOrders`}> <button className='btn btn-cart mx-2'>Hide Details <span className="text-danger"><AiOutlineUp/></span> </button> </Link></span> :  <span onClick={showMore}><Link to={`/dashboard/myOrders/${order._id}`}> <button className='btn btn-cart mx-2'>View Details <span className="text-success"><AiOutlineDown/></span> </button> </Link></span>
+                               <span onClick={showLess}><Link to={`/dashboard/myOrders`}> <button className='btn btn-cart mx-2'>Hide Details <span className="text-danger"><AiOutlineUp/></span> </button> </Link></span> :  <span onClick={showMore}><NavHashLink to={`/dashboard/myOrders/${order._id}#order`}> <button className='btn btn-cart mx-2'>View Details <span className="text-success"><AiOutlineDown/></span> </button> </NavHashLink></span>
                             }
                         </div>
                         </div>

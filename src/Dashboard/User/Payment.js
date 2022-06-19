@@ -9,24 +9,24 @@ import {loadStripe} from '@stripe/stripe-js';
 const Payment = () => {
     const [stripePromise, setStripePromise] = useState(() => loadStripe(`pk_test_51K8PMbFRrgTUsmgBK0HIVHahI69rtmPuecs2jQzhAziBS6lS0GZaiYikrCf49J72ee2RZG585NUATSMOlVUUV4sx0072UsTUV4`));
     const {id} = useParams();
-    const [appointment, setAppointment] = useState({});
+    const [itemOrder, setItemOrder] = useState({});
     useEffect(() => {
         fetch(`https://peaceful-shore-84874.herokuapp.com/orders/${id}`)
             .then(res => res.json())
-            .then(data => setAppointment(data));
+            .then(data => setItemOrder(data));
     }, [id]);
     return (
         <div>
-                <div className='col-sm-12 col-md-8 mx-auto p-4 btn-custom rounded'>
+                <div className='col-sm-12 col-md-8 mx-auto p-md-4 btn-custom rounded'>
                     <div className='p-4 text-center'>
-                        <h3><span className='text-warning'>{appointment?.orderBy}</span> please pay for </h3>
-                        {/* <h5 className='text-light'>{appointment.mobile}</h5> */}
-                        <h6>Total Amount : <span className='text-info'>{appointment?.total}&#2547;</span> </h6>
+                        <h3><span className='text-warning'>{itemOrder?.orderBy}</span> please pay </h3>
+                        {/* <h5 className='text-light'>{itemOrder.mobile}</h5> */}
+                        <h6>Total Amount : <span className='text-info'>{itemOrder?.total}&#2547;</span> </h6>
                     </div>
                     <div>
-                    {appointment?.total && <Elements setStripePromise={setStripePromise} stripe={stripePromise}>
+                    {itemOrder?.total && <Elements setStripePromise={setStripePromise} stripe={stripePromise}>
                     <CheckoutForm
-                    appointment={appointment}
+                    itemOrder={itemOrder}
                     />
                     </Elements>}
                     </div>

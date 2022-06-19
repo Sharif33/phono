@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { AiOutlineClose } from 'react-icons/ai';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { numberFormat } from '../../Shared/numberFormat';
 
 const MyOrderDetails = () => {
   const {id} = useParams();
   const [order, setOrders] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let isMounted = true;
@@ -19,6 +21,7 @@ const MyOrderDetails = () => {
       isMounted = false;
     };
   }, [id]);
+
     return (
         <>
             {/* <Modal
@@ -28,10 +31,10 @@ const MyOrderDetails = () => {
                 aria-labelledby="my-modal-title"
   aria-describedby="my-modal-description"
               > */}
-                <div className='bg-light rounded p-2'>
+                <div className='bg-light rounded p-2'> 
+                <button className="text-danger btn m-0 p-0" onClick={() => navigate(-1)}><AiOutlineClose/></button>
                     <div>
                     <h3 className="text-center">Order Details</h3>
-                       
                     </div>
                   <div className="p-2">
               <div className='border text-center text-secondary'>

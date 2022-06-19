@@ -5,6 +5,10 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
+import GroupsIcon from '@mui/icons-material/Groups';
+import HomeIcon from '@mui/icons-material/Home';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import MailIcon from '@mui/icons-material/Mail';
 import {MdShoppingCart, MdFavorite, MdCompareArrows } from "react-icons/md";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import React from 'react';
@@ -91,16 +95,16 @@ const Header = () => {
                                             </NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/">Home</NavLink>
+                                            <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/"><HomeIcon className='mx-3'/> Home</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/mobiles">Shop</NavLink>
+                                            <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/mobiles"><ShoppingBagIcon className='mx-3'/> Shop</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} href="#contact" to="/contact">Contact</NavLink>
+                                            <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} href="#contact" to="/contact"><MailIcon className='mx-3'/> Contact</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/about">About</NavLink>
+                                            <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/about"><GroupsIcon className='mx-3'/> About</NavLink>
                                         </li>
                                      </ul>
                                     </Box>
@@ -114,7 +118,6 @@ const Header = () => {
                          </div>
                         </div>
                         
-
                                 <div className='my-auto'>
                                    <div className='d-flex  justify-content-between'>
                                     <div className='nav-hidder my-auto'>

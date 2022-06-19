@@ -93,7 +93,7 @@ const LogIn = () => {
             </Box>   
             
                     </Grid>
-                    <Grid className="p-4 text-center rounded" item xs={12} md={6}>
+                    <Grid className="p-4 text-center rounded nav-hidder" item xs={12} md={6}>
                     <lottie-player src="https://assets3.lottiefiles.com/private_files/lf30_m6j5igxb.json"  background="transparent"  speed="1"  style={{width:"100%"}} loop  autoplay></lottie-player>
                     </Grid>
                 </Grid>
