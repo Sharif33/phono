@@ -14,6 +14,7 @@ import useAuth from "../../../Hooks/useAuth/useAuth";
 import useOrders from "../../../Hooks/useOrders/useOrders";
 import {Helmet} from "react-helmet";
 import useUser from "../../../Hooks/useUser/useUser";
+import { numberFormat } from "../../../Shared/numberFormat";
 
 const PlaceOrder = () => {
   const { user } = useAuth();
@@ -45,7 +46,7 @@ const PlaceOrder = () => {
     data.time = new Date().toLocaleTimeString();
     data.email = user.email;
     data.userImage = user.photoURL;
-    data.orderBy = users?.name ? users.name : user.displayName;
+    // data.orderBy = users[0]?.name ? users.name : user.displayName;
     data.orderItems = addToCart;
     data.items = addToCart?.length;
     data.quantity = cartTotalQuantity;
@@ -91,7 +92,7 @@ const PlaceOrder = () => {
               {user.email && (
                 <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
                   <input defaultValue={user?.email} readOnly />
-                  <input defaultValue={usrD.name ? usrD.name : user?.displayName} readOnly />
+                  <input defaultValue={usrD.name ? usrD.name : user?.displayName} {...register("orderBy", {required:true})} readOnly />
                   <input defaultValue={usrD.address ? usrD.address : orders[0]?.address ? orders[0].address : ""} {...register("address", { required: true })}  placeholder="Present Address" />
                   <input defaultValue={usrD.city ? usrD.city : orders[0]?.city ? orders[0].city : ""} {...register("city", {required:true})} placeholder="City" />
                   <input defaultValue={usrD.phone ? usrD.phone : orders[0]?.phone ? orders[0].phone : ""} {...register("phone", {required:true})} placeholder="Phone number"/>
@@ -159,11 +160,11 @@ const PlaceOrder = () => {
                     <div>
                       <small className="text-secondary">
                         <span>{mobile?.cartQuantity}</span> x{" "}
-                        <span>{mobile?.price}</span>
+                        <span>{numberFormat(mobile?.price).slice(3,-3)}&#x9F3;</span>
                       </small>
                     </div>
                     <span className="text-primary fw-bold fs-6">
-                      {mobile?.price * mobile?.cartQuantity} Tk
+                      {numberFormat(mobile?.price * mobile?.cartQuantity).slice(3,-3)} Tk
                     </span>
                   </li>
                 ))}
@@ -184,7 +185,7 @@ const PlaceOrder = () => {
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                   Subtotal
                   <span className="text-primary fw-bold fs-5">
-                    {cartTotal} Tk
+                    {numberFormat(cartTotal).slice(3,-3)} Tk
                   </span>
                 </li>
 
@@ -198,14 +199,14 @@ const PlaceOrder = () => {
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                   Tax
                   <span className="text-primary fw-bold fs-5">
-                    {tax} Tk
+                    {numberFormat(tax).slice(3)} Tk
                   </span>
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-4 fw-bold">
                   Total
                   <span className="text-danger fw-bold fs-5">
-                    {cartTotal + shipping + tax} Tk
+                    {numberFormat(cartTotal + shipping + tax).slice(3)} Tk
                   </span>
                 </li>
               </ul>

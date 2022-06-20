@@ -21,6 +21,7 @@ import SearchNav from './SearchNav';
 import { Drawer, Box } from '@mui/material'
 import { useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
+import useUser from '../../Hooks/useUser/useUser';
 
 const Header = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -40,6 +41,7 @@ const Header = () => {
       }));
 
     const { user, logOut } = useAuth();
+    const [users] = useUser();
  /*  const [orders, setOrders] = useState([]);
   const email = user?.email;
   useEffect(() => {
@@ -169,7 +171,7 @@ const Header = () => {
                                                     <Avatar alt="" src={user?.photoURL} />
                                                 </div>
                                                 <div className='nav-hidder'>
-                                                      <small className='px-2 text-light my-auto'>{user?.name ? user.name : user?.displayName}</small>
+                                                      <small className='px-2 text-light my-auto'>{users[0]?.name ? users[0].name : user.displayName}</small>
                                                   </div>
                                                  </div>
                                                   

@@ -19,14 +19,14 @@ const Footer = () => {
                        
                         <div className="d-flex justify-contet-evenly align-items-center py-3">
                             <a className='me-2' href="/"><SiYoutube style={{color:"#D7E1F7"}} className='footer-icon'/></a>
-                            <a className='mx-2' href="/"><SiFacebook style={{color:"#D7E1F7"}} className='footer-icon'/></a>
-                            <a className='mx-2' href="/"><SiDiscord style={{color:"#D7E1F7"}} className='footer-icon'/></a>
-                            <a className='mx-2' href="/"><SiTwitter style={{color:"#D7E1F7"}} className='footer-icon'/></a>
-                            <a className='mx-2' href="/"><SiWhatsapp style={{color:"#D7E1F7"}} className='footer-icon'/></a>
+                            <a className='me-2' href="/"><SiFacebook style={{color:"#D7E1F7"}} className='footer-icon'/></a>
+                            <a className='me-2' href="/"><SiDiscord style={{color:"#D7E1F7"}} className='footer-icon'/></a>
+                            <a className='me-2' href="/"><SiTwitter style={{color:"#D7E1F7"}} className='footer-icon'/></a>
+                            <a className='' href="/"><SiWhatsapp style={{color:"#D7E1F7"}} className='footer-icon'/></a>
                         </div>
                     </div>
                     <div className="mx-auto">
-                        <h4 style={{color:"#D7E1F7"}} className="pb-2"> <span className="border-bottom border-info">Services</span></h4>
+                        <h5 style={{color:"#D7E1F7"}} className="pb-2"> <span className="border-bottom border-info">Services</span></h5>
                         <ul style={{ listStyleType: 'disc'}}>
                             <li><Link className='text-light footer-srvc' to={`/contact`}> Contact us</Link></li>
                             <li><Link className='text-light footer-srvc' to={`/about`}>About us</Link></li>
@@ -35,7 +35,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="">
-                        <h4 style={{color:"#D7E1F7"}} className="pb-2"> <span className="border-bottom border-info">Customer Care</span></h4>
+                        <h5 style={{color:"#D7E1F7"}} className="pb-2"> <span className="border-bottom border-info">Customer Care</span></h5>
                         <ul style={{ listStyleType: 'disc'}}>
                             <li><Link className='text-light footer-srvc' to={`/`}>Return & Refunds</Link></li>
                             <li><Link className='text-light footer-srvc' to={`/`}>Terms and Conditions</Link></li>
@@ -50,7 +50,7 @@ const Footer = () => {
                 </div>
                 
                 <div style={{backgroundColor:"rgb(0 0 0 / 14%)"}} className="text-light text-center p-4">
-                    <small><span>&copy;</span>{date}  All rights reserved by <span> <a target="_blank" rel="noreferrer" className="text-warning"href="https://sharif-rashed.netlify.app/"> Sharif Mohammad Rashed</a></span></small>
+                    <small><span>&copy;</span>{date}  All rights reserved by <span> <a target="_blank" rel="noreferrer" className="text-warning footer-srvc"href="https://sharif-rashed.netlify.app/"> Sharif Mohammad Rashed</a></span></small>
                 </div>
             </footer>
         </>
