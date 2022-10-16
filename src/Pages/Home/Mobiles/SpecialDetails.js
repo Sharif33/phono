@@ -17,6 +17,7 @@ import useReviews from "../../../Hooks/useReviews/useReviews";
 import { numberFormat } from "../../../Shared/numberFormat";
 import { addToCompare } from '../../../Redux/slices/compareSlice';
 import { MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder } from "react-icons/md";
+import ShareProduct from "../../../Shared/ShareProduct";
 
   
 
@@ -150,10 +151,17 @@ const SpecialDetails = () => {
         </div>
         <div className="col-md-3 border-start d-flex justify-content-center">
           <div className="py-3">
-            <h5 className="fs-6">
-              Brand:{" "}
-              <span className="fs-5 text-dark fw-bold"> {phones?.brand}</span>
-            </h5>
+          <div className="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h6>Brand : {phones?.brand}</h6>
+                        <h6>Avaibility : <small>In Stock</small> </h6>
+                          </div>
+                          <div>
+                            <ShareProduct
+                            mobile2={phones}
+                            />
+                          </div>
+                        </div>
             <Box
               sx={{
                 "& > legend": { mt: 2 },

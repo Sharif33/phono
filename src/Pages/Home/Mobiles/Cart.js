@@ -16,7 +16,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const {addToCart, cartTotal, cartTotalQuantity, shipping, tax} = useSelector((state) => state.cart);
 
-    console.log(addToCart);
+    // console.log(addToCart);
     
     useEffect(() => {
         dispatch(getTotal());
@@ -40,7 +40,7 @@ const Cart = () => {
                    </div>
                     <div className='row mx-auto'>
                         <div className='col-md-8 col-sm-12 my-3'>
-  <TableContainer component={Paper}>
+                <TableContainer component={Paper}>
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead sx={{bgcolor: 'secondary.main'}}>
                             <TableRow>

@@ -33,6 +33,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 import { numberFormat } from "../../../Shared/numberFormat";
 import moment from "moment";
 import { Helmet } from "react-helmet";
+import ShareProduct from "../../../Shared/ShareProduct";
 
 
 function TabPanel(props) {
@@ -287,10 +288,17 @@ const SingleMobile = () => {
             <div className="py-3">
               <div>
               <h3 style={{ color: "#62599F" }}>{name}-{ram}-{storage}-{camera_pixels} Camera</h3>
-              <h5 className="fs-6">
-                Brand:
-                <span className="fs-5 text-dark fw-bold"> {brand}</span>
-              </h5>
+              <div className="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h6>Brand : {brand}</h6>
+                        <h6>Avaibility : <small>In Stock</small> </h6>
+                          </div>
+                          <div>
+                            <ShareProduct
+                            mobile={phones}
+                            />
+                          </div>
+                        </div>
               </div>
              <br />
               <Box

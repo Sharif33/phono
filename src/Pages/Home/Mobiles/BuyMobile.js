@@ -18,6 +18,7 @@ import { Fade } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import { FaLuggageCart } from "react-icons/fa";
+import ShareProduct from '../../../Shared/ShareProduct';
 
 const style = {
   position: 'absolute',
@@ -97,12 +98,23 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                     </div>
                     <div className="col-md-6 col-sm-12 m-auto">
                         <h4>{name}</h4>
-                        <h6>Brand : {brand}</h6>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h6>Brand : {brand}</h6>
                         <h6>Avaibility : <small>In Stock</small> </h6>
+                          </div>
+                          <div>
+                            <ShareProduct
+                            mobile={mobile}
+                            />
+                          </div>
+                        </div>
+                        
                         <h5 className="w-100 py-3">
-                <span className="text-danger fw-bold"> Tk </span>{" "}
+                <span className="text-danger fw-bold"> Tk </span>
                 <span className="fs-3 fw-bold ">{numberFormat(price).slice(3,-3)}</span> /1
               </h5>
+             
             <div className="m-auto row">
                 <div className="col-md-6 col-6">
                   <div style={{width:"10vw"}} className="d-flex justify-content-center border mx-auto">
