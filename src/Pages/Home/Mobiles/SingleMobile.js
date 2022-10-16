@@ -32,6 +32,7 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { numberFormat } from "../../../Shared/numberFormat";
 import moment from "moment";
+import { Helmet } from "react-helmet";
 
 
 function TabPanel(props) {
@@ -192,6 +193,12 @@ const SingleMobile = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{`Phono | ${name}`}</title>
+        <link rel="canonical" href="/" />
+      </Helmet>
+
       <Header />
       <div style={{ backgroundColor: "#EEF2FF", overflowX:"hidden" }}>
       <div className="container py-5">

@@ -15,6 +15,8 @@ const Cart = () => {
     // const {cart} = useContext(Favourite);
     const dispatch = useDispatch();
     const {addToCart, cartTotal, cartTotalQuantity, shipping, tax} = useSelector((state) => state.cart);
+
+    console.log(addToCart);
     
     useEffect(() => {
         dispatch(getTotal());
@@ -22,7 +24,8 @@ const Cart = () => {
 
 
     return (
-       <div style={{backgroundColor:"#EEF2FF"}}>
+        <>
+        <div style={{backgroundColor:"#EEF2FF"}}>
            <Helmet>
                 <meta charSet="utf-8" />
                 <title>Phono | Cart</title>
@@ -30,7 +33,7 @@ const Cart = () => {
             </Helmet>
            <Header/>
            {
-               addToCart?.length ? <div className="container py-4">
+               addToCart.length ? <div className="container py-4">
                    <div className='text-center my-4'>
                        <h1><i style={{color:"#183153"}} className="fa-brands fa-shopify"></i> <span className='text-secondary fw-bold'> {addToCart?.length}</span> items</h1>
                        <h1> <span style={{color:"#183153"}} className="fw-bold">Tk</span> <span className='text-secondary'> {numberFormat(cartTotal+shipping+tax).slice(3)}</span></h1>
@@ -79,7 +82,7 @@ const Cart = () => {
                                     <div className="mx-auto">
                                                 <div style={{width:"10vw"}} className="d-flex justify-content-center border mx-auto">
                                                         <button className='btn w-100 btn-cart' onClick={() => dispatch(decrement(mobile))}> - </button>
-                                                        <input style={{width:"4vw"}} type="text" readOnly value={mobile.cartQuantity}
+                                                        <input style={{width:"4vw"}} type="text" readOnly value={mobile?.cartQuantity}
                                                         className="fw-bolder border-0 text-center text-secondary" />
                                                         <button className='btn w-100 btn-cart' onClick={() => dispatch(increment(mobile))}> + </button>
                                                 </div>
@@ -143,7 +146,7 @@ const Cart = () => {
               
         </div>
         : 
-        <div className='text-center my-5 pt-5'>
+        <div style={{height:"100vh"}} className='text-center pt-5'>
             {/* <img src={emptyBag} alt="" className="img-fluid p-3" /> <br /> <br /> */}
             <div className="d-flex justify-content-center p-3">
              <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_3VDN1k.json"  background="transparent"  speed="4"  style={{width:"20rem"}}  loop  autoplay></lottie-player>   
@@ -179,6 +182,8 @@ const Cart = () => {
            } */}
            <Footer/>
        </div>
+        </>
+       
          
     );
 };

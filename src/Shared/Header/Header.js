@@ -171,7 +171,7 @@ const Header = () => {
                                                     <Avatar alt="" src={user?.photoURL} />
                                                 </div>
                                                 <div className='nav-hidder'>
-                                                      <small className='px-2 text-light my-auto'>{users[0]?.name ? users[0].name : user.displayName}</small>
+                                                      <small className='px-2 text-light my-auto'>{users[0]?.name ? users[0].name : user?.displayName}</small>
                                                   </div>
                                                  </div>
                                                   

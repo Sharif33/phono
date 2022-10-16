@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 // First, create the thunk
 /* export const fetchBooks = createAsyncThunk(
@@ -13,7 +14,7 @@ const initialState = {
         addToCart: localStorage.getItem("addedToCart") ? JSON.parse(localStorage.getItem('addedToCart') || '{}') : [],
         cartTotal: 0,
         cartTotalQuantity: 0,
-        cartQuantity:1,
+        // cartQuantity:0,
         shipping:0,
         tax:0,
         discover: [],
@@ -36,13 +37,20 @@ const cartSlice = createSlice({
                     ...state.addToCart[itemIndex],
                    cartQuantity: state.addToCart[itemIndex].cartQuantity += 1
                 };
-            
+
+                toast.info(`Increased ${state.addToCart[itemIndex].name} quantity to ${state.addToCart[itemIndex].cartQuantity}`, {
+                    position: "bottom-left",
+                  });
 
             } else {        
                 const newCart = { ...payload, cartQuantity: 1};
                 state.addToCart.push(newCart);
- 
+
+                toast.success(`${payload.name} added to cart`, {
+                    position: "bottom-left",
+                  });
         }
+
         localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
     },
         removeFromCart: (state, { payload }) => {
@@ -66,8 +74,6 @@ const cartSlice = createSlice({
             
             if (state.addToCart[itemIndex].cartQuantity > 1){
                state.addToCart[itemIndex].cartQuantity -= 1;
-
-              
             }
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
            
@@ -77,7 +83,6 @@ const cartSlice = createSlice({
 
                 const { price, cartQuantity } = addToCart;
                 const itemTotal = Number(price * cartQuantity);
-                // console.log(itemTotal, 'redux itemTotal total');
                
                 cartTotal.total += itemTotal;
                 cartTotal.quantity += cartQuantity;
@@ -85,7 +90,7 @@ const cartSlice = createSlice({
             },
                 {
                     total: 0,
-                    quantity: 1,
+                    quantity: 0,
                     shipping:0,
                     tax:0
                 }

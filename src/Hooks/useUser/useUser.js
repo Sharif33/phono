@@ -26,7 +26,7 @@ const useUser = () => {
     useEffect(() => {
         try {
             async function callApi() {
-                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/usersEmail/${user?.email}`);
+                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/usersEmail/${user.email}`);
                 data = await data.json();
                 setUsers([data])
             }

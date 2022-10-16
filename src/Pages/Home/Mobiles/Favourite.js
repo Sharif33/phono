@@ -17,7 +17,7 @@ const Favourite = () => {
     const {addToFvrt} = useSelector((state) => state.fvrt);
     const dispatch = useDispatch();
     return (
-       <div>
+       <>
            <Helmet>
                 <meta charSet="utf-8" />
                 <title>Phono | Wishlist</title>
@@ -83,7 +83,9 @@ const Favourite = () => {
                ))
            }
            </div>
-           </div> : <div className='text-center my-5'>
+           </div> 
+           : 
+           <div style={{height:"100vh"}} className='text-center pt-5'>
             <div className='d-flex justify-content-center'>
            <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_gctc76jz.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
            </div>
@@ -105,7 +107,7 @@ const Favourite = () => {
                ))
            } */}
            <Footer/>
-       </div>
+       </>
          
     );
 };

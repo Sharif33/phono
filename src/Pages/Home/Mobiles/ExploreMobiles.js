@@ -187,8 +187,8 @@ const handleBrandSort = ()=>{
                             >
                             <MenuItem onClick={handleHighPrice} value={0}>High to low Price</MenuItem>
                             <MenuItem onClick={handleLowPrice} value={1}>Low to high Price</MenuItem>
-                            <MenuItem onClick={handleBrandSort} value={2}>Sorted brand name</MenuItem>
-                            <MenuItem onClick={handleNameSort} value={3}>Sorted name ({priceH?.length})</MenuItem>
+                            <MenuItem onClick={handleBrandSort} value={2}>Sort by brand name</MenuItem>
+                            <MenuItem onClick={handleNameSort} value={3}>Sort by name ({priceH?.length})</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>  
@@ -205,7 +205,7 @@ const handleBrandSort = ()=>{
                                                 />) 
                                                 }
                                                 {
-                                                 categories?.length ===0 && <p>Nothing found. Will be added soon.</p>  
+                                                 categories?.length ===0 && <p>No result found. Will be added soon.</p>  
                                                 }
                                              
                     </div>

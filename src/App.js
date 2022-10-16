@@ -1,5 +1,6 @@
 import * as React from "react";
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Routes,
   Route
@@ -41,6 +42,8 @@ import ManageOffers from "./Dashboard/Admin/ManageOffers";
 import EditOffer from "./Dashboard/Admin/EditOffer";
 import NotFound from "./Shared/NotFound";
 import { CircularProgress } from "@material-ui/core";
+import { ToastContainer } from 'react-toastify';
+import BuyNow from "./Pages/Home/Mobiles/BuyNow";
 
 
 function App() {
@@ -60,6 +63,7 @@ function App() {
           </div>
         </div> : 
         <AuthProvider>
+          <ToastContainer/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="home" element={<Home />} />
@@ -73,6 +77,9 @@ function App() {
             <Route path="compare" element={<Compare />} />
             <Route path="placeOrder" element={<PrivateRoute>
               <PlaceOrder />
+            </PrivateRoute>} />
+            <Route path="buy/placeOrder" element={<PrivateRoute>
+              <BuyNow/>
             </PrivateRoute>} />
             <Route path="fvrt" element={<Favourite />} />
             <Route path="mobiles" element={<ExploreMobiles />} />

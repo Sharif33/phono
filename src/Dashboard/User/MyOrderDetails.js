@@ -94,7 +94,7 @@ const MyOrderDetails = () => {
                       </small>
                     </div>
                     <span className="text-primary fw-bold fs-6">
-                      {numberFormat(item?.price * item?.cartQuantity).slice(3,-3)} Tk
+                      {item?.cartQuantity ? numberFormat(item?.price * item?.cartQuantity).slice(3,-3) : numberFormat(item?.price).slice(3,-3)} Tk
                     </span>
                   </li>
                 ))}

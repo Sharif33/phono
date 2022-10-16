@@ -190,16 +190,16 @@ const PlaceOrder = () => {
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
-                  Shipping
+                  Tax
                   <span className="text-primary fw-bold fs-5">
-                    {shipping} Tk
+                    {numberFormat(tax).slice(3)} Tk
                   </span>
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
-                  Tax
+                  Shipping Fee
                   <span className="text-primary fw-bold fs-5">
-                    {numberFormat(tax).slice(3)} Tk
+                    {shipping} Tk
                   </span>
                 </li>
 

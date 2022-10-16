@@ -4,19 +4,22 @@ import { Link } from 'react-router-dom';
 import Header from '../../../Shared/Header/Header';
 import { removeFromCompare } from '../../../Redux/slices/compareSlice';
 import {Helmet} from "react-helmet";
+import Footer from '../../../Shared/Footer/Footer';
 
 const Compare = () => {
     const dispatch = useDispatch();
     const {addToCompare} = useSelector((state) => state.compare);
     return (
-        <div>
+        <>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>Phono | Compare</title>
                 <link rel="canonical" href="/compare" />
             </Helmet>
             <Header/>
-            <div className='container py-5'>
+
+            {
+                addToCompare.length ? <div className='container py-5'>
                         <div className="row row-cols-md-2 row-cols-2">
                             {
                                 addToCompare?.map((item)=>(
@@ -52,7 +55,17 @@ const Compare = () => {
                             }
                         </div>        
             </div>
-        </div>
+            : 
+            <div style={{height:"100vh"}} className='text-center pt-5'>
+                <div className='d-flex justify-content-center'>
+               <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_gctc76jz.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
+               </div>
+               <h4>Your Comparelist is empty, Please add some products.</h4> <br />
+                <Link to={`/mobiles`}><button className="btn btn-lg btn-custom-2">Start shopping now</button></Link>
+               </div> 
+            }
+           <Footer/> 
+        </>
     );
 };
 
