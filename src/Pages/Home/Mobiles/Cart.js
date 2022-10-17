@@ -44,12 +44,12 @@ const Cart = () => {
                     <Table stickyHeader aria-label="sticky table" >
                         <TableHead sx={{bgcolor: 'secondary.main'}}>
                             <TableRow>
-                                <TableCell sx={{ color: 'secondary.main'}}>Thumb</TableCell>
-                                <TableCell sx={{ color: 'secondary.main'}}>Name</TableCell>
-                                <TableCell sx={{ color: 'secondary.main'}} align="center">Brand</TableCell>
-                                <TableCell sx={{ color: 'secondary.main'}} align="center">Qty.</TableCell>
-                                <TableCell sx={{ color: 'secondary.main'}} align="center">Price</TableCell>
-                                <TableCell sx={{ color: 'secondary.main'}} align="center">Total</TableCell>
+                                <TableCell sx={{ color: 'secondary.main', border: '0px'}}>Thumb</TableCell>
+                                <TableCell sx={{ color: 'secondary.main', border: '0px'}}>Name</TableCell>
+                                <TableCell sx={{ color: 'secondary.main', border: '0px'}} align="center">Brand</TableCell>
+                                <TableCell sx={{ color: 'secondary.main', border: '0px'}} align="center">Qty.</TableCell>
+                                <TableCell sx={{ color: 'secondary.main', border: '0px'}} align="center">Price</TableCell>
+                                <TableCell sx={{ color: 'secondary.main', border: '0px'}} align="center">Total</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -59,7 +59,7 @@ const Cart = () => {
                                     key={mobile?._id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell component="th" scope="row">
+                                    <TableCell sx={{border: '0px'}} component="th" scope="row">
                                         {
                                             mobile?.os ? <Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"3rem"}} className='img-fluid' src={mobile?.image} alt="" />
                                             </Link>
@@ -70,26 +70,27 @@ const Cart = () => {
                                     
                                     </TableCell>
 
-                                    <TableCell align="left">{mobile?.name}
+                                    <TableCell sx={{border: '0px'}} align="left">{mobile?.name}
                                     <div>
                                         <button className='border-0 bg-transparent text-secondary' onClick={()=>dispatch((removeFromCart(mobile)))}>(Remove)</button>
                                     </div>
                                     </TableCell>
 
-                                    <TableCell align="center">{mobile?.brand}</TableCell>
+                                    <TableCell sx={{border: '0px'}} align="center">{mobile?.brand}</TableCell>
 
-                                    <TableCell align="center">
-                                    <div className="mx-auto">
-                                                <div style={{width:"10vw"}} className="d-flex justify-content-center border mx-auto">
-                                                        <button className='btn w-100 btn-cart' onClick={() => dispatch(decrement(mobile))}> - </button>
-                                                        <input style={{width:"4vw"}} type="text" readOnly value={mobile?.cartQuantity}
-                                                        className="fw-bolder border-0 text-center text-secondary" />
-                                                        <button className='btn w-100 btn-cart' onClick={() => dispatch(increment(mobile))}> + </button>
+                                    <TableCell sx={{border: '0px'}} align="center">
+                                    <div className="m-auto">
+                                                <div className="d-flex justify-content-between align-items-center border">
+                                                        <button className='btn btn-cart rounded-0' onClick={() => dispatch(decrement(mobile))}> - </button>
+                                                        {/* <input style={{width:"4vw"}} type="text" readOnly value={mobile?.cartQuantity}
+                                                        className="fw-bolder border-0 text-center text-secondary" /> */}
+                                                        <span>{mobile?.cartQuantity}</span>
+                                                        <button className='btn btn-cart rounded-0' onClick={() => dispatch(increment(mobile))}> + </button>
                                                 </div>
                                         </div>
                                     </TableCell>
-                                    <TableCell align="center">{numberFormat(mobile.price).slice(3,-3)}	&#x9F3;</TableCell>
-                                    <TableCell align="center">{numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}	&#x9F3;</TableCell>
+                                    <TableCell sx={{border: '0px'}} align="center">{numberFormat(mobile.price).slice(3,-3)}	&#x9F3;</TableCell>
+                                    <TableCell sx={{border: '0px'}} align="center">{numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}	&#x9F3;</TableCell>
                                     
                                 </TableRow>
                             ))}

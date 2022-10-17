@@ -17,7 +17,6 @@ import { numberFormat } from '../../../Shared/numberFormat';
 import { Fade } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import { FaLuggageCart } from "react-icons/fa";
 import ShareProduct from '../../../Shared/ShareProduct';
 
 const style = {
@@ -116,24 +115,25 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
               </h5>
              
             <div className="m-auto row">
+
                 <div className="col-md-6 col-6">
-                  <div style={{width:"10vw"}} className="d-flex justify-content-center border mx-auto">
-                    <button className='btn w-100 btn-cart' onClick={decrement}> - </button>
-                    <input style={{width:"4vw"}} type="text" readOnly value={counter}
-                      className="fw-bolder border-0 text-center text-secondary" />
-                    <button className='btn w-100 btn-cart' onClick={increment}> + </button>
+                  <div  className="d-flex justify-content-between align-items-center border">
+                    <button className='btn btn-cart rounded-0' onClick={decrement}> - </button>
+                    {/* <input style={{width:"4vw"}} type="text" readOnly value={counter}
+                      className="fw-bolder border-0 text-center text-secondary" /> */}
+                      <span>{counter}</span>
+                    <button className='btn btn-cart rounded-0' onClick={increment}> + </button>
                   </div>
                 </div>
-              <div className="col-md-6 col-6">
-                
+
+              <div className="col-md-6 col-6">       
                 <Link className='text-light mx-2' to={`/buy/placeOrder`}>
                   <button onClick={() => dispatch(addToBuy(detailProduct))}
-                   className="btn  btn-custom w-100 rounded-0"> <span> <FaLuggageCart/> </span>
+                   className="btn btn-custom-3 w-100 rounded-0">
                    Buy Now 
                   </button>
                 </Link>
-               
-              </div>
+               </div>
                   
             </div>
               <button

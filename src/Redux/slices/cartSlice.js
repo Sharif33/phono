@@ -57,6 +57,9 @@ const cartSlice = createSlice({
             // state.addToCart = state.addToCart.filter(cart => cart.id !== payload.id);
             const newItems = state.addToCart.filter(item => item._id !== payload._id);
             state.addToCart = newItems;
+            toast.error(`${payload.name} remove from cart`, {
+                position: "bottom-left",
+              });
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
         },
         increment: (state, { payload }) => {
@@ -65,7 +68,9 @@ const cartSlice = createSlice({
                 state.addToCart[itemIndex].cartQuantity += 1;
                
             }
-            
+            toast.info(`Increased ${state.addToCart[itemIndex].name} quantity to ${state.addToCart[itemIndex].cartQuantity}`, {
+                position: "bottom-left",
+              });
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
 
         },
@@ -74,7 +79,11 @@ const cartSlice = createSlice({
             
             if (state.addToCart[itemIndex].cartQuantity > 1){
                state.addToCart[itemIndex].cartQuantity -= 1;
+               toast.warning(`Decreased ${state.addToCart[itemIndex].name} quantity to ${state.addToCart[itemIndex].cartQuantity}`, {
+                position: "bottom-left",
+              }); 
             }
+           
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
            
         },
@@ -107,6 +116,9 @@ const cartSlice = createSlice({
             state.cartTotal = 0
             state.shipping = 0
             state.tax = 0
+            toast.error(`Cart Cleared`, {
+                position: "bottom-left",
+              });
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
         }
     }/* ,
