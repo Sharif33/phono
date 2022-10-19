@@ -150,9 +150,9 @@ const ManageOrder = () => {
                                     <option value="Delivered">Delivered</option>
                                     <option value="Cancel">Cancel</option>
                                     </select>
-                                <button title='Click to update status' onClick={() => handleUpdate(order?._id)} className="btn btn-custom-3"><i className="fas fa-check"></i></button>
+                                <button title='Click to update status' onClick={() => handleUpdate(order?._id)} className="btn btn-indigo"><i className="fas fa-check"></i></button>
                             </div></TableCell>
-                            <TableCell align="center"> <button title='delete item' onClick={() => handleDeleteOrders(order?._id)} className="btn btn-custom-2"><i className="fas fa-trash"></i></button></TableCell>
+                            <TableCell align="center"> <button title='delete item' onClick={() => handleDeleteOrders(order?._id)} className="btn btn-pink"><i className="fas fa-trash"></i></button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

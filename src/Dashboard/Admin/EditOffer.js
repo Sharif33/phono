@@ -64,7 +64,7 @@ const EditOffer = () => {
                 phones?.name && <form className='custom-form-add' onSubmit={handleSubmit(handleUpdate)}>
                     <div className="d-flex">
                         <input {...register("name", { maxLength: 100 })} defaultValue={phones?.name} />
-                        <p className='btn-custom'>Name</p>
+                        <p className='btn-purple'>Name</p>
                     </div>
                 <div className="d-flex">
                     <select {...register("brand")}>
@@ -79,67 +79,67 @@ const EditOffer = () => {
                 <option value="1Plus">1Plus</option>
                 <option value="Symphony">Symphony</option>
                 </select>
-                <p className='btn-custom'>Brand</p>
+                <p className='btn-purple'>Brand</p>
                 </div>
                 <div className="d-flex">
                     <input {...register("specs", { maxLength: 300 })} defaultValue={phones?.specs} />
-                    <p className='btn-custom'>Key Specs.</p>
+                    <p className='btn-purple'>Key Specs.</p>
                 </div>
                 <div className="d-flex">
                 <input {...register("processor")} defaultValue={phones?.processor} />
-                <p className='btn-custom'>Processor</p>
+                <p className='btn-purple'>Processor</p>
                 </div>
                 <div className="d-flex">
                 <input {...register("memory")} defaultValue={phones?.memory} />
-                <p className='btn-custom'>Memory</p>
+                <p className='btn-purple'>Memory</p>
                 </div>
                 <div className="d-flex">
                 <input {...register("display")} defaultValue={phones?.display} />
-                <p className='btn-custom'>Display</p>
+                <p className='btn-purple'>Display</p>
                 </div>
                 <div className="d-flex">
                 <input {...register("battery")} defaultValue={phones?.battery} />
-                <p className='btn-custom'>Battery</p>
+                <p className='btn-purple'>Battery</p>
                 </div>
                 <div className="d-flex">
                 <input {...register("camera")} defaultValue={phones?.camera} />
-                <p className='btn-custom'>Camera</p>
+                <p className='btn-purple'>Camera</p>
                 </div>
                 <div className="d-flex">
                 <input {...register("selfie")} defaultValue={phones?.selfie} />
-                <p className='btn-custom'>Selfie Camera</p>
+                <p className='btn-purple'>Selfie Camera</p>
                 </div>
                 <div className="d-flex">
                 <input {...register("network")} defaultValue={phones?.network} />
-                <p className='btn-custom'>Network</p>
+                <p className='btn-purple'>Network</p>
                 </div>
                 <div className="d-flex">
                 <input {...register("offerTill")} defaultValue={phones?.offerTill} />
-                <p className='btn-custom'>OfferDate</p>
+                <p className='btn-purple'>OfferDate</p>
                 </div>
                 <div className="d-flex">
                 <input type="number" {...register("id")} defaultValue={phones?.id} />
-                <p className='btn-custom'>ID</p>
+                <p className='btn-purple'>ID</p>
                 </div>
                 <div className="d-flex">
                 <input type="text" {...register("contact")} defaultValue={phones?.contact} />
-                <p className='btn-custom'>Contact</p>
+                <p className='btn-purple'>Contact</p>
                 </div>
                 <div className="d-flex">
                 <input type="number" {...register("price")} defaultValue={phones?.price} />
-                <p className='btn-custom'>Price</p>
+                <p className='btn-purple'>Price</p>
                 </div>
                 <div className="d-flex">
                 <input type="number" step="0.1" min='1' max='5' {...register("star")} defaultValue={phones?.star} />
-                <p className='btn-custom'>Rating</p>
+                <p className='btn-purple'>Rating</p>
                 </div>
                 <div className="d-flex">
                 <input type="number" {...register("rating")} defaultValue={phones?.rating} />
-                <p className='btn-custom'>Reviews</p>
+                <p className='btn-purple'>Reviews</p>
                 </div>
                 <div className="d-flex">
                 <input {...register("image")} defaultValue={phones?.image} />
-                <p className='btn-custom'>img URL</p>
+                <p className='btn-purple'>img URL</p>
                 </div>
                 <div className="text-end">
                     <button className="btn btn-dark w-100" type="submit">Update</button>

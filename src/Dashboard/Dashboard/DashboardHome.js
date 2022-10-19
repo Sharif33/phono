@@ -13,16 +13,10 @@ const DashboardHome = () => {
     const [time, setTime] = React.useState(new Date());
 
     React.useEffect(() => {
-        let isMounted = true;
         setInterval(() => {
-            if(isMounted ){
               setTime(new Date());  
-            }
-         
-        }, 1000);
-        return () => {
-            isMounted = false;
-            };
+}, 1000);
+        
       }, []);
 
     const date = new Date().toDateString();

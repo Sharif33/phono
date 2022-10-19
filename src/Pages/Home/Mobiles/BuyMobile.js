@@ -129,7 +129,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
               <div className="col-md-6 col-6">       
                 <Link className='text-light mx-2' to={`/buy/placeOrder`}>
                   <button onClick={() => dispatch(addToBuy(detailProduct))}
-                   className="btn btn-custom-3 w-100 rounded-0">
+                   className="btn btn-indigo w-100 rounded-0">
                    Buy Now 
                   </button>
                 </Link>
@@ -138,7 +138,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
             </div>
               <button
                 onClick={() => dispatch(addToCart(mobile))}
-                className="btn btn-custom rounded-0 w-100 mx-2 mb-0 mt-3"
+                className="btn btn-purple rounded-0 w-100 mx-2 mb-0 mt-3"
               >
                 Add to cart
               </button>
@@ -147,7 +147,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
 
               <button
                 onClick={() => dispatch(addToFvrt(mobile))}
-                className="btn btn-custom-2 rounded-0 w-100 mx-2"
+                className="btn btn-pink rounded-0 w-100 mx-2"
               >
                 <i title="Add to Favourite" className="far fa-heart"></i> Add to
                 wishlist

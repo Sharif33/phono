@@ -73,8 +73,8 @@ const ManageOffers = () => {
                             <TableCell align="center">{mobile?.adder}</TableCell>
                             <TableCell align="center">{mobile.price}</TableCell>
                             <TableCell align="center">{mobile.id}</TableCell>
-                            <TableCell align="center"><Link to={`${mobile?._id}`}> <button className='btn btn-custom'> <i title='Update' className="fas fa-edit"></i> </button> </Link></TableCell>
-                            <TableCell align="center"><button onClick={() => handleDeleteProducts(mobile?._id)} className="btn btn-custom-2"><i className="fas fa-trash"></i></button></TableCell>
+                            <TableCell align="center"><Link to={`${mobile?._id}`}> <button className='btn btn-purple'> <i title='Update' className="fas fa-edit"></i> </button> </Link></TableCell>
+                            <TableCell align="center"><button onClick={() => handleDeleteProducts(mobile?._id)} className="btn btn-pink"><i className="fas fa-trash"></i></button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

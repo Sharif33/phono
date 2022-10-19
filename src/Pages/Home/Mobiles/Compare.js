@@ -208,7 +208,7 @@ const Compare = () => {
                <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_gctc76jz.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
                </div>
                <h2>Your Comparelist is empty- Please add some products.</h2> <br />
-                <Link to={`/mobiles`}><button className="btn btn-lg btn-custom-2">Start shopping now</button></Link>
+                <Link to={`/mobiles`}><button className="btn btn-lg btn-pink">Start shopping now</button></Link>
                </div> 
             }
            <Footer/> 

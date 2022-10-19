@@ -1,32 +1,43 @@
 // import { Rating } from '@mui/material';
 // import { Box } from '@mui/system';
-import React,{useState} from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { Favourite } from '../../../Contexts/AuthProvider/FavContext';
-import { addToCart } from '../../../Redux/slices/cartSlice';
-import { addToFvrt } from '../../../Redux/slices/fvrtSlice';
-import { addToCompare } from '../../../Redux/slices/compareSlice';
-import { removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
-// import { removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
+import { addToCart,increment,decrement } from '../../../Redux/slices/cartSlice';
+import { addToFvrt,removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
+import { addToCompare, removeFromCompare } from '../../../Redux/slices/compareSlice';
 import BuyMobile from './BuyMobile';
 import "./Mobile.css";
-// import CountdownTimer from '../../Countdown/CountdownTimer';
 import { numberFormat } from '../../../Shared/numberFormat';
 import { MdInfo, MdVisibility, MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 
 const Mobile = ({ mobile}) => {
-    const [toggleBtn, setToggleBtn] = useState(false);
+    const { _id, name, price, ram, storage, image, chipset } = mobile;
 
+    const toCart = useSelector((state) => state.cart);
+    const toFvrt = useSelector((state) => state.fvrt);
+    const toCompare = useSelector((state) => state.compare);
+
+    const toggleCart = toCart.addToCart.find((ct)=> ct?._id === _id );
+    // console.log(toggleCart?.cartQuantity);
+
+    const toggleFvrt = toFvrt?.addToFvrt.find((ft)=> ft?._id === _id );
+    // console.log(toggleFvrt);
+
+    const toggleCompare = toCompare?.addToCompare.find((ct)=> ct?._id === _id );
+    // console.log(toggleCompare);
+
+    /* const [toggleBtn, setToggleBtn] = useState(false);
     const showToggle = () => {
         setToggleBtn(true);
     }
     const hideToggle = () => {
         setToggleBtn(false);
-    }
+    } */
+
     // const {cart,setCart} = useContext(Favourite);
-    // const offerTill = new Date().toDateString();
-    const { _id, name, price, ram, storage, image, chipset } = mobile;
+  
     const [openBuyNow, setOpenBuyNow] = React.useState(false);
     const handleOpen = () => setOpenBuyNow(true);
     const handleClose = () => setOpenBuyNow(false);
@@ -35,46 +46,65 @@ const Mobile = ({ mobile}) => {
     return (
         <div>
             <div className="col rounded text-center">
-                <div className="card pb-3 border-0 custom-shadow h-100">
+                <div className="card border-0 custom-shadow h-100">
                    
-                    <div className='card-hover rounded py-3'>
+                    <div className='card-hover rounded py-2'>
                       
                            <div>  
                             <div className="card-btns">
-                           <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> <br />
-                            {
-                                toggleBtn ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={hideToggle}><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span>  </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={showToggle}><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
 
-                            }
+                            <Link to={`/mobile/${_id}`}> <button className='btn btn-cart border-0 my-2 rounded'><MdInfo className='fs-3 p-1'/></button> </Link>
+                            <br />
+                            <button onClick={handleOpen} className='btn btn-cart border-0 my-2 rounded'><MdVisibility className='fs-3 p-1'/></button>
                            
-  
                            </div>
+
                            <img style={{ height: "10rem" }} src={image} className="img-fluid rounded-start" alt="" />
-                            {/* <p>Tk: <span className="text-danger fw-bold">{price}</span></p> */}
                            </div>
                            
                         </div>
                         <div className=''>
+                            <div>
+                            <Link to={`/mobile/${_id}`}> 
                             <h6 className="text-dark pt-1">{name}</h6>
                             {/* <Box sx={{
                                 '& > legend': { mt: 2 },
                             }}>
                                 <Rating name="half-rating-read" precision={0.5} size="small" value={Number(star)} readOnly />
                             </Box> */}
-                            <div style={{ textAlign: "center" }} className="p-2">
+                            <div style={{ textAlign: "center" }} >
                                 <p className="text-secondary">{ram} {storage} | {chipset}</p>
                                 <p style={{color:"#eb5525",fontWeight:"bolder"}}>{numberFormat(price).slice(3,-3) }Tk</p>
                             </div>
-                            <div className="d-flex justify-content-evenly">
+                            </Link>
+                            </div>
+                            
+                            <div className="d-flex justify-content-evenly align-items-center">
+                            {
+                                    toggleCart ? <div className="d-flex justify-content-evenly align-items-center">
+                                    <button className='btn btn-cart rounded-0' onClick={() => dispatch(decrement(mobile))}> - </button>
+                                    <span style={{minWidth:"5vw"}} className='mw-qty border py-1'>{toggleCart?.cartQuantity}</span>
+                                    <button className='btn btn-cart rounded-0' onClick={() => dispatch(increment(mobile))}> + </button>
+                            </div> :
+                             <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> Add to cart </button> 
+                                }
+                            
+                            <div>
+                        {/*     {
+                                toggleBtn ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={hideToggle}><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span>  </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={showToggle}><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
+                            } */}
+                             {
+                                toggleFvrt ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span> </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
+                            }
+                            </div>
 
-                        <Link to={`/mobile/${_id}`}> <button className='btn btn-cart border-0 my-2 rounded'><MdInfo className='fs-3 p-1'/></button> </Link>
-
-                        <button onClick={handleOpen} className='btn btn-cart border-0 my-2 rounded'><MdVisibility className='fs-3 p-1'/></button>
-
-                        <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows className='fs-3 p-1'/></button>
-                       
-
-                        {/* <button onClick={handleOpen} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Order Now' className="fas fa-cart-plus fs-4 py-1"></i> </button> */}
+                           <div>
+                            {
+                                toggleCompare ? <button onClick={() => dispatch(removeFromCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows style={{transform:"rotate(90deg)"}} className='fs-3 p-1'/></button> : <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows className='fs-3 p-1'/></button>
+                            }
+                           
+                           </div>
+                            </div>
                        
         
                   {/*       <div>
@@ -88,19 +118,9 @@ const Mobile = ({ mobile}) => {
                             )
                         }   
                         </div> */}
-                    {/*     <div>
-                            <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-outline-warning mx-2'> <i title='Add to Favourite' className="far fa-heart"></i> </button>
-                           <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Add to Cart' className="fas fa-cart-plus fs-4 py-1"></i> </button>
-
-                            <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-outline-dark border-0 mx-2 rounded-circle'> <i title='Add to Favourite' className="far fa-heart fs-4 py-1"></i> </button>                            
+        
                         </div>
-                     */}
-                    </div>
-                        </div>
-                    
-                    {/* <div>
-                        <CountdownTimer offerTill={offerTill} />
-                        </div> */}
+                
                 </div>
             </div>
             <BuyMobile

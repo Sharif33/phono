@@ -118,7 +118,7 @@ const CheckoutForm = ({itemOrder}) => {
         }}
       />
       <div className='text-center pt-5'>
-      {processing ? <CircularProgress/> : <button className='btn btn-custom-2' type="submit" disabled={!stripe || success}>Pay {total}&#2547;</button>}
+      {processing ? <CircularProgress/> : <button className='btn btn-pink' type="submit" disabled={!stripe || success}>Pay {total}&#2547;</button>}
       </div>
     </form>
             {

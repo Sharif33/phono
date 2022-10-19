@@ -119,7 +119,7 @@ const CustomerReviewShow = () => {
         </div>
         <div className='text-center'>
                 <div>
-                    <button onClick={handleOpen} className='btn btn-custom'>Review Us</button>
+                    <button onClick={handleOpen} className='btn btn-purple'>Review Us</button>
                 </div>
                 <div>
                     <CustomerReview handleClose={handleClose} openReviewNow={openReviewNow}/>

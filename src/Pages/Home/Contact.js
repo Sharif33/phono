@@ -23,7 +23,7 @@ const Contact = () => {
                         </div>
                     </div>
                     <div style={{marginTop:"-20px"}}>
-                    <Link to="/contact"><button className='btn btn-custom rounded-pill'>View More</button></Link>
+                    <Link to="/contact"><button className='btn btn-purple rounded-pill'>View More</button></Link>
                     </div>
                
                 </div>
@@ -38,7 +38,7 @@ const Contact = () => {
                         </div>
                     </div>
                     <div style={{marginTop:"-20px"}}>
-                    <Link to="/contact"><button className='btn btn-custom rounded-pill'>View More</button></Link>
+                    <Link to="/contact"><button className='btn btn-purple rounded-pill'>View More</button></Link>
                     </div>
 
                 </div>

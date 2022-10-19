@@ -46,7 +46,7 @@ const UserDetails = () => {
             </li>
 
             </ul> <br />
-                        <button onClick={handleOpen} className="btn btn-custom">Update Profile</button>
+                        <button onClick={handleOpen} className="btn btn-purple">Update Profile</button>
                     </div>
                 </div>
             </div>

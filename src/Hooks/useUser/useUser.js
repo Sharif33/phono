@@ -22,6 +22,7 @@ export default useUser;
 const useUser = () => {
     const {user} = useAuth();
     const [users, setUsers] = useState([]);
+    // console.log(users);
 
     useEffect(() => {
         try {

@@ -1,8 +1,9 @@
 // import React, {useContext} from 'react';
 import React, {useEffect} from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, getTotal, increment, removeFromCart } from '../../../Redux/slices/cartSlice';
+import { decrement, getTotal, increment, removeFromCart, clearCart } from '../../../Redux/slices/cartSlice';
+import { addToFvrt } from '../../../Redux/slices/fvrtSlice';
 // import { Favourite } from '../../../Contexts/AuthProvider/FavContext';
 import Header from '../../../Shared/Header/Header';
 // import Mobile from './Mobile';
@@ -10,6 +11,8 @@ import { Link } from 'react-router-dom';
 import Footer from '../../../Shared/Footer/Footer';
 import { numberFormat } from '../../../Shared/numberFormat';
 import {Helmet} from "react-helmet";
+import { MdFavoriteBorder } from "react-icons/md";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 
 const Cart = () => {
     // const {cart} = useContext(Favourite);
@@ -33,64 +36,89 @@ const Cart = () => {
             </Helmet>
            <Header/>
            {
-               addToCart.length ? <div className="container py-4">
+               addToCart.length ? <div className="container-lg py-4">
                    <div className='text-center my-4'>
-                       <h1><i style={{color:"#183153"}} className="fa-brands fa-shopify"></i> <span className='text-secondary fw-bold'> {addToCart?.length}</span> items</h1>
+                       <h1><i style={{color:"#183153"}} className="fa-brands fa-shopify"></i> <span className='text-secondary fw-bold'> {addToCart?.length}</span> item(s)</h1>
                        <h1> <span style={{color:"#183153"}} className="fw-bold">Tk</span> <span className='text-secondary'> {numberFormat(cartTotal+shipping+tax).slice(3)}</span></h1>
                    </div>
                     <div className='row mx-auto'>
                         <div className='col-md-8 col-sm-12 my-3'>
-                <TableContainer component={Paper}>
-                    <Table stickyHeader aria-label="sticky table" >
-                        <TableHead sx={{bgcolor: 'secondary.main'}}>
+
+                <TableContainer>
+                    {/* <button onClick={()=>dispatch(clearCart(addToCart))}>Clear all</button> */}
+                    <Table >
+                        {/* <TableHead sx={{bgcolor: 'secondary.main'}}>
                             <TableRow>
-                                <TableCell sx={{ color: 'secondary.main', border: '0px'}}>Thumb</TableCell>
+                                <TableCell sx={{ color: 'secondary.main', border: '0px'}}>
+                                    <button onClick={()=> dispatch(clearCart(addToCart))} className="btn btn-sm btn-outline-danger">Delete All</button>
+                                </TableCell>
                                 <TableCell sx={{ color: 'secondary.main', border: '0px'}}>Name</TableCell>
                                 <TableCell sx={{ color: 'secondary.main', border: '0px'}} align="center">Brand</TableCell>
                                 <TableCell sx={{ color: 'secondary.main', border: '0px'}} align="center">Qty.</TableCell>
                                 <TableCell sx={{ color: 'secondary.main', border: '0px'}} align="center">Price</TableCell>
                                 <TableCell sx={{ color: 'secondary.main', border: '0px'}} align="center">Total</TableCell>
                             </TableRow>
-                        </TableHead>
+                        </TableHead> */}
                         <TableBody>
                             {
                             addToCart.map((mobile) => (
                                 <TableRow hover
                                     key={mobile?._id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    sx={{ border: 0 } }
                                 >
-                                    <TableCell sx={{border: '0px'}} component="th" scope="row">
+                                    <TableCell sx={{border: '0px', textAlign:'center'}} >
                                         {
                                             mobile?.os ? <Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"3rem"}} className='img-fluid' src={mobile?.image} alt="" />
+                                            <span className="m-1 text-navi">
+                                                &#x9F3;{numberFormat(mobile.price).slice(3,-3)}
+                                                <small className='text-secondary'>/1</small>	
+                                            </span>
                                             </Link>
                                             :
                                             <Link title='See Details' to={`/mobile2/${mobile?._id}`}> <img style={{width:"3rem"}} className='img-fluid' src={mobile?.image} alt="" />
+                                            <span className="m-1 text-navi">
+                                               &#x9F3;{numberFormat(mobile.price).slice(3,-3)}
+                                               <small className='text-secondary'>/1</small>	
+                                            </span>
                                             </Link>
                                         }
                                     
                                     </TableCell>
 
-                                    <TableCell sx={{border: '0px'}} align="left">{mobile?.name}
+                                    <TableCell sx={{border: '0px'}} align="left">
+                                        {mobile?.name}
                                     <div>
-                                        <button className='border-0 bg-transparent text-secondary' onClick={()=>dispatch((removeFromCart(mobile)))}>(Remove)</button>
+                                        <small className='text-secondary'>
+                                         {mobile?.brand} 
+                                        </small>
+                                       {/*  <button className='border-0 bg-transparent text-secondary' onClick={()=>dispatch((removeFromCart(mobile)))}>(Remove)</button> */}
                                     </div>
                                     </TableCell>
-
-                                    <TableCell sx={{border: '0px'}} align="center">{mobile?.brand}</TableCell>
-
                                     <TableCell sx={{border: '0px'}} align="center">
                                     <div className="m-auto">
                                                 <div className="d-flex justify-content-between align-items-center border">
                                                         <button className='btn btn-cart rounded-0' onClick={() => dispatch(decrement(mobile))}> - </button>
-                                                        {/* <input style={{width:"4vw"}} type="text" readOnly value={mobile?.cartQuantity}
-                                                        className="fw-bolder border-0 text-center text-secondary" /> */}
-                                                        <span>{mobile?.cartQuantity}</span>
+                                                        <span className='mw-qty'>{mobile?.cartQuantity}</span>
                                                         <button className='btn btn-cart rounded-0' onClick={() => dispatch(increment(mobile))}> + </button>
                                                 </div>
                                         </div>
+                                        <div className='mt-1'>
+                                            <span className='text-navi fw-bold'>
+                                               &#x9F3; {numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}
+                                            </span>
+                                            <span><small className='text-secondary'>/{mobile?.cartQuantity}</small></span> 
+                                        </div>
                                     </TableCell>
-                                    <TableCell sx={{border: '0px'}} align="center">{numberFormat(mobile.price).slice(3,-3)}	&#x9F3;</TableCell>
-                                    <TableCell sx={{border: '0px'}} align="center">{numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}	&#x9F3;</TableCell>
+                                    <TableCell sx={{border: '0px'}} align="center">
+                                    <div className='d-flex justify-content-evenly'>
+
+                            <button onClick={() => dispatch(addToFvrt(mobile))} className='btn border-0 rounded'> <MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1 text-navi"/> </button>
+
+                            <button onClick={() => dispatch(removeFromCart(mobile))} className='btn border-0 rounded'><RiDeleteBin5Fill title='Remove From Cart' className='fs-3 p-1 text-pink'/></button>
+                </div>
+                                    </TableCell>
+                                   {/*  <TableCell sx={{border: '0px'}} align="center">{numberFormat(mobile.price).slice(3,-3)}	&#x9F3;</TableCell>
+                                    <TableCell sx={{border: '0px'}} align="center">{numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}	&#x9F3;</TableCell> */}
                                     
                                 </TableRow>
                             ))}
@@ -138,7 +166,7 @@ const Cart = () => {
                         <br />
                 <div>
                     <Link to={`/placeOrder`}>
-                        <button className='btn btn-lg btn-custom-2 w-100 rounded-0'>Place Order</button>
+                        <button className='btn btn-lg btn-pink w-100 rounded-0'>PROCEED TO CHECKOUT</button>
                     </Link>
                 </div>
             </ul>
@@ -154,7 +182,7 @@ const Cart = () => {
             </div>
             
             <h4>Your shopping bag is empty, Please add some products before you checkout.</h4> <br />
-            <Link to={`/mobiles`}><button className="btn btn-lg btn-custom-2">Start shopping now</button></Link>
+            <Link to={`/mobiles`}><button className="btn btn-lg btn-pink">Start shopping now</button></Link>
             
         </div>
            }

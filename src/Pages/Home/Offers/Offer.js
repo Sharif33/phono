@@ -52,15 +52,13 @@ const Offer = ({offer}) => {
                     <div className=''>
                         
                     <Link style={{textDecoration:"none"}} to={`/mobile2/${_id}`}> <h5 className="text-dark">{name}</h5>
-                        <Box sx={{
-                            '& > legend': { mt: 2 },
-                        }}>
+                        <Box sx={{'& > legend': { mt: 2 },}}>
                             <Rating name="half-rating-read" precision={0.5} size="small" value={Number(star)} readOnly />
                         </Box>
                         <div style={{ textAlign: "center" }}>
-                            <p> <s style={{color:"#eb5525"}}>{numberFormat(Math.round(Number(price*.10) + Number(price))).slice(3,-3)}Tk</s> <span className='text-primary fw-bold' > {numberFormat(Number(price)).slice(3,-3)}Tk</span></p>
+                            <p><span className='text-primary fw-bold' > {numberFormat(Number(price)).slice(3,-3)}Tk</span> <s style={{color:"#eb5525"}}>{numberFormat(Math.round(Number(price*.10) + Number(price))).slice(3,-3)}Tk</s> </p>
                         </div></Link>
-                    {/* <button onClick={() => dispatch(addToCompare(offer))} className='btn btn-custom-3 border-0 rounded-0'>Compare</button> */}
+                    {/* <button onClick={() => dispatch(addToCompare(offer))} className='btn btn-indigo border-0 rounded-0'>Compare</button> */}
                     </div>
                 
                 <div>

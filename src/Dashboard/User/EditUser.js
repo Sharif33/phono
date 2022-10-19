@@ -148,7 +148,7 @@ const EditUser = ({openUserNow,handleClose}) => {
             </li>
             
             </ul>  
-                 <button className='ms-3 btn btn-custom' type="submit">Save</button>
+                 <button className='ms-3 btn btn-purple' type="submit">Save</button>
                 </form>
                 
             </div>

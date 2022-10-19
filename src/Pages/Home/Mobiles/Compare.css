@@ -2,10 +2,14 @@
     .mobileColumnGroup {
         display: none;
    }
+  
 }
 @media(max-width: 769px) {
     .rowHeader, .emptyCell {
         display: none;
+   }
+    .mw-qty{
+    min-width: 6vw !important;
    }
 }
 .tableContainer {

@@ -33,9 +33,9 @@ const Orders = ({order,statusNumber,handleDeleteOrders}) => {
                             order?.payment ? (<h5><span className="badge text-cenetr rounded-pill bg-success">Paid</span></h5>) : (
                           <div>
                             <Link to={`/dashboard/pay/${order._id}`}>
-                              <button className="btn btn-custom btn-sm me-1"> Pay</button>
+                              <button className="btn btn-purple btn-sm me-1"> Pay</button>
                             </Link>
-                            <button onClick={() => handleDeleteOrders(order._id)} className="btn btn-custom-2 btn-sm">Cancel order</button>
+                            <button onClick={() => handleDeleteOrders(order._id)} className="btn btn-pink btn-sm">Cancel order</button>
                           </div>)
                             }
                           </div>

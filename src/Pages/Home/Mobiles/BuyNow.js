@@ -101,7 +101,7 @@ const BuyNow = () => {
                     <br />
                     {addToBuy.length ? (
                       <button
-                        className="w-100 btn btn-custom btn-lg"
+                        className="w-100 btn btn-purple btn-lg"
                         type="submit"
                       >
                         PROCEED TO CHECKOUT
@@ -109,7 +109,7 @@ const BuyNow = () => {
                     ) : (
                       <button
                         disabled
-                        className="w-100 btn-lg btn btn-custom"
+                        className="w-100 btn-lg btn btn-purple"
                         type="submit"
                       >
                         PROCEED TO CHECKOUT

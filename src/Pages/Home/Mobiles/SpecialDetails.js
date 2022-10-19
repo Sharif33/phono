@@ -185,7 +185,7 @@ const SpecialDetails = () => {
 
             <button
               onClick={() => dispatch(addToCart(phones))}
-              className="btn btn-custom rounded-0 w-100 mx-2"
+              className="btn btn-purple rounded-0 w-100 mx-2"
             >
               Add to cart
             </button>
@@ -194,7 +194,7 @@ const SpecialDetails = () => {
 
             <button
               onClick={() => dispatch(addToFvrt(phones))}
-              className="btn btn-custom-2 rounded-0 w-100 mx-2"
+              className="btn btn-pink rounded-0 w-100 mx-2"
             >
               {" "}
               <i title="Add to Favourite" className="far fa-heart"></i> Add to
@@ -341,7 +341,7 @@ const SpecialDetails = () => {
                                       {errors.phone && <span className="text-warning">This field is required.</span>}
                                       <input defaultValue={phones?.image} hidden readOnly {...register("image", { required: true })} />
                                       {errors.image && <span className="text-warning">This field is required.</span>} <br />
-                                      {!admin && <Button className='w-100 btn-custom' type="submit" variant="contained">ORDER</Button>}
+                                      {!admin && <Button className='w-100 btn-purple' type="submit" variant="contained">ORDER</Button>}
 
                                   </form>
                               }

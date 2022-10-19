@@ -38,11 +38,20 @@ const cartSlice = createSlice({
                    cartQuantity: state.addToCart[itemIndex].cartQuantity += 1
                 };
 
-                toast.info(`Increased ${state.addToCart[itemIndex].name} quantity to ${state.addToCart[itemIndex].cartQuantity}`, {
+                if (state.addToCart[itemIndex].cartQuantity >= 5) {
+                    state.addToCart[itemIndex].cartQuantity = 5;
+                    toast.warning(`Maximum purchase limit is 5`, {
+                    position: "bottom-left",
+                    }); 
+                 } else{
+                    toast.info(`Increased ${state.addToCart[itemIndex].name} quantity to ${state.addToCart[itemIndex].cartQuantity}`, {
                     position: "bottom-left",
                   });
-
-            } else {        
+                 }
+               
+                
+            } 
+            else {        
                 const newCart = { ...payload, cartQuantity: 1};
                 state.addToCart.push(newCart);
 
@@ -64,13 +73,14 @@ const cartSlice = createSlice({
         },
         increment: (state, { payload }) => {
             const itemIndex = state.addToCart.findIndex(item => item._id === payload._id);
-            if(state.addToCart[itemIndex].cartQuantity >=0){
-                state.addToCart[itemIndex].cartQuantity += 1;
-               
-            }
-            toast.info(`Increased ${state.addToCart[itemIndex].name} quantity to ${state.addToCart[itemIndex].cartQuantity}`, {
+            if(state.addToCart[itemIndex].cartQuantity >=0 && state.addToCart[itemIndex].cartQuantity < 5){
+                state.addToCart[itemIndex].cartQuantity += 1; 
+                   if(state.addToCart[itemIndex].cartQuantity >= 5){
+                   toast.warning(`Maximum purchase limit is 5`, {
                 position: "bottom-left",
-              });
+              }); 
+                }
+            }
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
 
         },
@@ -79,9 +89,11 @@ const cartSlice = createSlice({
             
             if (state.addToCart[itemIndex].cartQuantity > 1){
                state.addToCart[itemIndex].cartQuantity -= 1;
-               toast.warning(`Decreased ${state.addToCart[itemIndex].name} quantity to ${state.addToCart[itemIndex].cartQuantity}`, {
+                if (state.addToCart[itemIndex].cartQuantity === 1){
+               toast.warning(`Minimum purchase limit is 1`, {
                 position: "bottom-left",
               }); 
+            }
             }
            
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));

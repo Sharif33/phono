@@ -17,7 +17,7 @@ const Payment = () => {
     }, [id]);
     return (
         <div>
-                <div className='col-sm-12 col-md-8 mx-auto p-md-4 btn-custom rounded'>
+                <div className='col-sm-12 col-md-8 mx-auto p-md-4 btn-purple rounded'>
                     <div className='p-4 text-center'>
                         <h3><span className='text-warning'>{itemOrder?.orderBy}</span> please pay </h3>
                         {/* <h5 className='text-light'>{itemOrder.mobile}</h5> */}
