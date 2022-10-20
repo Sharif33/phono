@@ -6,6 +6,7 @@ import usePhones from '../../../Hooks/usePhones/usePhones';
 import { numberFormat } from '../../../Shared/numberFormat';
 import { AiOutlineDown } from "react-icons/ai";
 import Offer from './Offer';
+import { BsChevronDoubleRight } from "react-icons/bs";
 
 const Offers = () => {
     const [offers] = useOffer();
@@ -90,7 +91,7 @@ const Offers = () => {
                    
                 </div> 
                     <div className='text-center py-2'>
-                        <Link to={`/mobiles`}>New Arrival</Link>
+                        <Link to={`/mobiles`}>New Arrival <span><BsChevronDoubleRight/></span></Link>
                     </div>
                 </div> 
             </div>  

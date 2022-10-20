@@ -1,8 +1,8 @@
-import { Box, Rating, Typography } from "@mui/material";
+import { Box, Rating } from "@mui/material";
 // import axios from "axios";
 import React, { useEffect, useState } from "react";
 // import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // import Swal from "sweetalert2";
 import Review from "../../../Dashboard/User/Review";
 // import useAuth from "../../../Hooks/useAuth/useAuth";
@@ -15,9 +15,9 @@ import { addToFvrt } from "../../../Redux/slices/fvrtSlice";
 import usePhones from "../../../Hooks/usePhones/usePhones";
 import useReviews from "../../../Hooks/useReviews/useReviews";
 import { numberFormat } from "../../../Shared/numberFormat";
-import { addToCompare } from '../../../Redux/slices/compareSlice';
-import { MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder } from "react-icons/md";
 import ShareProduct from "../../../Shared/ShareProduct";
+import useOffer from "../../../Hooks/SpecialOffer/useOffer";
+import RelatedMobiles from "./RelatedMobiles";
 
   
 
@@ -29,6 +29,7 @@ const SpecialDetails = () => {
   const { id } = useParams();
 
   const [phones, setPhones] = useState([]);
+  // console.log(phones);
 
   useEffect(() => {
     try {
@@ -48,9 +49,11 @@ const SpecialDetails = () => {
   /*  Filter related products */
 
   const [mobiles] = usePhones();
+  const [offers] = useOffer();
 
   const relatedPd = mobiles?.filter((brand) => brand?.brand === phones?.brand);
-  //   console.log(relatedPd);
+  const relatedPd2 = offers?.filter((brand) => brand?.brand === phones?.brand);
+    // console.log(relatedPd2);
 
   /* Filter Rating & Reviews */
 
@@ -163,19 +166,15 @@ const SpecialDetails = () => {
                           </div>
                         </div>
             <Box
-              sx={{
-                "& > legend": { mt: 2 },
-              }}
+             sx={{"& > legend": { mt: 2 }, alignItems:"center", display:"flex"}}
             >
-              <Typography>
                 <Rating
                   name="half-rating-read"
                   precision={0.5}
                   value={Number(phones?.star)}
                   readOnly
-                />{" "}
-                {phones?.rating} reviews{" "}
-              </Typography>
+                />
+                <span> <small>({phones?.rating})</small> </span>
             </Box>
 
             <h5 className="w-100 py-3">
@@ -347,50 +346,9 @@ const SpecialDetails = () => {
                               }
                           </div>
                       </div> */}
-    {relatedPd?.length ? (
-      <div className="container pb-5">
-        <h2 className="text-center fw-bold">
-          {" "}
-          <span style={{ color: "#eb5525" }} className="border-bottom">
-            Related Mobiles
-          </span>{" "}
-        </h2>
-        <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
-          {relatedPd?.map((related) => (
-             <div key={related?._id}>
-             <div className="col rounded text-center">
-             <div className="card border-0 shadow-sm h-100">
-                
-                <div className='card-hover rounded py-3'>
-                       <div>  
-                        <Link style={{textDecoration:"none"}} to={`/mobile/${related?._id}`}>
-                          <img style={{ height: "10rem" }} src={related?.image} className="img-fluid rounded-start" alt="" />
-                        <h6 className="text-dark pt-1">{related?.name}</h6>
-                        <div style={{ textAlign: "center" }} className="px-2">
-                            <p className="text-secondary">{related?.ram} {related?.storage} | {related?.chipset}</p>
-                            <p style={{color:"#eb5525",fontWeight:"bolder"}}>{numberFormat(related?.price).slice(3,-3) }Tk</p>
-                        </div> 
-                        </Link>
-                       </div>  
-                    </div>
-                    <div>
-                        <div className="d-flex justify-content-evenly">
-                        <button onClick={() => dispatch(addToCart(related))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button>
-
-                       <button onClick={() => dispatch(addToFvrt(related))} className='btn btn-cart border-0 my-2 rounded'> <MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/> </button>
-
-                       <button onClick={() => dispatch(addToCompare(related))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows title="Add to Compare" className='fs-3 p-1'/></button>
-                        </div>
-                    </div>
-            </div>
-             </div>
-           </div>
-          ))}
-        </div>
-      </div>
-    ) : (
-      " "
-    )}
+      <RelatedMobiles
+      relatedPd={relatedPd}
+      />
     
     <div className="bg-light py-3">
       <Banner3 />

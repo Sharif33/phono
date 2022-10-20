@@ -2,8 +2,8 @@
 import React, {useEffect} from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, getTotal, increment, removeFromCart, clearCart } from '../../../Redux/slices/cartSlice';
-import { addToFvrt } from '../../../Redux/slices/fvrtSlice';
+import { decrement, getTotal, increment, removeFromCart } from '../../../Redux/slices/cartSlice';
+import { addToFvrt, removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
 // import { Favourite } from '../../../Contexts/AuthProvider/FavContext';
 import Header from '../../../Shared/Header/Header';
 // import Mobile from './Mobile';
@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 import Footer from '../../../Shared/Footer/Footer';
 import { numberFormat } from '../../../Shared/numberFormat';
 import {Helmet} from "react-helmet";
-import { MdFavoriteBorder } from "react-icons/md";
-import { RiDeleteBin5Fill } from "react-icons/ri";
+import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { RiDeleteBin5Fill,RiShoppingBag3Fill } from "react-icons/ri";
 
 const Cart = () => {
     // const {cart} = useContext(Favourite);
@@ -25,6 +25,7 @@ const Cart = () => {
         dispatch(getTotal());
       }, [addToCart, dispatch]);
 
+      const toFvrt = useSelector((state) => state.fvrt);
 
     return (
         <>
@@ -38,7 +39,7 @@ const Cart = () => {
            {
                addToCart.length ? <div className="container-lg py-4">
                    <div className='text-center my-4'>
-                       <h1><i style={{color:"#183153"}} className="fa-brands fa-shopify"></i> <span className='text-secondary fw-bold'> {addToCart?.length}</span> item(s)</h1>
+                       <h1> <RiShoppingBag3Fill style={{color:"#183153"}}/> <span className='text-secondary fw-bold'> {addToCart?.length}</span> item(s)</h1>
                        <h1> <span style={{color:"#183153"}} className="fw-bold">Tk</span> <span className='text-secondary'> {numberFormat(cartTotal+shipping+tax).slice(3)}</span></h1>
                    </div>
                     <div className='row mx-auto'>
@@ -111,8 +112,9 @@ const Cart = () => {
                                     </TableCell>
                                     <TableCell sx={{border: '0px'}} align="center">
                                     <div className='d-flex justify-content-evenly'>
-
-                            <button onClick={() => dispatch(addToFvrt(mobile))} className='btn border-0 rounded'> <MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1 text-navi"/> </button>
+                                        {
+                                            toFvrt?.addToFvrt.find((ft)=> ft?._id === mobile._id ) ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn border-0 rounded'><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/> </button> : <button onClick={() => dispatch(addToFvrt(mobile))} className='btn border-0 rounded'><MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1 text-navi"/></button>
+                                        }
 
                             <button onClick={() => dispatch(removeFromCart(mobile))} className='btn border-0 rounded'><RiDeleteBin5Fill title='Remove From Cart' className='fs-3 p-1 text-pink'/></button>
                 </div>

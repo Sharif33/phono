@@ -134,7 +134,7 @@ const ManageOrder = () => {
                             <TableCell align="center">{order?._id?.slice(0,10)}</TableCell>
                             <TableCell align="center">{order?.name  ? order.name : order?.orderBy}</TableCell>
                             <TableCell align="center">{order?.email}</TableCell>
-                            <TableCell align="center">{order?.price}&#2547; </TableCell>
+                            <TableCell align="center">{order?.total}&#2547; </TableCell>
                             <TableCell align="center">
                                 {
                                     order?.payment ? <Typography sx={{ color: 'success.main'}}>Paid</Typography> :  <Typography sx={{ color: 'error.main'}}>Unpaid</Typography>

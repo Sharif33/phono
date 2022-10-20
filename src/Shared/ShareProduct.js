@@ -31,7 +31,7 @@ const ShareProduct = ({mobile,mobile2}) => {
   
     return (
       <div>
-          <ShareIcon aria-describedby={id}  onClick={handleClick} />
+          <ShareIcon className='text-navi' aria-describedby={id}  onClick={handleClick} />
         
         <Popover
           id={id}

@@ -53,7 +53,7 @@ const Mobiles = () => {
                     }
                 </div>
                 <div className="text-center pt-4">
-                    <Link to="/mobiles"><button className="btn btn-cart rounded-pill mb-5">View All</button></Link>
+                    <Link to="/mobiles"><button className="btn btn-lg btn-cart rounded-0 mb-5">Load more</button></Link>
                 </div>
             </div>
         </>

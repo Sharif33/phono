@@ -29,6 +29,7 @@ console.log(allUsers);
                         <TableCell sx={{ color: 'secondary.main'}} align="center">Email</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">Name</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">Phone</TableCell>
+                        <TableCell sx={{ color: 'secondary.main'}} align="center">Role</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">Gender</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">Address</TableCell>
                         <TableCell sx={{ color: 'secondary.main'}} align="center">City</TableCell>
@@ -46,6 +47,7 @@ console.log(allUsers);
                             <TableCell align="justify">{usr?.email}</TableCell>
                             <TableCell sx={{width:"100"}} align="justify">{usr?.name ? usr.name : usr?.displayName}</TableCell>
                             <TableCell align="justify">{usr?.phone ? usr.phone : ' '}</TableCell>
+                            <TableCell align="justify">{usr?.role ? usr.role : 'User'}</TableCell>
                             <TableCell align="justify">{usr?.gender ? usr.gender : ' '}</TableCell>
                             <TableCell align="justify">{usr?.address ? usr.address : ' '}</TableCell>
                             <TableCell align="justify">{usr?.city ? usr.city : ' '}</TableCell>
