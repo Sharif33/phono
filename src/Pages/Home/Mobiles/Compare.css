@@ -8,9 +8,6 @@
     .rowHeader, .emptyCell {
         display: none;
    }
-    .mw-qty{
-    min-width: 6vw !important;
-   }
 }
 .tableContainer {
     overflow: auto;

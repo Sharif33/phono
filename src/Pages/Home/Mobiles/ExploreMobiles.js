@@ -187,7 +187,7 @@ const handleBrandSort = ()=>{
                             >
                             <MenuItem onClick={handleHighPrice} value={0}>High to low Price</MenuItem>
                             <MenuItem onClick={handleLowPrice} value={1}>Low to high Price</MenuItem>
-                            <MenuItem onClick={handleBrandSort} value={2}>Sort by brand name</MenuItem>
+                            <MenuItem onClick={handleBrandSort} value={2}>Sort by brand</MenuItem>
                             <MenuItem onClick={handleNameSort} value={3}>Sort by name ({priceH?.length})</MenuItem>
                             </Select>
                         </FormControl>

@@ -20,8 +20,8 @@ const compareSlice = createSlice({
                     position: "bottom-left",
                   });
             }  
-            else if (state.addToCompare?.length >= 2){
-                toast.warning(`Only 2 items are comparable. Please remove previous one from compare section`, {
+            else if (state.addToCompare?.length >= 3){
+                toast.warning(`Only 3 items are comparable. Please remove previous one from compare section`, {
                     position: "bottom-left",
                   });
              }

@@ -48,7 +48,7 @@ const Offers = () => {
     return (
         <div className="container-fluid">
             <div className="row pt-4 flex-sm-row-reverse m-auto"> 
-            <h1 className='fw-bold text-center py-3'>Limited Time <span className='text-primary'>Offer</span></h1>
+            <h1 className='fw-bold text-center text-navi py-3'>Shop all latest offers and innovations</h1>
                   {/* offer */}
                 <div className="col-md-9 col-sm-12">
                    

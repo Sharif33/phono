@@ -4,6 +4,7 @@ import useAuth from '../useAuth/useAuth';
 const useOrders = () => {
     const {user} = useAuth();
     const [orders, setOrders] = useState([]);
+    
     const email = user?.email;
     useEffect(() => {
         let isMounted = true;
@@ -12,6 +13,7 @@ const useOrders = () => {
             .then((data) =>{
                 if(isMounted ){
                 setOrders(data)
+                // console.log(data);
             }
             });
         return () => {

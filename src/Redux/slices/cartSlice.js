@@ -9,6 +9,31 @@ import { toast } from 'react-toastify';
       return response.data
     }
 ) */
+            {
+                    var date = new Date();
+                    var today = new Date();
+                    var first = today.setDate(date.getDate()+ 2);
+                    var last = today.setDate(date.getDate()+ 5);
+                    const firstDay = (new Date(first).getDate());
+                    const lastDay = (new Date(last).getDate());
+
+                const months = [1,2,3,4,5,6,7,8,9,10,11,12]
+
+                let month = months[date.getMonth()];
+                // console.log(month);
+
+                const getMonthName = (monthNumber) => {
+                    date.setMonth(monthNumber - 1); 
+                    return date.toLocaleString('en-US', { month: 'short' });
+                }
+                
+                const deliveryFrom = (firstDay + " " + getMonthName(month));
+                // console.log(deliveryFrom);
+                const deliveryTo = (lastDay + " " + getMonthName(month) );
+                // console.log(deliveryTo);
+                var delivery = deliveryFrom + " - "+ deliveryTo;
+                // console.log(delivery);
+            };
 
 const initialState = {
         addToCart: localStorage.getItem("addedToCart") ? JSON.parse(localStorage.getItem('addedToCart') || '{}') : [],
@@ -17,6 +42,7 @@ const initialState = {
         // cartQuantity:0,
         shipping:0,
         tax:0,
+        delivery: " ",
         discover: [],
         removeFromCart: [],
         status: 'idle'
@@ -38,7 +64,7 @@ const cartSlice = createSlice({
                    cartQuantity: state.addToCart[itemIndex].cartQuantity += 1
                 };
 
-                if (state.addToCart[itemIndex].cartQuantity >= 5) {
+                if (state.addToCart[itemIndex].cartQuantity > 5) {
                     state.addToCart[itemIndex].cartQuantity = 5;
                     toast.warning(`Maximum purchase limit is 5`, {
                     position: "bottom-left",
@@ -87,12 +113,16 @@ const cartSlice = createSlice({
         decrement: (state,{ payload }) => {
             const itemIndex = state.addToCart.findIndex(item => item._id === payload._id)
             
-            if (state.addToCart[itemIndex].cartQuantity > 1){
+            if (state.addToCart[itemIndex].cartQuantity > 0){
                state.addToCart[itemIndex].cartQuantity -= 1;
-                if (state.addToCart[itemIndex].cartQuantity === 1){
-               toast.warning(`Minimum purchase limit is 1`, {
-                position: "bottom-left",
-              }); 
+               
+               if(state.addToCart[itemIndex].cartQuantity <= 0){
+                const newItems = state.addToCart.filter(item => item._id !== payload._id);
+                state.addToCart = newItems;
+                toast.error(`${payload.name} remove from cart`, {
+                    position: "bottom-left",
+                });
+                localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
             }
             }
            
@@ -115,13 +145,15 @@ const cartSlice = createSlice({
                     shipping:0,
                     tax:0
                 }
+                
             );
+           
             total = Number(total.toFixed(2));
-            
             state.tax= (total * 0.05);
-            total >= 50000 ? state.shipping = 0 : state.shipping = 50;
+            total >= 100000 ? state.shipping = 0 : state.shipping = 100;
             state.cartTotal = total;
             state.cartTotalQuantity = quantity;
+            state.delivery = delivery;
         },
         clearCart(state) {
             state.addToCart = []

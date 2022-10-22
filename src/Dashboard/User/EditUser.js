@@ -55,7 +55,7 @@ const EditUser = ({openUserNow,handleClose}) => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount>0) {
-                    console.log(data);
+                    // console.log(data);
                     // setVendors(data)
                     navigate(`/dashboard`);
                     setSuccess(true);

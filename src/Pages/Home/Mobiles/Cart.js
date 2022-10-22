@@ -14,10 +14,10 @@ import {Helmet} from "react-helmet";
 import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { RiDeleteBin5Fill,RiShoppingBag3Fill } from "react-icons/ri";
 
-const Cart = () => {
+const Cart = () => {  
     // const {cart} = useContext(Favourite);
     const dispatch = useDispatch();
-    const {addToCart, cartTotal, cartTotalQuantity, shipping, tax} = useSelector((state) => state.cart);
+    const {addToCart, cartTotal, cartTotalQuantity, shipping, tax, delivery} = useSelector((state) => state.cart);
 
     // console.log(addToCart);
     
@@ -44,9 +44,9 @@ const Cart = () => {
                    </div>
                     <div className='row mx-auto'>
                         <div className='col-md-8 col-sm-12 my-3'>
-
+                        <p>Estimated Delivery: <span className="text-navi fw-bold">{delivery}</span></p>
                 <TableContainer>
-                    {/* <button onClick={()=>dispatch(clearCart(addToCart))}>Clear all</button> */}
+                    
                     <Table >
                         {/* <TableHead sx={{bgcolor: 'secondary.main'}}>
                             <TableRow>
@@ -70,17 +70,17 @@ const Cart = () => {
                                     <TableCell sx={{border: '0px', textAlign:'center'}} >
                                         {
                                             mobile?.os ? <Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"3rem"}} className='img-fluid' src={mobile?.image} alt="" />
-                                            <span className="m-1 text-navi">
+                                            {/* <span className="m-1 text-navi">
                                                 &#x9F3;{numberFormat(mobile.price).slice(3,-3)}
                                                 <small className='text-secondary'>/1</small>	
-                                            </span>
+                                            </span> */}
                                             </Link>
                                             :
                                             <Link title='See Details' to={`/mobile2/${mobile?._id}`}> <img style={{width:"3rem"}} className='img-fluid' src={mobile?.image} alt="" />
-                                            <span className="m-1 text-navi">
+                                           {/*  <span className="m-1 text-navi">
                                                &#x9F3;{numberFormat(mobile.price).slice(3,-3)}
                                                <small className='text-secondary'>/1</small>	
-                                            </span>
+                                            </span> */}
                                             </Link>
                                         }
                                     
@@ -160,12 +160,9 @@ const Cart = () => {
                 Total
                 <span className="text-danger fw-bold fs-5">{numberFormat(cartTotal + shipping + tax).slice(3)} Tk</span>
             </li>
-            <br />
-                        <div className="input-group input-group-lg">
-                            <input type="text" placeholder="Apply Coupn" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" />
-                            <span className="input-group-text btn-primary btn" id="inputGroup-sizing-lg">Apply</span>
+                        <div >
+                            <small>*Billing info & voucher in nex page.</small>
                         </div>
-                        <br />
                 <div>
                     <Link to={`/placeOrder`}>
                         <button className='btn btn-lg btn-pink w-100 rounded-0'>PROCEED TO CHECKOUT</button>

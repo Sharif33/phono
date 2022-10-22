@@ -91,6 +91,15 @@
   position: relative;
 }
 
+@media(max-width: 769px) {
+  .mw-qty{
+  min-width: 7vw !important;
+ }
+ .card-btns {
+  display: block;
+}
+}
+
 @media only screen and (max-height: 650px) {
 .sticky-position{
   width: 30vw;

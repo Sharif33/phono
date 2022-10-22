@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getTotal,
@@ -17,13 +17,15 @@ import useUser from "../../../Hooks/useUser/useUser";
 import { numberFormat } from "../../../Shared/numberFormat";
 
 const PlaceOrder = () => {
+
   const { user } = useAuth();
   const [orders] = useOrders();
   const [users]= useUser();
+  // console.log(users);
   // const userOrder = orders.find(order => order.email === user?.email);
   // console.log(orders[0]?.email);
   const dispatch = useDispatch();
-  const { addToCart, cartTotal, cartTotalQuantity, shipping, tax } =
+  const { addToCart, cartTotal, cartTotalQuantity, shipping, tax, delivery } =
     useSelector((state) => state.cart);
   useEffect(() => {
     if (addToCart.length >= 0) {
@@ -33,8 +35,23 @@ const PlaceOrder = () => {
 
   let navigate = useNavigate();
 
-  // post order
+  // *--coupn applied section--*
+  const [coupn, setCoupn] = useState("");
+// console.log(coupn);
+  const getInputValue = (event)=>{
+    const userValue = event.target.value;
+    if (userValue === "phono17"){
+     setCoupn(cartTotal - cartTotal*.05);
+    }
+};
 
+
+// *--Tracking No.--*
+let trace = Math.floor(Math.random() * 10000);
+let traceId = Math.floor(Math.random() * 10001);
+let tracking = "SMR-PHONO-" + traceId + trace;
+  
+// *--post order--*
   const {
     register,
     handleSubmit,
@@ -47,13 +64,16 @@ const PlaceOrder = () => {
     data.email = user.email;
     data.userImage = user.photoURL;
     // data.orderBy = users[0]?.name ? users.name : user.displayName;
+    data.tracking = tracking;
     data.orderItems = addToCart;
     data.items = addToCart?.length;
     data.quantity = cartTotalQuantity;
-    data.subtotal = cartTotal;
+    data.subtotal = coupn ? coupn : cartTotal;
     data.shipping = shipping;
     data.tax = tax;
-    data.total = cartTotal + shipping + tax;
+    data.total = (coupn ? coupn : cartTotal) + shipping + tax;
+    data.delivery = delivery;
+    data.coupn = coupn ? "phono17" : "No"
     data.status = "Pending...";
 
     axios
@@ -86,42 +106,10 @@ const PlaceOrder = () => {
         {
           users?.map(usrD=>(
            <div key={usrD?._id} className="row">
-          <div className="col-md-6 col-sm-12">
-            <div className="my-5 p-2 rounded">
-              <h4 className="fw-bold">SHIPPING & BILLING INFORMATION</h4>
-              {user.email && (
-                <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
-                  <input defaultValue={user?.email} readOnly />
-                  <input defaultValue={usrD.name ? usrD.name : user?.displayName} {...register("orderBy", {required:true})} readOnly />
-                  <input defaultValue={usrD.address ? usrD.address : orders[0]?.address ? orders[0].address : ""} {...register("address", { required: true })}  placeholder="Present Address" />
-                  <input defaultValue={usrD.city ? usrD.city : orders[0]?.city ? orders[0].city : ""} {...register("city", {required:true})} placeholder="City" />
-                  <input defaultValue={usrD.phone ? usrD.phone : orders[0]?.phone ? orders[0].phone : ""} {...register("phone", {required:true})} placeholder="Phone number"/>
-
-                  <br />
-                  {addToCart.length ? (
-                    <button
-                      className="w-100 btn btn-purple btn-lg"
-                      type="submit"
-                    >
-                      Place Order
-                    </button>
-                  ) : (
-                    <button
-                      disabled
-                      className="w-100 btn-lg btn btn-purple"
-                      type="submit"
-                    >
-                      Place Order
-                    </button>
-                  )}
-                </form>
-              )}
-            </div>
-          </div>
-
+        
           <div className="col-md-6 col-sm-12">
             <div className="my-5 p-2 bg-light rounded">
-              <h3 className="text-center fw-bold">Order Summary</h3>
+              <h3 className="text-center fw-bold text-navi">Order Summary</h3>
               <ul className="list-group">
                 {addToCart.map((mobile) => (
                   <li
@@ -185,7 +173,7 @@ const PlaceOrder = () => {
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
                   Subtotal
                   <span className="text-primary fw-bold fs-5">
-                    {numberFormat(cartTotal).slice(3,-3)} Tk
+                    {numberFormat(coupn ? coupn : cartTotal).slice(3,-3)} Tk
                   </span>
                 </li>
 
@@ -206,10 +194,61 @@ const PlaceOrder = () => {
                 <li className="list-group-item d-flex justify-content-between align-items-center fs-4 fw-bold">
                   Total
                   <span className="text-danger fw-bold fs-5">
-                    {numberFormat(cartTotal + shipping + tax).slice(3)} Tk
+                    {numberFormat((coupn ? coupn : cartTotal) + shipping + tax).slice(3)} Tk
                   </span>
                 </li>
+                <br />
+                        <div className="input-group input-group-lg">
+                        {
+                          coupn ?  <input disabled type="text" placeholder="Coupn aplied" className="form-control" /> : <input type="text" onChange={getInputValue} placeholder="Apply 'phono17' to get 5% discount" className="form-control" />
+                        }
+                           {
+                            coupn ? <span disabled className="btn btn-secondary"> Coupn applied</span> : <span className="btn-pink btn">Apply</span>
+                           } 
+                           
+                        </div>
+                        <br />
               </ul>
+            </div>
+          </div>
+          <div className="col-md-6 col-sm-12">
+            <div className="my-5 p-2 rounded">
+              <h4 className="fw-bold text-navi">SHIPPING & BILLING INFORMATION</h4>
+              <div className="d-flex justify-content-between pb-2">
+                <span>
+                  Received by {delivery}
+                </span>
+                <span>
+                {numberFormat((coupn ? coupn : cartTotal) + shipping + tax).slice(3)} Tk
+                </span>
+              </div>
+              {user.email && (
+                <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
+                  <input defaultValue={usrD.name ? usrD.name : user?.displayName} {...register("orderBy", {required:true})} readOnly />
+                  <input defaultValue={usrD.address ? usrD.address : orders[0]?.address ? orders[0].address : ""} {...register("address", { required: true })}  placeholder="Present Address" />
+                  <input defaultValue={usrD.city ? usrD.city : orders[0]?.city ? orders[0].city : ""} {...register("city", {required:true})} placeholder="City" />
+                  <input defaultValue={usrD.phone ? usrD.phone : orders[0]?.phone ? orders[0].phone : ""} {...register("phone", {required:true})} placeholder="Phone number"/>
+                  <input defaultValue={user?.email} readOnly />
+
+                  <br />
+                  {addToCart.length ? (
+                    <button
+                      className="w-100 btn btn-purple btn-lg"
+                      type="submit"
+                    >
+                      Place Order
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="w-100 btn-lg btn btn-purple"
+                      type="submit"
+                    >
+                      Place Order
+                    </button>
+                  )}
+                </form>
+              )}
             </div>
           </div>
         </div> 

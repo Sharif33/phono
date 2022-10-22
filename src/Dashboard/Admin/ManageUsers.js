@@ -3,7 +3,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 
 const ManageUsers = () => {
 const [allUsers,setAllUsers] = useState([]);
-console.log(allUsers);
+// console.log(allUsers);
     useEffect(() => {
         let isMounted = true;
         fetch(`https://peaceful-shore-84874.herokuapp.com/users`)
