@@ -109,10 +109,9 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                           </div>
                         </div>
                         
-                        <h5 className="w-100 py-3">
-                <span className="text-danger fw-bold"> Tk </span>
-                <span className="fs-3 fw-bold ">{numberFormat(price).slice(3,-3)}</span> /1
-              </h5>
+                        <p className="py-2 text-secondary">
+                          <span className="fs-3 fw-bold text-navi"> <span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(price).slice(3,-3)}</span> /1
+                        </p>
              
             <div className="m-auto row">
 

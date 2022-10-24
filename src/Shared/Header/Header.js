@@ -9,7 +9,8 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import MailIcon from '@mui/icons-material/Mail';
-import {MdShoppingCart, MdFavorite, MdCompareArrows } from "react-icons/md";
+import {MdShoppingCart, MdFavorite } from "react-icons/md";
+import { GoLaw } from "react-icons/go";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import React from 'react';
 import {  NavLink } from 'react-router-dom';
@@ -91,7 +92,7 @@ const Header = () => {
                                             <NavLink className='btn btn-hover w-100 mb-2' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/compare`} >
                                             <IconButton aria-label="compare">
                                             <StyledBadge badgeContent={addToCompare?.length} color="error">
-                                            <MdCompareArrows className='text-dark' />
+                                            <GoLaw className='text-dark' />
                                             </StyledBadge>
                                             </IconButton>
                                             </NavLink>
@@ -156,7 +157,7 @@ const Header = () => {
                                         <NavLink className='mx-2' to={`/compare`} >
                                             <IconButton aria-label="compare">
                                             <StyledBadge badgeContent={addToCompare?.length} color="error">
-                                            <MdCompareArrows className='text-light' />
+                                            <GoLaw className='text-light' />
                                             </StyledBadge>
                                             </IconButton>
                                         </NavLink>

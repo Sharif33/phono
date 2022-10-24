@@ -56,7 +56,7 @@ const Offer = ({offer}) => {
                             <Rating name="half-rating-read" precision={0.5} size="small" value={Number(star)} readOnly />
                         </Box>
                         <div style={{ textAlign: "center" }}>
-                            <p><span className='text-primary fw-bold' > {numberFormat(Number(price)).slice(3,-3)}Tk</span> <s style={{color:"#eb5525"}}>{numberFormat(Math.round(Number(price*.10) + Number(price))).slice(3,-3)}Tk</s> </p>
+                            <p><span className='text-navi fw-bold' > <span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(Number(price)).slice(3,-3)}</span> <s style={{color:"#eb5525"}}>&#x9F3;{numberFormat(Math.round(Number(price*.10) + Number(price))).slice(3,-3)}</s> </p>
                         </div></Link>
                     {/* <button onClick={() => dispatch(addToCompare(offer))} className='btn btn-indigo border-0 rounded-0'>Compare</button> */}
                     </div>

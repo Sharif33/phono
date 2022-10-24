@@ -10,7 +10,8 @@ import { addToCompare, removeFromCompare } from '../../../Redux/slices/compareSl
 import BuyMobile from './BuyMobile';
 import "./Mobile.css";
 import { numberFormat } from '../../../Shared/numberFormat';
-import { MdInfo, MdVisibility, MdOutlineCompareArrows, MdAddShoppingCart, MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { MdInfo, MdVisibility, MdAddShoppingCart, MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { TbScaleOff,TbScale } from "react-icons/tb";
 
 const Mobile = ({ mobile}) => {
     const { _id, name, price, ram, storage, image, chipset } = mobile;
@@ -74,7 +75,7 @@ const Mobile = ({ mobile}) => {
                             </Box> */}
                             <div style={{ textAlign: "center" }} >
                                 <p className="text-secondary">{ram} {storage} | {chipset}</p>
-                                <p style={{color:"#eb5525",fontWeight:"bolder"}}>{numberFormat(price).slice(3,-3) }Tk</p>
+                                <p className='text-navi fw-bold' > <span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(price).slice(3,-3) }<span > + VAT</span></p>
                             </div>
                             </Link>
                             </div>
@@ -100,7 +101,7 @@ const Mobile = ({ mobile}) => {
 
                            <div>
                             {
-                                toggleCompare ? <button onClick={() => dispatch(removeFromCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows style={{transform:"rotate(90deg)"}} className='fs-3 p-1'/></button> : <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><MdOutlineCompareArrows className='fs-3 p-1'/></button>
+                                toggleCompare ? <button onClick={() => dispatch(removeFromCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><TbScaleOff className='fs-3 p-1'/></button> : <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><TbScale className='fs-3 p-1'/></button>
                             }
                            
                            </div>

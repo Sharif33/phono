@@ -10,6 +10,8 @@
 .bg-dash{
     /* background: white !important; */
     color: #637381 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
 }
 
 .bg-avatar{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import useOrders from '../../Hooks/useOrders/useOrders';
 import useUser from '../../Hooks/useUser/useUser';
@@ -11,6 +11,13 @@ const UserDetails = () => {
     const [openUserNow, setOpenUserNow] = React.useState(false);
     const handleOpen = () => setOpenUserNow(true);
     const handleClose = () => setOpenUserNow(false);
+
+    useEffect(()=>{
+        users?.map(usr =>{
+            return usr;
+        })
+    },[users]);
+    
     return (
         <div>
         {

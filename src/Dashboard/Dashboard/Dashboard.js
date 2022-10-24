@@ -5,12 +5,14 @@ import Box from '@mui/material/Box';
 
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import HomeIcon from '@mui/icons-material/Home';
+// import HomeIcon from '@mui/icons-material/Home';
 import List from '@mui/material/List';
 import { AiFillFileAdd } from "react-icons/ai";
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
+import { MdOutlineLocalOffer,MdDashboard } from "react-icons/md";
+import { FaUserCog } from "react-icons/fa";
 
 import { Avatar, CircularProgress} from '@mui/material';
 
@@ -22,7 +24,7 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import FeedIcon from '@mui/icons-material/Feed';
-import PersonIcon from '@mui/icons-material/Person';
+// import PersonIcon from '@mui/icons-material/Person';
 // import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import './Dashboard.css';
 
@@ -75,40 +77,40 @@ function Dashboard(props) {
             }
            {!admin && <Box>
             <List>    
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#E94235' : '#ccd6f6', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? '': 'rgba(0, 171, 85, 0.08)'})} to={`/dashboard`}> <span className='me-2'><HomeIcon /></span>  Dashboard</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#E94235' : '#ccd6f6', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? '': 'rgba(0, 171, 85, 0.08)'})} to={`/dashboard`}> <span className='me-2 fs-5'><MdDashboard /></span>  Dashboard</NavLink>
             </List>
             <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/myOrders`}> <span className='me-2'><FeedIcon /></span> Orders History</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/myOrders`}> <span className='me-2 fs-5'><FeedIcon /></span> Orders History</NavLink>
             </List>
             <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`user`}> <span className='me-2'><PersonIcon /></span> Manage Profile</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`user`}> <span className='me-2 fs-5'><FaUserCog /></span> Manage Profile</NavLink>
             </List>
                 </Box>
             }
            
-            {admin &&  <Box  sx={{p:1}}>
+            {admin &&  <Box  sx={{px:1}}>
                 <h6 className='ps-4 fw-bold'>MANAGEMENT</h6>
                 <List>    
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#E94235' : '#ccd6f6', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard`}> <span className='me-2'><HomeIcon /></span>  Overview</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#E94235' : '#ccd6f6', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard`}> <span className='me-2 fs-5'><MdDashboard /></span>  Dashboard</NavLink>
                </List>
                 <List>
                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/manageOrder`}><span className='me-2'><ShoppingCartCheckoutOutlinedIcon /></span>  Manage Orders</NavLink>
                </List>              
                <List>    
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard/manageProducts`}><span className='me-2'><AddTaskOutlinedIcon /></span> Manage Products</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard/manageProducts`}><span className='me-2 fs-5'><AddTaskOutlinedIcon /></span> Manage Products</NavLink>
                </List>
                <List>    
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard/manageOffers`}><span className='me-2'><AddTaskOutlinedIcon /></span> Manage Offers</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard/manageOffers`}><span className='me-2 fs-5'><MdOutlineLocalOffer /></span> Manage Offers</NavLink>
                </List>
                <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`manageUsers`}> <span className='me-2'><PersonIcon /></span> Manage User</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`manageUsers`}> <span className='me-2 fs-5'><FaUserCog /></span> Manage User</NavLink>
             </List>
                <h6 className='py-2 ps-4 fw-bold'>DEVELOPMENT</h6> 
                 <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/makeAdmin`}><span className='me-2'><AdminPanelSettingsIcon /></span> Make Admin</NavLink>
+                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/makeAdmin`}><span className='me-2 fs-5'><AdminPanelSettingsIcon /></span> Make Admin</NavLink>
                </List>
                <List>
-               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/addMobile`}><span className='me-2'><AddCircleOutlineOutlinedIcon /></span> Add Mobile</NavLink>
+               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/addMobile`}><span className='me-2 fs-5'><AddCircleOutlineOutlinedIcon /></span> Add Mobile</NavLink>
                </List>                           
                <List>
                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/addOffer`}><span className='me-2 fs-5'><AiFillFileAdd /></span> Add Offer</NavLink>
@@ -138,9 +140,9 @@ function Dashboard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography noWrap component="div">
+                    {/* <Typography noWrap component="div">
                         Dashboard       
-                    </Typography>
+                    </Typography> */}
                 <Box sx={{ ml: "auto", display: 'flex' }}>
                 <div className="dropdown">
                         <div style={{cursor:"pointer"}} id="navbarDropdownMenuLink2" data-bs-toggle="dropdown" aria-expanded="false" className='rounded bg-nav-btn'>

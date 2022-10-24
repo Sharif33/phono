@@ -1,5 +1,5 @@
 // import { CircularProgress } from '@mui/material';
-import React,{useEffect,useState} from 'react';
+import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import useOffer from '../../../Hooks/SpecialOffer/useOffer';
 import usePhones from '../../../Hooks/usePhones/usePhones';
@@ -15,35 +15,7 @@ const Offers = () => {
 
     /* See more offer section */
     const offerPerPage = 6;
-    // let arrayForHoldingStories = [];
-    const [seeMore, setSeeMore] = useState([]);
-    const [next, setNext] = useState(6);
-  
-    const loopWithSlice = () => {    
-    
-      const toShow = offers.slice(
-        seeMore.length,
-        seeMore.length + offerPerPage
-      );
-      setSeeMore([...seeMore, ...toShow]);
-    };
-  
-    useEffect(() => {
-      if (offers) {
-        setSeeMore(offers.slice(0, offerPerPage));
-      }
-    }, [offers]);
-  
-    const handleShowMorePosts = () => {
-      let loadedMore = next + offerPerPage;
-      loopWithSlice(next, loadedMore);
-      setNext(next + offerPerPage);
-    };
-   /*  console.log("next", next);
-    console.log("offerPerPage", offerPerPage);
-    console.log("loopWithSlice", loopWithSlice);
-    console.log("arrayForHoldingStories", arrayForHoldingStories);
-    console.log("seeMore", seeMore); */
+    const [next, setNext] = useState(offerPerPage);
 
     return (
         <div className="container-fluid">
@@ -54,7 +26,7 @@ const Offers = () => {
                    
             <div className="row row-cols-1 row-cols-md-3 m-2 g-4">
                     {
-                        seeMore?.map(offer => <Offer
+                        offers?.slice(0, next)?.map(offer => <Offer
                             key={offer._id}
                             offer={offer}
                         />)
@@ -62,7 +34,7 @@ const Offers = () => {
                 </div>
                 <div className="text-center">
                     {
-                        seeMore?.length < next ? "No more offer" : <button className='btn  text-danger btn-hover' onClick={handleShowMorePosts}>See more <AiOutlineDown/> </button>
+                         next < offers?.length ? <button className='btn btn-lg btn-cart rounded-0' onClick={()=>setNext(next + offerPerPage)}>See more <AiOutlineDown/> </button> : <p className='text-pink'>No more offer</p>
                     }
                 </div>
                 </div>
@@ -76,14 +48,13 @@ const Offers = () => {
                        
                     </div>
                 <div style={{backgroundColor:"#EEF2FF"}}className=' mx-3 pt-3 rounded-bottom'> 
-                    {/* <h3 className='fw-bold text-center'>Latest <span className='text-primary'>Mobiles</span></h3> */}
                     {
                         mobiles?.slice(-5,-1).reverse().sort((a,b)=>a.price<b.price ? 1 : -1).map(mobile=> <ul className="list-group"
                         key={mobile?._id}
                         >
                         <li className="list-group-item d-flex justify-content-between align-items-center rounded-0"> <span><Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"2.5rem"}} className='img-fluid' src={mobile?.image} alt="" /> </Link></span>
                         <small>{mobile?.name}</small>
-                        <span className="text-success">{numberFormat(mobile?.price).slice(3,-3)}Tk</span>
+                        <span className="text-navi"> <span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(mobile?.price).slice(3,-3)}</span>
                         </li>
                             
                         </ul>)
