@@ -34,7 +34,7 @@ const Offers = () => {
                 </div>
                 <div className="text-center">
                     {
-                         next < offers?.length ? <button className='btn btn-lg btn-cart rounded-0' onClick={()=>setNext(next + offerPerPage)}>See more <AiOutlineDown/> </button> : <p className='text-pink'>No more offer</p>
+                         next < offers?.length ? <button className='btn btn-lg btn-cart rounded-0' onClick={()=>setNext(next + offerPerPage)}>Load more <AiOutlineDown/> </button> : <p className='text-pink'>No more offer</p>
                     }
                 </div>
                 </div>
@@ -49,7 +49,7 @@ const Offers = () => {
                     </div>
                 <div style={{backgroundColor:"#EEF2FF"}}className=' mx-3 pt-3 rounded-bottom'> 
                     {
-                        mobiles?.slice(-5,-1).reverse().sort((a,b)=>a.price<b.price ? 1 : -1).map(mobile=> <ul className="list-group"
+                        mobiles?.slice(-6,-1).reverse().sort((a,b)=>a.price<b.price ? 1 : -1).map(mobile=> <ul className="list-group"
                         key={mobile?._id}
                         >
                         <li className="list-group-item d-flex justify-content-between align-items-center rounded-0"> <span><Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"2.5rem"}} className='img-fluid' src={mobile?.image} alt="" /> </Link></span>

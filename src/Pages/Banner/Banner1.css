@@ -4,3 +4,62 @@
   background-position: center;
   background-size: cover;
 }
+
+
+
+.bg-faded-info{
+  background-color: #E9F3FC;
+}
+.bg-faded-warning{
+  background-color: #F7F2EE;
+}
+.bg-faded-success{
+  background-color: #2bff0011;
+}
+
+
+
+.video{
+  position: relative;
+}
+
+
+.line-box.show, .sec-fixed .line-box.show {
+  width: 100%;
+}
+.sec .line-box, .sec-fixed .line-box {
+  height: 2px;
+  background: linear-gradient(179deg, rgb(64, 163, 243) 0px, rgb(255, 230, 248) 52%, rgb(217, 23, 23) 100%);
+  margin-top: 30px;
+  width: 0px;
+  transition: all 1.5s ease-in-out 0s;
+}
+.lang-en {
+  font-family: OpenSans-Regular, "PingFang SC", "Microsoft YaHei", sans-serif, Arial;
+}
+
+@media(min-width: 769px) {
+.vd-text{
+  position: absolute;
+  top: 35%;
+  left: 0;
+  z-index: 1;
+}
+.vd-text1{
+  font-size: 4rem;
+}
+.vd-text2{
+  font-size: 3rem;
+  font-family: 'SamsungSharpSans'
+}
+}
+
+@media(max-width: 769px) {
+.vd-text{
+  position: absolute;
+  top: 7%;
+  left: 0;
+  z-index: 1;
+}
+
+}

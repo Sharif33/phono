@@ -152,7 +152,7 @@ const SingleMobile = () => {
 
       <Header />
       <div style={{ backgroundColor: "#EEF2FF", overflowX:"hidden" }}>
-      <div className="container py-5">
+      <div id="details" className="container py-5">
         <div className="row">
           <div className="col-md-3 m-auto col-sm-12 mb-5">
             <div className="text-center">

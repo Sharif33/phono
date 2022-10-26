@@ -10,6 +10,8 @@ import Mobiles from "./Mobiles/Mobiles";
 import Offers from "./Offers/Offers";
 import {Helmet} from "react-helmet";
 import CustomerReviewShow from "../../Dashboard/User/CustomerReviewShow";
+import Banner4 from "../Banner/Banner4";
+import AllProducts from "./Mobiles/AllProducts";
 // import BottomHeader from "../../Shared/Header/BottomHeader";
 
 const Home = () => {
@@ -25,7 +27,9 @@ const Home = () => {
       <Banner1 />
       <Banner2 />
       <Offers/>
+      <Banner4/>
       <Mobiles />
+      <AllProducts/>
       {/* <Banner3 /> */}
       {/* <Reviews /> */}
       <Sponsors/>

@@ -15,12 +15,15 @@ import useOrders from "../../../Hooks/useOrders/useOrders";
 import {Helmet} from "react-helmet";
 import useUser from "../../../Hooks/useUser/useUser";
 import { numberFormat } from "../../../Shared/numberFormat";
+import useCoupons from "../../../Hooks/useCoupons/useCoupons";
 
 const PlaceOrder = () => {
 
   const { user } = useAuth();
   const [orders] = useOrders();
   const [users]= useUser();
+  const [coupons] = useCoupons();
+  // console.log(coupons);
   // console.log(users);
   // const userOrder = orders.find(order => order.email === user?.email);
   // console.log(orders[0]?.email);
@@ -35,16 +38,24 @@ const PlaceOrder = () => {
 
   let navigate = useNavigate();
 
-  // *--coupn applied section--*
+ // *--coupn applied section--*
+const validate = new Date().toDateString();
+const expireCoupon = new Date(validate).getMonth();
+
+const voucher =  coupons?.filter(element => 
+( new Date(element?.endDate).getMonth() === expireCoupon)
+ );
+// console.log(voucher[0]?.percentage);
+ 
   const [coupn, setCoupn] = useState("");
 // console.log(coupn);
   const getInputValue = (event)=>{
     const userValue = event.target.value;
-    if (userValue === "phono17"){
-     setCoupn(cartTotal - cartTotal*.05);
+    if (userValue === voucher[0]?.code){
+      const cpnT = (cartTotal - (cartTotal*(voucher[0]?.percentage)/100));
+     setCoupn(cpnT);
     }
 };
-
 
 // *--Tracking No.--*
 let trace = Math.floor(Math.random() * 10000);
@@ -73,7 +84,7 @@ let tracking = "SMR-PHONO-" + traceId + trace;
     data.tax = tax;
     data.total = (coupn ? coupn : cartTotal) + shipping + tax;
     data.delivery = delivery;
-    data.coupn = coupn ? "phono17" : "No"
+    data.coupn = coupn ? voucher[0]?.code : "No"
     data.status = "Pending...";
 
     axios
@@ -200,7 +211,7 @@ let tracking = "SMR-PHONO-" + traceId + trace;
                 <br />
                         <div className="input-group input-group-lg">
                         {
-                          coupn ?  <input disabled type="text" placeholder="Coupn aplied" className="form-control" /> : <input type="text" onChange={getInputValue} placeholder="Apply 'phono17' to get 5% discount" className="form-control" />
+                          coupn ?  <input disabled type="text" placeholder="Coupn aplied" className="form-control" /> : <input type="text" onChange={getInputValue} placeholder ={`Apply "${voucher[0]?.code}" to get 5% discount`} className="form-control" />
                         }
                            {
                             coupn ? <span disabled className="btn btn-secondary"> Coupn applied</span> : <span className="btn-pink btn">Apply</span>

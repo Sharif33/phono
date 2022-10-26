@@ -12,6 +12,7 @@ import "./Mobile.css";
 import { numberFormat } from '../../../Shared/numberFormat';
 import { MdInfo, MdVisibility, MdAddShoppingCart, MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { TbScaleOff,TbScale } from "react-icons/tb";
+import { NavHashLink } from 'react-router-hash-link';
 
 const Mobile = ({ mobile}) => {
     const { _id, name, price, ram, storage, image, chipset } = mobile;
@@ -54,7 +55,7 @@ const Mobile = ({ mobile}) => {
                            <div>  
                             <div className="card-btns">
 
-                            <Link to={`/mobile/${_id}`}> <button className='btn btn-cart border-0 my-2 rounded'><MdInfo className='fs-3 p-1'/></button> </Link>
+                            <NavHashLink to={`/mobile/${_id}#details`}> <button className='btn btn-cart border-0 my-2 rounded'><MdInfo className='fs-3 p-1'/></button> </NavHashLink>
                             <br />
                             <button onClick={handleOpen} className='btn btn-cart border-0 my-2 rounded'><MdVisibility className='fs-3 p-1'/></button>
                            
@@ -64,27 +65,28 @@ const Mobile = ({ mobile}) => {
                            </div>
                            
                         </div>
-                        <div className=''>
+                        <div className='text-start px-3'>
                             <div>
                             <Link to={`/mobile/${_id}`}> 
-                            <h6 className="text-dark pt-1">{name}</h6>
+                            <h6 className="text-navi fw-bold  pt-1">{name}</h6>
                             {/* <Box sx={{
                                 '& > legend': { mt: 2 },
                             }}>
                                 <Rating name="half-rating-read" precision={0.5} size="small" value={Number(star)} readOnly />
                             </Box> */}
-                            <div style={{ textAlign: "center" }} >
-                                <p className="text-secondary">{ram} {storage} | {chipset}</p>
-                                <p className='text-navi fw-bold' > <span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(price).slice(3,-3) }<span > + VAT</span></p>
+                            <div style={{ textAlign: "justify" }} >
+                               <small className="text-secondary">{ram} {storage} | {chipset}</small>
+                               <br />
+                                <strong className='text-pink' > <span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(price).slice(3,-3) }<small className='fs-xs' > + VAT</small></strong>
                             </div>
                             </Link>
                             </div>
                             
-                            <div className="d-flex justify-content-evenly align-items-center">
+                            <div className="d-flex justify-content-between align-items-center">
                             {
                                     toggleCart ? <div className="d-flex justify-content-evenly align-items-center">
                                     <button className='btn btn-cart rounded-0' onClick={() => dispatch(decrement(mobile))}> - </button>
-                                    <span style={{minWidth:"5vw"}} className='mw-qty border py-1'>{toggleCart?.cartQuantity}</span>
+                                    <span style={{minWidth:"5vw"}} className='mw-qty text-center border py-1'>{toggleCart?.cartQuantity}</span>
                                     <button className='btn btn-cart rounded-0' onClick={() => dispatch(increment(mobile))}> + </button>
                             </div> :
                              <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> Add to cart </button> 
@@ -95,13 +97,13 @@ const Mobile = ({ mobile}) => {
                                 toggleBtn ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={hideToggle}><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span>  </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={showToggle}><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
                             } */}
                              {
-                                toggleFvrt ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span> </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
+                                toggleFvrt ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart text-pink border-0 my-2 rounded'> <span><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span> </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
                             }
                             </div>
 
                            <div>
                             {
-                                toggleCompare ? <button onClick={() => dispatch(removeFromCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><TbScaleOff className='fs-3 p-1'/></button> : <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><TbScale className='fs-3 p-1'/></button>
+                                toggleCompare ? <button onClick={() => dispatch(removeFromCompare(mobile))} className='btn btn-cart text-pink border-0 my-2 rounded'><TbScaleOff className='fs-3 p-1'/></button> : <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><TbScale className='fs-3 p-1'/></button>
                             }
                            
                            </div>

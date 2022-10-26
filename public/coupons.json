@@ -1,0 +1,44 @@
+[
+    {
+        "code":"jan22",
+        "startDate":"Jan 01,2022",
+        "endDate":"Jan 31,2022",
+        "campaign":"Winter Fall",
+        "percentige":5
+    },
+    {
+        "code":"feb22",
+        "startDate":"Feb 01,2022",
+        "endDate":"Feb 28,2022",
+        "campaign":"Winter Fall",
+        "percentige":15
+    },
+    {
+        "code":"march22",
+        "startDate":"Mar 01,2022",
+        "endDate":"Mar 31,2022",
+        "campaign":"Winter Fall",  
+        "percentige":10
+    },
+    {
+        "code":"april22",
+        "startDate":"Apr 01,2022",
+        "endDate":"Apr 30,2022",
+        "campaign":"Winter Fall",
+        "percentige":5
+    },
+    {
+        "code":"may22",
+        "startDate":"May 01,2022",
+        "endDate":"May 30,2022",
+        "campaign":"Winter Fall",
+        "percentige":5
+    },
+    {
+        "code":"oct22",
+        "startDate":"Oct 01,2022",
+        "endDate":"Oct 31,2022",
+        "campaign":"Summer Fall",
+        "percentige":5
+    }
+]

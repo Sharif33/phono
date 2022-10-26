@@ -32,7 +32,7 @@ const Favourite = () => {
                addToFvrt?.map((mobile)=>(
                   <div key={mobile?.id}>
                  <div className="col rounded text-center">
-                <div className="card pb-3 border-0 h-100">
+                <div className="card border-0 h-100">
                     <div className='card-hover rounded py-3'>
                         <div>
                             {

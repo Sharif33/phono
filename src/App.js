@@ -75,20 +75,17 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="cart" element={<Cart />} />
             <Route path="compare" element={<Compare />} />
+            <Route path="fvrt" element={<Favourite />} />
+            <Route path="mobiles" element={<ExploreMobiles />} />
+            <Route path="mobile/:id" element={<SingleMobile />}/>
+            <Route path="mobile2/:id" element={<SpecialDetails />} />
             <Route path="placeOrder" element={<PrivateRoute>
               <PlaceOrder />
             </PrivateRoute>} />
             <Route path="buy/placeOrder" element={<PrivateRoute>
               <BuyNow/>
             </PrivateRoute>} />
-            <Route path="fvrt" element={<Favourite />} />
-            <Route path="mobiles" element={<ExploreMobiles />} />
-            <Route path="mobile/:id" element={<PrivateRoute>
-              <SingleMobile />
-            </PrivateRoute>} />
-            <Route path="mobile2/:id" element={<PrivateRoute>
-              <SpecialDetails />
-            </PrivateRoute>} />
+          
             <Route path="dashboard" element={<PrivateRoute>
               <Dashboard />
             </PrivateRoute>}>

@@ -15,11 +15,10 @@ const DashboardHome = () => {
     const [time, setTime] = React.useState(new Date());
 
     React.useEffect(() => {
-        setInterval(() => {
-              setTime(new Date());  
-}, 1000);
-        
-      }, []);
+                setInterval(() => {
+                setTime(new Date());  
+                }, 1000);
+              }, []);
 
     const date = new Date().toDateString();
 
@@ -45,7 +44,7 @@ const DashboardHome = () => {
                 };
     }, [orders]);
 
-    // ✅ Get Max date
+    // Get  order status
 const pendingOrder = orders?.filter(element => 
        (element?.status === "Pending...")
       );

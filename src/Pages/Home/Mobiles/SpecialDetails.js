@@ -16,7 +16,7 @@ import usePhones from "../../../Hooks/usePhones/usePhones";
 import useReviews from "../../../Hooks/useReviews/useReviews";
 import { numberFormat } from "../../../Shared/numberFormat";
 import ShareProduct from "../../../Shared/ShareProduct";
-import useOffer from "../../../Hooks/SpecialOffer/useOffer";
+// import useOffer from "../../../Hooks/SpecialOffer/useOffer";
 import RelatedMobiles from "./RelatedMobiles";
 
   
@@ -49,10 +49,10 @@ const SpecialDetails = () => {
   /*  Filter related products */
 
   const [mobiles] = usePhones();
-  const [offers] = useOffer();
+  // const [offers] = useOffer();
 
   const relatedPd = mobiles?.filter((brand) => brand?.brand === phones?.brand);
-  const relatedPd2 = offers?.filter((brand) => brand?.brand === phones?.brand);
+  // const relatedPd2 = offers?.filter((brand) => brand?.brand === phones?.brand);
     // console.log(relatedPd2);
 
   /* Filter Rating & Reviews */
@@ -115,7 +115,7 @@ const SpecialDetails = () => {
   return (
     <div style={{ backgroundColor: "#EEF2FF", overflowX:"hidden" }}>
     <Header />
-    <div className="container py-5">
+    <div id="detailsOffer" className="container py-5">
       <div className="row">
         <div className="col-md-3 col-sm-12">
           <div className="text-center">

@@ -91,6 +91,27 @@
   position: relative;
 }
 
+.text-accent {
+  color: #4e54c8 !important;
+}
+
+.shadowBox{
+  box-shadow: 0 0.3rem 1.525rem -0.375rem rgb(0 0 0 / 10%);
+}
+
+.saleFont{
+  font-family: 'Rubik', sans-serif;
+}
+.saleH{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.692);
+  margin-bottom: .25rem;
+  font-size: .875rem;
+}
+.saleH:hover{
+  color:#d70f64;
+}
+
 @media(max-width: 769px) {
   .mw-qty{
   min-width: 7vw !important;

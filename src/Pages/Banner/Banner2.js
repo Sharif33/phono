@@ -56,11 +56,11 @@ const Banner2 = () => {
                     </div>
                 </div>
             </div>
-            <div className='container text-center my-5 pt-5'>
-                <div>
+            <div className='container text-center my-5 pt-3'>
+                {/* <div>
                     <h4 style={{color:"#093843"}}>WHAT MAKES THE ESSENTIAL DIFFERENT?</h4>
                     <h6 className='text-secondary' >EXPERIENCE HIGH PERFORMANCE AND SECURE</h6>
-                </div>
+                </div> */}
                 <div className='row row-cols-1 row-cols-md-3 m-2 g-4 text-start'>
                 <div className='col'>
                     <div className='d-flex justify-content-evenly align-items-center bg-light card-hover rounded p-2'>
