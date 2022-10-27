@@ -227,7 +227,7 @@ let tracking = "SMR-PHONO-" + traceId + trace;
               <h4 className="fw-bold text-navi">SHIPPING & BILLING INFORMATION</h4>
               <div className="d-flex justify-content-between pb-2">
                 <span>
-                  Received by {delivery}
+                  by {delivery}
                 </span>
                 <span>
                 {numberFormat((coupn ? coupn : cartTotal) + shipping + tax).slice(3)} Tk

@@ -38,6 +38,10 @@
   font-family: OpenSans-Regular, "PingFang SC", "Microsoft YaHei", sans-serif, Arial;
 }
 
+.spnsr img{
+  filter: grayscale(1);
+}
+
 @media(min-width: 769px) {
 .vd-text{
   position: absolute;

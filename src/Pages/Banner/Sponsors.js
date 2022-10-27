@@ -10,7 +10,7 @@ import s7 from '../../images/lenevo.png'
 const Sponsors = () => {
   return (
     <>
-    <div className="pb-5">
+    <div className="container pb-5 spnsr">
       <Marquee gradient={false} speed={60}>
           <img className="img-fluid p-3 mx-2" src={s1} alt="" />
           <img className="img-fluid p-3 mx-2" src={s2} alt="" />

@@ -9,6 +9,15 @@
   color: #ffffff;
 }
 
+.bg-btn{
+    background-color: #dedede6a;
+  border: 0 !important;
+}
+
+.bg-btn:hover{
+      color: #ec0554;
+}
+
 .bg-cart{
   background-color: #dedede6a;
   color: #183153;
@@ -27,7 +36,8 @@
 
 .card-hover:hover {
   /* transform: scaleY(1.05); */ 
-  background-color: #E7EBF0;
+  /* background-color: #E7EBF0; */
+  box-shadow: 0 0.3rem 1.525rem -0.375rem rgb(0 0 0 / 10%);
   transition: 0.4s ease;
   /* border: 1px solid #764abc !important; */
 }

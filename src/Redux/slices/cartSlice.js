@@ -14,10 +14,12 @@ import { toast } from 'react-toastify';
                     var today = new Date();
                     var first = today.setDate(date.getDate()+ 2);
                     var last = today.setDate(date.getDate()+ 5);
-                    const firstDay = (new Date(first).getDate());
-                    const lastDay = (new Date(last).getDate());
+                    const firstDay = (new Date(first).toDateString());
+                    const lastDay = (new Date(last).toDateString());
 
-                const months = [1,2,3,4,5,6,7,8,9,10,11,12]
+                    // console.log("1st:", firstDay, "2nd:", lastDay);
+
+                /* const months = [1,2,3,4,5,6,7,8,9,10,11,12]
 
                 let month = months[date.getMonth()];
                 // console.log(month);
@@ -30,8 +32,8 @@ import { toast } from 'react-toastify';
                 const deliveryFrom = (firstDay + " " + getMonthName(month));
                 // console.log(deliveryFrom);
                 const deliveryTo = (lastDay + " " + getMonthName(month) );
-                // console.log(deliveryTo);
-                var delivery = deliveryFrom + " - "+ deliveryTo;
+                // console.log(deliveryTo); */
+                var delivery = firstDay.slice(3,-5) + " - "+ lastDay.slice(4);
                 // console.log(delivery);
             };
 

@@ -90,7 +90,7 @@ const Cart = () => {
                                         {mobile?.name}
                                     <div>
                                         <small className='text-secondary'>
-                                         {mobile?.brand} 
+                                               &#x9F3; {numberFormat(mobile.price).slice(3,-3)}
                                         </small>
                                        {/*  <button className='border-0 bg-transparent text-secondary' onClick={()=>dispatch((removeFromCart(mobile)))}>(Remove)</button> */}
                                     </div>
@@ -113,7 +113,7 @@ const Cart = () => {
                                     <TableCell sx={{border: '0px'}} align="center">
                                     <div className='d-flex justify-content-evenly'>
                                         {
-                                            toFvrt?.addToFvrt.find((ft)=> ft?._id === mobile._id ) ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn border-0 rounded'><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/> </button> : <button onClick={() => dispatch(addToFvrt(mobile))} className='btn border-0 rounded'><MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1 text-navi"/></button>
+                                            toFvrt?.addToFvrt.find((ft)=> ft?._id === mobile._id ) ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn text-pink border-0 rounded'><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/> </button> : <button onClick={() => dispatch(addToFvrt(mobile))} className='btn border-0 rounded'><MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1 text-navi"/></button>
                                         }
 
                             <button onClick={() => dispatch(removeFromCart(mobile))} className='btn border-0 rounded'><RiDeleteBin5Fill title='Remove From Cart' className='fs-3 p-1 text-pink'/></button>

@@ -26,9 +26,9 @@ const Offer = ({offer}) => {
     return (
         <div>
         <div className="col rounded text-center">
-            <div className="card border-0 h-100">
+            <div className="card-hover card border-0 h-100">
                
-                <div className='card-hover rounded py-3'>
+                <div className='rounded py-3'>
                   
                        <div> 
                         <div className="offer-badge">

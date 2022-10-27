@@ -57,6 +57,7 @@ const SearchNav = () => {
                                         {
                                          filteredData.length !== 0 && (
                                             <div className="dataResult rounded">
+                                                <p className='m-auto p-2'>"{wordEntered}" is matched with {filteredData.length} item.</p>
                                             {filteredData.slice(0, 15).map((value) => <div key={value?._id}>
                                             <ul className="list-group ">  
                                                 <Link title='See Details' to={`/mobile/${value?._id}`}>

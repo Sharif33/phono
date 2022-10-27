@@ -7,8 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 // import required modules
-import { Autoplay, Navigation } from "swiper";
+import { Autoplay, Navigation, Scrollbar } from "swiper";
 
 import { Link } from 'react-router-dom';
 
@@ -30,13 +31,14 @@ const Banner3 = () => {
             <p>FIND THE PERFECT PHONE FOR YOU</p>
         </div>
         <Swiper 
-        modules={[Navigation, Autoplay]}
+        modules={[Navigation, Autoplay, Scrollbar]}
         loop={true} 
         autoplay={{
         delay: 2500,
         disableOnInteraction: false,
       }} 
-      navigation={true}
+      // navigation={true}
+      scrollbar={true}
     breakpoints={{
     640: {
       slidesPerView: 1,

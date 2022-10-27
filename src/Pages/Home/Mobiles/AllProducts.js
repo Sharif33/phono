@@ -12,7 +12,7 @@ const AllProducts = () => {
             <div className="row">
                 <div className="col-md-4 col-sm-6 mb-2 py-3">
                     <div>
-                        <h4>Bestsellers</h4>
+                        <h4 className='text-navi'>Bestsellers</h4>
                     </div>
                     {
                         mobiles?.slice(0,5).map(mobile=>
@@ -37,7 +37,7 @@ const AllProducts = () => {
                 </div>
                 <div className="col-md-4 col-sm-6 mb-2 py-3">
                     <div>
-                        <h4>Top Prices</h4>
+                        <h4 className='text-navi'>Top Prices</h4>
                     </div>
                     {
                         mobiles?.sort((a,b)=>a.price<b.price ? 1 : -1).slice(0,5).map(mobile=>
@@ -63,7 +63,7 @@ const AllProducts = () => {
                 </div>
                 <div className="col-md-4 col-sm-6 mb-2 py-3">
                     <div>
-                        <h4>Top Rated</h4>
+                        <h4 className='text-navi'>Top Rated</h4>
                     </div>
                     {
                         mobiles?.slice(-5).map(mobile=>

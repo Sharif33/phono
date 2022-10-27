@@ -48,9 +48,9 @@ const Mobile = ({ mobile}) => {
     return (
         <div>
             <div className="col rounded text-center">
-                <div className="card border-0 custom-shadow h-100">
+                <div className="card border-0 custom-shadow h-100 card-hover ">
                    
-                    <div className='card-hover rounded py-2'>
+                    <div className='rounded py-2'>
                       
                            <div>  
                             <div className="card-btns">
@@ -97,13 +97,13 @@ const Mobile = ({ mobile}) => {
                                 toggleBtn ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={hideToggle}><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span>  </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span onClick={showToggle}><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
                             } */}
                              {
-                                toggleFvrt ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn btn-cart text-pink border-0 my-2 rounded'> <span><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span> </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
+                                toggleFvrt ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn bg-btn text-pink border-0 my-2 rounded'> <span><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/></span> </button> :  <button onClick={() => dispatch(addToFvrt(mobile))} className='btn btn-cart border-0 my-2 rounded'> <span><MdOutlineFavoriteBorder title='Add to Favourite' className="fs-3 p-1"/></span> </button>
                             }
                             </div>
 
                            <div>
                             {
-                                toggleCompare ? <button onClick={() => dispatch(removeFromCompare(mobile))} className='btn btn-cart text-pink border-0 my-2 rounded'><TbScaleOff className='fs-3 p-1'/></button> : <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><TbScale className='fs-3 p-1'/></button>
+                                toggleCompare ? <button onClick={() => dispatch(removeFromCompare(mobile))} className='btn bg-btn text-pink border-0 my-2 rounded'><TbScaleOff className='fs-3 p-1'/></button> : <button onClick={() => dispatch(addToCompare(mobile))} className='btn btn-cart border-0 my-2 rounded'><TbScale className='fs-3 p-1'/></button>
                             }
                            
                            </div>
