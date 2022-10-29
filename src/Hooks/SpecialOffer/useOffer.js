@@ -7,7 +7,7 @@ const useOffer = () => {
         let isMounted = true;
          try {
             async function callApi() {
-                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/phones`);
+                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/phonesAp`);
                 data = await data.json();
                 if(isMounted ){
                 setOffers(data);

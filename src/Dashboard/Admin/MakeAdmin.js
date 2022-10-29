@@ -1,10 +1,13 @@
 import { Alert, Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
 
 const MakeAdmin = () => {
     const [email, setEmail] = useState('');
     const [success, setSuccess] = useState(false);
+    // const navigate = useNavigate();
+    // console.log(email);
     // const { admin } = useAuth();
     const {token} = useAuth();
 
@@ -23,9 +26,11 @@ const MakeAdmin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount) {
-                    console.log(data);
+                console.log(data);
+                if (data.acknowledged === true) {
+                    // console.log(data);
                     setSuccess(true);
+                    // navigate(`/dashboard`);
                 }
             })
 

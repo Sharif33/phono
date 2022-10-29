@@ -14,7 +14,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { MdOutlineLocalOffer,MdDashboard } from "react-icons/md";
 import { FaUserCog } from "react-icons/fa";
 
-import { Avatar, CircularProgress} from '@mui/material';
+import { Avatar, CircularProgress, Typography} from '@mui/material';
 
 import {Outlet, Link, NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
@@ -31,6 +31,17 @@ import './Dashboard.css';
 const drawerWidth = 250;
 
 function Dashboard(props) {
+
+    const [time, setTime] = React.useState(new Date());
+
+    React.useEffect(() => {
+                setInterval(() => {
+                setTime(new Date());  
+                }, 1000);
+              }, []);
+
+    const date = new Date().toDateString().slice(0,-5);
+
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -126,11 +137,11 @@ function Dashboard(props) {
     return (
         <>
         
-        <Box sx={{ display: 'flex', backgroundColor:"#EEF2FF" }}>
+        <Box sx={{ display: 'flex' }}>
             
         <AppBar position="fixed" 
-        sx={{ width: { sm: `calc(100% - ${drawerWidth}px)` }, ml: { sm: `${drawerWidth}px` },}}>
-            <Toolbar className='bg-dash bg-light'>
+        sx={{ width: { sm: `calc(100% - ${drawerWidth}px)` }, ml: { sm: `${drawerWidth}px` },boxShadow:"none"}}>
+            <Toolbar className='bg-light'>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -140,9 +151,10 @@ function Dashboard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    {/* <Typography noWrap component="div">
-                        Dashboard       
-                    </Typography> */}
+                    <Typography sx={{fontSize:{md:"2em", sm:"1.5em", xs:"1.5em"}, fontFamily:"Rubik",color:"#637381"}} noWrap component="div">
+                    {time.toLocaleTimeString()}      
+                    </Typography>
+                    <span sx={{fontSize:"0.9em"}} className="text-pink"> {date}</span>
                 <Box sx={{ ml: "auto", display: 'flex' }}>
                 <div className="dropdown">
                         <div style={{cursor:"pointer"}} id="navbarDropdownMenuLink2" data-bs-toggle="dropdown" aria-expanded="false" className='rounded bg-nav-btn'>

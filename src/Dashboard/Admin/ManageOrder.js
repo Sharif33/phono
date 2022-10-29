@@ -1,10 +1,36 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import { CircularProgress, Typography } from '@mui/material';
+// import Box from '@mui/material/Box';
+// import Tabs from '@mui/material/Tabs';
+// import Tab from '@mui/material/Tab';
+
+const columns = [
+    { id: 'phone',  label: 'Phone', maxWidth: 100, color:"#fe3c47" },
+    { id: 'date', label: 'date', maxWidth: 100 },
+    { id: 'id', label: 'ID', maxWidth: 100 },
+    { id: 'name', label: 'Name', maxWidth: 100 },
+    { id: 'email', label: 'Email', maxWidth: 100 },
+    { id: 'amount', label: 'Amount', maxWidth: 100 },
+    { id: 'payment', label: 'Payment', maxWidth: 100 },
+    { id: 'transId', label: 'Trans.', maxWidth: 100 },
+    { id: 'track', label: 'Track.Id', maxWidth: 100 },
+    { id: 'status', label: 'Status', maxWidth: 100 },
+    { id: 'action', label: 'Action',color:"#fe3c47" },
+  ];
 
 const ManageOrder = () => {
     const [orders, setOrders] = useState([]);
-    // console.log(orders);
+    const allOrdrs = orders?.sort((a,b)=> new Date(a.date) < new Date(b.date) ? 1 : -1);
+    // console.log(allOrdrs);
     const [status, setStatus] = useState("");
 
     const handleStatus = (e) => {
@@ -102,46 +128,59 @@ const ManageOrder = () => {
         }
     });
     };
+
+    //Table
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(8);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+      };
+    
+      const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(event.target.value);
+        setPage(0);
+      };
     return (
         <div className="container py-4">
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: 600 }}>
+        <TableContainer sx={{ maxHeight: "80vh" }}>
             <Table stickyHeader aria-label="sticky table" >
                 <TableHead >
                     <TableRow>
-                        <TableCell sx={{ color: 'secondary.main'}}>Image</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}}>Mobile</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">ID</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Name</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Email</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Price</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Payment</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Trns.id</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Status</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Action</TableCell>
+                    {columns.map((column) => (
+                            <TableCell
+                            sx={{  border: "0px"}}
+                            key={column.id}
+                            style={{ maxWidth: column.maxWidth, color: column?.color, fontSize:"1rem", backgroundColor:"#F4F5F7" }}
+                            >
+                            {column.label}
+                            </TableCell>
+                        ))}
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {orders.map((order) => (
+                    {allOrdrs?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order) => (
                         <TableRow hover
                             key={order._id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            sx={{  border: "0px"}}
                         >
-                            <TableCell component="th" scope="row">
-                            <img style={{width:"5rem"}} className='img-fluid' src={order?.image ? order.image : order?.orderItems[0]?.image} alt="" />
+                            <TableCell sx={{  border: "0px"}} component="th" scope="row">
+                            {order?.phone}
                             </TableCell>
-                            <TableCell align="center">{order?.mobile ? order.mobile : order?.orderItems[0]?.name}</TableCell>
-                            <TableCell align="center">{order?._id?.slice(0,10)}</TableCell>
-                            <TableCell align="center">{order?.name  ? order.name : order?.orderBy}</TableCell>
-                            <TableCell align="center">{order?.email}</TableCell>
-                            <TableCell align="center">{order?.total}&#2547; </TableCell>
-                            <TableCell align="center">
+                            <TableCell sx={{ minWidth:"11vw",border:"0px"}}>{order?.date}</TableCell>
+                            <TableCell sx={{  border: "0px"}}>{order?._id?.slice(0,10)}</TableCell>
+                            <TableCell  sx={{ minWidth:"14vw",border:"0px"}}>{order?.name  ? order.name : order?.orderBy}</TableCell>
+                            <TableCell sx={{  border: "0px"}}>{order?.email}</TableCell>
+                            <TableCell sx={{  border: "0px"}}>{order?.total}&#2547; </TableCell>
+                            <TableCell sx={{  border: "0px"}}>
                                 {
                                     order?.payment ? <Typography sx={{ color: 'success.main'}}>Paid</Typography> :  <Typography sx={{ color: 'error.main'}}>Unpaid</Typography>
                                 }
                             </TableCell>
-                            <TableCell sx={{ color: 'primary.main'}} align="center">{order?.payment?.last4}</TableCell>
-                            <TableCell align="center"><div className="d-flex">
+                            <TableCell sx={{ color: 'primary.main', border:"0px"}}>{order?.payment?.last4}</TableCell>
+                            <TableCell sx={{ color: 'primary.main', border:"0px"}}>{order?.tracking?.slice(10)}</TableCell>
+                            <TableCell sx={{  border: "0px"}}><div className="d-flex">
                                 <select className="text-center custom-form border-0" onChange={handleStatus}>
                                     <option>{order?.status}</option>
                                     <option value="Processing">Processing</option>
@@ -150,14 +189,23 @@ const ManageOrder = () => {
                                     <option value="Delivered">Delivered</option>
                                     <option value="Cancel">Cancel</option>
                                     </select>
-                                <button title='Click to update status' onClick={() => handleUpdate(order?._id)} className="btn btn-indigo"><i className="fas fa-check"></i></button>
+                                <button title='Click to update status' onClick={() => handleUpdate(order?._id)} className="btn btn-indigo py-0 my-0"><i className="fas fa-check"></i></button>
                             </div></TableCell>
-                            <TableCell align="center"> <button title='delete item' onClick={() => handleDeleteOrders(order?._id)} className="btn btn-pink"><i className="fas fa-trash"></i></button></TableCell>
+                            <TableCell sx={{  border: "0px"}}> <button title='delete item' onClick={() => handleDeleteOrders(order?._id)} className="btn btn-pink py-0 my-0"><i className="fas fa-trash"></i></button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
         </TableContainer>
+        <TablePagination
+                    rowsPerPageOptions={[8, 15, 25, 30, 50, 75, 100]}
+                    component="div"
+                    count={orders?.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
         </Paper>
     </div>
     );

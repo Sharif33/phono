@@ -52,7 +52,7 @@ const Offers = () => {
                         mobiles?.slice(-6,-1).reverse().sort((a,b)=>a.price<b.price ? 1 : -1).map(mobile=> <ul className="list-group"
                         key={mobile?._id}
                         >
-                        <li className="list-group-item d-flex justify-content-between align-items-center rounded-0"> <span><Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"2.5rem"}} className='img-fluid' src={mobile?.image} alt="" /> </Link></span>
+                        <li className="list-group-item d-flex justify-content-between align-items-center rounded-0 saleH fs-6 m-0"> <span><Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"2.5rem"}} className='img-fluid' src={mobile?.image} alt="" /> </Link></span>
                         <small>{mobile?.name}</small>
                         <span className="text-navi"> <span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(mobile?.price).slice(3,-3)}</span>
                         </li>
