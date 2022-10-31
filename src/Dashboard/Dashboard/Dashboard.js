@@ -149,7 +149,7 @@ function Dashboard(props) {
                         onClick={handleDrawerToggle}
                         sx={{ mr: 2, display: { sm: 'none' } }}
                     >
-                        <MenuIcon />
+                        <MenuIcon sx={{color:"#637381"}} />
                     </IconButton>
                     <Typography sx={{fontSize:{md:"2em", sm:"1.5em", xs:"1.5em"}, fontFamily:"Rubik",color:"#637381"}} noWrap component="div">
                     {time.toLocaleTimeString()}      

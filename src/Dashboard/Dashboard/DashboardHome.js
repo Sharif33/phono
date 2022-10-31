@@ -6,10 +6,8 @@ import usePhones from '../../Hooks/usePhones/usePhones';
 import useAuth from '../../Hooks/useAuth/useAuth';
 import UserDashboard from './UserDashboard';
 import { FiCheck, FiRefreshCcw, FiShoppingCart, FiTruck } from "react-icons/fi";
-import CreditScoreIcon from '@mui/icons-material/CreditScore';
-import {CalendarViewMonth} from '@mui/icons-material';
-import PaymentIcon from '@mui/icons-material/Payment';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
+import { numberFormat } from '../../Shared/numberFormat';
 // import useOrders from '../../Hooks/useOrders/useOrders';
 // import useAuth from '../../Hooks/useAuth/useAuth';
 // import about from "../../images/about.jpg";
@@ -100,35 +98,51 @@ const deliveredOrder = orders?.filter(element =>
             
             <div className='row row-cols-1 row-cols-md-3 m-1 g-4'>
                 <div className="col">
-                    <div className="d-md-flex justify-content-between align-items-center bg-cart p-2 rounded">
-                        <div className='m-auto'>
-                            <PaymentIcon  style={{fontSize:"15vw"}}  className='w-100'/>
+                    <div className="d-flex justify-content-evenly align-items-center shadowBox p-2 rounded">
+                        <div className='w-100 ps-2'>
+                              <small className=''>Today's Earn: <br /> <span className="fs-4 text-pink"><span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(tdyEarning).slice(3,-3)}</span></small> <br /> 
+                              <span>Orders: </span> <small className='text-pink fs-5'> {tdyEarn?.length}</small>
                         </div>
-                        <div className='text-center w-100'>
-                              <h5 className=''>Today's Earn: <br /> <span className="fs-1 text-pink"> {tdyEarning}</span></h5> 
-                              <h5 className='text-light-slate'> <span className="font-custom">Orders:</span> <br /> <small className='text-pink'>{tdyEarn?.length}</small> </h5>
+                        <div className='m-auto'>
+                        <lord-icon
+                               src="https://cdn.lordicon.com/qbxwelhw.json"
+                               trigger="hover"
+                               colors="primary:#ee66aa,secondary:#08c18a"
+                               stroke="35"
+                            style={{width:"90px",height:"90px"}}>
+                        </lord-icon>
                         </div>
                     </div>
                 </div>
                 <div className="col">
-                <div className="d-md-flex justify-content-between align-items-center bg-cart p-2 rounded">
-                        <div className='m-auto'>
-                            <CalendarViewMonth  style={{fontSize:"15vw"}}  className='w-100'/>
+                <div className="d-flex justify-content-evenly align-items-center shadowBox p-2 rounded">   
+                        <div className='w-100 ps-2'>
+                              <small className=''>This Month's Earn: <br /> <span className="fs-4 text-pink"><span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(tmEarning).slice(3,-3)}</span></small> <br />
+                              <span>Orders: </span> <small className='text-pink fs-5'> {monthlyEarn?.length}</small>
                         </div>
-                        <div className='text-center w-100'>
-                              <h5 className=''>This Month's Earn: <br /> <span className="fs-1 text-pink"> {tmEarning}</span></h5> 
-                              <h5 className='text-light-slate'> <span className="font-custom">Orders:</span> <br /> <small className='text-pink'>{monthlyEarn?.length}</small> </h5>
+                         <div className='m-auto'>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/tbfrtmlu.json"
+                            trigger="hover"
+                            style={{width:"90px",height:"90px"}}>
+                        </lord-icon>
                         </div>
                     </div>
                 </div>
                 <div className="col">
-                <div className="d-md-flex justify-content-between align-items-center bg-cart p-2 rounded">
-                        <div className='m-auto'>
-                            <CreditScoreIcon  style={{fontSize:"15vw"}}  className='w-100'/>
+                <div className="d-flex justify-content-evenly align-items-center shadowBox p-2 rounded">     
+                        <div className='w-100 ps-2'>
+                              <small className=''>Total Earn: <br /> <span className="fs-4 text-pink"> <span style={{fontFamily: 'Noto Sans Bengali'}}>&#x9F3;</span>{numberFormat(earning).slice(3,-3)}</span></small> <br /> 
+                              <span> Complete orders: </span> <small className='text-pink fs-5'>{earnOrder?.length}</small>
                         </div>
-                        <div className='text-center w-100'>
-                              <h5 className=''>Total Earn: <br /> <span className="fs-1 text-pink"> {earning}</span></h5> 
-                              <h5 className='text-light-slate'> <span className="font-custom">Complete orders:</span> <br /> <small className='text-pink'>{earnOrder?.length}</small> </h5>
+                        <div className='m-auto'>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/gowrcrni.json"
+                            trigger="hover"
+                            stroke="30"
+                            colors="primary:#08c18a,secondary:#cb5eee"
+                            style={{width:"90px",height:"90px"}}>
+                        </lord-icon>
                         </div>
                     </div>
                 </div>
@@ -177,7 +191,7 @@ const deliveredOrder = orders?.filter(element =>
                     </div>
                 </div>
             </div>
-            <div className='row row-cols-1 row-cols-md-3 g-4'>
+            <div className='row row-cols-1 row-cols-md-3 m-2 g-4'>
                 <div className="col">
                     <div className="d-md-flex justify-content-between align-items-center bg-cart p-2 rounded">
                         <div className='m-auto'>

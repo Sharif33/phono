@@ -37,7 +37,7 @@ const SearchNav = () => {
                                         </li> */}
                                         <li className="nav-item">
                                         
-                                        <div className="searchInputs d-flex justify-content-between align-items-center bg-light border-0 rounded mx-1 p-2">
+                                        <div className="searchInputs d-flex justify-content-between align-items-center bg-light mx-1 p-2" style={{width:"40vw", border: "1px solid #e9edf4", borderRadius: "7px"}}>
                                             <input style={{width:"40vw"}}
                                             className='border-0'
                                             type="text"
@@ -47,7 +47,7 @@ const SearchNav = () => {
                                             />
                                             <span className="searchIcon">
                                             {filteredData.length === 0 ? (
-                                                <SearchIcon />
+                                                <SearchIcon style={{color: "#ced4da"}}/>
                                             ) : (
                                                 <CloseIcon id="clearBtn" onClick={clearInput} />
                                             )}
