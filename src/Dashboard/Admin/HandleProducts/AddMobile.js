@@ -2,7 +2,7 @@ import axios from 'axios';
 import React  from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import useAuth from '../../Hooks/useAuth/useAuth';
+import useAuth from '../../../Hooks/useAuth/useAuth';
 import './AddMobile.css';
 
 const AddMobile = () => {

@@ -16,8 +16,8 @@ import usePhones from "../../../Hooks/usePhones/usePhones";
 import useReviews from "../../../Hooks/useReviews/useReviews";
 import { numberFormat } from "../../../Shared/numberFormat";
 import ShareProduct from "../../../Shared/ShareProduct";
+import RelatedMobiles from "../Mobiles/RelatedMobiles";
 // import useOffer from "../../../Hooks/SpecialOffer/useOffer";
-import RelatedMobiles from "./RelatedMobiles";
 
   
 

@@ -78,7 +78,7 @@ const deliveredOrder = orders?.filter(element =>
         const tmEarning = (monthlyEarn?.reduce((total,currentItem) =>  total  = ( total + currentItem.total ), 0 ));
 
         const tdyEarn = earnOrder?.filter(element => 
-            (new Date(element?.date).getDate() === new Date().getDate() ));
+            (new Date(element?.date).toDateString() === new Date().toDateString()));
         const tdyEarning = (tdyEarn?.reduce((total,currentItem) =>  total  = ( total + currentItem.total ), 0 ));
         // console.log(tdyEarning);
 

@@ -3,7 +3,7 @@ import React,{useState}  from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import useAuth from '../../Hooks/useAuth/useAuth';
+import useAuth from '../../../Hooks/useAuth/useAuth';
 
 const AddOffers = () => {
     const {user} = useAuth();

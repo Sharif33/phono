@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import useAuth from '../../Hooks/useAuth/useAuth';
+import useAuth from '../../../Hooks/useAuth/useAuth';
 
 const EditMobile = () => {
     const { id } = useParams();

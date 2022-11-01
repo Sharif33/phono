@@ -16,38 +16,37 @@ import SingleMobile from "./Pages/Home/Mobiles/SingleMobile";
 import AuthProvider from "./Contexts/AuthProvider/AuthProvider";
 import Dashboard from "./Dashboard/Dashboard/Dashboard";
 import AdminRoute from "./Dashboard/Admin/AdminRoute";
-import AddMobile from "./Dashboard/Admin/AddMobile";
 import MakeAdmin from "./Dashboard/Admin/MakeAdmin";
-import ManageProducts from "./Dashboard/Admin/ManageProducts";
-import ManageOrder from "./Dashboard/Admin/ManageOrder";
 import MyOrders from "./Dashboard/User/MyOrders";
 import DashboardHome from "./Dashboard/Dashboard/DashboardHome";
 import Review from "./Dashboard/User/Review";
 import Payment from "./Dashboard/User/Payment";
 // import BuyMobile from "./Pages/Home/Mobiles/BuyMobile";
-import EditMobile from "./Dashboard/Admin/EditMobile";
-import Cart from "./Pages/Home/Mobiles/Cart";
-import Favourite from "./Pages/Home/Mobiles/Favourite";
-import PlaceOrder from "./Pages/Home/Mobiles/PlaceOrder";
 import MyOrderDetails from "./Dashboard/User/MyOrderDetails";
-import Compare from "./Pages/Home/Mobiles/Compare";
-import SpecialDetails from "./Pages/Home/Mobiles/SpecialDetails";
 import SearchField from "./Pages/Home/Search/SearchField";
-import UserDetails from "./Dashboard/User/UserDetails";
-import EditUser from "./Dashboard/User/EditUser";
-import { handelRightClick } from "./Shared/RightClick";
-import ManageUsers from "./Dashboard/Admin/ManageUsers";
-import AddOffers from "./Dashboard/Admin/AddOffers";
-import ManageOffers from "./Dashboard/Admin/ManageOffers";
-import EditOffer from "./Dashboard/Admin/EditOffer";
 import NotFound from "./Shared/NotFound";
 import { CircularProgress } from "@material-ui/core";
 import { ToastContainer } from 'react-toastify';
 import BuyNow from "./Pages/Home/Mobiles/BuyNow";
-
+import EditUser from "./Dashboard/User/EditUser";
+import ManageOrder from "./Dashboard/Admin/HandleOrders/ManageOrder";
+import AddMobile from "./Dashboard/Admin/HandleProducts/AddMobile";
+import AddOffers from "./Dashboard/Admin/HandleOffers/AddOffers";
+import ManageProducts from "./Dashboard/Admin/HandleProducts/ManageProducts";
+import EditOffer from "./Dashboard/Admin/HandleOffers/EditOffer";
+import ManageUsers from "./Dashboard/Admin/HandleCustomers/ManageUsers";
+import ManageOffers from "./Dashboard/Admin/HandleOffers/ManageOffers";
+import UserDetails from "./Dashboard/User/UserDetails";
+import EditMobile from "./Dashboard/Admin/HandleProducts/EditMobile";
+import Cart from "./Pages/Home/Cart/Cart";
+import Compare from "./Pages/Home/Cart/Compare";
+import Favourite from "./Pages/Home/Cart/Favourite";
+import SpecialDetails from "./Pages/Home/Offers/SpecialDetails";
+import PlaceOrder from "./Pages/Home/Cart/PlaceOrder";
+// import { handelRightClick } from "./Shared/RightClick";
 
 function App() {
-  document.addEventListener('contextmenu', handelRightClick);
+  // document.addEventListener('contextmenu', handelRightClick);
   const [spinner, setSpinner] = React.useState(true);
 
   React.useEffect(() => {
