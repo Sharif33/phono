@@ -87,7 +87,7 @@ return (
                             <div>
                                 <IconButton onClick={() => setIsDrawerOpen(true)}
                                 // sx={{ mr: 2, display: { sm: 'none' } }}
-                                sx={{color:"#D7E1F7"}}
+                                sx={{color:"#183153"}}
                                 size='large'
                                 edge='start'
                                 aria-label='logo'>
@@ -113,7 +113,7 @@ return (
                                         placeholder="Search"
                                         />
                                         <span className="searchIcon">
-                                        <SearchIcon  style={{color:"#0d6efd"}}/> </span>
+                                        <SearchIcon  style={{color:"#183153"}}/> </span>
                                         </NavLink>
                                     
                                     </li>
@@ -150,7 +150,7 @@ return (
                     <NavLink to={`/fvrt`} >
                     <IconButton aria-label="favorite">
                     <StyledBadge badgeContent={addToFvrt?.length}>
-                    <MdOutlineFavoriteBorder style={{color:"#0d6efd"}} />
+                    <MdOutlineFavoriteBorder style={{color:"#183153"}} />
                     </StyledBadge>
                     </IconButton>
                     </NavLink> 
@@ -160,7 +160,7 @@ return (
                     <NavLink to={`/cart`} >          
                     <IconButton aria-label="cart">
                     <StyledBadge badgeContent={addToCart?.length}>
-                    <BsCart2 style={{color:"#0d6efd"}} />
+                    <BsCart2 style={{color:"#183153"}} />
                     </StyledBadge>
                     </IconButton>   
                     </NavLink>
@@ -170,7 +170,7 @@ return (
                     <NavLink to={`/compare`} >
                         <IconButton aria-label="compare">
                         <StyledBadge badgeContent={addToCompare?.length} >
-                        <GoLaw style={{color:"#0d6efd"}} />
+                        <GoLaw style={{color:"#183153"}} />
                         </StyledBadge>
                         </IconButton>
                     </NavLink>
@@ -261,15 +261,15 @@ return (
             </div>
 :
             <NavLink className='' to={`/login`} >
-            <div  style={{border:"1px solid #0d6efd"}} className='d-flex justify-content-evenly align-items-center rounded ms-2'>
+            <div  style={{border:"1px solid #183153"}} className='d-flex justify-content-evenly align-items-center rounded ms-2'>
             <div>
 
             <button className='btn'>
-            <AccountCircleIcon  style={{color: '#0d6efd'}}/>
+            <AccountCircleIcon  style={{color: '#183153'}}/>
             </button>
             </div>
             <div className='nav-hidder'>
-            <small  style={{color: '#0d6efd'}} className='my-auto pe-3'>Account</small>
+            <small  style={{color: '#183153'}} className='my-auto pe-3'>Account</small>
             </div>
             </div> 
             </NavLink> 

@@ -8,8 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Typography } from '@mui/material';
-// import Box from '@mui/material/Box';
+import { IconButton, Typography } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { CheckOutlined, DeleteOutline } from '@mui/icons-material';
+import TextField from '@mui/material/TextField';
+import { CircularProgress,MenuItem} from '@mui/material';
+import Box from '@mui/material/Box';
 // import Tabs from '@mui/material/Tabs';
 // import Tab from '@mui/material/Tab';
 
@@ -31,11 +35,20 @@ const ManageOrder = () => {
     const [orders, setOrders] = useState([]);
     const allOrdrs = orders?.sort((a,b)=> new Date(a.date) < new Date(b.date) ? 1 : -1);
     // console.log(allOrdrs);
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState('');
+    const [value, setValue] = React.useState(0);
+    const statuses = ['Processing','Packed','Shipped','Delivered','Cancel'];
+    const filterStatuses = ['Pending...','Processing','Packed','Shipped','Delivered','Cancel'];
 
-    const handleStatus = (e) => {
-        setStatus(e.target.value)
+    const handleStatus = (e,newValue) => {
+        setStatus(e.target.value);
+        setValue(newValue);
     }
+
+   
+  /* const handleChange = (event, newValue) => {
+    
+  }; */
 
     useEffect(() => {
         let isMounted = true;
@@ -44,6 +57,7 @@ const ManageOrder = () => {
             .then((data) => {
                 if(isMounted ){
                    setOrders(data);
+                   setSearchOrder(data);
                     }
             }
             );
@@ -141,9 +155,93 @@ const ManageOrder = () => {
         setRowsPerPage(event.target.value);
         setPage(0);
       };
+
+    //   Search
+    const [searchOrder, setSearchOrder] = useState([]);
+    // console.log(searchOrder);
+
+    const handleFilter = (event) => {
+      const searchWord = event.target.value;
+      const newSearch = allOrdrs.filter((value) => {
+        return value.orderBy.toLowerCase().includes(searchWord.toLowerCase()) || value.phone.includes(searchWord) ; 
+      });
+  setSearchOrder(newSearch);
+    };
+
+    /* Filter by status */
+    const filterResult = (orderStatus) => {
+        const result = allOrdrs.filter(currentData => {
+            return currentData.status === orderStatus;
+        });
+        setSearchOrder(result);
+        // console.log(result)
+    }
+    const filterPaidPending = () => {
+        const result = allOrdrs.filter(currentData => {
+            return currentData.status === 'Pending...' && currentData?.payment;
+        });
+        setSearchOrder(result);
+        // console.log(result)
+    }
+    const filterPayment = () => {
+        const result = allOrdrs.filter(currentData => {
+            return currentData?.payment
+        });
+        setSearchOrder(result);
+        // console.log(result)
+    }
+    const filterUnPayment = (unpaid) => {
+        const result = allOrdrs.filter(currentData => {
+            return currentData?.payment === unpaid?.payment
+        });
+        setSearchOrder(result);
+        // console.log(result)
+    }
+  
     return (
-        <div className="container py-4">
-            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <div className="container py-2">
+            
+              
+        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+            <div className='d-flex justify-content-evenly align-items-center py-1'>
+              <div>
+                <input style={{width:"25vw", border: "1px solid #e9edf4", borderRadius: "7px"}}
+                className='bg-light mx-1 p-2 mb-2'
+                type="search"
+                placeholder="Search by phone or name"
+                // value={wordEntered}
+                onChange={handleFilter}
+                /> 
+                <span className="searchIcon">
+                    <SearchIcon style={{color: "#ced4da"}}/>
+                </span>
+            </div>
+            <div>
+    <Box  component="form" sx={{'& .MuiTextField-root': { m: 1, width: '20vw' },}} noValidate autoComplete="off">
+            <TextField
+          id="filled-select-currency"
+          select
+          label={status ? `${searchOrder?.length} order(s)`:`sort by status`}
+          defaultValue="status"
+          value={status}
+          size="small"
+          onChange={handleStatus}
+        //   helperText={value? `${searchOrder?.length} order`:`Please select order status`}
+          variant='outlined'
+        >
+            <MenuItem disabled value={value}/>
+            <MenuItem onClick={filterPaidPending} value='Paid & Pending'>Paid & Pending</MenuItem>
+            {
+                filterStatuses.map(status=>
+                    <MenuItem onClick={() => filterResult(status)} key={status} value={status}>{status}</MenuItem>  
+                )
+            }
+            <MenuItem onClick={filterPayment} value='Paid'>Paid</MenuItem>
+            <MenuItem onClick={()=>filterUnPayment('Unpaid')} value='Unpaid'>Unpaid</MenuItem>
+        </TextField>
+    </Box>  
+            </div>  
+            </div>
         <TableContainer sx={{ maxHeight: "80vh" }}>
             <Table stickyHeader aria-label="sticky table" >
                 <TableHead >
@@ -152,7 +250,7 @@ const ManageOrder = () => {
                             <TableCell
                             sx={{  border: "0px"}}
                             key={column.id}
-                            style={{ maxWidth: column.maxWidth, color: column?.color, fontSize:"1rem", backgroundColor:"#F4F5F7" }}
+                            style={{ maxWidth: column?.maxWidth, color: column?.color, fontSize:"1rem", backgroundColor:"#F4F5F7" }}
                             >
                             {column.label}
                             </TableCell>
@@ -160,7 +258,10 @@ const ManageOrder = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {allOrdrs?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order) => (
+                    {
+                    orders?.length === 0 ? <CircularProgress align="center"/>
+                    :
+                    searchOrder?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order) => (
                         <TableRow hover
                             key={order._id}
                             sx={{  border: "0px"}}
@@ -180,18 +281,23 @@ const ManageOrder = () => {
                             </TableCell>
                             <TableCell sx={{ color: 'primary.main', border:"0px"}}>{order?.payment?.last4}</TableCell>
                             <TableCell sx={{ color: 'primary.main', border:"0px"}}>{order?.tracking?.slice(10)}</TableCell>
-                            <TableCell sx={{  border: "0px"}}><div className="d-flex">
+                            <TableCell sx={{  border: "0px"}}>
+                                <div className="d-flex p-0">
                                 <select className="text-center custom-form border-0" onChange={handleStatus}>
                                     <option>{order?.status}</option>
-                                    <option value="Processing">Processing</option>
-                                    <option value="Packed">Packed</option>
-                                    <option value="Shipped">Shipped</option>
-                                    <option value="Delivered">Delivered</option>
-                                    <option value="Cancel">Cancel</option>
+                                    {statuses.map((value) => (
+                                    <option value={value} key={value}>{value}</option>
+                                ))}
                                     </select>
-                                <button title='Click to update status' onClick={() => handleUpdate(order?._id)} className="btn btn-indigo py-0 my-0"><i className="fas fa-check"></i></button>
+                                    <IconButton sx={{p:0, m:0}} onClick={() => handleUpdate(order?._id)} >
+                                        <CheckOutlined size="small" color="success"/>
+                                    </IconButton>
                             </div></TableCell>
-                            <TableCell sx={{  border: "0px"}}> <button title='delete item' onClick={() => handleDeleteOrders(order?._id)} className="btn btn-pink py-0 my-0"><i className="fas fa-trash"></i></button></TableCell>
+                            <TableCell sx={{  border: "0px"}}> 
+                                    <IconButton sx={{p:0, m:0}} onClick={() => handleDeleteOrders(order?._id)} >
+                                        <DeleteOutline size="small" color="error"/>
+                                    </IconButton>
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

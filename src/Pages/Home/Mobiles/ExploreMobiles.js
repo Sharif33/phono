@@ -17,6 +17,8 @@ const ExploreMobiles = () => {
     const [priceH, setPriceH]=useState([]);
     const [spinner, setSpinner] = React.useState(true);
 
+    const brands = ['Nokia','Samsung','Xiomi','Infinix','Realme','Vivo','Huawei','OnePlus','iPhone','Motorola','Oppo','Walton','Tecno','Symphony','Lenevo','Asus','Google'];
+
     React.useEffect(() => {
       setTimeout(() => setSpinner(false), 1500)
     }, []);
@@ -155,23 +157,12 @@ const handleBrandSort = ()=>{
                         aria-label="scrollable force tabs example"
                     >
                         <Tab onClick={() => setCategories(mobiles)} label="All" />
-                        <Tab onClick={() => filterResult('Nokia')} label="Nokia" />
-                        <Tab onClick={() => filterResult('Realme')} label="Realme" />
-                        <Tab onClick={() => filterResult('Vivo')} label="Vivo" />
-                        <Tab onClick={() => filterResult('Huawei')} label="Huawei" />
-                        <Tab onClick={() => filterResult('Samsung')} label="Samsung" />
-                        <Tab onClick={() => filterResult('OnePlus')} label="OnePlus" />
-                        <Tab onClick={() => filterResult('iPhone')} label="iPhone" />
-                        <Tab onClick={() => filterResult('Xiomi')} label="Xiomi" />
-                        <Tab onClick={() => filterResult('Infinix')} label="Infinix" />
-                        <Tab onClick={() => filterResult('Motorola')} label="Motorola" />
-                        <Tab onClick={() => filterResult('Oppo')} label="Oppo" />
-                        <Tab onClick={() => filterResult('Walton')} label="Walton" />
-                        <Tab onClick={() => filterResult('Tecno')} label="Tecno" />
-                        <Tab onClick={() => filterResult('Symphony')} label="Symphony" />
-                        <Tab onClick={() => filterResult('Lenevo')} label="Lenevo" />
-                        <Tab onClick={() => filterResult('Asus')} label="Asus" />
-                        <Tab onClick={() => filterResult('Google')} label="Google" />
+                        {
+                            brands.map(brand=>
+                                <Tab onClick={() => filterResult(brand)} label={brand} />
+                                )
+                        }
+                         
                         <Tab onClick={() => setCategories(mobiles)} label="All" />
                     </Tabs>
                     </Box>
