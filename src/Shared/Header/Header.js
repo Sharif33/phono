@@ -1,5 +1,5 @@
 
-import { Avatar } from '@mui/material';
+import { Avatar, Chip, Toolbar, Typography } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -29,6 +29,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import useUser from '../../Hooks/useUser/useUser';
 import { CiCircleInfo,CiGrid41,CiUser } from "react-icons/ci";
+import Container from '@mui/material/Container';
+import AppBar from '@mui/material/AppBar';
+// import logo from '../../../src/images/phono-logo.png';
 
 const Header = () => {
 const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -75,98 +78,88 @@ useEffect(() => {
 // }
 
 return (
-<div>
-    <div style={{marginBottom:"60px"}} className="header">
-        <div className="header-inner">
-            <nav className=" py-2 fixed-top ms-auto bg-light">
-                <div className="container">      
-                <div className="d-flex justify-content-between">
-                    <div>
-                        <div className='d-flex  justify-content-evenly'>
-                        <div className='m-auto'>
-                            <div>
-                                <IconButton onClick={() => setIsDrawerOpen(true)}
-                                // sx={{ mr: 2, display: { sm: 'none' } }}
-                                sx={{color:"#183153"}}
-                                size='large'
-                                edge='start'
-                                aria-label='logo'>
-                                <MenuIcon />
-                                </IconButton>  
-                            </div>
-                            <div>
-                            <Drawer
-                                anchor='left'
-                                open={isDrawerOpen}
-                                onClose={() => setIsDrawerOpen(false)}>
-                                <Box  width='250px' role='presentation' textAlign='center'>
-                                    <div className="p-2 text-end">
-                                        <button className='btn text-danger' onClick={() => setIsDrawerOpen(false)}><CloseIcon/></button>
-                                    </div>
-                                <ul className="navbar-nav">
-                                    <li className="nav-item small-search">
-                                    
-                                    <NavLink className='btn btn-hover w-100 mb-2 text-start' style={{textDecoration:"none", }} to="/search">
-                                        <input style={{width:"50vw", border: "1px solid #e9edf4", borderRadius: "7px"}}
-                                        className='mx-1 p-2'
-                                        type="search"
-                                        placeholder="Search"
-                                        />
-                                        <span className="searchIcon">
-                                        <SearchIcon  style={{color:"#183153"}}/> </span>
-                                        </NavLink>
-                                    
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/"><HomeIcon className='mx-3'/> Home</NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/mobiles"><ShoppingBagIcon className='mx-3'/> Shop</NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} href="#contact" to="/contact"><MailIcon className='mx-3'/> Contact</NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/about"><GroupsIcon className='mx-3'/> About</NavLink>
-                                    </li>
-                                    </ul>
-                                </Box>
-                            </Drawer>  
-                            </div>
-                        </div>
-
-                            <div className='m-auto'>
-                                <NavLink className="navbar-brand fw-bold fs-3 text-warning" to="/home">PH<span className="text-danger">|O|</span>NO</NavLink>
-                            </div>   
-                        </div>
-                    </div>
-                    <div className='nav-hidder my-auto'>
-                            <SearchNav/>      
-                    </div>
+<>
+    <div style={{marginBottom:"60px"}}>
+    <Box sx={{ flexGrow: 1 }}>         
+    <AppBar sx={{background:"rgba(255, 255, 255, 0.7)",backdropFilter: "blur(20px)",boxShadow:0,}} position="fixed">
+      <Container maxWidth='xl'>     
+                <Toolbar sx={{}}>
+                    <IconButton onClick={() => setIsDrawerOpen(true)}
+                    // sx={{ mr: 2, display: { sm: 'none' } }}
+                    sx={{color:"#183153"}}
+                    size='large'
+                    edge='start'
+                    aria-label='logo'>
+                    <MenuIcon />
+                    </IconButton>  
                     
-        <div className='my-auto'>
+                    <Drawer
+                        anchor='left'
+                        open={isDrawerOpen}
+                        onClose={() => setIsDrawerOpen(false)}>
+                        <Box  width='250px' role='presentation' textAlign='center'>
+                            <div className="p-2 text-end">
+                                <button className='btn text-danger' onClick={() => setIsDrawerOpen(false)}><CloseIcon/></button>
+                            </div>
+                        <ul className="navbar-nav">
+                            <li className="nav-item small-search">
+                            
+                            <NavLink className='btn btn-hover w-100 mb-2 text-start' style={{textDecoration:"none", }} to="/search">
+                                <input style={{width:"50vw", border: "1px solid #e9edf4", borderRadius: "7px"}}
+                                className='mx-1 p-2'
+                                type="search"
+                                placeholder="Search"
+                                />
+                                <span className="searchIcon">
+                                <SearchIcon  style={{color:"#183153"}}/> </span>
+                                </NavLink>
+                            
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/"><HomeIcon className='mx-3'/> Home</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/mobiles"><ShoppingBagIcon className='mx-3'/> Shop</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} href="#contact" to="/contact"><MailIcon className='mx-3'/> Contact</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/about"><GroupsIcon className='mx-3'/> About</NavLink>
+                            </li>
+                            </ul>
+                        </Box>
+                    </Drawer>
+                      
+                    <Box >
+                         {/* <NavLink to="/home">
+                            <img className='img-fluid' src={logo} alt="logo" />
+                         </NavLink> */}
+                         <NavLink className="fw-bold fs-3 text-warning" to="/home">PH<span className="text-danger">|O|</span>NO</NavLink>
+                    </Box>   
+                    <Box sx={{ flexGrow: 1 }} />
+                        <div className='nav-hidder my-auto'>
+                                <SearchNav/>      
+                        </div>
+                    <Box sx={{ flexGrow: 1 }} />        
+                    
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                    <div>
                     <NavLink to={`/fvrt`} >
-                    <IconButton aria-label="favorite">
-                    <StyledBadge badgeContent={addToFvrt?.length}>
-                    <MdOutlineFavoriteBorder style={{color:"#183153"}} />
-                    </StyledBadge>
-                    </IconButton>
+                        <IconButton aria-label="favorite">
+                        <StyledBadge badgeContent={addToFvrt?.length}>
+                        <MdOutlineFavoriteBorder style={{color:"#183153"}} />
+                        </StyledBadge>
+                        </IconButton>
                     </NavLink> 
-                    </div>
 
-                    <div className='mx-2'>
                     <NavLink to={`/cart`} >          
-                    <IconButton aria-label="cart">
-                    <StyledBadge badgeContent={addToCart?.length}>
-                    <BsCart2 style={{color:"#183153"}} />
-                    </StyledBadge>
-                    </IconButton>   
+                        <IconButton sx={{ mx: {xs:1, sm:1, md:3} }} aria-label="cart">
+                        <StyledBadge badgeContent={addToCart?.length}>
+                        <BsCart2 style={{color:"#183153"}} />
+                        </StyledBadge>
+                        </IconButton>   
                     </NavLink>
-                    </div>
 
-                    <div>
                     <NavLink to={`/compare`} >
                         <IconButton aria-label="compare">
                         <StyledBadge badgeContent={addToCompare?.length} >
@@ -174,59 +167,55 @@ return (
                         </StyledBadge>
                         </IconButton>
                     </NavLink>
-                    </div>
-        <div className=''>
+        
             {
-            user?.email ? 
-                        
-            <div style={{position:"relative"}}>
-            <div>
+            user?.email ?           
+            <Box sx={{position:"relative"}}>        
             <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open || undefined}
+                onClick={handleClick}
+                size="small"
+                sx={{ ml: {xs:1, sm:1, md:3} }}
+                edge="end"
+                aria-controls={open ? 'account-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open || undefined}
             >
-            <Avatar alt="" src={user?.photoURL} />  
-            </IconButton>
-                                            
-            </div>
+                <Avatar alt="" src={user?.photoURL} />  
+            </IconButton>                                                       
             <Menu
-            anchorEl={anchorEl}
-            id="account-menu"
-            open={open}
-            onClose={handleClose}
-            onClick={handleClose}
-            PaperProps={{
-            elevation: 0,
-            sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.2,
-            '& .MuiAvatar-root': {
-            width: 32,
-            height: 32,
-            ml: -0.5,
-            mr: 1,
-            },
-            '&:before': {
-            content: '""',
-            display: 'block',
-            position: 'absolute',
-            top: 0,
-            right: 14,
-            width: 10,
-            height: 10,
-            bgcolor: 'background.paper',
-            transform: 'translateY(-50%) rotate(45deg)',
-            zIndex: 0,
-            },
-            },
-            }}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                PaperProps={{
+                elevation: 0,
+                sx: {
+                overflow: 'visible',
+                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                mt: 1.2,
+                '& .MuiAvatar-root': {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+                },
+                '&:before': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: 'background.paper',
+                transform: 'translateY(-50%) rotate(45deg)',
+                zIndex: 0,
+                },
+                },
+                }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
             <MenuItem>
             <small >{users[0]?.name ? users[0].name : user?.displayName} <br /> <span  style={{color: '#74829C', fontSize:"0.85em"}}>{user?.email}</span></small>
@@ -238,7 +227,10 @@ return (
             <ListItemIcon>
             <CiUser/>
             </ListItemIcon>
-            <small>Profile</small>
+            <Typography sx={{ fontSize: 14}}>
+                Profile
+            </Typography>
+               
             </MenuItem>
             </NavLink>
 
@@ -247,50 +239,46 @@ return (
             <ListItemIcon>
             <CiGrid41/>
             </ListItemIcon>
-            <small>Dashboard</small>
+            <Typography sx={{ fontSize: 14}}>
+                Dashboard                
+            </Typography>
             </MenuItem>
             </NavLink>
 
             <MenuItem onClick={logOut}>
             <ListItemIcon>
             <CiCircleInfo/>
-            </ListItemIcon>
-            <small  style={{color: '#282f53'}}>Logout</small>
+            </ListItemIcon >
+            <Typography sx={{color: '#282f53', fontSize:14}}>
+                Logout
+            </Typography>
             </MenuItem>
             </Menu>
-            </div>
-:
-            <NavLink className='' to={`/login`} >
-            <div  style={{border:"1px solid #183153"}} className='d-flex justify-content-evenly align-items-center rounded ms-2'>
-            <div>
-
-            <button className='btn'>
-            <AccountCircleIcon  style={{color: '#183153'}}/>
-            </button>
-            </div>
-            <div className='nav-hidder'>
-            <small  style={{color: '#183153'}} className='my-auto pe-3'>Account</small>
-            </div>
-            </div> 
+            </Box>
+            :
+            <NavLink to={`/login`} >
+                <Chip 
+                icon={<AccountCircleIcon size='large' style={{color: '#183153'}}/>}
+                sx={{ ml: {xs:1, sm:1, md:3}, display:{xs:'none',sm:'none', md:'flex'}, py:2.5, px:2 }}
+                edge="end"
+                label='Account'
+                variant="outlined"
+                />
+                <IconButton sx={{ ml: {xs:1, sm:1, md:3}, display:{xs:'flex',sm:'flex', md:'none'}, color: '#183153'}}>
+                    <AccountCircleIcon sx={{color: '#183153', fontSize:30}}/>
+                </IconButton>
+                
             </NavLink> 
             }
-        </div>
-
+    
         </Box>
-        </div>
-                            
-        </div>
-
-
-
-        </div>
-        </nav>
-
-        </div>
-            
+        </Toolbar>                 
+        </Container>
+           </AppBar>
+           </Box>  
         </div>
             {/* <BottomHeader/> */}
-    </div>
+    </>
 );
 };
 

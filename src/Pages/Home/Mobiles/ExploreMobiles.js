@@ -8,8 +8,9 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Mobile from './Mobile';
 import {Helmet} from "react-helmet";
-import { CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { CircularProgress, MenuItem, } from '@mui/material';
 import Footer from '../../../Shared/Footer/Footer';
+import TextField from '@mui/material/TextField';
 
 const ExploreMobiles = () => {
     const [categories, setCategories] = useState([]);
@@ -144,8 +145,8 @@ const handleBrandSort = ()=>{
          {
             spinner ? <div className='text-center pt-5 my-5'><CircularProgress/></div> 
             :
-            <div>
-                <div style={{position:"fixed", top: 50 ,right:0, zIndex:1, overflowX:"hidden"}}>
+            <>
+                <Box sx={{position:"fixed", top: 50 ,right:0, zIndex:1, overflowX:"hidden"}}>
                     <div className="d-flex justify-content-center align-items-center mx-auto px-3 bg-light">
                     <Box centered sx={{ maxWidth: { xs: 270, sm: 500, md: 800,lg: 1100, xl: 1400 },bgcolor: 'background.paper',  px: {xs:0, sm:0 ,md: 15},pt: 3}}>
                     <Tabs
@@ -166,25 +167,26 @@ const handleBrandSort = ()=>{
                         <Tab onClick={() => setCategories(mobiles)} label="All" />
                     </Tabs>
                     </Box>
-                <Box sx={{ minWidth: 120,pt:3,bgcolor: 'background.paper', overflow:"hidden" }}>
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
-                            <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={sorting}
-                            label="Sort By"
-                            onChange={handleSorting}
-                            >
-                            <MenuItem onClick={handleHighPrice} value={0}>High to low Price</MenuItem>
-                            <MenuItem onClick={handleLowPrice} value={1}>Low to high Price</MenuItem>
-                            <MenuItem onClick={handleBrandSort} value={2}>Sort by brand</MenuItem>
-                            <MenuItem onClick={handleNameSort} value={3}>Sort by name ({priceH?.length})</MenuItem>
-                            </Select>
-                        </FormControl>
+                <Box component="form" sx={{pt:2, bgcolor: 'background.paper', overflow:"hidden" ,'& .MuiTextField-root': { m: 1, minWidth: {xs:'20vw', sm:'20vw',md:'10vw'} }}}>
+                <TextField
+          id="filled-select-currency"
+          select
+          label='Sort By'
+          defaultValue="status"
+          value={sorting}
+          size="small"
+          onChange={handleSorting}
+        //   helperText={value? `${searchOrder?.length} order`:`Please select order status`}
+          variant='outlined'
+        >
+            <MenuItem onClick={handleHighPrice} value={0}>High to low Price</MenuItem>
+            <MenuItem onClick={handleLowPrice} value={1}>Low to high Price</MenuItem>
+            <MenuItem onClick={handleBrandSort} value={2}>Sort by brand</MenuItem>
+            <MenuItem onClick={handleNameSort} value={3}> {priceH && "Sort by name"}</MenuItem>
+        </TextField>       
                     </Box>  
                     </div>   
-                </div>
+                </Box>
 
                 <div className="container">
                 <div style={{marginTop:"9rem"}} className="row row-cols-1 row-cols-md-4 g-4">                                 
@@ -202,7 +204,7 @@ const handleBrandSort = ()=>{
                     </div>
                 </div>
                     
-            </div>
+            </>
          }
            
             <Footer/>
