@@ -12,7 +12,7 @@ const MyOrders = () => {
   const email = user?.email;
   useEffect(() => {
     let isMounted = true;
-    fetch(`https://peaceful-shore-84874.herokuapp.com/myOrders/${email}`)
+    fetch(`https://phono-server-production.up.railway.app/myOrders/${email}`)
       .then((res) => res.json())
       .then((data) => {
         if (isMounted) {
@@ -29,7 +29,7 @@ const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    fetch(`https://peaceful-shore-84874.herokuapp.com/orders`)
+    fetch(`https://phono-server-production.up.railway.app/orders`)
       .then((res) => res.json())
       .then((data) => {
         if (isMounted) {
@@ -54,7 +54,7 @@ const MyOrders = () => {
       confirmButtonText: "Yes, cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `https://peaceful-shore-84874.herokuapp.com/myOrders/${id}`;
+        const url = `https://phono-server-production.up.railway.app/myOrders/${id}`;
         fetch(url, {
           method: "DELETE",
         })

@@ -63,7 +63,7 @@ const [users] = useUser();
 /*  const [orders, setOrders] = useState([]);
 const email = user?.email;
 useEffect(() => {
-    fetch(`https://peaceful-shore-84874.herokuapp.com/myOrders/${email}`)
+    fetch(`https://phono-server-production.up.railway.app/myOrders/${email}`)
         .then((res) => res.json())
         .then((data) => setOrders(data));
 }, [email]); */

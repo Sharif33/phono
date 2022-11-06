@@ -35,7 +35,7 @@ const AddMobile = () => {
             console.log(err)
         })
  */
-        axios.post(`https://peaceful-shore-84874.herokuapp.com/mobiles`, data)
+        axios.post(`https://phono-server-production.up.railway.app/mobiles`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     

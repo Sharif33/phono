@@ -10,7 +10,7 @@ const MyOrderDetails = () => {
 
   useEffect(() => {
     let isMounted = true;
-    fetch(`https://peaceful-shore-84874.herokuapp.com/orders/${id}`)
+    fetch(`https://phono-server-production.up.railway.app/orders/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (isMounted) {

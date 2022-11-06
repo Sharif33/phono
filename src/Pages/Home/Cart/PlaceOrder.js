@@ -88,7 +88,7 @@ let tracking = "SMR-PHONO-" + traceId + trace;
     data.status = "Pending...";
 
     axios
-      .post(`https://peaceful-shore-84874.herokuapp.com/orders`, data)
+      .post(`https://phono-server-production.up.railway.app/orders`, data)
       .then((res) => {
         if (res.data.insertedId) {
           // alert('Purchase successfully.Please Check My Order');

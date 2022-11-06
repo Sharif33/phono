@@ -38,7 +38,7 @@ const Review = ({ phones }) => {
     data.image=phones?.image;
 
     axios
-      .post(`https://peaceful-shore-84874.herokuapp.com/reviews`, data)
+      .post(`https://phono-server-production.up.railway.app/reviews`, data)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire(

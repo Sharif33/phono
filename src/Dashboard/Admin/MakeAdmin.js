@@ -16,7 +16,8 @@ const MakeAdmin = () => {
     }
     const handleAdminSubmit = e => {
         const user = { email };
-        fetch(`https://peaceful-shore-84874.herokuapp.com/users/admin`, {
+        // console.log(user);
+        fetch(`https://phono-server-production.up.railway.app/users/admin`, {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${token}`,
@@ -26,8 +27,8 @@ const MakeAdmin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                if (data.acknowledged === true) {
+                // console.log(data);
+                if (data.modifiedCount) {
                     // console.log(data);
                     setSuccess(true);
                     // navigate(`/dashboard`);

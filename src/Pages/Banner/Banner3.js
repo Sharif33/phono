@@ -18,7 +18,7 @@ const Banner3 = () => {
     const [phones, setPhones] = useState([]);
 
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
+        fetch(`https://phono-server-production.up.railway.app/phones`)
             .then(res => res.json())
             .then(data => setPhones(data))
     }, [])

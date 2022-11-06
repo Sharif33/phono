@@ -45,7 +45,7 @@ const EditUser = ({openUserNow,handleClose}) => {
   const email = user.email;
     const handleAdminSubmit = e => {
         const bodyInfo={...fieldsValue,email:user.email}
-        fetch(`https://peaceful-shore-84874.herokuapp.com/users/${email}`, {
+        fetch(`https://phono-server-production.up.railway.app/users/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

@@ -51,7 +51,7 @@ const CustomerReview = ({openReviewNow, handleClose}) => {
         data.userImg=user?.photoURL;
     
         axios
-          .post(`https://peaceful-shore-84874.herokuapp.com/cReviews`, data)
+          .post(`https://phono-server-production.up.railway.app/cReviews`, data)
           .then((res) => {
             if (res.data.insertedId) {
               Swal.fire(

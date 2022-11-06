@@ -20,14 +20,14 @@ const DashboardHome = () => {
     const [offers,setOffers] = useState([]);
    
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
+        fetch(`https://phono-server-production.up.railway.app/phones`)
             .then(res => res.json())
             .then(data => setOffers(data))
     }, []);
 
      const [cReview,setCreview] = useState([]);
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/cReviews`)
+        fetch(`https://phono-server-production.up.railway.app/cReviews`)
             .then(res => res.json())
             .then(data => setCreview(data))
     }, []);
@@ -38,7 +38,7 @@ const DashboardHome = () => {
 
     useEffect(() => {
         let isMounted = true;
-        fetch(`https://peaceful-shore-84874.herokuapp.com/orders`)
+        fetch(`https://phono-server-production.up.railway.app/orders`)
             .then((res) => res.json())
             .then((data) => {
                 if(isMounted ){

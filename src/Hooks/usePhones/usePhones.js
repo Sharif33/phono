@@ -8,7 +8,7 @@ const usePhones = () => {
        
           try {
             async function callApi() {
-                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles`);
+                let data = await fetch(`https://phono-server-production.up.railway.app/mobiles`);
                 data = await data.json();
                 if(isMounted ){ 
                 setMobiles(data);

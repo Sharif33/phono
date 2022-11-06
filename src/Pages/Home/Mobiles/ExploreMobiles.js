@@ -32,7 +32,7 @@ const ExploreMobiles = () => {
     useEffect(() => {
          try {
         async function callApi() {
-            let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles`);
+            let data = await fetch(`https://phono-server-production.up.railway.app/mobiles`);
             data = await data.json();
             setMobiles(data);
             setCategories(data);
@@ -42,7 +42,7 @@ const ExploreMobiles = () => {
     catch (error) {
         console.log ('error',error);
       }
-       /*  fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
+       /*  fetch(`https://phono-server-production.up.railway.app/phones`)
             .then(res => res.json())
             .then(data => {
                 setMobiles(data);

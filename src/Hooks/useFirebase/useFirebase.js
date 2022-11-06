@@ -85,7 +85,7 @@ const useFirebase = () => {
     }, [auth])
 
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/users/${user.email}`)
+        fetch(`https://phono-server-production.up.railway.app/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
@@ -102,7 +102,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch(`https://peaceful-shore-84874.herokuapp.com/users`, {
+        fetch(`https://phono-server-production.up.railway.app/users`, {
             method: method,
             headers: {
                 'content-type': 'application/json'

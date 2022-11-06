@@ -7,7 +7,7 @@ const useCoupons = () => {
         let isMounted = true;  
           try {
             async function callApi() {
-                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/coupons`);
+                let data = await fetch(`https://phono-server-production.up.railway.app/coupons`);
                 data = await data.json();
                 if(isMounted ){ 
                 setCoupons(data);

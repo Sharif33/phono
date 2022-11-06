@@ -6,13 +6,13 @@ const ManageOffers = () => {
     const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/phones`)
+        fetch(`https://phono-server-production.up.railway.app/phones`)
             .then(res => res.json())
             .then(data => setMobiles(data))
     }, [])
 
     return (
-        <div className="container py-4">
+        <>
         <TableContainer component={Paper}>
             <Table stickyHeader aria-label="sticky table" >
                 <TableHead sx={{bgcolor: 'secondary.main'}}>
@@ -38,7 +38,7 @@ const ManageOffers = () => {
                     )}
             </Table>
         </TableContainer>
-    </div>
+    </>
     );
 };
 

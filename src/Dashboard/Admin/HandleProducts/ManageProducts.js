@@ -1,15 +1,21 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SearchIcon from '@mui/icons-material/Search';
+// const columns = ['Name','Added by','Price','ID','Edit','Action'];
 
 const ManageProducts = () => {
     const [mobiles, setMobiles] = useState([]);
+    // console.log(mobiles);
 
     useEffect(() => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/mobiles`)
+        fetch(`https://phono-server-production.up.railway.app/mobiles`)
             .then(res => res.json())
-            .then(data => setMobiles(data))
+            .then(data =>{
+               setMobiles(data);
+               setSearchProducts(data); 
+            } )
     }, [])
 
     // DELETE products
@@ -26,7 +32,7 @@ const ManageProducts = () => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `https://peaceful-shore-84874.herokuapp.com/mobiles/${id}`
+            const url = `https://phono-server-production.up.railway.app/mobiles/${id}`
             fetch(url, {
                 method: 'DELETE',
             })
@@ -42,30 +48,56 @@ const ManageProducts = () => {
                         const remainingProducts = mobiles.filter(mobile => mobile._id !== id);
                         // console.log(remainingOrders);
                         setMobiles(remainingProducts);
+                        setSearchProducts(remainingProducts);
                     }
                 })
         }
     });
     }
+
+    //   Search
+    const [searchProducts, setSearchProducts] = useState([]);
+    // console.log(searchProducts);
+
+    const handleSearch = (event) => {
+      const searchWord = event.target.value;
+      const newSearch = mobiles?.filter((value) => {
+        return value.name.toLowerCase().includes(searchWord.toLowerCase()) || value.brand.includes(searchWord.toLowerCase()) ; 
+      });
+  setSearchProducts(newSearch);
+    };
     return (
-        <div className="container py-4">
-        <TableContainer component={Paper}>
+        <>
+        <div className="container">
+           <Box>
+            <input style={{width:"25vw", border: "1px solid #e9edf4", borderRadius: "7px"}}
+                className='bg-light p-2 mb-2'
+                type="search"
+                placeholder="Search by name or brand"
+                // value={wordEntered}
+                onChange={handleSearch}
+                /> 
+                <SearchIcon style={{color: "#ced4da"}}/>
+        </Box>
+        <Paper sx={{overflow: 'hidden' }}>
+        <TableContainer  sx={{ maxHeight: 600}}>
             <Table stickyHeader aria-label="sticky table" >
-                <TableHead sx={{bgcolor: 'secondary.main'}}>
-                    <TableRow>
-                        <TableCell sx={{ color: 'secondary.main'}}>Name ({mobiles?.length} mobile)</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}}>Added by</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Price</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">ID</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Edit</TableCell>
-                        <TableCell sx={{ color: 'secondary.main'}} align="center">Action</TableCell>
-                    </TableRow>
-                </TableHead>
+            <TableHead sx={{bgcolor: 'secondary.main'}}>
+            <TableRow>
+                <TableCell sx={{ color: 'secondary.main'}}>Name ({mobiles?.length} mobile)</TableCell>
+                <TableCell sx={{ color: 'secondary.main'}}>Added by</TableCell>
+                <TableCell sx={{ color: 'secondary.main'}} align="center">Price</TableCell>
+                <TableCell sx={{ color: 'secondary.main'}} align="center">ID</TableCell>
+                <TableCell sx={{ color: 'secondary.main'}} align="center">Edit</TableCell>
+                <TableCell sx={{ color: 'secondary.main'}} align="center">Action</TableCell>
+            </TableRow>
+            </TableHead>
                 <TableBody>
-                    {mobiles.map((mobile) => (
+                    {searchProducts?.map((mobile) => (
                         <TableRow hover
+                            tabIndex={-1}
                             key={mobile._id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            sx={{ border: 0 }}
                         >
                             <TableCell component="th" scope="row">
                                 {mobile.name}
@@ -79,8 +111,12 @@ const ManageProducts = () => {
                     ))}
                 </TableBody>
             </Table>
-        </TableContainer>
-    </div>
+        </TableContainer> 
+        </Paper>
+        </div>     
+        
+        </>
+        
     );
 };
 

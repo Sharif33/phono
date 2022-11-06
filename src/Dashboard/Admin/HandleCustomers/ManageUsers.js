@@ -6,7 +6,7 @@ const [allUsers,setAllUsers] = useState([]);
 // console.log(allUsers);
     useEffect(() => {
         let isMounted = true;
-        fetch(`https://peaceful-shore-84874.herokuapp.com/users`)
+        fetch(`https://phono-server-production.up.railway.app/users`)
             .then((res) => res.json())
             .then((data) => {
                 if(isMounted ){

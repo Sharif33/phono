@@ -35,7 +35,7 @@ const SpecialDetails = () => {
     try {
       async function callApi() {
         let data = await fetch(
-          `https://peaceful-shore-84874.herokuapp.com/phones/${id}`
+          `https://phono-server-production.up.railway.app/phones/${id}`
         );
         data = await data.json();
         setPhones(data);

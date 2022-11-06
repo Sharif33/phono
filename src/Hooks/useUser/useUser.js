@@ -9,7 +9,7 @@ const useUser = () => {
 
     useEffect(() => {
         
-        fetch(`https://peaceful-shore-84874.herokuapp.com/users/${user?.email}`)
+        fetch(`https://phono-server-production.up.railway.app/users/${user?.email}`)
             .then((res) => res.json())
             .then((data) => setUsers([data]));
     }, [user?.email]);
@@ -27,7 +27,7 @@ const useUser = () => {
     useEffect(() => {
         try {
             async function callApi() {
-                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/usersEmail/${user.email}`);
+                let data = await fetch(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`);
                 data = await data.json();
                 setUsers([data])
             }
@@ -45,7 +45,7 @@ export default useUser;
 
 /* export const useUser = (email, setData, setIsLoading) => {
     setIsLoading(true)
-    fetch(`https://peaceful-shore-84874.herokuapp.com/users/${email}`)
+    fetch(`https://phono-server-production.up.railway.app/users/${email}`)
         .then(res => res.json())
         .then(data => {
             localStorage.setItem("userDetails", JSON.stringify(data));

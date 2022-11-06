@@ -18,7 +18,7 @@ import EditOffer from './EditOffer';
 const ApprovalOffer = ({mobile, mobiles, setMobiles}) => {
     // Approved by Admin
     const handleApproval = (id) => {
-        fetch(`https://peaceful-shore-84874.herokuapp.com/phones`, {
+        fetch(`https://phono-server-production.up.railway.app/phones`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ const ApprovalOffer = ({mobile, mobiles, setMobiles}) => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `https://peaceful-shore-84874.herokuapp.com/phones/${id}`
+            const url = `https://phono-server-production.up.railway.app/phones/${id}`
             fetch(url, {
                 method: 'DELETE',
             })

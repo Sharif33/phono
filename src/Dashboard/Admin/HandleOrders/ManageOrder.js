@@ -33,26 +33,29 @@ const columns = [
 
 const ManageOrder = () => {
     const [orders, setOrders] = useState([]);
-    const allOrdrs = orders?.sort((a,b)=> new Date(a.date) < new Date(b.date) ? 1 : -1);
+    const allOrdrs = orders?.reverse().sort((a,b)=> new Date(a.date) < new Date(b.date) ? 1 : -1);
     // console.log(allOrdrs);
     const [status, setStatus] = useState('');
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = React.useState('');
     const statuses = ['Processing','Packed','Shipped','Delivered','Cancel'];
     const filterStatuses = ['Pending...','Processing','Packed','Shipped','Delivered','Cancel'];
 
     const handleStatus = (e,newValue) => {
         setStatus(e.target.value);
-        setValue(newValue);
+      
     }
 
    
+  const handleChange = (e) => {
+      setValue(e.target.value);
+  };
   /* const handleChange = (event, newValue) => {
-    
+      setValue(newValue);
   }; */
 
     useEffect(() => {
         let isMounted = true;
-        fetch(`https://peaceful-shore-84874.herokuapp.com/orders`)
+        fetch(`https://phono-server-production.up.railway.app/orders`)
             .then((res) => res.json())
             .then((data) => {
                 if(isMounted ){
@@ -81,7 +84,7 @@ const ManageOrder = () => {
             if (result.isConfirmed) 
          {
 
-            fetch(`https://peaceful-shore-84874.herokuapp.com/updateStatus/${id}`, {
+            fetch(`https://phono-server-production.up.railway.app/updateStatus/${id}`, {
                 method: "PUT",
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify({ status })
@@ -99,6 +102,7 @@ const ManageOrder = () => {
                        
                         setOrders(orders);
                         setStatus(status);
+                        // setValue(status);
                     }
                 })
         }
@@ -121,7 +125,7 @@ const ManageOrder = () => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `https://peaceful-shore-84874.herokuapp.com/orders/${id}`
+            const url = `https://phono-server-production.up.railway.app/orders/${id}`
             fetch(url, {
                 method: 'DELETE',
             })
@@ -199,10 +203,7 @@ const ManageOrder = () => {
     }
   
     return (
-        <div className="container py-2">
-            
-              
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <div style={{overflowX:"hidden"}} className="container py-2">
             <div className='d-flex justify-content-evenly align-items-center py-1'>
               <div>
                 <input style={{width:"25vw", border: "1px solid #e9edf4", borderRadius: "7px"}}
@@ -212,20 +213,18 @@ const ManageOrder = () => {
                 // value={wordEntered}
                 onChange={handleFilter}
                 /> 
-                <span className="searchIcon">
                     <SearchIcon style={{color: "#ced4da"}}/>
-                </span>
             </div>
             <div>
     <Box  component="form" sx={{'& .MuiTextField-root': { m: 1, width: '20vw' },}} noValidate autoComplete="off">
-            <TextField
+        <TextField
           id="filled-select-currency"
           select
-          label={status ? `${searchOrder?.length} order(s)`:`sort by status`}
+          label={value ? `${searchOrder?.length} order(s)`:`sort by status`}
           defaultValue="status"
-          value={status}
+          value={value}
           size="small"
-          onChange={handleStatus}
+          onChange={handleChange}
         //   helperText={value? `${searchOrder?.length} order`:`Please select order status`}
           variant='outlined'
         >
@@ -238,11 +237,16 @@ const ManageOrder = () => {
             }
             <MenuItem onClick={filterPayment} value='Paid'>Paid</MenuItem>
             <MenuItem onClick={()=>filterUnPayment('Unpaid')} value='Unpaid'>Unpaid</MenuItem>
+            <MenuItem onClick={() => setSearchOrder(allOrdrs)} value="All">All</MenuItem>
         </TextField>
     </Box>  
             </div>  
-            </div>
-        <TableContainer sx={{ maxHeight: "80vh" }}>
+            </div> 
+         {
+                orders?.length === 0 ? <CircularProgress align="center"/>
+                    :     
+        <Paper sx={{ overflow: 'hidden' }}> 
+         <TableContainer sx={{ maxHeight: "80vh" }}>
             <Table stickyHeader aria-label="sticky table" >
                 <TableHead >
                     <TableRow>
@@ -257,10 +261,9 @@ const ManageOrder = () => {
                         ))}
                     </TableRow>
                 </TableHead>
+                
                 <TableBody>
                     {
-                    orders?.length === 0 ? <CircularProgress align="center"/>
-                    :
                     searchOrder?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order) => (
                         <TableRow hover
                             key={order._id}
@@ -312,7 +315,10 @@ const ManageOrder = () => {
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
-        </Paper>
+        </Paper>            
+            }
+           
+       
     </div>
     );
 };

@@ -53,8 +53,7 @@ function Dashboard(props) {
     if (isLoading) { return <CircularProgress /> }
     
     const drawer = (
-        <div>
-            
+        <>  
             {
                 user?.email && <Box sx={{
                     display: 'flex',
@@ -129,7 +128,7 @@ function Dashboard(props) {
             </Box>
             }
            
-        </div>
+        </>
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -219,7 +218,7 @@ function Dashboard(props) {
             >
                 
                 <Toolbar />
-                 <Outlet></Outlet>
+                 <Outlet/>
             </Box>
            
         </Box>

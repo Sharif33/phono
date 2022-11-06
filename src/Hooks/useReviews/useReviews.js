@@ -8,7 +8,7 @@ const useReviews = () => {
         if(isMounted ){
          try {
             async function callApi() {
-                let data = await fetch(`https://peaceful-shore-84874.herokuapp.com/reviews`);
+                let data = await fetch(`https://phono-server-production.up.railway.app/reviews`);
                 data = await data.json();
                 setReviews(data)
             }
