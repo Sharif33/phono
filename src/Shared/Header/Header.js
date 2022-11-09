@@ -1,5 +1,5 @@
 
-import { Avatar, Chip, Toolbar, Typography } from '@mui/material';
+import { Avatar, Chip, List, Toolbar, Typography } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -31,6 +31,7 @@ import useUser from '../../Hooks/useUser/useUser';
 import { CiCircleInfo,CiGrid41,CiUser } from "react-icons/ci";
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
+import ListItem from '@mui/material/ListItem';
 // import logo from '../../../src/images/phono-logo.png';
 
 const Header = () => {
@@ -79,8 +80,7 @@ useEffect(() => {
 
 return (
 <>
-    <div style={{marginBottom:"60px"}}>
-    <Box sx={{ flexGrow: 1 }}>         
+    <Box sx={{ flexGrow: 1,marginBottom:"60px" }}>         
     <AppBar sx={{background:"rgba(255, 255, 255, 0.7)",backdropFilter: "blur(20px)",boxShadow:0,}} position="fixed">
       <Container maxWidth='xl'>     
                 <Toolbar sx={{}}>
@@ -97,14 +97,13 @@ return (
                         anchor='left'
                         open={isDrawerOpen}
                         onClose={() => setIsDrawerOpen(false)}>
-                        <Box  width='250px' role='presentation' textAlign='center'>
-                            <div className="p-2 text-end">
-                                <button className='btn text-danger' onClick={() => setIsDrawerOpen(false)}><CloseIcon/></button>
-                            </div>
-                        <ul className="navbar-nav">
-                            <li className="nav-item small-search">
-                            
-                            <NavLink className='btn btn-hover w-100 mb-2 text-start' style={{textDecoration:"none", }} to="/search">
+                        <Box  width='250px' role='presentation' textAlign='right'>
+                            <IconButton color="error" sx={{m:1}}  onClick={() => setIsDrawerOpen(false)}>
+                                <CloseIcon color='error'/>
+                            </IconButton>
+                        <List>
+                            <ListItem sx={{display:{xs:'flex', sm:'flex', md:'none', xl:'none'}}} disablePadding>     
+                            <NavLink className='py-2 btn-hover w-100 mb-2 text-start' style={{textDecoration:"none", }} to="/search">
                                 <input style={{width:"50vw", border: "1px solid #e9edf4", borderRadius: "7px"}}
                                 className='mx-1 p-2'
                                 type="search"
@@ -112,22 +111,21 @@ return (
                                 />
                                 <span className="searchIcon">
                                 <SearchIcon  style={{color:"#183153"}}/> </span>
-                                </NavLink>
-                            
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/"><HomeIcon className='mx-3'/> Home</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/mobiles"><ShoppingBagIcon className='mx-3'/> Shop</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} href="#contact" to="/contact"><MailIcon className='mx-3'/> Contact</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className='btn btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/about"><GroupsIcon className='mx-3'/> About</NavLink>
-                            </li>
-                            </ul>
+                                </NavLink>                           
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <NavLink className='py-2 btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/"><HomeIcon className='mx-3'/> Home</NavLink>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <NavLink className='py-2 btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/mobiles"><ShoppingBagIcon className='mx-3'/> Shop</NavLink>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <NavLink className='py-2 btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} href="#contact" to="/contact"><MailIcon className='mx-3'/> Contact</NavLink>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <NavLink className='py-2 btn-hover w-100 mb-2 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to="/about"><GroupsIcon className='mx-3'/> About</NavLink>
+                            </ListItem>
+                            </List>
                         </Box>
                     </Drawer>
                       
@@ -135,12 +133,14 @@ return (
                          {/* <NavLink to="/home">
                             <img className='img-fluid' src={logo} alt="logo" />
                          </NavLink> */}
-                         <NavLink className="fw-bold fs-3 text-warning" to="/home">PH<span className="text-danger">|O|</span>NO</NavLink>
+                         <NavLink style={{fontFamily:'Rubik'}} className="fw-bold fs-3 text-blue" to="/home">PH<span className="text-pink">|O|</span>NO</NavLink>
                     </Box>   
                     <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{display:{xs:'none', sm:'none', md:'flex', xl:'flex'}, my:'auto'}}>
                         <div className='nav-hidder my-auto'>
-                                <SearchNav/>      
-                        </div>
+                            <SearchNav/>      
+                        </div> 
+                    </Box>
                     <Box sx={{ flexGrow: 1 }} />        
                     
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -276,7 +276,7 @@ return (
         </Container>
            </AppBar>
            </Box>  
-        </div>
+
             {/* <BottomHeader/> */}
     </>
 );

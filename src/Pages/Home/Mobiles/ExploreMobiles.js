@@ -11,6 +11,7 @@ import {Helmet} from "react-helmet";
 import { CircularProgress, MenuItem, } from '@mui/material';
 import Footer from '../../../Shared/Footer/Footer';
 import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 
 const ExploreMobiles = () => {
     const [categories, setCategories] = useState([]);
@@ -146,50 +147,56 @@ const handleBrandSort = ()=>{
             spinner ? <div className='text-center pt-5 my-5'><CircularProgress/></div> 
             :
             <>
-                <Box sx={{position:"fixed", top: 50 ,right:0, zIndex:1, overflowX:"hidden"}}>
-                    <div className="d-flex justify-content-center align-items-center mx-auto px-3 bg-light">
-                    <Box centered sx={{ maxWidth: { xs: 270, sm: 500, md: 800,lg: 1100, xl: 1400 },bgcolor: 'background.paper',  px: {xs:0, sm:0 ,md: 15},pt: 3}}>
-                    <Tabs
-                        value={value}
-                        onChange={handleChange}
-                        variant="scrollable"
-                        scrollButtons
-                        allowScrollButtonsMobile
-                        aria-label="scrollable force tabs example"
-                    >
-                        <Tab onClick={() => setCategories(mobiles)} label="All" />
-                        {
-                            brands.map(brand=>
-                                <Tab onClick={() => filterResult(brand)} label={brand} />
-                                )
-                        }
-                         
-                        <Tab onClick={() => setCategories(mobiles)} label="All" />
-                    </Tabs>
-                    </Box>
-                <Box component="form" sx={{pt:2, bgcolor: 'background.paper', overflow:"hidden" ,'& .MuiTextField-root': { m: 1, minWidth: {xs:'20vw', sm:'20vw',md:'10vw'} }}}>
-                <TextField
-          id="filled-select-currency"
-          select
-          label='Sort By'
-          defaultValue="status"
-          value={sorting}
-          size="small"
-          onChange={handleSorting}
-        //   helperText={value? `${searchOrder?.length} order`:`Please select order status`}
-          variant='outlined'
-        >
-            <MenuItem onClick={handleHighPrice} value={0}>High to low Price</MenuItem>
-            <MenuItem onClick={handleLowPrice} value={1}>Low to high Price</MenuItem>
-            <MenuItem onClick={handleBrandSort} value={2}>Sort by brand</MenuItem>
-            <MenuItem onClick={handleNameSort} value={3}> {priceH && "Sort by name"}</MenuItem>
-        </TextField>       
-                    </Box>  
-                    </div>   
+                <Box sx={{background:"rgba(255, 255, 255, 0.7)",backdropFilter: "blur(20px)",position:"fixed", top: 50 ,right:0, zIndex:1, overflowX:"hidden"}}>
+                <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={0}>
+        <Grid item xs={12} md={10}>
+            <Box centered sx={{ maxWidth: { xs: "100vw", sm:"100vw" },  px: {xs:0, sm:0 ,md: 15},pt: 3}}>
+                                <Tabs
+                                    value={value}
+                                    onChange={handleChange}
+                                    variant="scrollable"
+                                    scrollButtons
+                                    allowScrollButtonsMobile
+                                    aria-label="scrollable force tabs example"
+                                >
+                                    <Tab onClick={() => setCategories(mobiles)} label="All" />
+                                    {
+                                        brands.map(brand=>
+                                            <Tab onClick={() => filterResult(brand)} key={brand} label={brand} />
+                                            )
+                                    }
+                                    
+                                    <Tab onClick={() => setCategories(mobiles)} label="All" />
+                                </Tabs>
+                                </Box>
+        </Grid>
+        <Grid item xs={12} md={2}>
+                <Box component="form" sx={{pt:2,textAlign:'center',  overflow:"hidden" ,'& .MuiTextField-root': { m: 1, minWidth: {xs:'70vw', sm:'70vw',md:'13vw'} }}}>
+                        <TextField
+                        id="filled-select-currency"
+                        select
+                        label='Sort By'
+                        defaultValue="status"
+                        value={sorting}
+                        size="small"
+                        onChange={handleSorting}
+                        //   helperText={value? `${searchOrder?.length} order`:`Please select order status`}
+                        variant='outlined'
+                        >
+                            <MenuItem onClick={handleHighPrice} value={0}>High to low Price</MenuItem>
+                            <MenuItem onClick={handleLowPrice} value={1}>Low to high Price</MenuItem>
+                            <MenuItem onClick={handleBrandSort} value={2}>Sort by brand</MenuItem>
+                            <MenuItem onClick={handleNameSort} value={3}> {priceH && "Sort by name"}</MenuItem>
+                        </TextField>       
+                                    </Box>
+        </Grid>
+      </Grid>
+    </Box>  
                 </Box>
 
-                <div className="container">
-                <div style={{marginTop:"9rem"}} className="row row-cols-1 row-cols-md-4 g-4">                                 
+                <Box sx={{mt:{md:"9rem", xs:'13rem'}}} className="container">
+                <div className="row row-cols-1 row-cols-md-4 g-4">                                 
                                                
                                                 {
                                                     categories?.map(mobile => <Mobile
@@ -202,7 +209,7 @@ const handleBrandSort = ()=>{
                                                 }
                                              
                     </div>
-                </div>
+                </Box>
                     
             </>
          }

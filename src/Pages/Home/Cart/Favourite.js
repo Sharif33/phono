@@ -26,7 +26,7 @@ const Favourite = () => {
           
            <Header/>
         {
-            addToFvrt?.length ? <div className="container">
+            addToFvrt?.length ? <div style={{minHeight:"100vh"}} className="container">
                 <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
            {
                addToFvrt?.map((mobile)=>(
@@ -85,7 +85,7 @@ const Favourite = () => {
            </div>
            </div> 
            : 
-           <div style={{height:"100vh"}} className='text-center pt-5'>
+           <div  style={{minHeight:"100vh"}} className='text-center pt-5'>
             <div className='d-flex justify-content-center'>
            <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_gctc76jz.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
            </div>

@@ -1,16 +1,19 @@
-import { Container, Typography, TextField, Button, CircularProgress, Alert, Box } from '@mui/material';
+import { Container, Typography, TextField, Button, CircularProgress, Alert, Box, InputAdornment, IconButton, Breadcrumbs, CssBaseline } from '@mui/material';
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
-import Header from '../../Shared/Header/Header';
-import Footer from '../../Shared/Footer/Footer';
+/* import Header from '../../Shared/Header/Header';
+import Footer from '../../Shared/Footer/Footer'; */
 import {Helmet} from "react-helmet";
 import gIcon from '../../../src/images/googleIcon.png';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const [loginData, setLoginData] = useState({});
+    const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const { user, registerUser, isLoading, authError, signInWithGoogle } = useAuth();
@@ -41,28 +44,30 @@ const Register = () => {
                 <title>Phono | Register</title>
                 <link rel="canonical" href="/register" />
             </Helmet>
-            <Header></Header>
             <Container >
+            <CssBaseline />
                 <Box>
-                    <Grid container >
-                    <Grid className="text-center" item xs={12} md={6}>
-                        
-
-                <Box className="py-4 my-5 shadow-sm rounded ">
-            <LockOutlinedIcon sx={{ m: 1, color: 'secondary.main' }}/>
-            <Typography variant="h5" gutterBottom>Create an account</Typography>
+                <Breadcrumbs sx={{ mt: 5}} aria-label="breadcrumb">
+                <Link className='text-secondary'  to="/"> Home </Link>
+                <Typography color="primary">Register</Typography>
+                </Breadcrumbs>
+                    <Grid sx={{mt:3, maxHeight:'100vh', overflowX:'hidden'}}  container >
+                    <Grid sx={{alignItems: 'center', textAlign:'center' }} item xs={12} md={6}>
+                <Box className="py-3 shadow-sm rounded ">
+                    <LockOutlinedIcon sx={{ m: 1, color: 'secondary.main' }}/>
+                    <Typography variant="h5" >Create an account</Typography>
 
                         {!isLoading && 
                                 <form onSubmit={handleLoginSubmit}>
                                     <TextField
-                                        sx={{ width: '75%', m: 1 }}
+                                        sx={{ width: '85%', m: 1 }}
                                         id="outlined-basic3"
                                         label="Your Name"
                                         name="name"
                                         onBlur={handleOnBlur}
                                         variant="outlined" />
                                     <TextField
-                                        sx={{ width: '75%', m: 1 }}
+                                        sx={{ width: '85%', m: 1 }}
                                         id="outlined-basic4"
                                         label="Your Email"
                                         name="email"
@@ -70,26 +75,42 @@ const Register = () => {
                                         onBlur={handleOnBlur}
                                         variant="outlined" />
                                     <TextField
-                                        sx={{ width: '75%', m: 1 }}
+                                        sx={{ width: '85%', m: 1 }}
                                         id="outlined-basic5"
                                         label="Password"
-                                        type="password"
+                                        type={showPass ? "text" : "password"}
                                         name="password"
                                         onBlur={handleOnBlur}
+                                        InputProps={{
+                                    endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton color={showPass ? 'info' : 'inherit'} onClick={()=>setShowPass(!showPass)} sx={{ p: '10px'}} aria-label="password">
+                                    {showPass ? <Visibility /> : <VisibilityOff/>}
+                                    </IconButton>
+                                    </InputAdornment>
+                                    ),
+                                }}
                                         variant="outlined" />
                                     <TextField
-                                        sx={{ width: '75%', m: 1 }}
+                                        sx={{ width: '85%', m: 1 }}
                                         id="outlined-basic6"
                                         label="Confirm Password"
-                                        type="password"
+                                        type={showPass ? "text" : "password"}
                                         name="password2"
                                         onBlur={handleOnBlur}
+                                        InputProps={{
+                                    endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton color={showPass ? 'info' : 'inherit'} onClick={()=>setShowPass(!showPass)} sx={{ p: '10px'}} aria-label="password">
+                                    {showPass ? <Visibility /> : <VisibilityOff/>}
+                                    </IconButton>
+                                    </InputAdornment>
+                                    ),
+                                }}
                                         variant="outlined" />
 
-                                    <Button sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Register</Button>
-                                    <NavLink
-                                        style={{ textDecoration: 'none' }}
-                                        to="/login">
+                                    <Button sx={{ width: '85%', m: 1 }} type="submit" variant="contained">Register</Button>
+                                    <NavLink to="/login">
                                         <Button variant="text">Already Registered? Please Login</Button>
                                     </NavLink>
                                 </form>}
@@ -101,7 +122,7 @@ const Register = () => {
                                 <button className='btn p-0 pe-3 border btn-light bg-cart' onClick={handleGoogleSignIn}>
                                     <span><img className='img-fluid' src={gIcon} alt="GoogleIcon" /></span>
                                     Sign In with google</button>
-            </Box>
+                </Box>
                         
                     </Grid>
                     <Grid className="p-4 text-center rounded nav-hidder" item xs={12} md={6}>
@@ -111,7 +132,6 @@ const Register = () => {
                 </Box>
                 
             </Container>
-            <Footer/>
         </>
     );
 };

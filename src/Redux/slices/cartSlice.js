@@ -115,17 +115,17 @@ const cartSlice = createSlice({
         decrement: (state,{ payload }) => {
             const itemIndex = state.addToCart.findIndex(item => item._id === payload._id)
             
-            if (state.addToCart[itemIndex].cartQuantity > 0){
+            if (state.addToCart[itemIndex].cartQuantity > 1){
                state.addToCart[itemIndex].cartQuantity -= 1;
                
-               if(state.addToCart[itemIndex].cartQuantity <= 0){
+              /*  if(state.addToCart[itemIndex].cartQuantity <= 0){
                 const newItems = state.addToCart.filter(item => item._id !== payload._id);
                 state.addToCart = newItems;
                 toast.error(`${payload.name} remove from cart`, {
                     position: "bottom-left",
                 });
                 localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));
-            }
+            } */
             }
            
             localStorage.setItem("addedToCart", JSON.stringify(state.addToCart));

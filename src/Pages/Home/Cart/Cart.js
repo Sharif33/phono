@@ -1,6 +1,6 @@
 // import React, {useContext} from 'react';
 import React, {useEffect} from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import { IconButton, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, getTotal, increment, removeFromCart } from '../../../Redux/slices/cartSlice';
 import { addToFvrt, removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
@@ -37,7 +37,7 @@ const Cart = () => {
             </Helmet>
            <Header/>
            {
-               addToCart.length ? <div className="container-lg py-4">
+               addToCart.length ? <div  style={{minHeight:"100vh"}} className="container-lg py-4">
                    <div className='text-center my-4'>
                        <h1> <RiShoppingBag3Fill style={{color:"#183153"}}/> <span className='text-secondary fw-bold'> {addToCart?.length}</span> item(s)</h1>
                        <h1> <span style={{color:"#183153"}} className="fw-bold">Tk</span> <span className='text-secondary'> {numberFormat(cartTotal+shipping+tax).slice(3)}</span></h1>
@@ -113,10 +113,31 @@ const Cart = () => {
                                     <TableCell sx={{border: '0px'}} align="center">
                                     <div className='d-flex justify-content-evenly'>
                                         {
-                                            toFvrt?.addToFvrt.find((ft)=> ft?._id === mobile._id ) ? <button onClick={() => dispatch(removeFromFvrt(mobile))} className='btn text-pink border-0 rounded'><MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/> </button> : <button onClick={() => dispatch(addToFvrt(mobile))} className='btn border-0 rounded'><MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1 text-navi"/></button>
+                                            toFvrt?.addToFvrt.find((ft)=> ft?._id === mobile._id ) ? 
+                                            <IconButton 
+                                            size='small'
+                                            onClick={() => dispatch(removeFromFvrt(mobile))} 
+                                            color='warning'
+                                            >
+                                                <MdOutlineFavorite title='Remove from Favourite' className="fs-3 p-1"/>
+                                            </IconButton>
+                                            : 
+                                            <IconButton 
+                                            size='small'
+                                            onClick={() => dispatch(addToFvrt(mobile))} 
+                                            color='warning'
+                                            >
+                                                <MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1"/>
+                                            </IconButton>
                                         }
 
-                            <button onClick={() => dispatch(removeFromCart(mobile))} className='btn border-0 rounded'><RiDeleteBin5Fill title='Remove From Cart' className='fs-3 p-1 text-pink'/></button>
+                            <IconButton 
+                            onClick={() => dispatch(removeFromCart(mobile))} 
+                            size='small'
+                            color='error'
+                            >
+                                <RiDeleteBin5Fill title='Remove From Cart' className='fs-3 p-1 text-pink'/>
+                            </IconButton>
                 </div>
                                     </TableCell>
                                    {/*  <TableCell sx={{border: '0px'}} align="center">{numberFormat(mobile.price).slice(3,-3)}	&#x9F3;</TableCell>
@@ -174,7 +195,7 @@ const Cart = () => {
               
         </div>
         : 
-        <div style={{height:"100vh"}} className='text-center pt-5'>
+        <div style={{minHeight:"100vh"}} className='text-center pt-5'>
             {/* <img src={emptyBag} alt="" className="img-fluid p-3" /> <br /> <br /> */}
             <div className="d-flex justify-content-center p-3">
              <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_3VDN1k.json"  background="transparent"  speed="4"  style={{width:"20rem"}}  loop  autoplay></lottie-player>   

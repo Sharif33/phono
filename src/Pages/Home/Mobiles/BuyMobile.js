@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../Redux/slices/cartSlice';
 import { addToFvrt } from "../../../Redux/slices/fvrtSlice";
 import { numberFormat } from '../../../Shared/numberFormat';
-import { Fade } from '@mui/material';
+import { Fade, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import ShareProduct from '../../../Shared/ShareProduct';
@@ -87,7 +87,7 @@ const BuyMobile = ({openBuyNow,handleClose,mobile}) => {
                 <Fade in={openBuyNow}>
                 <Box sx={style}>
                   <div style={{marginTop:"-1.8rem",marginRight:"-1.8rem"}} className="text-end">
-                    <button onClick={handleClose} className='btn text-danger'><CloseIcon/></button>
+                    <IconButton onClick={handleClose} color='error'><CloseIcon/></IconButton>
                   </div>
                   <div className="row m-auto">
                     <div className="col-md-5 col-sm-12 m-auto">

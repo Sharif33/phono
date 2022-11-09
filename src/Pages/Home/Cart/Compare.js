@@ -8,7 +8,7 @@ import { addToFvrt } from '../../../Redux/slices/fvrtSlice';
 import {Helmet} from "react-helmet";
 import Footer from '../../../Shared/Footer/Footer';
 import { MdAddShoppingCart,MdFavoriteBorder,MdDelete } from "react-icons/md";
-import { Box, Rating } from "@mui/material";
+import { Box, IconButton, Rating } from "@mui/material";
 import { numberFormat } from "../../../Shared/numberFormat";
 import './Compare.css';
 
@@ -25,12 +25,10 @@ const Compare = () => {
                 <link rel="canonical" href="/compare" />
             </Helmet>
             <Header/>
-
-            {
-                addToCompare.length ? <div className='container py-4'>
-                        <div className="tableContainer">
-
- 
+{
+ addToCompare.length ?              
+<div style={{minHeight:"100vh"}} className='compareTable container py-4'>
+<div className="tableContainer">
     <table>
         <thead>
          <tr>
@@ -220,29 +218,29 @@ const Compare = () => {
             <th scope="row" className="rowHeader">Actions</th>
             <td> 
                 <div className='d-flex justify-content-evenly'>
-                    <button onClick={() => dispatch(addToCart(item[0]))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> 
+                    <IconButton onClick={() => dispatch(addToCart(item[0]))}> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </IconButton> 
 
-                    <button onClick={() => dispatch(addToFvrt(item[0]))} className='btn btn-cart border-0 my-2 rounded'> <MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1"/> </button>
+                    <IconButton onClick={() => dispatch(addToFvrt(item[0]))}> <MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1"/> </IconButton>
 
-                    <button onClick={() => dispatch(removeFromCompare(item[0]))} className='btn btn-cart border-0 my-2 rounded'><MdDelete className='fs-3 p-1 text-danger'/></button>
+                    <IconButton color='error' onClick={() => dispatch(removeFromCompare(item[0]))}><MdDelete className='fs-3 p-1'/></IconButton>
                 </div>
             </td>
             {item[1] && <td>
             <div className='d-flex justify-content-evenly'>
-                    <button onClick={() => dispatch(addToCart(item[1]))} className='btn btn-cart border-0 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> 
+                    <IconButton onClick={() => dispatch(addToCart(item[1]))} > <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </IconButton> 
 
-                    <button onClick={() => dispatch(addToFvrt(item[1]))} className='btn btn-cart border-0 rounded'> <MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1"/> </button>
+                    <IconButton onClick={() => dispatch(addToFvrt(item[1]))} > <MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1"/> </IconButton>
 
-                    <button onClick={() => dispatch(removeFromCompare(item[1]))} className='btn btn-cart border-0 rounded'><MdDelete title='Remove From Compare' className='fs-3 p-1 text-danger'/></button>
+                    <IconButton color='error' onClick={() => dispatch(removeFromCompare(item[1]))} ><MdDelete title='Remove From Compare' className='fs-3 p-1'/></IconButton>
                 </div>
             </td>}
             {item[2] && <td>
             <div className='d-flex justify-content-evenly'>
-                    <button onClick={() => dispatch(addToCart(item[2]))} className='btn btn-cart border-0 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </button> 
+                    <IconButton onClick={() => dispatch(addToCart(item[2]))} > <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> </IconButton> 
 
-                    <button onClick={() => dispatch(addToFvrt(item[2]))} className='btn btn-cart border-0 rounded'> <MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1"/> </button>
+                    <IconButton onClick={() => dispatch(addToFvrt(item[2]))} > <MdFavoriteBorder title='Add To Favourite' className="fs-3 p-1"/> </IconButton>
 
-                    <button onClick={() => dispatch(removeFromCompare(item[2]))} className='btn btn-cart border-0 rounded'><MdDelete title='Remove From Compare' className='fs-3 p-1 text-danger'/></button>
+                    <IconButton color='error' onClick={() => dispatch(removeFromCompare(item[2]))} ><MdDelete title='Remove From Compare' className='fs-3 p-1'/></IconButton>
                 </div>
             </td>}
          </tr>
@@ -252,7 +250,7 @@ const Compare = () => {
       
             </div>
             : 
-            <div style={{height:"100vh"}} className='text-center pt-5'>
+            <div  style={{minHeight:"100vh"}} className='text-center pt-5'>
                 <div className='d-flex justify-content-center'>
                <lottie-player src="https://assets9.lottiefiles.com/private_files/lf30_gctc76jz.json" background="transparent" speed="1" style={{ width: "20rem" }} loop autoplay></lottie-player>
                </div>

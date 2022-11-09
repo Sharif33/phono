@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { IconButton, Typography } from '@mui/material';
+import { IconButton, InputBase, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { CheckOutlined, DeleteOutline } from '@mui/icons-material';
 import TextField from '@mui/material/TextField';
@@ -18,7 +18,7 @@ import Box from '@mui/material/Box';
 // import Tab from '@mui/material/Tab';
 
 const columns = [
-    { id: 'phone',  label: 'Phone', maxWidth: 100, color:"#fe3c47" },
+    { id: 'phone',  label: 'Phone', maxWidth: 100, },
     { id: 'date', label: 'date', maxWidth: 100 },
     { id: 'id', label: 'ID', maxWidth: 100 },
     { id: 'name', label: 'Name', maxWidth: 100 },
@@ -28,7 +28,7 @@ const columns = [
     { id: 'transId', label: 'Trans.', maxWidth: 100 },
     { id: 'track', label: 'Track.Id', maxWidth: 100 },
     { id: 'status', label: 'Status', maxWidth: 100 },
-    { id: 'action', label: 'Action',color:"#fe3c47" },
+    { id: 'action', label: 'Action', },
   ];
 
 const ManageOrder = () => {
@@ -149,7 +149,7 @@ const ManageOrder = () => {
 
     //Table
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(8);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -203,22 +203,28 @@ const ManageOrder = () => {
     }
   
     return (
-        <div style={{overflowX:"hidden"}} className="container py-2">
-            <div className='d-flex justify-content-evenly align-items-center py-1'>
-              <div>
-                <input style={{width:"25vw", border: "1px solid #e9edf4", borderRadius: "7px"}}
-                className='bg-light mx-1 p-2 mb-2'
-                type="search"
-                placeholder="Search by phone or name"
-                // value={wordEntered}
+        <div style={{overflowX:"hidden", fontFamily:'Rubik'}}>
+            <div className='d-flex justify-content-between align-items-center py-1'>
+            <Paper
+                component="form"
+                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '25vw', mb: 2 , boxShadow: 0 }}
+                >
+                <IconButton sx={{ p: '10px',color: "#ced4da"}} aria-label="search">
+                <SearchIcon />
+                </IconButton>
+            {/* <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> */}
+            <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                type='search'
                 onChange={handleFilter}
-                /> 
-                    <SearchIcon style={{color: "#ced4da"}}/>
-            </div>
+                placeholder="Search by name or brand"
+            />
+        </Paper>
             <div>
-    <Box  component="form" sx={{'& .MuiTextField-root': { m: 1, width: '20vw' },}} noValidate autoComplete="off">
+    <Box  component="form" sx={{'& .MuiTextField-root': { m: 1, width: '20vw' },backgroundColor:"white"}} noValidate autoComplete="off">
         <TextField
-          id="filled-select-currency"
+        sx={{border: 0}}
+        //   id="demo-simple-select-standard"
           select
           label={value ? `${searchOrder?.length} order(s)`:`sort by status`}
           defaultValue="status"
@@ -226,7 +232,7 @@ const ManageOrder = () => {
           size="small"
           onChange={handleChange}
         //   helperText={value? `${searchOrder?.length} order`:`Please select order status`}
-          variant='outlined'
+        //   variant='filled'
         >
             <MenuItem disabled value={value}/>
             <MenuItem onClick={filterPaidPending} value='Paid & Pending'>Paid & Pending</MenuItem>
@@ -246,15 +252,14 @@ const ManageOrder = () => {
                 orders?.length === 0 ? <CircularProgress align="center"/>
                     :     
         <Paper sx={{ overflow: 'hidden' }}> 
-         <TableContainer sx={{ maxHeight: "80vh" }}>
+         <TableContainer sx={{ maxHeight: 500 }}>
             <Table stickyHeader aria-label="sticky table" >
                 <TableHead >
                     <TableRow>
                     {columns.map((column) => (
                             <TableCell
-                            sx={{  border: "0px"}}
                             key={column.id}
-                            style={{ maxWidth: column?.maxWidth, color: column?.color, fontSize:"1rem", backgroundColor:"#F4F5F7" }}
+                            style={{ maxWidth: column?.maxWidth, color: '#637381', fontSize:"1rem", backgroundColor:"#F4F5F7", border: "0px"}}
                             >
                             {column.label}
                             </TableCell>
@@ -284,7 +289,7 @@ const ManageOrder = () => {
                             </TableCell>
                             <TableCell sx={{ color: 'primary.main', border:"0px"}}>{order?.payment?.last4}</TableCell>
                             <TableCell sx={{ color: 'primary.main', border:"0px"}}>{order?.tracking?.slice(10)}</TableCell>
-                            <TableCell sx={{  border: "0px"}}>
+                            <TableCell sx={{  border: "0px",p:0}}>
                                 <div className="d-flex p-0">
                                 <select className="text-center custom-form border-0" onChange={handleStatus}>
                                     <option>{order?.status}</option>
@@ -292,13 +297,13 @@ const ManageOrder = () => {
                                     <option value={value} key={value}>{value}</option>
                                 ))}
                                     </select>
-                                    <IconButton sx={{p:0, m:0}} onClick={() => handleUpdate(order?._id)} >
-                                        <CheckOutlined size="small" color="success"/>
+                                    <IconButton color="success" onClick={() => handleUpdate(order?._id)} >
+                                        <CheckOutlined/>
                                     </IconButton>
                             </div></TableCell>
-                            <TableCell sx={{  border: "0px"}}> 
-                                    <IconButton sx={{p:0, m:0}} onClick={() => handleDeleteOrders(order?._id)} >
-                                        <DeleteOutline size="small" color="error"/>
+                            <TableCell align='center' sx={{  border: "0px",p:0}}> 
+                                    <IconButton color="error" onClick={() => handleDeleteOrders(order?._id)} >
+                                        <DeleteOutline/>
                                     </IconButton>
                             </TableCell>
                         </TableRow>
@@ -307,7 +312,7 @@ const ManageOrder = () => {
             </Table>
         </TableContainer>
         <TablePagination
-                    rowsPerPageOptions={[8, 15, 25, 30, 50, 75, 100]}
+                    rowsPerPageOptions={[10, 15, 25, 30, 50, 75, 100]}
                     component="div"
                     count={orders?.length}
                     rowsPerPage={rowsPerPage}
