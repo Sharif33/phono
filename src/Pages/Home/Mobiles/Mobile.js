@@ -13,6 +13,9 @@ import { numberFormat } from '../../../Shared/numberFormat';
 import { MdInfo, MdVisibility, MdAddShoppingCart, MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { TbScaleOff,TbScale } from "react-icons/tb";
 import { NavHashLink } from 'react-router-hash-link';
+import { Box, Button, ButtonGroup } from '@mui/material';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 
 const Mobile = ({ mobile}) => {
     const { _id, name, price, ram, storage, image, chipset } = mobile;
@@ -84,11 +87,15 @@ const Mobile = ({ mobile}) => {
                             
                             <div className="d-flex justify-content-between align-items-center">
                             {
-                                    toggleCart ? <div className="d-flex justify-content-evenly align-items-center">
-                                    <button className='btn btn-cart rounded-0' onClick={() => dispatch(decrement(mobile))}> - </button>
-                                    <span style={{minWidth:"5vw"}} className='mw-qty text-center border py-1'>{toggleCart?.cartQuantity}</span>
-                                    <button className='btn btn-cart rounded-0' onClick={() => dispatch(increment(mobile))}> + </button>
-                            </div> :
+                                toggleCart ? 
+                                <Box sx={{display: 'flex',flexDirection: 'column', alignItems: 'center', }}>
+                                <ButtonGroup className='bg-cart' color='secondary' variant="text" aria-label="outlined button group">
+                                    <Button onClick={() => dispatch(decrement(mobile))}><RemoveOutlinedIcon style={{fontSize:'1.2em',color:"#183153"}}/></Button>
+                                    <Button className='bg-light'>{toggleCart?.cartQuantity}</Button>
+                                    <Button onClick={() => dispatch(increment(mobile))}><AddOutlinedIcon style={{fontSize:'1.25em',color:'#183153'}}/></Button>
+                                </ButtonGroup>
+                            </Box>
+                                :
                              <button onClick={() => dispatch(addToCart(mobile))} className='btn btn-cart border-0 my-2 rounded'> <MdAddShoppingCart title='Add to Cart' className="fs-3 p-1"/> Add to cart </button> 
                                 }
                             
