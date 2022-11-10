@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { numberFormat } from '../../Shared/numberFormat';
+import { IconButton, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 
 const MyOrderDetails = () => {
   const {id} = useParams();
   const [order, setOrders] = useState([]);
+  // console.log(order);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,8 +33,10 @@ const MyOrderDetails = () => {
                 aria-labelledby="my-modal-title"
   aria-describedby="my-modal-description"
               > */}
-                <div className='bg-light rounded p-2'> 
-                <button className="text-danger btn m-0 p-0" onClick={() => navigate(-1)}><AiOutlineClose/></button>
+                <div id="order" className='bg-light rounded'>
+                  <IconButton size='small' color='error' onClick={() => navigate(-1)}>
+                    <AiOutlineClose/>
+                    </IconButton> 
                     <div>
                     <h3 className="text-center">Order Details</h3>
                     </div>
@@ -44,81 +48,71 @@ const MyOrderDetails = () => {
                   </address>
               </div>
               <div className="d-flex justify-content-between align-items-center py-2">
-                    <h4 className="text-center fw-bold"> {order?._id?.slice(-8)}</h4>
-                        <span>
+                    <h6 className="text-center fw-bold"> {order?._id?.slice(-8)}</h6>
+                        <span style={{fontSize:'0.8em'}}>
                         {order?.date}, {order?.time}
                         </span>
 
                     </div>
-              <ul className="list-group">
-                {order?.orderItems?.map((item) => (
-                  <li
-                    key={item?._id}
-                    className="list-group-item d-flex justify-content-between align-items-center border-0"
+                    <TableContainer>
+                    <Table >
+                    <TableBody>
+                    {order?.orderItems?.map((item) => (
+                      <TableRow
+                      key={item?._id}
+                      sx={{ border: 0 } }
                   >
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        {
+                    <TableCell>
+                    {
                           item.os ? <Link title="See Details" to={`/mobile/${item?._id}`}>
                           <img
-                            style={{ width: "3rem" }}
-                            className="img-fluid"
+                            style={{ width: "1.5rem" }}
                             src={item?.image}
                             alt=""
                           />
                         </Link> :
                         <Link title="See Details" to={`/mobile2/${item._id}`}>
                           <img
-                            style={{ width: "3rem" }}
-                            className="img-fluid"
+                            style={{ width: "2rem" }}   
                             src={item?.image}
                             alt=""
                           />
                         </Link>
                         }
-                        
-                      </div>
-                      <div className="px-3 text-center">
-                        <p>
-                          {item?.name} <br />
-                          <span className="text-secondary">
-                            <small>{item?.brand} </small>
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                    <div>
-                      <small className="text-secondary">
-                        <span>{item?.cartQuantity}</span> x{" "}
-                        <span>{numberFormat(item?.price).slice(3,-3)}	&#x9F3;</span>
-                      </small>
-                    </div>
-                    <span className="text-primary fw-bold fs-6">
-                      {item?.cartQuantity ? numberFormat(item?.price * item?.cartQuantity).slice(3,-3) : numberFormat(item?.price).slice(3,-3)} Tk
-                    </span>
-                  </li>
-                ))}
-                <li className="list-group-item d-flex justify-content-between align-items-center fs-5 border">
-                  Total Items
-                  <span className="text-primary fw-bold fs-5">
-                    {order?.items}
-                  </span>
-                </li>
-
-                <li className="list-group-item d-flex justify-content-between align-items-center fs-5">
-                  Items Quantity
-                  <span className="text-primary fw-bold fs-5">
-                    {order?.quantity}
-                  </span>
-                </li>
-
-                <li className="list-group-item d-flex justify-content-between align-items-center fs-4 fw-bold">
-                  Total
-                  <span className="text-danger fw-bold fs-5">
-                    {numberFormat(order?.total).slice(3)} Tk
-                  </span>
-                </li>
-              </ul>
+                    </TableCell>
+                    <TableCell  align="left">
+                                        {item?.name}
+                                    <br />
+                                        <small className='text-secondary'>
+                                               &#x9F3;{numberFormat(item.price).slice(3,-3)}<AiOutlineClose/>{item?.cartQuantity} 
+                                        </small>                                      
+                                    </TableCell>
+                    <TableCell>
+                    {item?.cartQuantity ? numberFormat(item?.price * item?.cartQuantity).slice(3,-3): numberFormat(item?.price).slice(3,-3)}&#x9F3;
+                    </TableCell>
+                    </TableRow>
+                    ))
+                    }
+                    
+          
+          <TableRow>
+            <TableCell sx={{ border: 0 } }/>
+            <TableCell colSpan={1}>Subtotal</TableCell>
+            <TableCell sx={{fontWeight:'bold'}} align="left">{numberFormat(order?.subtotal).slice(3)}&#x9F3;</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell sx={{ border: 0 } }/>
+            <TableCell colSpan={1}>Tax</TableCell>
+            <TableCell sx={{fontWeight:'bold'}} align="left">{numberFormat(order?.tax).slice(3)}&#x9F3;</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell sx={{ border: 0 } }/>
+            <TableCell sx={{ border: 0 } } colSpan={1}>Total</TableCell>
+            <TableCell sx={{ border: 0, fontWeight:'bold' } } align="left">{numberFormat(order?.total).slice(3)}&#x9F3;</TableCell>
+          </TableRow>
+                    </TableBody>
+                    </Table>
+                    </TableContainer>
             </div>
                                 
             </div> 

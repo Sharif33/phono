@@ -211,10 +211,10 @@ let tracking = "SMR-PHONO-" + traceId + trace;
                 <br />
                         <div className="input-group input-group-lg">
                         {
-                          coupn ?  <input disabled type="text" placeholder="Coupn aplied" className="form-control" /> : <input type="text" onChange={getInputValue} placeholder ={`Apply "${voucher[0]?.code}" to get 5% discount`} className="form-control" />
+                          coupn ?  <input disabled type="text" placeholder="Coupn aplied" className="form-control" /> : <input type="text" onChange={getInputValue} placeholder ={`Apply "${voucher[0]?.code}" to get ${voucher[0]?.percentage}% discount`} className="form-control" />
                         }
                            {
-                            coupn ? <span disabled className="btn btn-secondary"> Coupn applied</span> : <span className="btn-pink btn">Apply</span>
+                            coupn ? <span disabled className="btn btn-secondary"> Applied</span> : <span className="btn-pink btn">Apply</span>
                            } 
                            
                         </div>

@@ -15,12 +15,14 @@ import InputBase from '@mui/material/InputBase';
 // import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import { DeleteForever, EditOutlined } from '@mui/icons-material';
+import { Box } from '@mui/system';
+import { Grid, MenuItem, TextField } from '@mui/material';
 // const columns = ['Name','Added by','Price','ID','Edit','Action'];
 const columns = [
-    { id: 'name',  label: 'Name', minWidth: 100, color:"#fe3c47" },
-    { id: 'adder', label: 'Added By', minWidth: 100 },
+    { id: 'name',  label: 'NAME', minWidth: 200, },
+    { id: 'adder', label: 'ADDED BY', minWidth: 100 },
     { id: 'id', label: 'ID', minWidth: 100 },
-    { id: 'price', label: 'price', minWidth: 100, format: (value) => value.toLocaleString('en-US'), },
+    { id: 'price', label: 'PRICE', minWidth: 100, format: (value) => value.toLocaleString('en-US'), },
   ];
 
 const ManageProducts = () => {
@@ -98,11 +100,34 @@ const ManageProducts = () => {
             setRowsPerPage(+event.target.value);
             setPage(0);
         };
+
+        /* Sorting */
+        const [sorting, setSorting] = React.useState('');
+
+    const handleSorting = (event) => {
+      setSorting(event.target.value);
+    };
+ 
+    // sorting high to low price
+    const sortHigh =()=>{
+        const highPrice = searchProducts?.sort((a,b)=>a.price < b.price ? 1 : -1);
+        return highPrice;
+    } 
+   
+
+    // sorting low to high price
+    const sortLow =()=>{
+        const lowPrice = searchProducts?.sort((a,b)=>a.price > b.price ? 1 : -1);
+        return lowPrice;
+    } 
+    
     return (
-        <>         
-        <Paper
+        <>
+        <Grid container spacing={2}>
+            <Grid item xs={12} md={4}>
+               <Paper
                 component="form"
-                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '25vw', mb: 2 , boxShadow: 0 }}
+                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', textAlign:'center',width: {xs:'85vw', sm:'85vw', md:'20vw'}, mb: 2 , boxShadow: 0 }}
                 >
                 <IconButton sx={{ p: '10px',color: "#ced4da"}} aria-label="search">
                 <SearchIcon />
@@ -114,31 +139,81 @@ const ManageProducts = () => {
                 onChange={handleSearch}
                 placeholder="Search by name or brand"
             />
-        </Paper>
+        </Paper> 
+            </Grid>
+            <Grid item xs={12} md={4}>
+               <Paper
+                component="form"
+                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', textAlign:'center',width: {xs:'85vw', sm:'85vw', md:'20vw'}, mb: 2 , boxShadow: 0 }}
+                >
+                <IconButton sx={{ p: '10px',color: "#ced4da"}} aria-label="search">
+                <SearchIcon />
+                </IconButton>
+            {/* <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> */}
+            <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                type='search'
+                onChange={handleSearch}
+                placeholder="Search by name or brand"
+            />
+        </Paper> 
+            </Grid>
+           
+            <Grid item xs={12} md={4}>
+                <Box component="form" sx={{p: '2px 4px', textAlign: 'center',  overflow:"hidden" ,'& .MuiTextField-root': { m: 1,  minWidth:{xs:'80vw',sm:'80vw', md:'20vw'}}}}>
+                        <TextField
+                        id="filled-select-currency"
+                        select
+                        label='Sort By'
+                        defaultValue="status"
+                        value={sorting}
+                        size="small"
+                        onChange={handleSorting}
+                        //   helperText={value? `${searchOrder?.length} order`:`Please select order status`}
+                        variant='outlined'
+                        >
+                            <MenuItem onClick={sortHigh} value={0}>High to low Price</MenuItem>
+                            <MenuItem onClick={sortLow} value={1}>Low to high Price</MenuItem>
+                            
+                        </TextField>       
+                </Box>
+            </Grid>
+        </Grid>         
+        
+        
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
+        <TableContainer sx={{ maxHeight: 480 }}>
             <Table stickyHeader aria-label="sticky table">
             <TableHead>
                 <TableRow>
+                <TableCell sx={{ backgroundColor:"#F4F5F7", border: "0px", color:'#637381',minWidth: {xs:50} }}>SR</TableCell>
+                <TableCell align='center' sx={{ backgroundColor:"#F4F5F7", border: "0px", color:'#637381',}}>
+                    ICON
+                </TableCell>
                 {columns.map((column) => (
                     <TableCell
                     key={column?.id}
                     align={column?.align}
-                    style={{ minWidth: column?.minWidth,fontSize:"1rem", backgroundColor:"#F4F5F7", border: "0px", color:'#637381' }}
+                    style={{ minWidth: column?.minWidth, backgroundColor:"#F4F5F7", border: "0px", color:'#637381' ,}}
                     >
                     {column?.label}
                     </TableCell>
                 ))}
-                <TableCell style={{fontSize:"1rem", backgroundColor:"#F4F5F7", border: "0px", color:'#637381' }} align='center'>Edit</TableCell>
-                <TableCell style={{fontSize:"1rem", backgroundColor:"#F4F5F7", border: "0px", color:'#637381' }} align='center'>Action</TableCell>
+                <TableCell style={{ backgroundColor:"#F4F5F7", border: "0px", color:'#637381' }} align='center'>EDIT</TableCell>
+                <TableCell style={{ backgroundColor:"#F4F5F7", border: "0px", color:'#637381' }} align='center'>ACTION</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
                 {searchProducts
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((phn) => {
+                .map((phn,i) => {
                     return (
+                        
                     <TableRow hover role="checkbox" tabIndex={-1} key={phn._id}>
+                        <TableCell>{i+1}</TableCell>
+                        <TableCell align='center' sx={{p:0}}>
+                            <img style={{width:"1.25rem"}} src={phn?.image} alt="" />
+                        </TableCell>
                         {columns.map((column) => {
                         const value = phn[column?.id];
                         return (

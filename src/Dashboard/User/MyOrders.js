@@ -78,16 +78,14 @@ const MyOrders = () => {
     });
   };
   return (
-    <div style={{ overflowX: "hidden", backgroundColor: "#EEF2FF" }}>
-      <div className="container">
-        
- <div className="col-md-6 mx-auto text-center pb-3">
+    <div style={{ overflowX: "hidden" }}>
+      <div>
         <h4>
-          Total Order: <span className="text-danger">{orders.length}</span>
+          Total Order: <span className="text-danger">{orders?.length}</span>
         </h4>
-      </div>
+    
       <div className="row">
-        <div className="col-md-6 col-sm-12 px-5 border-end">
+        <div className="col-md-6 col-sm-12">
          <div className="row row-cols-1 row-cols-md-1 order">
         {orders
           ?.slice(0)
@@ -119,7 +117,7 @@ const MyOrders = () => {
           })}
       </div> 
                 </div>
-                <div id="order" className="col-md-6 col-sm-12 p-3">
+                <div className="col-md-6 col-sm-12 mt-3">
         <Outlet></Outlet>
                 </div>
       </div>

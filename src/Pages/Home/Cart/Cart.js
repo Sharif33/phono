@@ -67,16 +67,17 @@ const Cart = () => {
                                     key={mobile?._id}
                                     sx={{ border: 0 } }
                                 >
-                                    <TableCell sx={{border: '0px', textAlign:'center'}} >
+                                    <TableCell sx={{py:0, textAlign:'center'}} >
                                         {
-                                            mobile?.os ? <Link title='See Details' to={`/mobile/${mobile?._id}`}> <img style={{width:"3rem"}} className='img-fluid' src={mobile?.image} alt="" />
+                                            mobile?.os ? 
+                                            <Link title='See Details' to={`/mobile/${mobile._id}`}> <img style={{width:"3rem"}} src={mobile.image} alt="" />
                                             {/* <span className="m-1 text-navi">
                                                 &#x9F3;{numberFormat(mobile.price).slice(3,-3)}
                                                 <small className='text-secondary'>/1</small>	
                                             </span> */}
                                             </Link>
                                             :
-                                            <Link title='See Details' to={`/mobile2/${mobile?._id}`}> <img style={{width:"3rem"}} className='img-fluid' src={mobile?.image} alt="" />
+                                            <Link title='See Details' to={`/mobile2/${mobile._id}`}> <img style={{width:"3rem"}} src={mobile.image} alt="" />
                                            {/*  <span className="m-1 text-navi">
                                                &#x9F3;{numberFormat(mobile.price).slice(3,-3)}
                                                <small className='text-secondary'>/1</small>	
@@ -86,16 +87,14 @@ const Cart = () => {
                                     
                                     </TableCell>
 
-                                    <TableCell sx={{border: '0px'}} align="left">
+                                    <TableCell  align="left">
                                         {mobile?.name}
-                                    <div>
+                                    <br />
                                         <small className='text-secondary'>
-                                               &#x9F3; {numberFormat(mobile.price).slice(3,-3)}
-                                        </small>
-                                       {/*  <button className='border-0 bg-transparent text-secondary' onClick={()=>dispatch((removeFromCart(mobile)))}>(Remove)</button> */}
-                                    </div>
+                                               &#x9F3;{numberFormat(mobile.price).slice(3,-3)}
+                                        </small>                                      
                                     </TableCell>
-                                    <TableCell sx={{border: '0px'}} align="center">
+                                    <TableCell  align="center">
                                     <div className="m-auto">
                                                 <div className="d-flex justify-content-between align-items-center border">
                                                         <button className='btn btn-cart rounded-0' onClick={() => dispatch(decrement(mobile))}> - </button>
@@ -105,17 +104,16 @@ const Cart = () => {
                                         </div>
                                         <div className='mt-1'>
                                             <span className='text-navi fw-bold'>
-                                               &#x9F3; {numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}
+                                               &#x9F3;{numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}
                                             </span>
                                             <span><small className='text-secondary'>/{mobile?.cartQuantity}</small></span> 
                                         </div>
                                     </TableCell>
-                                    <TableCell sx={{border: '0px'}} align="center">
+                                    <TableCell  align="center">
                                     <div className='d-flex justify-content-evenly'>
                                         {
                                             toFvrt?.addToFvrt.find((ft)=> ft?._id === mobile._id ) ? 
                                             <IconButton 
-                                            size='small'
                                             onClick={() => dispatch(removeFromFvrt(mobile))} 
                                             color='warning'
                                             >
@@ -123,7 +121,6 @@ const Cart = () => {
                                             </IconButton>
                                             : 
                                             <IconButton 
-                                            size='small'
                                             onClick={() => dispatch(addToFvrt(mobile))} 
                                             color='warning'
                                             >
