@@ -24,6 +24,10 @@ const useUser = () => {
     const [users, setUsers] = useState([]);
     // console.log(users);
 
+    const upAddress = users?.find((ue)=>{
+        return ue.email === user.email;
+    })
+// console.log(upAddress);
     useEffect(() => {
         try {
             async function callApi() {
@@ -37,7 +41,7 @@ const useUser = () => {
             console.log ('error',error)
           }
     }, [user.email]);
-    return [users, setUsers];
+    return [users, setUsers,upAddress];
 };
 
 export default useUser;

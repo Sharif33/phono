@@ -1,6 +1,6 @@
 // import React, {useContext} from 'react';
 import React, {useEffect} from 'react';
-import { Box, Button, ButtonGroup, Divider, Grid, IconButton, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from '@mui/material';
+import { AppBar, Box, Button, ButtonGroup, Divider, Grid, IconButton, Table, TableBody, TableCell, TableContainer, TableRow, Toolbar, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, getTotal, increment, removeFromCart } from '../../../Redux/slices/cartSlice';
 import { addToFvrt, removeFromFvrt } from '../../../Redux/slices/fvrtSlice';
@@ -13,12 +13,14 @@ import { numberFormat } from '../../../Shared/numberFormat';
 import {Helmet} from "react-helmet";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { RiDeleteBin6Fill,RiShoppingBag3Fill } from "react-icons/ri";
+import { RiShoppingBag3Fill } from "react-icons/ri";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+import { Delete, DeleteForever } from '@mui/icons-material';
+
 
 const Cart = () => {  
     // const {cart} = useContext(Favourite);
@@ -43,12 +45,13 @@ const Cart = () => {
             </Helmet>
            <Header/>
            {
-               addToCart.length ? <div  style={{minHeight:"100vh"}} className="container-lg py-4">
-                   <div className='text-center my-4'>
+               addToCart.length ? 
+               <div  style={{minHeight:"100vh"}} className="container-lg py-4">
+                   <Box  sx={{display:{xs:'none',sm:'none',md:'block'}}} className='text-center my-4'>
                        <h1> <RiShoppingBag3Fill style={{color:"#183153"}}/> <span className='text-secondary fw-bold'> {addToCart?.length}</span> item(s)</h1>
                        <h1> <span style={{color:"#183153"}} className="fw-bold">Tk</span> <span className='text-secondary'> {numberFormat(cartTotal+shipping+tax).slice(3)}</span></h1>
-                   </div>
-        <Box sx={{ flexGrow: 1,}}>
+                   </Box>
+        <Box sx={{ flexGrow: 1,pb:'90px'}}>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={8}>
                 <Typography variant='body2'>
@@ -69,17 +72,9 @@ const Cart = () => {
                                 {
                                     mobile?.os ? 
                                     <Link title='See Details' to={`/mobile/${mobile._id}`}> <img style={{width:"2rem"}} src={mobile.image} alt="" />
-                                    {/* <span className="m-1 text-navi">
-                                        &#x9F3;{numberFormat(mobile.price).slice(3,-3)}
-                                        <small className='text-secondary'>/1</small>	
-                                    </span> */}
                                     </Link>
                                     :
                                     <Link title='See Details' to={`/mobile2/${mobile._id}`}> <img style={{width:"2.5rem"}} src={mobile.image} alt="" />
-                                    {/*  <span className="m-1 text-navi">
-                                        &#x9F3;{numberFormat(mobile.price).slice(3,-3)}
-                                        <small className='text-secondary'>/1</small>	
-                                    </span> */}
                                     </Link>
                                 }
                             
@@ -104,13 +99,7 @@ const Cart = () => {
 
                 </ButtonGroup>
             </Box>
-                            {/* <div className="m-auto">
-                                        <div className="d-flex justify-content-between align-items-center border">
-                                                <button className='btn btn-cart rounded-0' onClick={() => dispatch(decrement(mobile))}> - </button>
-                                                <span className='mw-qty'>{mobile?.cartQuantity}</span>
-                                                <button className='btn btn-cart rounded-0' onClick={() => dispatch(increment(mobile))}> + </button>
-                                        </div>
-                                </div> */}
+                           
                                 <div className='mt-1'>
                                     <span className='text-navi fw-bold'>
                                         &#x9F3;{numberFormat(mobile.price * mobile.cartQuantity).slice(3,-3)}
@@ -139,7 +128,7 @@ const Cart = () => {
                             onClick={() => dispatch(removeFromCart(mobile))} 
                             color='error'
                             >
-                                <RiDeleteBin6Fill />
+                                <Delete />
                             </IconButton>
         </div>
                             </TableCell>
@@ -152,8 +141,8 @@ const Cart = () => {
             </Table>
         </TableContainer>
                 </Grid>
-                <Grid item xs={12} md={4}>    
-                    <List sx={{ bgcolor: 'background.paper' }}>
+                <Grid  item xs={12} md={4} sx={{display:{xs:'none',sm:'none',md:'block'}}}>    
+                    <List sx={{bgcolor:'#F4F8F9'}}>
                         <Typography sx={{textAlign:'center', py:1}} variant='h5'>
                             Cart Summary
                         </Typography>
@@ -183,7 +172,8 @@ const Cart = () => {
 
                         <ListItem secondaryAction={
                             <span>
-                                {shipping}&#x9F3;
+                                {shipping===0 ? <span><s>100&#x9F3;</s> FREE</span> 
+                                : <span> {shipping}&#x9F3; </span>}
                             </span>       
                         }>
                             <ListItemText primary='Shipping'/>   
@@ -196,14 +186,15 @@ const Cart = () => {
                         }>
                             <ListItemText primary='Total'/>   
                         </ListItem>
-
+                       
                         <Typography sx={{px:1, color:'indigo'}}  variant='caption'>
                             *Billing info & voucher in next page.
                         </Typography>
-                            
+                          
                         <Link to={`/placeOrder`}>
                             <Button fullWidth sx={{borderRadius:0}} color="secondary" size="large"  variant="contained">PROCEED TO CHECKOUT</Button>
                         </Link>
+                        
                     </List>
                 </Grid>
             </Grid>
@@ -244,7 +235,47 @@ const Cart = () => {
                   /> 
                ))
            } */}
-           <Footer/>
+           <Box sx={{display:{xs:'none',sm:'none',md:'block'}}}>
+            <Footer/>
+           </Box>
+           
+           <AppBar position="fixed" sx={{ top: 'auto', bottom: 0,background:"rgba(255, 255, 255, 0.7)",backdropFilter: "blur(20px)",boxShadow:0, display:{md:'none'}}}>
+            <Box sx={{display:'flex', alignItems:'center', justifyContent:'space-evenly',px:2}}>
+                 <Typography variant='caption' className="text-navi">
+                        Shipping: {shipping===0 ? <span><s className='text-danger'>100&#x9F3;</s> FREE</span> 
+                                : <span> {shipping}&#x9F3; </span>}      
+                </Typography>
+                <Box sx={{ flexGrow: 1 }} />
+                <Typography variant='caption' className="text-navi">
+                        Tax: &#x9F3;{numberFormat(Math.ceil(tax)).slice(3,-3)}      
+                </Typography>
+                <Box sx={{ flexGrow: 1 }} />
+                <Typography variant='caption' className="text-navi">
+                        Subtotal: &#x9F3;{numberFormat(Math.ceil(cartTotal)).slice(3,-3)}      
+                </Typography>
+            </Box>
+            <Box sx={{display:'flex', alignItems:'center', justifyContent:'space-between',px:2}}>
+                <Typography sx={{color:'indigo'}}  variant='caption'>
+                        *Billing info & voucher calc in next page.
+                </Typography>
+                <Typography className='text-navi'  variant='caption'>
+                       itm: {addToCart?.length}  Qty: {cartTotalQuantity}
+                </Typography>
+            </Box>
+            <Divider/>
+        <Toolbar>
+        <Button sx={{borderRadius:0}} color="error" size="small"  variant="text" startIcon={<DeleteForever/>}>Clear All</Button>
+   
+          <Box sx={{ flexGrow: 1 }} />
+          <Typography variant='' className="text-navi fw-bolder"> 
+                     &#x9F3;{numberFormat(Math.ceil(cartTotal+shipping+tax)).slice(3,-3)}
+                </Typography>
+            <Box sx={{ flexGrow: 1 }} />
+        <Link to={`/placeOrder`}>
+                            <Button sx={{borderRadius:0}} color="secondary" size="large"  variant="contained">CHECKOUT</Button>
+                        </Link>
+        </Toolbar>
+      </AppBar>
        </div>
         </>
        

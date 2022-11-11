@@ -40,5 +40,19 @@
         "endDate":"Oct 31,2022",
         "campaign":"Summer Fall",
         "percentige":5
+    },
+    {
+        "code":"nov22",
+        "startDate":"Nov 01,2022",
+        "endDate":"Nov 30,2022",
+        "campaign":"Winter Begin",
+        "percentige":5
+    },
+    {
+        "code":"dec22",
+        "startDate":"Dec 01,2022",
+        "endDate":"Dec 31,2022",
+        "campaign":"Winter Mid",
+        "percentige":5
     }
 ]
