@@ -1,3 +1,10 @@
+.MuiButtonBase-root:disabled {
+    cursor: not-allowed;
+    pointer-events: auto;
+  }
+  
+
+
 @media(min-width: 769px) {
     .mobileColumnGroup {
         display: none;

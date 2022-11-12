@@ -59,13 +59,19 @@ const voucher =  coupons?.filter(element =>
     if (cpn === voucher[0]?.code){
       const cpnT = (cartTotal - (cartTotal*(voucher[0]?.percentage)/100));
      setCoupn(cpnT);
-     toast.success('Coupon Applied');
+     toast.success(`'${cpn}' Coupon Applied`);
      setCpn('');
-    }
-    else{
-      toast.error('Coupon not applicable');
+    }else{
+     cpn && toast.error(`'${cpn}' Coupon not applicable`);
     }
 };
+
+const keyPress =(e)=>{
+  if(e.keyCode === 13){
+    getInputValue();
+    e.preventDefault();
+  }
+}
 // console.log(getInputValue);
 
 // *--Tracking No.--*
@@ -125,10 +131,49 @@ let tracking = "SMR-PHONO-" + traceId + trace;
     <Header />
     <div style={{ backgroundColor: "#EEF2FF" }}>
     <Box className='container' sx={{ flexGrow: 1}}>
-            <Grid sx={{my:3}} container spacing={2}>
-                <Grid item xs={12} md={6}>
+            <Grid sx={{my:3}} container spacing={2}>         
+                <Grid item xs={12} md={7}>
+<div className="mt-5 mb-2 p-2 rounded">
+              <h5 className="fw-bold text-navi">SHIPPING & BILLING INFORMATION</h5>
+              <div className="d-flex justify-content-between pb-2">
+                <span>
+                  by {delivery}
+                </span>
+                <span>
+                {numberFormat((coupn ? coupn : cartTotal) + shipping + tax).slice(3)} Tk
+                </span>
+              </div>
+              {user.email && (
+                <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
+                  <input defaultValue={upAddress[0]?.name ? upAddress[0].name : user?.displayName} {...register("orderBy", {required:true})} readOnly />
+                  <input defaultValue={upAddress[0]?.address ? upAddress[0].address : orders[0]?.address ? orders[0].address : ""} {...register("address", { required: true })}  placeholder="Present Address" />
+                  <input defaultValue={upAddress[0]?.city ? upAddress[0].city : orders[0]?.city ? orders[0].city : ""} {...register("city", {required:true})} placeholder="City" />
+                  <input defaultValue={upAddress[0]?.phone ? upAddress[0].phone : orders[0]?.phone ? orders[0].phone : ""} {...register("phone", {required:true})} placeholder="Phone number"/>
+                  <input defaultValue={user?.email} readOnly />
+                  <br />
+                  {addToCart.length ? (
+                    <button
+                      className="w-100 btn btn-purple btn-lg"
+                      type="submit"
+                    >
+                      Place Order
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="w-100 btn-lg btn btn-purple"
+                      type="submit"
+                    >
+                      Place Order
+                    </button>
+                  )}
+                </form>
+              )}
+            </div> 
+                </Grid>
+                <Grid item xs={12} md={5}>
               <h3 className="text-center fw-bold text-navi">Order Summary</h3>
-              <TableContainer sx={{bgcolor:'#F4F8F9'}}>
+              <TableContainer sx={{bgcolor:'#F4F8F9',py:3}}>
                     <Table size="small">
                     <TableBody>
                     {addToCart?.map((item) => (
@@ -198,25 +243,27 @@ let tracking = "SMR-PHONO-" + traceId + trace;
             <TableCell sx={{ border: 0 } }/>
             <TableCell sx={{ borderBottom: '1px solid #e9edf4' } } colSpan={2}>
             <Paper component="form"
-      sx={{ display: 'flex', alignItems: 'center', width: '100%',border: '1px solid #e9edf4',boxShadow:0 }}>  
-      <InputBase
-        sx={{ ml: 1, flex: 1 }}
+      sx={{ display: 'flex', alignItems: 'center', width: '100%',border: '1px solid #e9edf4',boxShadow:0 }}>
+        
+        <InputBase
+        sx={{ mx: 1, flex: 1 }}
+        disabled={coupn ? true : false}
         value={cpn}
-        type='text'
+        type='search'
+        onKeyDown={keyPress}
         onChange={(e)=>setCpn(e.target.value)}
         placeholder="Enter coupon code"
       />
       
-      {/* <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> */}
-      {coupn ? <Button disabled variant="contained" sx={{ p: '10px',px:2 }}>Applied</Button>
-      :
-      <Button onClick={()=>getInputValue((coupn))} color='secondary' variant="contained" sx={{ p: '10px',bgcolor:'#183153',px:2 }}>
+      <Button disabled={coupn ? true : false} style={{ cursor: `${cpn ? 'pointer':'not-allowed'}` }} onClick={getInputValue} color={cpn ? 'secondary' : 'inherit'} variant="contained" sx={{ p: '10px',px:2 ,borderRadius:0,boxShadow:0}}>
         Apply
       </Button>
-      } 
+      
     </Paper>
-      <FormHelperText>{`Apply "${voucher[0]?.code}" to get ${voucher[0]?.percentage}% discount`} </FormHelperText>
-            </TableCell>
+      <FormHelperText>
+        {coupn ? <span className="text-success"> '{voucher[0]?.code}' coupon applied</span>: `Apply "${voucher[0]?.code}" to get ${voucher[0]?.percentage}% discount`}
+        </FormHelperText>
+          </TableCell>
           </TableRow>
           <TableRow>
             <TableCell sx={{ border: 0 } }/>
@@ -228,46 +275,6 @@ let tracking = "SMR-PHONO-" + traceId + trace;
                     </TableContainer>
 
                 </Grid>
-                <Grid item xs={12} md={6}>
-<div className="mt-5 mb-2 p-2 rounded">
-              <h5 className="fw-bold text-navi">SHIPPING & BILLING INFORMATION</h5>
-              <div className="d-flex justify-content-between pb-2">
-                <span>
-                  by {delivery}
-                </span>
-                <span>
-                {numberFormat((coupn ? coupn : cartTotal) + shipping + tax).slice(3)} Tk
-                </span>
-              </div>
-              {user.email && (
-                <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
-                  <input defaultValue={upAddress[0]?.name ? upAddress[0].name : user?.displayName} {...register("orderBy", {required:true})} readOnly />
-                  <input defaultValue={upAddress[0]?.address ? upAddress[0].address : orders[0]?.address ? orders[0].address : ""} {...register("address", { required: true })}  placeholder="Present Address" />
-                  <input defaultValue={upAddress[0]?.city ? upAddress[0].city : orders[0]?.city ? orders[0].city : ""} {...register("city", {required:true})} placeholder="City" />
-                  <input defaultValue={upAddress[0]?.phone ? upAddress[0].phone : orders[0]?.phone ? orders[0].phone : ""} {...register("phone", {required:true})} placeholder="Phone number"/>
-                  <input defaultValue={user?.email} readOnly />
-                  <br />
-                  {addToCart.length ? (
-                    <button
-                      className="w-100 btn btn-purple btn-lg"
-                      type="submit"
-                    >
-                      Place Order
-                    </button>
-                  ) : (
-                    <button
-                      disabled
-                      className="w-100 btn-lg btn btn-purple"
-                      type="submit"
-                    >
-                      Place Order
-                    </button>
-                  )}
-                </form>
-              )}
-            </div> 
-                </Grid>
-                
               </Grid>
     </Box>
       <Footer />

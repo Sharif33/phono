@@ -240,7 +240,7 @@ const Cart = () => {
            </Box>
            
            <AppBar position="fixed" sx={{ top: 'auto', bottom: 0,background:"rgba(255, 255, 255, 0.7)",backdropFilter: "blur(20px)",boxShadow:0, display:{md:'none'}}}>
-            <Box sx={{display:'flex', alignItems:'center', justifyContent:'space-evenly',px:2}}>
+            <Box sx={{display:'flex', alignItems:'center', justifyContent:'space-evenly',px:2,py:1}}>
                  <Typography variant='caption' className="text-navi">
                         Shipping: {shipping===0 ? <span><s className='text-danger'>100&#x9F3;</s> FREE</span> 
                                 : <span> {shipping}&#x9F3; </span>}      
