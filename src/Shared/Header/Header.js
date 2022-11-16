@@ -64,19 +64,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const { user, logOut } = useAuth();
 const defaultAdrs = useUser();
-/*  const [orders, setOrders] = useState([]);
-const email = user?.email;
-useEffect(() => {
-    fetch(`https://phono-server-production.up.railway.app/myOrders/${email}`)
-        .then((res) => res.json())
-        .then((data) => setOrders(data));
-}, [email]); */
-
-//   const handleSearch = e =>{
-//     const searchText = e.target.value;
-//     const matchedMobiles = mobiles.filter(mobile=>mobile.name.toLowerCase().includes(searchText.toLowerCase()));
-//     setCategories(matchedMobiles); style={{ backgroundColor: "#303f9f" }}
-// }
 
 return (
 <>
