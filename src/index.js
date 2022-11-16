@@ -8,17 +8,23 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from './Redux/store';
 import { Provider } from 'react-redux';
 import ScrollTop from './Shared/Header/ScrollTop';
+import { QueryClient, QueryClientProvider } from 'react-query'
+ 
+ const queryClient = new QueryClient()
 
 /* https://peaceful-shore-84874.herokuapp.com */
 
 ReactDOM.render(
   // <React.StrictMode>
+  <QueryClientProvider client={queryClient}>
     <BrowserRouter>
     <Provider store={store}>
       <App />
       </Provider>
       <ScrollTop/>
-    </BrowserRouter>,
+    </BrowserRouter>
+    </QueryClientProvider>
+    ,
   // </React.StrictMode>
   
   document.getElementById('root')

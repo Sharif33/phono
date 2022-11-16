@@ -28,7 +28,6 @@ import NotFound from "./Shared/NotFound";
 import { CircularProgress } from "@material-ui/core";
 import { ToastContainer } from 'react-toastify';
 import BuyNow from "./Pages/Home/Mobiles/BuyNow";
-import EditUser from "./Dashboard/User/EditUser";
 import ManageOrder from "./Dashboard/Admin/HandleOrders/ManageOrder";
 import AddMobile from "./Dashboard/Admin/HandleProducts/AddMobile";
 import AddOffers from "./Dashboard/Admin/HandleOffers/AddOffers";
@@ -43,6 +42,7 @@ import Compare from "./Pages/Home/Cart/Compare";
 import Favourite from "./Pages/Home/Cart/Favourite";
 import SpecialDetails from "./Pages/Home/Offers/SpecialDetails";
 import PlaceOrder from "./Pages/Home/Cart/PlaceOrder";
+import ShippingAddress from "./Dashboard/User/Addresses/ShippingAddress";
 // import { handelRightClick } from "./Shared/RightClick";
 
 function App() {
@@ -57,105 +57,106 @@ function App() {
       {
         spinner ? <div className="loader m-auto">
           <div>
-            <CircularProgress/>
+            <CircularProgress />
             {/* <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_8sjqrjby.json" background="transparent" speed="1" style={{ width: "10vw" }} loop autoplay></lottie-player> */}
           </div>
-        </div> : 
-        <AuthProvider>
-          <ToastContainer/>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="home" element={<Home />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="contact" element={<ContactUs />} />
-            <Route path="about" element={<AboutUs />} />
-            <Route path="search" element={<SearchField />} />
-            <Route path="login" element={<LogIn />} />
-            <Route path="register" element={<Register />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="compare" element={<Compare />} />
-            <Route path="fvrt" element={<Favourite />} />
-            <Route path="mobiles" element={<ExploreMobiles />} />
-            <Route path="mobile/:id" element={<SingleMobile />}/>
-            <Route path="mobile2/:id" element={<SpecialDetails />} />
-            <Route path="placeOrder" element={<PrivateRoute>
-              <PlaceOrder />
-            </PrivateRoute>} />
-            <Route path="buy/placeOrder" element={<PrivateRoute>
-              <BuyNow/>
-            </PrivateRoute>} />
-          
-            <Route path="dashboard" element={<PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>}>
-              <Route path={`/dashboard/myOrders`} element={<PrivateRoute>
-                <MyOrders></MyOrders>
+        </div> :
+          <AuthProvider>
+            <ToastContainer />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="home" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="contact" element={<ContactUs />} />
+              <Route path="about" element={<AboutUs />} />
+              <Route path="search" element={<SearchField />} />
+              <Route path="login" element={<LogIn />} />
+              <Route path="register" element={<Register />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="compare" element={<Compare />} />
+              <Route path="fvrt" element={<Favourite />} />
+              <Route path="mobiles" element={<ExploreMobiles />} />
+              <Route path="mobile/:id" element={<SingleMobile />} />
+              <Route path="mobile2/:id" element={<SpecialDetails />} />
+              <Route path="placeOrder" element={<PrivateRoute>
+                <PlaceOrder />
+              </PrivateRoute>} />
+              <Route path="buy/placeOrder" element={<PrivateRoute>
+                <BuyNow />
+              </PrivateRoute>} />
+              <Route path={`/user/:id`} element={<PrivateRoute>
+                <ShippingAddress />
               </PrivateRoute>}>
+              </Route>
 
-                <Route path={`/dashboard/myOrders/:id`} element={<PrivateRoute>
-                  <MyOrderDetails></MyOrderDetails>
+              <Route path="dashboard" element={<PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>}>
+                <Route path={`/dashboard/myOrders`} element={<PrivateRoute>
+                  <MyOrders></MyOrders>
+                </PrivateRoute>}>
+
+                  <Route path={`/dashboard/myOrders/:id`} element={<PrivateRoute>
+                    <MyOrderDetails></MyOrderDetails>
+                  </PrivateRoute>}>
+                  </Route>
+                </Route>
+
+                <Route path={`/dashboard/pay/:id`} element={<PrivateRoute>
+                  <Payment></Payment>
                 </PrivateRoute>}>
                 </Route>
-              </Route>
+                <Route path={`user`} element={<PrivateRoute>
+                  <UserDetails />
+                </PrivateRoute>}>
+                </Route>
 
-              <Route path={`/dashboard/pay/:id`} element={<PrivateRoute>
-                <Payment></Payment>
-              </PrivateRoute>}>
+                <Route path={`/dashboard/review`} element={<PrivateRoute>
+                  <Review></Review>
+                </PrivateRoute>}>
+                </Route>
+                <Route index element={<PrivateRoute>
+                  <DashboardHome></DashboardHome>
+                </PrivateRoute>} />
+                <Route path={`/dashboard/manageOrder`} element={<AdminRoute>
+                  <ManageOrder></ManageOrder>
+                </AdminRoute>}>
+                </Route>
+                <Route path={`/dashboard/makeAdmin`} element={<AdminRoute>
+                  <MakeAdmin></MakeAdmin>
+                </AdminRoute>}>
+                </Route>
+                <Route path={`addMobile`} element={<AdminRoute>
+                  <AddMobile></AddMobile>
+                </AdminRoute>}>
+                </Route>
+                <Route path={`/dashboard/addOffer`} element={<AdminRoute>
+                  <AddOffers />
+                </AdminRoute>}>
+                </Route>
+                <Route path={`/dashboard/manageProducts/:id`} element={<AdminRoute>
+                  <EditMobile></EditMobile>
+                </AdminRoute>}>
+                </Route>
+                <Route path={`/dashboard/manageProducts`} element={<AdminRoute>
+                  <ManageProducts></ManageProducts>
+                </AdminRoute>}>
+                </Route>
+                <Route path={`manageOffers`} element={<AdminRoute>
+                  <ManageOffers />
+                </AdminRoute>}>
+                </Route>
+                <Route path={`manageOffers/:id`} element={<AdminRoute>
+                  <EditOffer />
+                </AdminRoute>}>
+                </Route>
+                <Route path={`/dashboard/manageUsers`} element={<AdminRoute>
+                  <ManageUsers />
+                </AdminRoute>}>
+                </Route>
               </Route>
-              <Route path={`user`} element={<PrivateRoute>
-                <UserDetails />
-              </PrivateRoute>}>
-              </Route>
-              <Route path={`/dashboard/user/:id`} element={<PrivateRoute>
-                <EditUser />
-              </PrivateRoute>}>
-              </Route>
-              <Route path={`/dashboard/review`} element={<PrivateRoute>
-                <Review></Review>
-              </PrivateRoute>}>
-              </Route>
-              <Route index element={<PrivateRoute>
-                <DashboardHome></DashboardHome>
-              </PrivateRoute>} />
-              <Route path={`/dashboard/manageOrder`} element={<AdminRoute>
-                <ManageOrder></ManageOrder>
-              </AdminRoute>}>
-              </Route>
-              <Route path={`/dashboard/makeAdmin`} element={<AdminRoute>
-                <MakeAdmin></MakeAdmin>
-              </AdminRoute>}>
-              </Route>
-              <Route path={`addMobile`} element={<AdminRoute>
-                <AddMobile></AddMobile>
-              </AdminRoute>}>
-              </Route>
-              <Route path={`/dashboard/addOffer`} element={<AdminRoute>
-                <AddOffers/>
-              </AdminRoute>}>
-              </Route>
-              <Route path={`/dashboard/manageProducts/:id`} element={<AdminRoute>
-                <EditMobile></EditMobile>
-              </AdminRoute>}>
-              </Route>
-              <Route path={`/dashboard/manageProducts`} element={<AdminRoute>
-                <ManageProducts></ManageProducts>
-              </AdminRoute>}>
-              </Route>
-              <Route path={`manageOffers`} element={<AdminRoute>
-                <ManageOffers/>
-              </AdminRoute>}>
-              </Route>
-              <Route path={`manageOffers/:id`} element={<AdminRoute>
-                <EditOffer/>
-              </AdminRoute>}>
-              </Route>
-              <Route path={`/dashboard/manageUsers`} element={<AdminRoute>
-                <ManageUsers/>
-              </AdminRoute>}>
-              </Route>
-            </Route>
-          </Routes>
-        </AuthProvider>
+            </Routes>
+          </AuthProvider>
 
       }
 

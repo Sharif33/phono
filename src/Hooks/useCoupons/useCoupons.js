@@ -1,9 +1,16 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const useCoupons = () => {
     const [coupons, setCoupons] = useState([]);
 
     useEffect(() => {
+      axios.get(`https://phono-server-production.up.railway.app/coupons`).then((response) => {
+        setCoupons(response.data);
+      });
+    }, []);
+
+   /*  useEffect(() => {
         let isMounted = true;  
           try {
             async function callApi() {
@@ -23,7 +30,7 @@ const useCoupons = () => {
           }  
        
         
-    }, []);
+    }, []); */
     return [coupons, setCoupons];
 };
 

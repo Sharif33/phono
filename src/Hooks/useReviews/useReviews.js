@@ -1,9 +1,17 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const useReviews = () => {
     const [reviews, setReviews] = useState([]);
+    // console.log(reviews);
 
     useEffect(() => {
+        axios.get(`https://phono-server-production.up.railway.app/reviews`).then((response) => {
+          setReviews(response.data);
+        });
+      }, []);
+
+   /*  useEffect(() => {
         let isMounted = true;
         if(isMounted ){
          try {
@@ -22,7 +30,7 @@ const useReviews = () => {
             isMounted = false;
             };
         
-    }, []);
+    }, []); */
     return [reviews, setReviews];
 };
 

@@ -9,6 +9,7 @@ const MyOrders = () => {
   let deleteCount = 0;
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
+  // console.log(orders);
   const email = user?.email;
   useEffect(() => {
     let isMounted = true;
@@ -83,47 +84,47 @@ const MyOrders = () => {
         <h4>
           Total Order: <span className="text-danger">{orders?.length}</span>
         </h4>
-    
-      <div className="row">
-        <div className="col-md-6 col-sm-12">
-         <div className="row row-cols-1 row-cols-md-1 order">
-        {orders
-          ?.slice(0)
-          .reverse()
-          .map((order) => {
-            let statusNumber;
-            if (order?.status === "Pending...") {
-              statusNumber = 1;
-            } else if (order?.status === "Processing") {
-              statusNumber = 2;
-            } else if (order?.status === "Packed") {
-              statusNumber = 3;
-            } else if (order?.status === "Shipped") {
-              statusNumber = 4;
-            } else if (order?.status === "Delivered") {
-              statusNumber = 5;
-            } else if (order?.status === "Cancel") {
-              statusNumber = 6;
-            }
-            return (
-              <Orders
-               key={order._id}
-              order={order}
-              statusNumber={statusNumber}
-              handleDeleteOrders={handleDeleteOrders}
-              >
-              </Orders>             
-            );
-          })}
-      </div> 
-                </div>
-                <div className="col-md-6 col-sm-12 mt-3">
-        <Outlet></Outlet>
-                </div>
+
+        <div className="row">
+          <div className="col-md-6 col-sm-12">
+            <div className="row row-cols-1 row-cols-md-1 order">
+              {orders
+                ?.slice(0)
+                .reverse()
+                .map((order) => {
+                  let statusNumber;
+                  if (order?.status === "Pending...") {
+                    statusNumber = 1;
+                  } else if (order?.status === "Processing") {
+                    statusNumber = 2;
+                  } else if (order?.status === "Packed") {
+                    statusNumber = 3;
+                  } else if (order?.status === "Shipped") {
+                    statusNumber = 4;
+                  } else if (order?.status === "Delivered") {
+                    statusNumber = 5;
+                  } else if (order?.status === "Cancel") {
+                    statusNumber = 6;
+                  }
+                  return (
+                    <Orders
+                      key={order._id}
+                      order={order}
+                      statusNumber={statusNumber}
+                      handleDeleteOrders={handleDeleteOrders}
+                    >
+                    </Orders>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="col-md-6 col-sm-12 mt-3">
+            <Outlet></Outlet>
+          </div>
+        </div>
+
       </div>
-      
-      </div>
-      
+
     </div>
   );
 };

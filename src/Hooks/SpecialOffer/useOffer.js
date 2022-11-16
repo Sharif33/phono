@@ -1,9 +1,16 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const useOffer = () => {
     const [offers, setOffers] = useState([]);
 
     useEffect(() => {
+        axios.get(`https://phono-server-production.up.railway.app/phonesAp`).then((response) => {
+          setOffers(response.data);
+        });
+      }, []);
+
+   /*  useEffect(() => {
         let isMounted = true;
          try {
             async function callApi() {
@@ -21,7 +28,7 @@ const useOffer = () => {
         catch (error) {
             console.log ('error',error)
           }   
-    }, []);
+    }, []); */
     return [offers, setOffers];
 };
 

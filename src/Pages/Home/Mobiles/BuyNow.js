@@ -16,7 +16,7 @@ import { numberFormat } from "../../../Shared/numberFormat";
 const BuyNow = () => {
     const { user } = useAuth();
     const [orders] = useOrders();
-    const [users]= useUser();
+    const defaultAdrs= useUser();
     // const userOrder = orders.find(order => order.email === user?.email);
     // console.log(orders[0]?.email);
     const dispatch = useDispatch();
@@ -84,19 +84,17 @@ const BuyNow = () => {
       <Header />
       <div style={{ backgroundColor: "#EEF2FF" }}>
         <div className="container">
-          {
-            users?.map(usrD=>(
-             <div key={usrD?._id} className="row">
+             <div className="row">
             <div className="col-md-6 col-sm-12">
               <div className="my-5 p-2 rounded">
                 <h4 className="fw-bold">SHIPPING & BILLING INFORMATION</h4>
                 {user.email && (
                   <form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
                     <input defaultValue={user?.email} readOnly />
-                    <input defaultValue={usrD.name ? usrD.name : user?.displayName} {...register("orderBy", {required:true})} readOnly />
-                    <input defaultValue={usrD.address ? usrD.address : orders[0]?.address ? orders[0].address : ""} {...register("address", { required: true })}  placeholder="Present Address" />
-                    <input defaultValue={usrD.city ? usrD.city : orders[0]?.city ? orders[0].city : ""} {...register("city", {required:true})} placeholder="City" />
-                    <input defaultValue={usrD.phone ? usrD.phone : orders[0]?.phone ? orders[0].phone : ""} {...register("phone", {required:true})} placeholder="Phone number"/>
+                    <input defaultValue={defaultAdrs?.name ? defaultAdrs.name : user?.displayName} {...register("orderBy", {required:true})} readOnly />
+                    <input defaultValue={defaultAdrs?.address ? defaultAdrs.address : orders[0]?.address ? orders[0].address : ""} {...register("address", { required: true })}  placeholder="Present Address" />
+                    <input defaultValue={defaultAdrs?.city ? defaultAdrs.city : orders[0]?.city ? orders[0].city : ""} {...register("city", {required:true})} placeholder="City" />
+                    <input defaultValue={defaultAdrs?.phone ? defaultAdrs.phone : orders[0]?.phone ? orders[0].phone : ""} {...register("phone", {required:true})} placeholder="Phone number"/>
   
                     <br />
                     {addToBuy.length ? (
@@ -213,10 +211,7 @@ const BuyNow = () => {
                 </ul>
               </div>
             </div>
-          </div> 
-            ))
-          }
-          
+          </div>  
         </div>
         <Footer />
       </div>

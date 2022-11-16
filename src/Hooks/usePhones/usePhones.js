@@ -1,9 +1,16 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const usePhones = () => {
     const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
+      axios.get(`https://phono-server-production.up.railway.app/mobiles`).then((response) => {
+        setMobiles(response.data);
+      });
+    }, []);
+
+    /* useEffect(() => {
         let isMounted = true;
        
           try {
@@ -24,7 +31,7 @@ const usePhones = () => {
           }  
        
         
-    }, []);
+    }, []); */
     return [mobiles, setMobiles];
 };
 

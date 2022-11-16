@@ -63,7 +63,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     }));
 
 const { user, logOut } = useAuth();
-const [users] = useUser();
+const defaultAdrs = useUser();
 /*  const [orders, setOrders] = useState([]);
 const email = user?.email;
 useEffect(() => {
@@ -218,7 +218,7 @@ return (
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
             <MenuItem>
-            <small >{users[0]?.name ? users[0].name : user?.displayName} <br /> <span  style={{color: '#74829C', fontSize:"0.85em"}}>{user?.email}</span></small>
+            <small >{defaultAdrs?.name ? defaultAdrs.name : user?.displayName} <br /> <span  style={{color: '#74829C', fontSize:"0.85em"}}>{user?.email}</span></small>
             </MenuItem>
             <Divider />
 

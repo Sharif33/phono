@@ -12,6 +12,7 @@ import { CircularProgress, MenuItem, } from '@mui/material';
 import Footer from '../../../Shared/Footer/Footer';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
+import axios from 'axios';
 
 const ExploreMobiles = () => {
     const [categories, setCategories] = useState([]);
@@ -32,18 +33,10 @@ const ExploreMobiles = () => {
 
    
     useEffect(() => {
-         try {
-        async function callApi() {
-            let data = await fetch(`https://phono-server-production.up.railway.app/mobiles`);
-            data = await data.json();
-            setMobiles(data);
-            setCategories(data);
-        }
-        callApi();
-    }
-    catch (error) {
-        console.log ('error',error);
-      }
+       axios.get(`https://phono-server-production.up.railway.app/mobiles`).then((response)=>{
+        setMobiles(response.data);
+        setCategories(response.data);
+       });
        /*  fetch(`https://phono-server-production.up.railway.app/phones`)
             .then(res => res.json())
             .then(data => {

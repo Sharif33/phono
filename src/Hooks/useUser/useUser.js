@@ -1,5 +1,7 @@
-import {useState, useEffect} from 'react';
+/* import axios from 'axios';
+import { useState, useEffect } from 'react'; */
 import useAuth from '../useAuth/useAuth';
+import { useQuery } from 'react-query';
 
 /* 
 const useUser = () => {
@@ -20,28 +22,47 @@ export default useUser;
  */
 
 const useUser = () => {
-    const {user} = useAuth();
-    const [users, setUsers] = useState([]);
-    // console.log(users);
+    const { user } = useAuth();
+    // const [defaultAdrs, setdefaultAdrs] = useState('');
+    // console.log('udtdd:',defaultAdrs);
 
-    const upAddress = users?.find((ue)=>{
-        return ue.email === user.email;
-    })
-// console.log(upAddress);
-    useEffect(() => {
-        try {
-            async function callApi() {
-                let data = await fetch(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`);
-                data = await data.json();
-                setUsers([data])
-            }
-            callApi();
-        }
-        catch (error) {
-            console.log ('error',error)
+    /*   const defaultAdrs = users?.find((ue)=>{
+          return ue.email === user.email;
+      }) */
+    // console.log(defaultAdrs);
+
+    const { isLoading, error, data: defaultAdrs } = useQuery('userData', () =>
+     fetch(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`).then(res =>
+       res.json()
+     )    
+   )
+//   setdefaultAdrs(data);
+// console.log(defaultAdrs);
+   if (isLoading) return 'Loading...'
+ 
+   if (error) return 'An error has occurred: ' + error.message
+    
+
+  /*   useEffect(() => {
+        axios.get(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`).then((response) => {
+            setdefaultAdrs(response.data);
+        });
+    }, [user.email]); */
+
+    /*   useEffect(() => {
+          try {
+              async function callApi() {
+                  let data = await fetch(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`);
+                  data = await data.json();
+                  setUsers([data])
+              }
+              callApi();
           }
-    }, [user.email]);
-    return [users, setUsers,upAddress];
+          catch (error) {
+              // console.log ('error',error)
+            }
+      }, [user.email]); */
+    return defaultAdrs;
 };
 
 export default useUser;
