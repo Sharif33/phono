@@ -13,16 +13,27 @@ import { numberFormat } from '../../../Shared/numberFormat';
 import { Helmet } from "react-helmet";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { RiShoppingBag3Fill } from "react-icons/ri";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 import { Delete, DeleteForever } from '@mui/icons-material';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
 
 
 const Cart = () => {
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: -5,
+            top: 3,
+            backgroundColor:"#183153",
+            color: "#ffffff",
+          border: `2px solid ${theme.palette.background.paper}`,
+        //   padding: '2px',
+        },
+        }));
     // const {cart} = useContext(Favourite);
     const dispatch = useDispatch();
     const { addToCart, cartTotal, cartTotalQuantity, shipping, tax, delivery } = useSelector((state) => state.cart);
@@ -45,18 +56,10 @@ const Cart = () => {
                 </Helmet>
                 <Header />
         {
-            addToCart?.length && <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' }, position: 'fixed', top: '50%', left: 0,bottom:'auto' ,p:2}} className='text-center bg-light'>
-                <Button size='large' startIcon={<RiShoppingBag3Fill style={{ color: "#183153" }} />}><span className='text-secondary fw-bold'>{addToCart?.length}</span></Button><br />
-                <Typography style={{ color: "#183153" }} variant='h6'>
-                    &#x9F3;{numberFormat(Math.ceil(cartTotal + shipping + tax)).slice(3,-3)}
-                </Typography>
-        </Box>
-        }
-        {
             addToCart.length ?
-            <div style={{ minHeight: "100vh" }} className="container-lg py-4">
+            <Box id='cart' sx={{ minHeight: {md:"57.5vh",xs:"80vh"},py:4 }} className="container">
             <Box sx={{ flexGrow: 1, pb: '90px' }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={5}>
                 <Grid item xs={12} md={8}>
                 <Typography variant='body2'>
                     Estimated Delivery: <span className="text-navi fw-bold">{delivery}</span>
@@ -72,16 +75,13 @@ const Cart = () => {
                     key={mobile?._id}
                     sx={{ border: 0 }}
                 >
-                    <TableCell sx={{ py: 0, textAlign: 'center' }} >
-                        {
-                        mobile?.os ?
-                        <Link title='See Details' to={`/mobile/${mobile._id}`}> <img style={{ width: "2rem" }} src={mobile.image} alt="" />
-                        </Link>
-                        :
-                        <Link title='See Details' to={`/mobile2/${mobile._id}`}> <img style={{ width: "2.5rem" }} src={mobile.image} alt="" />
-                        </Link>
-                        }
-
+                    <TableCell sx={{ py: 0, textAlign: 'center' }} >                       
+                        <Link title='See Details' to={mobile?.os ? `/mobile/${mobile._id}` 
+                        : `/mobile2/${mobile._id}`}>
+                            <StyledBadge badgeContent={mobile?.cartQuantity}>
+                                <img style={{width:`${mobile?.os ? '2rem' : '2.5rem'}`}} src={mobile.image} alt="" />
+                            </StyledBadge>             
+                        </Link>     
                     </TableCell>
 
                     <TableCell align="left">
@@ -145,8 +145,8 @@ const Cart = () => {
                 </Table>
                 </TableContainer>
                 </Grid>
-                <Grid item xs={12} md={4} sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
-                    <List sx={{ bgcolor: '#F4F8F9' }}>
+                <Grid item xs={12} md={4} sx={{ display: { xs: 'none', sm: 'none', md: 'block' }, position:'fixed', top: 'auto', right: 0,bottom:'auto' ,px:5 }}>
+                    <List dense sx={{ bgcolor: '#F4F8F9' }}>
                         <Typography sx={{ textAlign: 'center', py: 1 }} variant='h5'>
                             Cart Summary
                         </Typography>
@@ -203,47 +203,7 @@ const Cart = () => {
                 </Grid>
             </Grid>
             </Box>
-            </div>
-            :
-            <div style={{ minHeight: "100vh" }} className='text-center pt-5'>
-                {/* <img src={emptyBag} alt="" className="img-fluid p-3" /> <br /> <br /> */}
-                <div className="d-flex justify-content-center p-3">
-                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_3VDN1k.json" background="transparent" speed="4" style={{ width: "20rem" }} loop autoplay></lottie-player>
-                </div>
-
-                <h4>Your shopping bag is empty, Please add some products before you checkout.</h4> <br />
-                <Link to={`/mobiles`}><button className="btn btn-lg btn-pink">Start shopping now</button></Link>
-
-            </div>
-        }
-
-
-                {/* <div className="row row-cols-1 row-cols-md-2 m-2 g-4">
-           {
-               addToCart?.map((mobile)=>(
-                  <Mobile
-                  mobile={mobile}
-                  key={mobile.id}
-                  /> 
-               ))
-           }
-           </div> */}
-                {/* <div style={{paddingTop:"70px"}}>
-               <h1>{cart.length}</h1>
-           </div>
-           {
-               cart.map((mobile)=>(
-                  <Mobile
-                  mobile={mobile}
-                  key={mobile.id}
-                  /> 
-               ))
-           } */}
-                <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
-                    <Footer />
-                </Box>
-
-                <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, background: "rgba(255, 255, 255, 0.7)", backdropFilter: "blur(20px)", boxShadow: 0, display: { md: 'none' } }}>
+            <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, background: "rgba(255, 255, 255, 0.7)", backdropFilter: "blur(20px)", boxShadow: 0, display: { md: 'none' } }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', px: 2, py: 1 }}>
                         <Typography variant='caption' className="text-navi">
                             Shipping: {shipping === 0 ? <span><s className='text-danger'>100&#x9F3;</s> FREE</span>
@@ -280,6 +240,22 @@ const Cart = () => {
                         </Link>
                     </Toolbar>
                 </AppBar>
+            </Box>
+            :
+            <div style={{ minHeight: "100vh" }} className='text-center pt-5'>
+                {/* <img src={emptyBag} alt="" className="img-fluid p-3" /> <br /> <br /> */}
+                <div className="d-flex justify-content-center p-3">
+                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_3VDN1k.json" background="transparent" speed="4" style={{ width: "20rem" }} loop autoplay></lottie-player>
+                </div>
+
+                <h4>Your shopping bag is empty, Please add some products before you checkout.</h4> <br />
+                <Link to={`/mobiles`}><button className="btn btn-lg btn-pink">Start shopping now</button></Link>
+
+            </div>
+        }
+        <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
+            <Footer />
+        </Box>  
             </div>
         </>
 

@@ -13,6 +13,7 @@ import Footer from '../../../Shared/Footer/Footer';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
+import CartModal from '../Cart/CartModal';
 
 const ExploreMobiles = () => {
     const [categories, setCategories] = useState([]);
@@ -189,6 +190,7 @@ const handleBrandSort = ()=>{
                 </Box>
 
                 <Box sx={{mt:{md:"9rem", xs:'13rem'}}} className="container">
+                    <CartModal/>
                 <div className="row row-cols-1 row-cols-md-4 g-4">                                 
                                                
                                                 {

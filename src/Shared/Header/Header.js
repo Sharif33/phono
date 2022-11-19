@@ -9,8 +9,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import MailIcon from '@mui/icons-material/Mail';
-import {MdOutlineFavoriteBorder } from "react-icons/md";
-import {BsCart2 } from "react-icons/bs";
+import {MdOutlineFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 import { GoLaw } from "react-icons/go";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import React from 'react';
@@ -32,6 +31,7 @@ import { CiCircleInfo,CiGrid41,CiUser } from "react-icons/ci";
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import ListItem from '@mui/material/ListItem';
+import { RiShoppingBag3Fill, RiShoppingBag3Line } from 'react-icons/ri';
 // import logo from '../../../src/images/phono-logo.png';
 
 const Header = () => {
@@ -55,9 +55,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
         right: -5,
         top: 3,
-        backgroundColor:"#05C3FB",
+        backgroundColor:"#183153",
         color: "#ffffff",
-    //   border: `2px solid ${theme.palette.background.paper}`,
+      border: `2px solid ${theme.palette.background.paper}`,
     //   padding: '2px',
     },
     }));
@@ -134,7 +134,12 @@ return (
                     <NavLink to={`/fvrt`} >
                         <IconButton aria-label="favorite">
                         <StyledBadge badgeContent={addToFvrt?.length}>
-                        <MdOutlineFavoriteBorder style={{color:"#183153"}} />
+                            {addToFvrt?.length ? 
+                            <MdOutlineFavorite style={{color:"#183153"}} />
+                            :
+                            <MdOutlineFavoriteBorder style={{color:"#183153"}} />
+                            }
+                        
                         </StyledBadge>
                         </IconButton>
                     </NavLink> 
@@ -142,7 +147,11 @@ return (
                     <NavLink to={`/cart`} >          
                         <IconButton sx={{ mx: {xs:1, sm:1, md:3} }} aria-label="cart">
                         <StyledBadge badgeContent={addToCart?.length}>
-                        <BsCart2 style={{color:"#183153"}} />
+                            {addToCart?.length ?
+                            <RiShoppingBag3Fill style={{color:"#183153"}} />
+                            :
+                            <RiShoppingBag3Line style={{color:"#183153"}} />
+                            }
                         </StyledBadge>
                         </IconButton>   
                     </NavLink>
@@ -205,7 +214,7 @@ return (
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
             <MenuItem>
-            <small >{defaultAdrs?.name ? defaultAdrs.name : user?.displayName} <br /> <span  style={{color: '#74829C', fontSize:"0.85em"}}>{user?.email}</span></small>
+            <small >{defaultAdrs?.name ? defaultAdrs?.name : user?.displayName} <br /> <span  style={{color: '#74829C', fontSize:"0.85em"}}>{user?.email}</span></small>
             </MenuItem>
             <Divider />
 

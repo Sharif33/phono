@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import useCart from '../../../Hooks/useCart/useCart';
 import usePhones from '../../../Hooks/usePhones/usePhones';
+import CartModal from '../Cart/CartModal';
 // import { addToDb } from '../../../utilities/fakedb';
 import Mobile from './Mobile';
 
@@ -37,6 +38,7 @@ const Mobiles = () => {
                 <div className="text-center pt-2">
                     <h1 className=" fw-bold text-primary p-2">Feature Mobile</h1>
                 </div>
+                <CartModal/>
                 <div className="row row-cols-1 row-cols-md-4 m-2 g-4">
                     {mobiles.length == 0 ?
                         <div className="w-100 text-center">

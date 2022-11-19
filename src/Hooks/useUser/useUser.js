@@ -1,53 +1,33 @@
-/* import axios from 'axios';
-import { useState, useEffect } from 'react'; */
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import useAuth from '../useAuth/useAuth';
-import { useQuery } from 'react-query';
-
-/* 
-const useUser = () => {
-    const {user} = useAuth();
-    const [users, setUsers] = useState([]);
-    
-
-    useEffect(() => {
-        
-        fetch(`https://phono-server-production.up.railway.app/users/${user?.email}`)
-            .then((res) => res.json())
-            .then((data) => setUsers([data]));
-    }, [user?.email]);
-    return [users, setUsers];
-};
-
-export default useUser;
- */
+// import { useQuery } from 'react-query';
 
 const useUser = () => {
     const { user } = useAuth();
-    // const [defaultAdrs, setdefaultAdrs] = useState('');
+    const [users, setUsers] = useState([]);
     // console.log('udtdd:',defaultAdrs);
 
-    /*   const defaultAdrs = users?.find((ue)=>{
+      const defaultAdrs = users?.find((ue)=>{
           return ue.email === user.email;
-      }) */
+      })
     // console.log(defaultAdrs);
 
-    const { isLoading, error, data: defaultAdrs } = useQuery('userData', () =>
+  /*   const { isLoading, error, data: defaultAdrs } = useQuery('userData', () =>
      fetch(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`).then(res =>
        res.json()
      )    
    )
-//   setdefaultAdrs(data);
-// console.log(defaultAdrs);
    if (isLoading) return 'Loading...'
  
-   if (error) return 'An error has occurred: ' + error.message
+   if (error) return 'An error has occurred: ' + error.message */
     
 
-  /*   useEffect(() => {
+    useEffect(() => {
         axios.get(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`).then((response) => {
-            setdefaultAdrs(response.data);
+            setUsers([response.data]);
         });
-    }, [user.email]); */
+    }, [user.email]);
 
     /*   useEffect(() => {
           try {

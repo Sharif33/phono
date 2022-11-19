@@ -63,12 +63,10 @@ const PlaceOrder = () => {
     }
   }, [addToCart, dispatch]);
 
-/* ---post pd to db--- */
+/* ---post pdItm to db--- */
   const [orderItems, setOrderItems] = useState();
-  //  console.log(orderItems);
   useEffect(() => {
     const orderItem = addToCart?.map(({ name, _id, price, cartQuantity, image, brand, os }) => {
-      // console.log({name,_id,price,cartQuantity});
       return ({ name, _id, price, cartQuantity, image, brand, os })
     });
     setOrderItems(orderItem)

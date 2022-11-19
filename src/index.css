@@ -12,26 +12,27 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 /* width */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 10px;
+  height: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #303f9f;
+  background: #ced4da;
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #05C3FB; 
+  background: #adb5bd; 
 }
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
