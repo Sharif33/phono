@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react';
 const useOffer = () => {
     const [offers, setOffers] = useState([]);
 
+    /* https://phono-server-production.up.railway.app/ */
+
     useEffect(() => {
-        axios.get(`https://phono-server-production.up.railway.app/phonesAp`).then((response) => {
+        axios.get(`https://phono-server.vercel.app/phonesAp`).then((response) => {
           setOffers(response.data);
         });
       }, []);
@@ -14,7 +16,7 @@ const useOffer = () => {
         let isMounted = true;
          try {
             async function callApi() {
-                let data = await fetch(`https://phono-server-production.up.railway.app/phonesAp`);
+                let data = await fetch(`https://phono-server.vercel.app/phonesAp`);
                 data = await data.json();
                 if(isMounted ){
                 setOffers(data);

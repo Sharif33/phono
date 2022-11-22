@@ -51,7 +51,7 @@ const CustomerReview = ({openReviewNow, handleClose}) => {
         data.userImg=user?.photoURL;
     
         axios
-          .post(`https://phono-server-production.up.railway.app/cReviews`, data)
+          .post(`https://phono-server.vercel.app/cReviews`, data)
           .then((res) => {
             if (res.data.insertedId) {
               Swal.fire(

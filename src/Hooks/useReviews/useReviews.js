@@ -6,7 +6,7 @@ const useReviews = () => {
     // console.log(reviews);
 
     useEffect(() => {
-        axios.get(`https://phono-server-production.up.railway.app/reviews`).then((response) => {
+        axios.get(`https://phono-server.vercel.app/reviews`).then((response) => {
           setReviews(response.data);
         });
       }, []);
@@ -16,7 +16,7 @@ const useReviews = () => {
         if(isMounted ){
          try {
             async function callApi() {
-                let data = await fetch(`https://phono-server-production.up.railway.app/reviews`);
+                let data = await fetch(`https://phono-server.vercel.app/reviews`);
                 data = await data.json();
                 setReviews(data)
             }

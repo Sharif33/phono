@@ -17,7 +17,7 @@ const MakeAdmin = () => {
     const handleAdminSubmit = e => {
         const user = { email };
         // console.log(user);
-        fetch(`https://phono-server-production.up.railway.app/users/admin`, {
+        fetch(`https://phono-server.vercel.app/users/admin`, {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${token}`,

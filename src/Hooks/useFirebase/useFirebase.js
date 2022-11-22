@@ -85,7 +85,7 @@ const useFirebase = () => {
     }, [auth])
 
     useEffect(() => {
-        fetch(`https://phono-server-production.up.railway.app/users/${user.email}`)
+        fetch(`https://phono-server.vercel.app/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
@@ -102,7 +102,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch(`https://phono-server-production.up.railway.app/users`, {
+        fetch(`https://phono-server.vercel.app/users`, {
             method: method,
             headers: {
                 'content-type': 'application/json'

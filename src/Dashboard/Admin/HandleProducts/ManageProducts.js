@@ -30,7 +30,7 @@ const ManageProducts = () => {
     // console.log(mobiles);
 
     useEffect(() => {
-        fetch(`https://phono-server-production.up.railway.app/mobiles`)
+        fetch(`https://phono-server.vercel.app/mobiles`)
             .then(res => res.json())
             .then(data =>{
                setMobiles(data);
@@ -52,7 +52,7 @@ const ManageProducts = () => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `https://phono-server-production.up.railway.app/mobiles/${id}`
+            const url = `https://phono-server.vercel.app/mobiles/${id}`
             fetch(url, {
                 method: 'DELETE',
             })

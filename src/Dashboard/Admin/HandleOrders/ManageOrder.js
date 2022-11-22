@@ -55,7 +55,7 @@ const ManageOrder = () => {
 
     useEffect(() => {
         let isMounted = true;
-        fetch(`https://phono-server-production.up.railway.app/orders`)
+        fetch(`https://phono-server.vercel.app/orders`)
             .then((res) => res.json())
             .then((data) => {
                 if(isMounted ){
@@ -84,7 +84,7 @@ const ManageOrder = () => {
             if (result.isConfirmed) 
          {
 
-            fetch(`https://phono-server-production.up.railway.app/updateStatus/${id}`, {
+            fetch(`https://phono-server.vercel.app/updateStatus/${id}`, {
                 method: "PUT",
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify({ status })
@@ -125,7 +125,7 @@ const ManageOrder = () => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `https://phono-server-production.up.railway.app/orders/${id}`
+            const url = `https://phono-server.vercel.app/orders/${id}`
             fetch(url, {
                 method: 'DELETE',
             })

@@ -14,7 +14,7 @@ const useUser = () => {
     // console.log(defaultAdrs);
 
   /*   const { isLoading, error, data: defaultAdrs } = useQuery('userData', () =>
-     fetch(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`).then(res =>
+     fetch(`https://phono-server.vercel.app/usersEmail/${user.email}`).then(res =>
        res.json()
      )    
    )
@@ -24,7 +24,7 @@ const useUser = () => {
     
 
     useEffect(() => {
-        axios.get(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`).then((response) => {
+        axios.get(`https://phono-server.vercel.app/usersEmail/${user.email}`).then((response) => {
             setUsers([response.data]);
         });
     }, [user.email]);
@@ -32,7 +32,7 @@ const useUser = () => {
     /*   useEffect(() => {
           try {
               async function callApi() {
-                  let data = await fetch(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`);
+                  let data = await fetch(`https://phono-server.vercel.app/usersEmail/${user.email}`);
                   data = await data.json();
                   setUsers([data])
               }
@@ -50,7 +50,7 @@ export default useUser;
 
 /* export const useUser = (email, setData, setIsLoading) => {
     setIsLoading(true)
-    fetch(`https://phono-server-production.up.railway.app/users/${email}`)
+    fetch(`https://phono-server.vercel.app/users/${email}`)
         .then(res => res.json())
         .then(data => {
             localStorage.setItem("userDetails", JSON.stringify(data));

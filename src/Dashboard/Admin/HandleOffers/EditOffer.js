@@ -16,7 +16,7 @@ const EditOffer = ({isDrawerOpen, setIsDrawerOpen, mobile, setMobiles, mobiles})
     const { register, handleSubmit } = useForm();
 
     useEffect(() => {
-        fetch(`https://phono-server-production.up.railway.app/phones`)
+        fetch(`https://phono-server.vercel.app/phones`)
             .then(res => res.json())
             .then(data => setMbl(data))
     }, [])
@@ -27,7 +27,7 @@ const EditOffer = ({isDrawerOpen, setIsDrawerOpen, mobile, setMobiles, mobiles})
         // console.log(data);
         
 
-            axios.put(`https://phono-server-production.up.railway.app/phones/${mobile?._id}`,data) 
+            axios.put(`https://phono-server.vercel.app/phones/${mobile?._id}`,data) 
             .then(res=>{
                     if (res.data) {
                         // console.log(data);

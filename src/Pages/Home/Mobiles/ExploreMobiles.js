@@ -34,11 +34,11 @@ const ExploreMobiles = () => {
 
    
     useEffect(() => {
-       axios.get(`https://phono-server-production.up.railway.app/mobiles`).then((response)=>{
+       axios.get(`https://phono-server.vercel.app/mobiles`).then((response)=>{
         setMobiles(response.data);
         setCategories(response.data);
        });
-       /*  fetch(`https://phono-server-production.up.railway.app/phones`)
+       /*  fetch(`https://phono-server.vercel.app/phones`)
             .then(res => res.json())
             .then(data => {
                 setMobiles(data);

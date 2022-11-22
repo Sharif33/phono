@@ -18,7 +18,7 @@ const Banner3 = () => {
     const [phones, setPhones] = useState([]);
 
     useEffect(() => {
-        fetch(`https://phono-server-production.up.railway.app/phones`)
+        fetch(`https://phono-server.vercel.app/phones`)
             .then(res => res.json())
             .then(data => setPhones(data))
     }, [])

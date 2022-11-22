@@ -88,7 +88,7 @@ const SingleMobile = () => {
     try {
       async function callApi() {
         let data = await fetch(
-          `https://phono-server-production.up.railway.app/mobiles/${id}`
+          `https://phono-server.vercel.app/mobiles/${id}`
         );
         data = await data.json();
         setPhones(data);
@@ -128,7 +128,7 @@ const SingleMobile = () => {
         data.date=new Date().toDateString();
         data.time=new Date().toLocaleTimeString();
 
-        axios.post(`https://phono-server-production.up.railway.app/orders`, data)
+        axios.post(`https://phono-server.vercel.app/orders`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     // alert('Purchase successfully.Please Check My Order');

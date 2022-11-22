@@ -35,7 +35,7 @@ const AddMobile = () => {
             console.log(err)
         })
  */
-        axios.post(`https://phono-server-production.up.railway.app/mobiles`, data)
+        axios.post(`https://phono-server.vercel.app/mobiles`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     

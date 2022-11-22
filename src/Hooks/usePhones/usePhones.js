@@ -5,7 +5,7 @@ const usePhones = () => {
     const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
-      axios.get(`https://phono-server-production.up.railway.app/mobiles`).then((response) => {
+      axios.get(`https://phono-server.vercel.app/mobiles`).then((response) => {
         setMobiles(response.data);
       });
     }, []);
@@ -15,7 +15,7 @@ const usePhones = () => {
        
           try {
             async function callApi() {
-                let data = await fetch(`https://phono-server-production.up.railway.app/mobiles`);
+                let data = await fetch(`https://phono-server.vercel.app/mobiles`);
                 data = await data.json();
                 if(isMounted ){ 
                 setMobiles(data);
