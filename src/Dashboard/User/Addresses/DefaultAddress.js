@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-// import { Modal } from 'react-responsive-modal';
-// import 'react-responsive-modal/styles.css';
 import useAuth from '../../../Hooks/useAuth/useAuth';
 import { Alert, Button, Chip, CircularProgress, TextField, Typography } from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
 import { EditOutlined, Add } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
-import useUser from '../../../Hooks/useUser/useUser';
 import PinDropIcon from '@mui/icons-material/PinDrop';
 
 const style = {
@@ -27,14 +23,15 @@ const style = {
 };
 
 const DefaultAddress = () => {
-    const { user } = useAuth();
-    const defaultAdrs = useUser();
+    const { user, defaultAdrs } = useAuth();
     const [fieldsValue, setFieldsValue] = useState({});
 
-    // console.log(users);
+    const dfltAdrs = {...defaultAdrs,...fieldsValue};
+   
+    const adrs = localStorage.getItem('phonoUserDetails') ? JSON.parse(localStorage.getItem('phonoUserDetails')) : {} || [];
+
     const [isLoading, setIsLoading] = useState(false);
    
-
     // GET ALL THE VALUES FROM 
     const handleGetFieldValues = (e) => {
 
@@ -62,13 +59,16 @@ const DefaultAddress = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(bodyInfo)
             };
-            const response = await fetch(`https://phono-server.vercel.app/users/${email}`, requestOptions);
+
+
+            const response = await fetch(`http://localhost:5000/users/${email}`, requestOptions);
             const data = await response.json();
             
             if (data.modifiedCount > 0) {
-                setIsLoading(false)
+                setIsLoading(false);
+                localStorage.setItem("phonoUserDetails", JSON.stringify(dfltAdrs));
                 setSuccess(true);
-                handleClose();
+                handleClose();              
             }
         }
         // setUsers(...bodyInfo,users);
@@ -88,25 +88,25 @@ const DefaultAddress = () => {
             <Box sx={{ display: { md: 'flex' }, alignItems: 'center', bgcolor: '#F4F8F9', justifyContent: 'space-between', p: 2, my: 2 }}>
                 <Box>
                     {
-                        defaultAdrs?.phone ? <Box>
+                        adrs?.phone ? <Box>
                             <Typography variant='button' display="block">
-                                {defaultAdrs?.name}
+                                {adrs?.name}
                             </Typography>
                             <Typography variant='body2' display="block">
-                                {defaultAdrs?.address}
+                                {adrs?.address}
                             </Typography>
                             <Typography variant='body2' display="block">
-                                {defaultAdrs?.city} 
-                                {defaultAdrs?.zip}
+                                {adrs?.city} 
+                                {adrs?.zip}
                             </Typography>
                             <Typography variant='body2'>
-                                {defaultAdrs?.country}
+                                {adrs?.country}
                             </Typography>
                             <Typography variant='body2'>
-                                {defaultAdrs?.email}
+                                {adrs?.email}
                             </Typography>
                             <Typography variant='body2' display="block">
-                                {defaultAdrs?.phone}
+                                {adrs?.phone}
                             </Typography>
                         </Box>
                             :
@@ -114,7 +114,7 @@ const DefaultAddress = () => {
                     }
                 </Box>
                 <Box>
-                    <Chip sx={{ p: 1, mt: { xs: 2, md: 0, sm: 2 } }} onClick={handleOpen} color='secondary' size='large' icon={defaultAdrs?.phone ? <EditOutlined /> : <Add />} label={defaultAdrs?.phone ? "Edit Address" : "Add Address"} variant="outlined" />
+                    <Chip sx={{ p: 1, mt: { xs: 2, md: 0, sm: 2 } }} onClick={handleOpen} color='secondary' size='large' icon={adrs?.phone ? <EditOutlined /> : <Add />} label={adrs?.phone ? "Edit Address" : "Add Address"} variant="outlined" />
                 </Box>
             </Box>
             }
@@ -136,13 +136,13 @@ const DefaultAddress = () => {
                                 <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
                                     <TextField
                                         sx={{ width: "100%" }}
-                                        defaultValue={defaultAdrs?.name}
+                                        defaultValue={adrs?.name}
                                         name="name"
                                         required
                                         onBlur={handleGetFieldValues}
                                         label="Your Name" variant="outlined" />
                                     <span >
-                                        <select defaultValue={defaultAdrs?.gender} className='p-3 ms-2 rounded'
+                                        <select defaultValue={adrs?.gender} className='p-3 ms-2 rounded'
                                             onBlur={handleGetFieldValues} name="gender">
                                             <option>Gender</option>
                                             <option value="Male">Male</option>
@@ -157,7 +157,7 @@ const DefaultAddress = () => {
                                     <TextField
                                         sx={{ width: "100%" }}
                                         required
-                                        defaultValue={defaultAdrs?.address}
+                                        defaultValue={adrs?.address}
                                         name="address"
                                         onBlur={handleGetFieldValues}
                                         label="Your Address" variant="outlined" />
@@ -165,7 +165,7 @@ const DefaultAddress = () => {
                                 <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
                                     <TextField
                                         sx={{ width: "100%" }}
-                                        defaultValue={defaultAdrs?.city}
+                                        defaultValue={adrs?.city}
                                         name="city"
                                         onBlur={handleGetFieldValues}
                                         label="City" variant="outlined" />
@@ -173,7 +173,7 @@ const DefaultAddress = () => {
                                         <TextField
                                             type='number'
                                             sx={{ ml: 1 }}
-                                            defaultValue={defaultAdrs?.zip}
+                                            defaultValue={adrs?.zip}
                                             name="zip"
                                             onBlur={handleGetFieldValues}
                                             label="Postal code" variant="outlined" />
@@ -182,7 +182,7 @@ const DefaultAddress = () => {
                                 <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
                                     <TextField
                                         sx={{ width: "100%" }}
-                                        defaultValue={defaultAdrs?.country}
+                                        defaultValue={adrs?.country}
                                         name="country"
                                         onBlur={handleGetFieldValues}
                                         label="Country" variant="outlined" />
@@ -190,7 +190,7 @@ const DefaultAddress = () => {
                                 <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
                                     <TextField
                                         sx={{ mb: 2, width: "100%" }}
-                                        defaultValue={defaultAdrs?.phone}
+                                        defaultValue={adrs?.phone}
                                         name="phone"
                                         required
                                         onBlur={handleGetFieldValues}

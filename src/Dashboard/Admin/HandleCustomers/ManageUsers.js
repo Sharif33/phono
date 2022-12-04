@@ -6,7 +6,7 @@ const [allUsers,setAllUsers] = useState([]);
 // console.log(allUsers);
     useEffect(() => {
         let isMounted = true;
-        fetch(`https://phono-server.vercel.app/users`)
+        fetch(`http://localhost:5000/users`)
             .then((res) => res.json())
             .then((data) => {
                 if(isMounted ){

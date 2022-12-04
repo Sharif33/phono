@@ -18,7 +18,7 @@ const CheckoutForm = ({itemOrder}) => {
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
-        fetch(`https://phono-server.vercel.app/create-payment-intent`, {
+        fetch(`http://localhost:5000/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -84,7 +84,7 @@ const CheckoutForm = ({itemOrder}) => {
                 last4: paymentMethod.card.last4,
                 transaction: paymentIntent.client_secret
             }
-            const url = `https://phono-server.vercel.app/orders/${_id}`;
+            const url = `http://localhost:5000/orders/${_id}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {

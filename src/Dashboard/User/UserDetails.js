@@ -1,13 +1,10 @@
 import React from 'react';
 import useAuth from '../../Hooks/useAuth/useAuth';
-import useUser from '../../Hooks/useUser/useUser';
 import DefaultAddress from './Addresses/DefaultAddress';
 
 const UserDetails = () => {
-    const { user } = useAuth();
+    const { user, defaultAdrs } = useAuth();
     // const [orders] = useOrders();
-    const defaultAdrs = useUser();
-
     return (
         <>    
         <div className='row m-md-2 g-4'>

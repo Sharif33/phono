@@ -19,7 +19,7 @@ const EditMobile = () => {
        
         try {
           async function callApi() {
-              let data = await fetch(`https://phono-server.vercel.app/mobiles/${id}`)
+              let data = await fetch(`http://localhost:5000/mobiles/${id}`)
               data = await data.json();
               if(isMounted ){ 
                   setPhones(data);
@@ -66,7 +66,7 @@ const EditMobile = () => {
               }).then((result) => {
                 if (result.isConfirmed) 
              {
-        fetch(`https://phono-server.vercel.app/mobiles/${id}`, {
+        fetch(`http://localhost:5000/mobiles/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -110,7 +110,7 @@ const EditMobile = () => {
             if (result.isConfirmed) 
          {
 
-            axios.put(`https://phono-server.vercel.app/mobiles/${id}`,data) 
+            axios.put(`http://localhost:5000/mobiles/${id}`,data) 
             .then(res=>{
                     if (res.data) {
                         Swal.fire(

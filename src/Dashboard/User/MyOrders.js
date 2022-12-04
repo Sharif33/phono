@@ -13,7 +13,7 @@ const MyOrders = () => {
   const email = user?.email;
   useEffect(() => {
     let isMounted = true;
-    fetch(`https://phono-server.vercel.app/myOrders/${email}`)
+    fetch(`http://localhost:5000/myOrders/${email}`)
       .then((res) => res.json())
       .then((data) => {
         if (isMounted) {
@@ -30,7 +30,7 @@ const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    fetch(`https://phono-server.vercel.app/orders`)
+    fetch(`http://localhost:5000/orders`)
       .then((res) => res.json())
       .then((data) => {
         if (isMounted) {
@@ -55,7 +55,7 @@ const MyOrders = () => {
       confirmButtonText: "Yes, cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `https://phono-server.vercel.app/myOrders/${id}`;
+        const url = `http://localhost:5000/myOrders/${id}`;
         fetch(url, {
           method: "DELETE",
         })

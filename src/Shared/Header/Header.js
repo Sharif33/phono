@@ -26,13 +26,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import useUser from '../../Hooks/useUser/useUser';
 import { CiCircleInfo,CiGrid41,CiUser } from "react-icons/ci";
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import ListItem from '@mui/material/ListItem';
 import { RiShoppingBag3Fill, RiShoppingBag3Line } from 'react-icons/ri';
-// import logo from '../../../src/images/phono-logo.png';
 
 const Header = () => {
 const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -62,8 +60,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
     }));
 
-const { user, logOut } = useAuth();
-const defaultAdrs = useUser();
+const { user, logOut, defaultAdrs } = useAuth();
+// const defaultAdrs = useUser();
 
 return (
 <>
@@ -214,7 +212,7 @@ return (
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
             <MenuItem>
-            <small >{defaultAdrs?.name ? defaultAdrs?.name : user?.displayName} <br /> <span  style={{color: '#74829C', fontSize:"0.85em"}}>{user?.email}</span></small>
+            <small >{defaultAdrs?.name ? defaultAdrs.name : user?.displayName} <br /> <span  style={{color: '#74829C', fontSize:"0.85em"}}>{user?.email}</span></small>
             </MenuItem>
             <Divider />
 

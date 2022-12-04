@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile, signOut, getIdToken } from "firebase/auth";
 import initializeAuthentication from "../../Firebase/firebase.iinit";
+import axios from 'axios';
 // initialize firebase app
 initializeAuthentication();
 
@@ -10,6 +11,7 @@ const useFirebase = () => {
     const [token, setToken] = useState('');
     const [authError, setAuthError] = useState('');
     const [admin, setAdmin] = useState(false);
+    const [defaultAdrs, setAdrs] = useState({});
 
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
@@ -85,9 +87,23 @@ const useFirebase = () => {
     }, [auth])
 
     useEffect(() => {
-        fetch(`https://phono-server.vercel.app/users/${user.email}`)
+        /* fetch(`http://localhost:5000/users/${user.email}`)
             .then(res => res.json())
-            .then(data => setAdmin(data.admin))
+            .then(data => {
+                // console.log(data);
+                localStorage.setItem("phonoUserDetails", JSON.stringify(data));
+                setAdrs(data);
+                setAdmin(data?.admin)}) */
+                const fetchData = async () =>{
+                axios
+                .get(`http://localhost:5000/users/${user?.email}`)
+                .then((response) => {
+                localStorage.setItem("phonoUserDetails", JSON.stringify(response.data));
+                setAdrs(response.data);
+                setAdmin(response.data?.admin);
+                })
+            }
+            fetchData()
     }, [user.email])
 
     const logOut = () => {
@@ -102,7 +118,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch(`https://phono-server.vercel.app/users`, {
+        fetch(`http://localhost:5000/users`, {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -115,6 +131,7 @@ const useFirebase = () => {
     return {
         user,
         admin,
+        defaultAdrs,
         token,
         isLoading,
         authError,

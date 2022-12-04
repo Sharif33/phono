@@ -2,7 +2,7 @@ import { Box, Chip, Typography } from '@mui/material';
 import React, { useState} from 'react';
 /* import useAuth from '../../../Hooks/useAuth/useAuth';
 import useOrders from '../../../Hooks/useOrders/useOrders'; */
-import useUser from '../../../Hooks/useUser/useUser';
+// import useUser from '../../../Hooks/useUser/useUser';
 // import EditUser from '../EditUser';
 import PinDropIcon from '@mui/icons-material/PinDrop';
 import { EditOutlined, Add } from '@mui/icons-material';
@@ -32,9 +32,9 @@ const style = {
 
 const ShippingAddress = ({editedAdrs,users,setUsers,isLoading,setIsLoading}) => {
 
-    const{user} = useAuth();
+    const{user, defaultAdrs} = useAuth();
     // const [orders] = useOrders();
-    const defaultAdrs = useUser();
+    // const defaultAdrs = useUser();
     // console.log(defaultAdrs);
     const [openUserNow, setOpenUserNow] = React.useState(false);
     const handleOpen = () => setOpenUserNow(true);
@@ -54,12 +54,11 @@ const ShippingAddress = ({editedAdrs,users,setUsers,isLoading,setIsLoading}) => 
         }
         newFieldData[field] = value
         setFieldsValue(newFieldData)
-
     }
 
     const [success, setSuccess] = useState(false);
     const email = user.email;
-    const handleAdminSubmit = e => {
+    const handleAddressSubmit = e => {
         setIsLoading(true)
         const bodyInfo = { ...fieldsValue, email: user.email }
         async function updatePost() {
@@ -68,17 +67,14 @@ const ShippingAddress = ({editedAdrs,users,setUsers,isLoading,setIsLoading}) => 
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(bodyInfo)
             };
-            const response = await fetch(`https://phono-server.vercel.app/users/${email}`, requestOptions);
+            const response = await fetch(`http://localhost:5000/users/${email}`, requestOptions);
             const data = await response.json();
             
             if (data.modifiedCount > 0) {
                 setIsLoading(false)
-                // console.log(data);
-                // setVendors(data)
-                // window.location.reload();
+                setUsers(bodyInfo);                
                 setSuccess(true);
                 handleClose();
-                setUsers(bodyInfo);
             }
         }
         // setUsers(...bodyInfo,users);
@@ -89,6 +85,8 @@ const ShippingAddress = ({editedAdrs,users,setUsers,isLoading,setIsLoading}) => 
     setTimeout(() => {
         setSuccess(false)
     }, 10000);
+
+    localStorage.setItem("phonoUserDetails", JSON.stringify(editedAdrs));
     return (
         <>
             <h5 className='text-start'><PinDropIcon /> Shipping Address</h5>
@@ -152,7 +150,7 @@ const ShippingAddress = ({editedAdrs,users,setUsers,isLoading,setIsLoading}) => 
             >
                 <Box sx={style}>
                     <div className="rounded">
-                        <form className='pt-4' onSubmit={handleAdminSubmit}>
+                        <form className='pt-4' onSubmit={handleAddressSubmit}>
                             <ul className="list-group">
                                 <li className="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0">
                                     <TextField

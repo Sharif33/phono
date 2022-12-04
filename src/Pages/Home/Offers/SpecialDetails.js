@@ -35,7 +35,7 @@ const SpecialDetails = () => {
     try {
       async function callApi() {
         let data = await fetch(
-          `https://phono-server.vercel.app/phones/${id}`
+          `http://localhost:5000/phones/${id}`
         );
         data = await data.json();
         setPhones(data);

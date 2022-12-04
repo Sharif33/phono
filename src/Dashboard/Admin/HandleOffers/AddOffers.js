@@ -42,7 +42,7 @@ const AddOffers = () => {
         data.adder=user?.displayName;
         data.adderEmail=user?.email;
         
-        axios.post(`https://phono-server.vercel.app/phones`, data)
+        axios.post(`http://localhost:5000/phones`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire(

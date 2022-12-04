@@ -34,11 +34,11 @@ const ExploreMobiles = () => {
 
    
     useEffect(() => {
-       axios.get(`https://phono-server.vercel.app/mobiles`).then((response)=>{
+       axios.get(`http://localhost:5000/mobiles`).then((response)=>{
         setMobiles(response.data);
         setCategories(response.data);
        });
-       /*  fetch(`https://phono-server.vercel.app/phones`)
+       /*  fetch(`http://localhost:5000/phones`)
             .then(res => res.json())
             .then(data => {
                 setMobiles(data);

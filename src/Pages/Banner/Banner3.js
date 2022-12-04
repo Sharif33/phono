@@ -18,7 +18,7 @@ const Banner3 = () => {
     const [phones, setPhones] = useState([]);
 
     useEffect(() => {
-        fetch(`https://phono-server.vercel.app/phones`)
+        fetch(`http://localhost:5000/phones`)
             .then(res => res.json())
             .then(data => setPhones(data))
     }, [])

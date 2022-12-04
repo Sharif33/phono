@@ -38,7 +38,7 @@ const Review = ({ phones }) => {
     data.image=phones?.image;
 
     axios
-      .post(`https://phono-server.vercel.app/reviews`, data)
+      .post(`http://localhost:5000/reviews`, data)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire(

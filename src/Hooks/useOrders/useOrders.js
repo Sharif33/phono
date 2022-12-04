@@ -8,14 +8,14 @@ const useOrders = () => {
     const email = user?.email;
 
     useEffect(() => {
-        axios.get(`https://phono-server.vercel.app/myOrders/${email}`).then((response) => {
+        axios.get(`http://localhost:5000/myOrders/${email}`).then((response) => {
           setOrders(response.data);
         });
       }, [email]);
 
     /* useEffect(() => {
         let isMounted = true;
-            fetch(`https://phono-server.vercel.app/myOrders/${email}`)
+            fetch(`http://localhost:5000/myOrders/${email}`)
             .then((res) => res.json())
             .then((data) =>{
                 if(isMounted ){

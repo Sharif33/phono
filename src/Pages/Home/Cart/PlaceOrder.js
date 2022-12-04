@@ -11,9 +11,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth/useAuth";
-// import useOrders from "../../../Hooks/useOrders/useOrders";
 import { Helmet } from "react-helmet";
-import useUser from "../../../Hooks/useUser/useUser";
 import { numberFormat } from "../../../Shared/numberFormat";
 import useCoupons from "../../../Hooks/useCoupons/useCoupons";
 import { AppBar, Button, Checkbox, Divider, FormHelperText, Grid, InputBase, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextareaAutosize, Toolbar, Typography } from '@mui/material';
@@ -24,11 +22,10 @@ import ShippingAddress from "../../../Dashboard/User/Addresses/ShippingAddress";
 import AddNewAddress from "../../../Dashboard/User/Addresses/AddNewAddress";
 
 const PlaceOrder = () => {
-  const { user } = useAuth();
+  const { user, defaultAdrs} = useAuth();
   let navigate = useNavigate();
 
  /*  ----Address Add---- */
-  const defaultAdrs = useUser();
   // console.log(defaultAdrs);
   const [users, setUsers] = useState([]);
   const editedAdrs = { ...defaultAdrs, ...users };
@@ -37,7 +34,7 @@ const PlaceOrder = () => {
   useEffect(() => {
     if (users.length === 0) {
       setIsLoading(true)
-      fetch(`https://phono-server.vercel.app/usersEmail/${user.email}`)
+      fetch(`http://localhost:5000/usersEmail/${user.email}`)
         .then(res => res.json())
         .then(data => setUsers(data))
         .finally(() => setIsLoading(false))
@@ -141,7 +138,7 @@ const PlaceOrder = () => {
     data.orderNote = ordrNote ? ordrNote : " ";
 
     axios
-      .post(`https://phono-server.vercel.app/orders`, data)
+      .post(`http://localhost:5000/orders`, data)
       .then((res) => {
         if (res.data.insertedId) {
           // alert('Purchase successfully.Please Check My Order');

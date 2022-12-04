@@ -18,7 +18,7 @@ import EditOffer from './EditOffer';
 const ApprovalOffer = ({mobile, mobiles, setMobiles}) => {
     // Approved by Admin
     const handleApproval = (id) => {
-        fetch(`https://phono-server.vercel.app/phones`, {
+        fetch(`http://localhost:5000/phones`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ const ApprovalOffer = ({mobile, mobiles, setMobiles}) => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `https://phono-server.vercel.app/phones/${id}`
+            const url = `http://localhost:5000/phones/${id}`
             fetch(url, {
                 method: 'DELETE',
             })

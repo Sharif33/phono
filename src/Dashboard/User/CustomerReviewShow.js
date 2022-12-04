@@ -24,7 +24,7 @@ const CustomerReviewShow = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`https://phono-server.vercel.app/cReviews`)
+        fetch(`http://localhost:5000/cReviews`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

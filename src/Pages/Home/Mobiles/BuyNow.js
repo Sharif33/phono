@@ -10,15 +10,11 @@ import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth/useAuth";
 import useOrders from "../../../Hooks/useOrders/useOrders";
 import {Helmet} from "react-helmet";
-import useUser from "../../../Hooks/useUser/useUser";
 import { numberFormat } from "../../../Shared/numberFormat";
 
 const BuyNow = () => {
-    const { user } = useAuth();
+    const { user, defaultAdrs } = useAuth();
     const [orders] = useOrders();
-    const defaultAdrs= useUser();
-    // const userOrder = orders.find(order => order.email === user?.email);
-    // console.log(orders[0]?.email);
     const dispatch = useDispatch();
     const { addToBuy} = useSelector((state) => state.buy);
 
@@ -58,7 +54,7 @@ const BuyNow = () => {
       data.status = "Pending...";
   
       axios
-        .post(`https://phono-server.vercel.app/orders`, data)
+        .post(`http://localhost:5000/orders`, data)
         .then((res) => {
           if (res.data.insertedId) {
             // alert('Purchase successfully.Please Check My Order');

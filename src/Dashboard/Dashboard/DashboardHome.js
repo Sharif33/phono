@@ -20,14 +20,14 @@ const DashboardHome = () => {
     const [offers,setOffers] = useState([]);
    
     useEffect(() => {
-        fetch(`https://phono-server.vercel.app/phones`)
+        fetch(`http://localhost:5000/phones`)
             .then(res => res.json())
             .then(data => setOffers(data))
     }, []);
 
      const [cReview,setCreview] = useState([]);
     useEffect(() => {
-        fetch(`https://phono-server.vercel.app/cReviews`)
+        fetch(`http://localhost:5000/cReviews`)
             .then(res => res.json())
             .then(data => setCreview(data))
     }, []);
@@ -38,7 +38,7 @@ const DashboardHome = () => {
 
     useEffect(() => {
         let isMounted = true;
-        fetch(`https://phono-server.vercel.app/orders`)
+        fetch(`http://localhost:5000/orders`)
             .then((res) => res.json())
             .then((data) => {
                 if(isMounted ){
