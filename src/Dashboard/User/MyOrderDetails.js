@@ -12,7 +12,7 @@ const MyOrderDetails = () => {
 
   useEffect(() => {
     let isMounted = true;
-    fetch(`http://localhost:5000/orders/${id}`)
+    fetch(`https://phono-server-production.up.railway.app/orders/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (isMounted) {

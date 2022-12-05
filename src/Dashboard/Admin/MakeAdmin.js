@@ -64,7 +64,7 @@ const MakeAdmin = () => {
 
   const handleAdminSubmit = (e) => {
     const user = { email };
-    fetch(`http://localhost:5000/users/admin/${email}`, {
+    fetch(`https://phono-server-production.up.railway.app/users/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${token}`,
@@ -89,7 +89,7 @@ const MakeAdmin = () => {
   /* get Admins */
   useEffect(() => {
     const fetchData = async () => {
-      axios.get(`http://localhost:5000/users`).then((response) => {
+      axios.get(`https://phono-server-production.up.railway.app/users`).then((response) => {
         setAdmins(response.data);
       });
     };
@@ -113,6 +113,7 @@ const MakeAdmin = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   variant="outlined"
+                  required
                 />
                 <br />
                 <Button

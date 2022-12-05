@@ -35,7 +35,7 @@ const SpecialDetails = () => {
     try {
       async function callApi() {
         let data = await fetch(
-          `http://localhost:5000/phones/${id}`
+          `https://phono-server-production.up.railway.app/phones/${id}`
         );
         data = await data.json();
         setPhones(data);

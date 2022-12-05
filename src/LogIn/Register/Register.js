@@ -87,6 +87,7 @@ const Register = () => {
                       name="name"
                       onBlur={handleOnBlur}
                       variant="outlined"
+                      required
                     />
                     <TextField
                       sx={{ width: "85%", m: 1 }}
@@ -96,6 +97,7 @@ const Register = () => {
                       type="email"
                       onBlur={handleOnBlur}
                       variant="outlined"
+                      required
                     />
                     <TextField
                       sx={{ width: "85%", m: 1 }}
@@ -128,6 +130,7 @@ const Register = () => {
                         ),
                       }}
                       variant="outlined"
+                      required
                     />
                     <TextField
                       sx={{ width: "85%", m: 1 }}
@@ -151,6 +154,7 @@ const Register = () => {
                         ),
                       }}
                       variant="outlined"
+                      required
                     />
 
                     <Button

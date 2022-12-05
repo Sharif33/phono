@@ -61,15 +61,14 @@ const LogIn = () => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Phono | Log in</title>
+        <title>Phono | Login</title>
         <link rel="canonical" href="/login" />
       </Helmet>
       <Container>
         <CssBaseline />
         <Breadcrumbs sx={{ mt: 5 }} aria-label="breadcrumb">
           <Link className="text-secondary" to="/">
-            {" "}
-            Home{" "}
+            Home
           </Link>
           <Typography color="primary">Login</Typography>
         </Breadcrumbs>
@@ -80,7 +79,7 @@ const LogIn = () => {
             xs={12}
             md={6}
           >
-            {/* <Typography sx={{ letterSpacing: 4, fontWeight: 'bold' }} variant="h4" gutterBottom>Please   Login</Typography> */}
+           
             <Box className="py-4 shadow-sm rounded ">
               <LockOutlinedIcon sx={{ m: 1, color: "secondary.main" }} />
               <Typography component="h1" variant="h5">
@@ -92,16 +91,17 @@ const LogIn = () => {
                   type="email"
                   sx={{ width: "75%", m: 1 }}
                   id="standard-basic"
-                  label="Your Email*"
+                  label="Your Email"
                   name="email"
                   onChange={handleOnChange}
                   variant="outlined"
+                  required
                 />
 
                 <TextField
                   sx={{ m: 1, width: "75%" }}
                   id="standard-basic2"
-                  label="Password*"
+                  label="Password"
                   type={showPass ? "text" : "password"}
                   name="password"
                   onChange={handleOnChange}
@@ -120,6 +120,7 @@ const LogIn = () => {
                     ),
                   }}
                   variant="outlined"
+                  required
                 />
                 
                 <Button
@@ -131,8 +132,6 @@ const LogIn = () => {
                 </Button>
                
               </form>
-
-               
                 <ForgetPass
                 open = {open}
                 handleOpen = {handleOpen}

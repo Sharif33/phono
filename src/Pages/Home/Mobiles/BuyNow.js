@@ -54,7 +54,7 @@ const BuyNow = () => {
       data.status = "Pending...";
   
       axios
-        .post(`http://localhost:5000/orders`, data)
+        .post(`https://phono-server-production.up.railway.app/orders`, data)
         .then((res) => {
           if (res.data.insertedId) {
             // alert('Purchase successfully.Please Check My Order');

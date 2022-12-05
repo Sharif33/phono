@@ -5,7 +5,7 @@ const useCoupons = () => {
     const [coupons, setCoupons] = useState([]);
 
     useEffect(() => {
-      axios.get(`http://localhost:5000/coupons`).then((response) => {
+      axios.get(`https://phono-server-production.up.railway.app/coupons`).then((response) => {
         setCoupons(response.data);
       });
     }, []);
@@ -14,7 +14,7 @@ const useCoupons = () => {
         let isMounted = true;  
           try {
             async function callApi() {
-                let data = await fetch(`http://localhost:5000/coupons`);
+                let data = await fetch(`https://phono-server-production.up.railway.app/coupons`);
                 data = await data.json();
                 if(isMounted ){ 
                 setCoupons(data);

@@ -30,7 +30,7 @@ const ManageProducts = () => {
     // console.log(mobiles);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/mobiles`)
+        fetch(`https://phono-server-production.up.railway.app/mobiles`)
             .then(res => res.json())
             .then(data =>{
                setMobiles(data);
@@ -52,7 +52,7 @@ const ManageProducts = () => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `http://localhost:5000/mobiles/${id}`
+            const url = `https://phono-server-production.up.railway.app/mobiles/${id}`
             fetch(url, {
                 method: 'DELETE',
             })

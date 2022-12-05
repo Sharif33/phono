@@ -67,11 +67,6 @@ function Dashboard(props) {
                 }}>
                     <NavLink style={{fontFamily:'Rubik'}} className="fw-bold fs-3 text-blue" to="/home">PH<span className="text-pink">|O|</span>NO</NavLink>
                     <Toolbar/>
-                    {/* <Box sx={{ display: 'block', textAlign: 'center',marginTop:'15px' }}>
-                        <img className="img-fluid px-3 w-50 rounded-circle mx-auto" src={user?.photoURL} alt="" />
-                        <h5 className="text-center">{user?.displayName}</h5>
-                        <Button sx={{ mb: 1 }} onClick={logOut} variant="outlined" color="error"><Logout fontSize="small" /> Logout</button>
-                    </Box> */}
                     <div className='d-flex align-items-center justify-content-center  px-4 mb-4 rounded bg-avatar'>
                         <Avatar src={user?.photoURL} alt="" />
                         <div className='d-block align-items-center mt-3 mx-2'>

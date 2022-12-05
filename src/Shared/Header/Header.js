@@ -174,7 +174,7 @@ return (
                 aria-haspopup="true"
                 aria-expanded={open || undefined}
             >
-                <Avatar alt="" src={user?.photoURL} />  
+                <Avatar alt={user?.displayName} src={user?.photoURL} />  
             </IconButton>                                                       
             <Menu
                 anchorEl={anchorEl}
@@ -211,8 +211,8 @@ return (
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-            <MenuItem>
-            <small >{defaultAdrs?.name ? defaultAdrs.name : user?.displayName} <br /> <span  style={{color: '#74829C', fontSize:"0.85em"}}>{user?.email}</span></small>
+            <MenuItem >
+            <small >{defaultAdrs?.name || user?.displayName} <br /> <span  style={{color: '#74829C', fontSize:"0.85em"}}>{user?.email}</span></small>
             </MenuItem>
             <Divider />
 
@@ -221,10 +221,9 @@ return (
             <ListItemIcon>
             <CiUser/>
             </ListItemIcon>
-            <Typography sx={{ fontSize: 14}}>
+            <Typography sx={{ fontSize: 14}} component="div">
                 Profile
-            </Typography>
-               
+            </Typography>     
             </MenuItem>
             </NavLink>
 
@@ -233,7 +232,7 @@ return (
             <ListItemIcon>
             <CiGrid41/>
             </ListItemIcon>
-            <Typography sx={{ fontSize: 14}}>
+            <Typography sx={{ fontSize: 14}} component="div">
                 Dashboard                
             </Typography>
             </MenuItem>
@@ -243,7 +242,7 @@ return (
             <ListItemIcon>
             <CiCircleInfo/>
             </ListItemIcon >
-            <Typography sx={{color: '#282f53', fontSize:14}}>
+            <Typography sx={{color: '#282f53', fontSize:14}} component="div">
                 Logout
             </Typography>
             </MenuItem>

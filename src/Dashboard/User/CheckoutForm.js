@@ -18,7 +18,7 @@ const CheckoutForm = ({itemOrder}) => {
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
-        fetch(`http://localhost:5000/create-payment-intent`, {
+        fetch(`https://phono-server-production.up.railway.app/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -84,7 +84,7 @@ const CheckoutForm = ({itemOrder}) => {
                 last4: paymentMethod.card.last4,
                 transaction: paymentIntent.client_secret
             }
-            const url = `http://localhost:5000/orders/${_id}`;
+            const url = `https://phono-server-production.up.railway.app/orders/${_id}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {

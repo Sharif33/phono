@@ -7,7 +7,7 @@ const useOffer = () => {
     /* https://phono-server-production.up.railway.app/ */
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/phonesAp`).then((response) => {
+        axios.get(`https://phono-server-production.up.railway.app/phonesAp`).then((response) => {
           setOffers(response.data);
         });
       }, []);
@@ -16,7 +16,7 @@ const useOffer = () => {
         let isMounted = true;
          try {
             async function callApi() {
-                let data = await fetch(`http://localhost:5000/phonesAp`);
+                let data = await fetch(`https://phono-server-production.up.railway.app/phonesAp`);
                 data = await data.json();
                 if(isMounted ){
                 setOffers(data);

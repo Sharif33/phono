@@ -14,8 +14,6 @@ import { CheckOutlined, DeleteOutline } from '@mui/icons-material';
 import TextField from '@mui/material/TextField';
 import { CircularProgress,MenuItem} from '@mui/material';
 import Box from '@mui/material/Box';
-// import Tabs from '@mui/material/Tabs';
-// import Tab from '@mui/material/Tab';
 
 const columns = [
     { id: 'phone',  label: 'Phone', maxWidth: 100, },
@@ -36,7 +34,7 @@ const ManageOrder = () => {
     const allOrdrs = orders?.reverse().sort((a,b)=> new Date(a.date) < new Date(b.date) ? 1 : -1);
     // console.log(allOrdrs);
     const [status, setStatus] = useState('');
-    const [value, setValue] = React.useState('');
+    const [value, setValue] = useState('');
     const statuses = ['Processing','Packed','Shipped','Delivered','Cancel'];
     const filterStatuses = ['Pending...','Processing','Packed','Shipped','Delivered','Cancel'];
 
@@ -44,18 +42,14 @@ const ManageOrder = () => {
         setStatus(e.target.value);
       
     }
-
-   
+  
   const handleChange = (e) => {
       setValue(e.target.value);
   };
-  /* const handleChange = (event, newValue) => {
-      setValue(newValue);
-  }; */
 
     useEffect(() => {
         let isMounted = true;
-        fetch(`http://localhost:5000/orders`)
+        fetch(`https://phono-server-production.up.railway.app/orders`)
             .then((res) => res.json())
             .then((data) => {
                 if(isMounted ){
@@ -84,7 +78,7 @@ const ManageOrder = () => {
             if (result.isConfirmed) 
          {
 
-            fetch(`http://localhost:5000/updateStatus/${id}`, {
+            fetch(`https://phono-server-production.up.railway.app/updateStatus/${id}`, {
                 method: "PUT",
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify({ status })
@@ -98,11 +92,9 @@ const ManageOrder = () => {
                             'Status updated successfully!',
                             'success'
                           )
-                        // window.location.reload();
                        
                         setOrders(orders);
                         setStatus(status);
-                        // setValue(status);
                     }
                 })
         }
@@ -125,7 +117,7 @@ const ManageOrder = () => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `http://localhost:5000/orders/${id}`
+            const url = `https://phono-server-production.up.railway.app/orders/${id}`
             fetch(url, {
                 method: 'DELETE',
             })
@@ -148,8 +140,8 @@ const ManageOrder = () => {
     };
 
     //Table
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -203,7 +195,11 @@ const ManageOrder = () => {
     }
   
     return (
-        <div style={{overflowX:"hidden", fontFamily:'Rubik'}}>
+        <>      
+              {
+                orders?.length === 0 ? <CircularProgress align="center"/>
+                    : 
+            <div style={{overflowX:"hidden", fontFamily:'Rubik'}}>
             <div className='d-flex justify-content-between align-items-center py-1'>
             <Paper
                 component="form"
@@ -248,9 +244,7 @@ const ManageOrder = () => {
     </Box>  
             </div>  
             </div> 
-         {
-                orders?.length === 0 ? <CircularProgress align="center"/>
-                    :     
+       
         <Paper sx={{ overflow: 'hidden' }}> 
          <TableContainer sx={{ maxHeight: 500 }}>
             <Table stickyHeader aria-label="sticky table" >
@@ -320,11 +314,10 @@ const ManageOrder = () => {
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
-        </Paper>            
+        </Paper> 
+        </div>           
             }
-           
-       
-    </div>
+    </>
     );
 };
 

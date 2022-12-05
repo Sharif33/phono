@@ -34,7 +34,7 @@ const PlaceOrder = () => {
   useEffect(() => {
     if (users.length === 0) {
       setIsLoading(true)
-      fetch(`http://localhost:5000/usersEmail/${user.email}`)
+      fetch(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`)
         .then(res => res.json())
         .then(data => setUsers(data))
         .finally(() => setIsLoading(false))
@@ -138,7 +138,7 @@ const PlaceOrder = () => {
     data.orderNote = ordrNote ? ordrNote : " ";
 
     axios
-      .post(`http://localhost:5000/orders`, data)
+      .post(`https://phono-server-production.up.railway.app/orders`, data)
       .then((res) => {
         if (res.data.insertedId) {
           // alert('Purchase successfully.Please Check My Order');

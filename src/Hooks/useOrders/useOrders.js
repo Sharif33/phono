@@ -8,14 +8,14 @@ const useOrders = () => {
     const email = user?.email;
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/myOrders/${email}`).then((response) => {
+        axios.get(`https://phono-server-production.up.railway.app/myOrders/${email}`).then((response) => {
           setOrders(response.data);
         });
       }, [email]);
 
     /* useEffect(() => {
         let isMounted = true;
-            fetch(`http://localhost:5000/myOrders/${email}`)
+            fetch(`https://phono-server-production.up.railway.app/myOrders/${email}`)
             .then((res) => res.json())
             .then((data) =>{
                 if(isMounted ){

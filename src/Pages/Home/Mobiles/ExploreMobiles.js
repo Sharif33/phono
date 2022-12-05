@@ -34,11 +34,11 @@ const ExploreMobiles = () => {
 
    
     useEffect(() => {
-       axios.get(`http://localhost:5000/mobiles`).then((response)=>{
+       axios.get(`https://phono-server-production.up.railway.app/mobiles`).then((response)=>{
         setMobiles(response.data);
         setCategories(response.data);
        });
-       /*  fetch(`http://localhost:5000/phones`)
+       /*  fetch(`https://phono-server-production.up.railway.app/phones`)
             .then(res => res.json())
             .then(data => {
                 setMobiles(data);

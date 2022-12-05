@@ -5,7 +5,7 @@ const usePhones = () => {
     const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
-      axios.get(`http://localhost:5000/mobiles`).then((response) => {
+      axios.get(`https://phono-server-production.up.railway.app/mobiles`).then((response) => {
         setMobiles(response.data);
       });
     }, []);
@@ -15,7 +15,7 @@ const usePhones = () => {
        
           try {
             async function callApi() {
-                let data = await fetch(`http://localhost:5000/mobiles`);
+                let data = await fetch(`https://phono-server-production.up.railway.app/mobiles`);
                 data = await data.json();
                 if(isMounted ){ 
                 setMobiles(data);

@@ -16,7 +16,7 @@ const EditOffer = ({isDrawerOpen, setIsDrawerOpen, mobile, setMobiles, mobiles})
     const { register, handleSubmit } = useForm();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/phones`)
+        fetch(`https://phono-server-production.up.railway.app/phones`)
             .then(res => res.json())
             .then(data => setMbl(data))
     }, [])
@@ -27,7 +27,7 @@ const EditOffer = ({isDrawerOpen, setIsDrawerOpen, mobile, setMobiles, mobiles})
         // console.log(data);
         
 
-            axios.put(`http://localhost:5000/phones/${mobile?._id}`,data) 
+            axios.put(`https://phono-server-production.up.railway.app/phones/${mobile?._id}`,data) 
             .then(res=>{
                     if (res.data) {
                         // console.log(data);

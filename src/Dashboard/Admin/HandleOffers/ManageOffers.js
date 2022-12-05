@@ -6,7 +6,7 @@ const ManageOffers = () => {
     const [mobiles, setMobiles] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/phones`)
+        fetch(`https://phono-server-production.up.railway.app/phones`)
             .then(res => res.json())
             .then(data => setMobiles(data))
     }, [])

@@ -18,7 +18,7 @@ import EditOffer from './EditOffer';
 const ApprovalOffer = ({mobile, mobiles, setMobiles}) => {
     // Approved by Admin
     const handleApproval = (id) => {
-        fetch(`http://localhost:5000/phones`, {
+        fetch(`https://phono-server-production.up.railway.app/phones`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ const ApprovalOffer = ({mobile, mobiles, setMobiles}) => {
           }).then((result) => {
             if (result.isConfirmed) 
          {
-            const url = `http://localhost:5000/phones/${id}`
+            const url = `https://phono-server-production.up.railway.app/phones/${id}`
             fetch(url, {
                 method: 'DELETE',
             })

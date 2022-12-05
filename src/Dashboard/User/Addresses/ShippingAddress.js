@@ -67,7 +67,7 @@ const ShippingAddress = ({editedAdrs,users,setUsers,isLoading,setIsLoading}) => 
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(bodyInfo)
             };
-            const response = await fetch(`http://localhost:5000/users/${email}`, requestOptions);
+            const response = await fetch(`https://phono-server-production.up.railway.app/users/${email}`, requestOptions);
             const data = await response.json();
             
             if (data.modifiedCount > 0) {

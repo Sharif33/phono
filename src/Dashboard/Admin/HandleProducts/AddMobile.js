@@ -35,7 +35,7 @@ const AddMobile = () => {
             console.log(err)
         })
  */
-        axios.post(`http://localhost:5000/mobiles`, data)
+        axios.post(`https://phono-server-production.up.railway.app/mobiles`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     

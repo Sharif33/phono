@@ -13,7 +13,7 @@ const MyOrders = () => {
   const email = user?.email;
   useEffect(() => {
     let isMounted = true;
-    fetch(`http://localhost:5000/myOrders/${email}`)
+    fetch(`https://phono-server-production.up.railway.app/myOrders/${email}`)
       .then((res) => res.json())
       .then((data) => {
         if (isMounted) {
@@ -30,7 +30,7 @@ const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    fetch(`http://localhost:5000/orders`)
+    fetch(`https://phono-server-production.up.railway.app/orders`)
       .then((res) => res.json())
       .then((data) => {
         if (isMounted) {
@@ -55,7 +55,7 @@ const MyOrders = () => {
       confirmButtonText: "Yes, cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `http://localhost:5000/myOrders/${id}`;
+        const url = `https://phono-server-production.up.railway.app/myOrders/${id}`;
         fetch(url, {
           method: "DELETE",
         })

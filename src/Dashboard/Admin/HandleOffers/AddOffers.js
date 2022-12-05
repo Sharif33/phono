@@ -42,7 +42,7 @@ const AddOffers = () => {
         data.adder=user?.displayName;
         data.adderEmail=user?.email;
         
-        axios.post(`http://localhost:5000/phones`, data)
+        axios.post(`https://phono-server-production.up.railway.app/phones`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     Swal.fire(

@@ -24,7 +24,7 @@ const CustomerReviewShow = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/cReviews`)
+        fetch(`https://phono-server-production.up.railway.app/cReviews`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

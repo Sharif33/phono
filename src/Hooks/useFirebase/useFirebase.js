@@ -88,7 +88,7 @@ const useFirebase = () => {
 
     /* user data get from databse and check isAdmin */
     useEffect(() => {
-        /* fetch(`http://localhost:5000/users/${user.email}`)
+        /* fetch(`https://phono-server-production.up.railway.app/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -97,7 +97,7 @@ const useFirebase = () => {
                 setAdmin(data?.admin)}) */
                 const fetchData = async () =>{
                 axios
-                .get(`http://localhost:5000/users/${user?.email}`)
+                .get(`https://phono-server-production.up.railway.app/users/${user?.email}`)
                 .then((response) => {
                 localStorage.setItem("phonoUserDetails", JSON.stringify(response.data));
                 setAdrs(response.data);
@@ -130,7 +130,7 @@ const useFirebase = () => {
     /* user data upload to databse */
     const saveUser = (email, displayName, phoneNumber, method) => {
         const user = { email, displayName, phoneNumber };
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://phono-server-production.up.railway.app/users`, {
             method: method,
             headers: {
                 'content-type': 'application/json'
