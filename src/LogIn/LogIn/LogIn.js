@@ -23,6 +23,7 @@ import { Box } from "@mui/system";
 import "./LogIn.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import ForgetPass from "./ForgetPass";
 
 const LogIn = () => {
   const [loginData, setLoginData] = useState({});
@@ -39,14 +40,23 @@ const LogIn = () => {
     newLoginData[field] = value;
     setLoginData(newLoginData);
   };
+
+  /* Email Password  Login*/
   const handleLoginSubmit = (e) => {
     loginUser(loginData.email, loginData.password, location, navigate);
     e.preventDefault();
   };
 
+  /* Google Login */
   const handleGoogleSignIn = () => {
     signInWithGoogle(location, navigate);
   };
+  
+  /* Forget Password */
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
       <Helmet>
@@ -111,7 +121,7 @@ const LogIn = () => {
                   }}
                   variant="outlined"
                 />
-
+                
                 <Button
                   sx={{ width: "75%", m: 1 }}
                   type="submit"
@@ -119,16 +129,27 @@ const LogIn = () => {
                 >
                   Login
                 </Button>
+               
               </form>
+
+               
+                <ForgetPass
+                open = {open}
+                handleOpen = {handleOpen}
+                handleClose = {handleClose}
+                />
               {isLoading && <CircularProgress />}
               {user?.email && <Alert severity="success">Login successfully!</Alert>}
               {authError && <Alert severity="error">{authError}</Alert>}
-              <Box sx={{ my: 2 }}>
+              <Box sx={{ my: 2, display:"flex", alignItems:"center" , justifyContent:'space-evenly'}}>
+                <Button size="small" variant="text" color="error" onClick={handleOpen}>
+                  Forget Password?
+                </Button>
                 <NavLink to="/register">
-                  <Button variant="text">New User? Please Register</Button>
+                  <Button size="small" variant="text">New User? Please Register</Button>
                 </NavLink>
               </Box>
-              <p className="hr-lines">Or</p>
+              <p className="hr-lines">OR</p>
               <button
                 className="btn p-0 pe-3 border btn-light bg-cart"
                 onClick={handleGoogleSignIn}

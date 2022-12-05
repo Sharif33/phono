@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile, signOut, getIdToken } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile, signOut, getIdToken, sendEmailVerification } from "firebase/auth";
 import initializeAuthentication from "../../Firebase/firebase.iinit";
 import axios from 'axios';
 // initialize firebase app
@@ -16,18 +16,18 @@ const useFirebase = () => {
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
 
-    const registerUser = (email, password, name, navigate) => {
+    const registerUser = (email, password, name, phoneNumber, navigate) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setAuthError('');
                 const newUser = { email, displayName: name };
                 setUser(newUser);
-
-                saveUser(email, name, 'POST');
-
+                saveUser(email, name, phoneNumber, 'PUT');
+                verifyEmail();
                 updateProfile(auth.currentUser, {
-                    displayName: name
+                    displayName: name,
+                    phoneNumber: phoneNumber
                 }).then(() => {
                 }).catch((error) => {
                 });
@@ -59,7 +59,7 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
-                saveUser(user.email, user.displayName, 'PUT');
+                saveUser(user.email, user.displayName, user.phoneNumber, 'PUT');
                 setAuthError('');
                 const destination = location?.state?.from || '/';
                 navigate(destination);
@@ -86,6 +86,7 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [auth])
 
+    /* user data get from databse and check isAdmin */
     useEffect(() => {
         /* fetch(`http://localhost:5000/users/${user.email}`)
             .then(res => res.json())
@@ -104,8 +105,18 @@ const useFirebase = () => {
                 })
             }
             fetchData()
-    }, [user.email])
+    }, [user.email]);
 
+    /* Verify email */
+        const verifyEmail = ()=>{
+            sendEmailVerification(auth.currentUser)
+            .then(() => {
+                // Email verification sent!
+            });
+        }
+
+
+    /* Logout */
     const logOut = () => {
         setIsLoading(true);
         signOut(auth).then(() => {
@@ -115,9 +126,10 @@ const useFirebase = () => {
         })
             .finally(() => setIsLoading(false));
     }
-
-    const saveUser = (email, displayName, method) => {
-        const user = { email, displayName };
+    
+    /* user data upload to databse */
+    const saveUser = (email, displayName, phoneNumber, method) => {
+        const user = { email, displayName, phoneNumber };
         fetch(`http://localhost:5000/users`, {
             method: method,
             headers: {

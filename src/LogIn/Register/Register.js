@@ -41,7 +41,7 @@ const Register = () => {
       toast.error("Your password did not match");
       return;
     }
-    registerUser(loginData.email, loginData.password, loginData.name, navigate);
+    registerUser(loginData.email, loginData.password, loginData.name, loginData.phoneNumber, navigate);
     e.preventDefault();
   };
 
@@ -100,6 +100,15 @@ const Register = () => {
                     <TextField
                       sx={{ width: "85%", m: 1 }}
                       id="outlined-basic5"
+                      label="Your Phone Number"
+                      name="phoneNumber"
+                      type="number"
+                      onBlur={handleOnBlur}
+                      variant="outlined"
+                    />
+                    <TextField
+                      sx={{ width: "85%", m: 1 }}
+                      id="outlined-basic6"
                       label="Password"
                       type={showPass ? "text" : "password"}
                       name="password"
@@ -122,7 +131,7 @@ const Register = () => {
                     />
                     <TextField
                       sx={{ width: "85%", m: 1 }}
-                      id="outlined-basic6"
+                      id="outlined-basic7"
                       label="Confirm Password"
                       type={showPass ? "text" : "password"}
                       name="password2"
