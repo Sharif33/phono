@@ -2,31 +2,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-// import HomeIcon from '@mui/icons-material/Home';
-import List from '@mui/material/List';
-import { AiFillFileAdd } from "react-icons/ai";
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
-import { MdOutlineLocalOffer,MdDashboard } from "react-icons/md";
-import { FaUserCog } from "react-icons/fa";
-
-import { Avatar, CircularProgress, CssBaseline, Typography} from '@mui/material';
-
+import { Avatar, CircularProgress, CssBaseline,List,ListItem,ListItemAvatar,ListItemText,Typography} from '@mui/material';
 import {Outlet, Link, NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth/useAuth';
-// import { Logout } from '@mui/icons-material';
-import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
-import FeedIcon from '@mui/icons-material/Feed';
-// import PersonIcon from '@mui/icons-material/Person';
-// import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import './Dashboard.css';
+import DashboardRoutes from './DashboardRoutes';
+
 
 const drawerWidth = 250;
 
@@ -49,7 +34,7 @@ function Dashboard(props) {
         setMobileOpen(!mobileOpen);
     };
     
-    const { user, logOut, admin, isLoading } = useAuth();
+    const { user, logOut, admin, isLoading, defaultAdrs } = useAuth();
     if (isLoading) { return <CircularProgress /> }
     
     const drawer = (
@@ -66,63 +51,26 @@ function Dashboard(props) {
                     },
                 }}>
                     <NavLink style={{fontFamily:'Rubik'}} className="fw-bold fs-3 text-blue" to="/home">PH<span className="text-pink">|O|</span>NO</NavLink>
+                    
                     <Toolbar/>
-                    <div className='d-flex align-items-center justify-content-center  px-4 mb-4 rounded bg-avatar'>
-                        <Avatar src={user?.photoURL} alt="" />
-                        <div className='d-block align-items-center mt-3 mx-2'>
-                            <small className="fw-bold">{user?.displayName}</small>
-                            <p>
-                            {
-                                admin ? <small>admin</small> : <small>user</small>
-                            }
-                            </p>
-                        </div>
+                   
+                    <div className='px-3 mb-4 rounded bg-avatar'> 
+                    <List>
+                        <ListItem alignItems="flex-start">
+                            <ListItemAvatar>
+                            <Avatar src={user?.photoURL} alt={user?.displayName} />
+                            </ListItemAvatar>
+                            <ListItemText
+                            primary={defaultAdrs?.name || user?.displayName}
+                            secondary={ admin ? "admin" : "member" }
+                            />
+                        </ListItem>
+                    </List>
                    </div>
                 </Box>
             }
-           {!admin && <Box>
-            <List>    
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#E94235' : '#ccd6f6', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? '': 'rgba(0, 171, 85, 0.08)'})} to={`/dashboard`}> <span className='me-2 fs-5'><MdDashboard /></span>  Dashboard</NavLink>
-            </List>
-            <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/myOrders`}> <span className='me-2 fs-5'><FeedIcon /></span> Orders History</NavLink>
-            </List>
-            <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`user`}> <span className='me-2 fs-5'><FaUserCog /></span> Manage Profile</NavLink>
-            </List>
-                </Box>
-            }
-           
-            {admin &&  <Box  sx={{px:1}}>
-                <h6 className='ps-4 fw-bold'>MANAGEMENT</h6>
-                <List>    
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#E94235' : '#ccd6f6', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard`}> <span className='me-2 fs-5'><MdDashboard /></span>  Dashboard</NavLink>
-               </List>
-                <List>
-               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/manageOrder`}><span className='me-2'><ShoppingCartCheckoutOutlinedIcon /></span>  Manage Orders</NavLink>
-               </List>              
-               <List>    
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard/manageProducts`}><span className='me-2 fs-5'><AddTaskOutlinedIcon /></span> Manage Products</NavLink>
-               </List>
-               <List>    
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})} to={`/dashboard/manageOffers`}><span className='me-2 fs-5'><MdOutlineLocalOffer /></span> Manage Offers</NavLink>
-               </List>
-               <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`manageUsers`}> <span className='me-2 fs-5'><FaUserCog /></span> Manage User</NavLink>
-            </List>
-               <h6 className='py-2 ps-4 fw-bold'>DEVELOPMENT</h6> 
-                <List>
-                <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/makeAdmin`}><span className='me-2 fs-5'><AdminPanelSettingsIcon /></span> Make Admin</NavLink>
-               </List>
-               <List>
-               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/addMobile`}><span className='me-2 fs-5'><AddCircleOutlineOutlinedIcon /></span> Add Mobile</NavLink>
-               </List>                           
-               <List>
-               <NavLink className='btn btn-hover w-100 text-start' style={({isActive})=> ({color: isActive ? '#38D373' : '#637381', textDecoration: isActive ?'none' : 'none',backgroundColor: isActive ? 'rgba(0, 171, 85, 0.08)': ''})}  to={`/dashboard/addOffer`}><span className='me-2 fs-5'><AiFillFileAdd /></span> Add Offer</NavLink>
-               </List>                           
-            </Box>
-            }
-           
+            {/* Routes */}
+            <DashboardRoutes/>  
         </>
     );
 
@@ -134,8 +82,8 @@ function Dashboard(props) {
         <Box sx={{ display: {md:'flex'} }}>
         <CssBaseline />  
         <AppBar position="fixed" 
-        sx={{ width: { sm: `calc(100% - ${drawerWidth}px)` }, ml: { sm: `${drawerWidth}px` },boxShadow:"none"}}>
-            <Toolbar className='bg-light'>
+        sx={{ width: { sm: `calc(100% - ${drawerWidth}px)` }, ml: { sm: `${drawerWidth}px` },boxShadow:"none",background:"rgba(255, 255, 255, 0.7)",backdropFilter: "blur(20px)",}}>
+            <Toolbar>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -161,7 +109,7 @@ function Dashboard(props) {
                     <ul className="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdownMenuLink2">
 
                         <li className=" dropdown-item border-bottom">
-                            <small className='fw-bold'>{user?.name ? user.name : user?.displayName}</small><br />
+                            <small className='fw-bold'>{defaultAdrs?.name || user?.displayName}</small><br />
                             <small className="text-center">{user?.email}</small>
                         </li>
 
@@ -169,7 +117,7 @@ function Dashboard(props) {
 
                         <Link  className='text-dark dropdown-item' style={{textDecoration:'none',color:"white"}} to="/"><small>Home</small></Link>
                                                   
-                        <button onClick={logOut} className="btn text-danger fw-bold dropdown-item">
+                        <button onClick={logOut} className="text-danger fw-bold dropdown-item">
                         Logout </button>          
                     </ul>
                                                   

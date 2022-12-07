@@ -66,7 +66,7 @@ const deliveredOrder = orders?.filter(element =>
       );   */
 
 
-    const lastUpdate = mobiles.slice(-1).pop();
+    // const lastUpdate = mobiles.slice(-1).pop();
     const lastOffer = offers.slice(-1).pop();
     // const firstUpload = mobiles.slice(1);
     
@@ -199,13 +199,7 @@ const deliveredOrder = orders?.filter(element =>
                         </div>
                         <div className='text-center w-100'>
                               <h5 className=''>Total Products: <br /> <span className="fs-1 text-pink"> {(mobiles?.length) + (offers?.length)}</span></h5> 
-                              <h5 className='text-light-slate'> <span className="font-custom">Last Product:</span> <br /> <small className='text-pink'>{lastUpdate?.name}</small> </h5>
-                            {/*   {
-                                  mobiles?.map(mob=>
-                                    <div key={mob._id}>
-                                        <h5>{mob?.updated_date}</h5>
-                                    </div>)
-                              } */}
+                              <h5 className='text-light-slate'> <span className="font-custom">Last Product:</span> <br /> <small className='text-pink'>''</small> </h5>
                         </div>
                     </div>
                 </div>

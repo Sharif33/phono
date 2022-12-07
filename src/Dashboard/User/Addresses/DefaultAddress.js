@@ -28,7 +28,11 @@ const DefaultAddress = () => {
 
     const dfltAdrs = {...defaultAdrs,...fieldsValue};
    
-    const adrs = localStorage.getItem('phonoUserDetails') ? JSON.parse(localStorage.getItem('phonoUserDetails')) : {} || [];
+    const adrss = localStorage.getItem('phonoUserDetails') ? JSON.parse(localStorage.getItem('phonoUserDetails')) : {} || [];
+
+    const adrs =  adrss || defaultAdrs;
+
+    // console.log(adrs);
 
     const [isLoading, setIsLoading] = useState(false);
    
