@@ -61,7 +61,13 @@ function Dashboard(props) {
                             <Avatar src={user?.photoURL} alt={user?.displayName} />
                             </ListItemAvatar>
                             <ListItemText
-                            primary={defaultAdrs?.name || user?.displayName}
+                            primary={
+                                <>
+                                <Typography variant='body2'>
+                                    { defaultAdrs?.name || user?.displayName}
+                                </Typography>
+                                </>     
+                            }
                             secondary={ admin ? "admin" : "member" }
                             />
                         </ListItem>
@@ -77,8 +83,7 @@ function Dashboard(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <>
-        
+        <>     
         <Box sx={{ display: {md:'flex'} }}>
         <CssBaseline />  
         <AppBar position="fixed" 

@@ -34,7 +34,7 @@ const PlaceOrder = () => {
   useEffect(() => {
     if (users.length === 0) {
       setIsLoading(true)
-      fetch(`https://phono-server-production.up.railway.app/usersEmail/${user.email}`)
+      fetch(`https://phono-server-production.up.railway.app/users/${user.email}`)
         .then(res => res.json())
         .then(data => setUsers(data))
         .finally(() => setIsLoading(false))
