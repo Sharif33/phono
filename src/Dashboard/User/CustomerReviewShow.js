@@ -13,7 +13,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 // import required modules
-import { EffectCoverflow, Pagination, Autoplay } from "swiper";
+import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 
 // SwiperCore.use([EffectCoverflow, Autoplay, Pagination, Navigation]);
 const CustomerReviewShow = () => {

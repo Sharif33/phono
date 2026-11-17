@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 // import required modules
-import { Autoplay, Navigation, Scrollbar } from "swiper";
+import { Autoplay, Navigation, Scrollbar } from "swiper/modules";
 
 import { Link } from 'react-router-dom';
 

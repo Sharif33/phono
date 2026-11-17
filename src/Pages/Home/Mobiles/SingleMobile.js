@@ -26,7 +26,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 // import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper";
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { numberFormat } from "../../../Shared/numberFormat";
 import { Helmet } from "react-helmet";
 import ShareProduct from "../../../Shared/ShareProduct";

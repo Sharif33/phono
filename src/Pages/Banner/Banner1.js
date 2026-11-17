@@ -11,7 +11,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 // import required modules
-import { Autoplay } from "swiper";
+import { Autoplay } from "swiper/modules";
 
 import "./Banner1.css";
 
